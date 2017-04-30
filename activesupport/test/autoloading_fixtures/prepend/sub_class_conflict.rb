@@ -1,2 +1,0 @@
-class Prepend::SubClassConflict
-end
