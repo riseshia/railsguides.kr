@@ -6,11 +6,16 @@ cache:
 
 bundler_args: --without test --jobs 3 --retry 3
 
-script: 'cd guides && bundle exec rake guides:generate:html'
+branches:
+  only:
+  - korean
+
+script: ./deploy.sh
 
 env:
   global:
     - "GUIDES_LANGUAGE=ko"
+    - "RAILS_VERSION=v5.1.0"
 
 rvm:
   - ruby-head
