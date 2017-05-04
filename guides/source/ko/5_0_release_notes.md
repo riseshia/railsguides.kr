@@ -57,12 +57,12 @@ $ rails new my_api --api
 
 이 명령은 다음 3개의 동작을 실행합니다.
 
-- 사용하는 미들웨어를 일반적인 상황보다 적게 사용하여 서버를 실행하도록 설정합니다.
+* 사용하는 미들웨어를 일반적인 상황보다 적게 사용하여 서버를 실행하도록 설정합니다.
   특히 브라우저용 애플리케이션에서 유용한 미들웨어(쿠키에 대한 지원 등)를 일체 사용할 수 없게 됩니다.
-- `ApplicationController`는 기존의 `ActionController::Base` 대신에
+* `ApplicationController`는 기존의 `ActionController::Base` 대신에
   `ActionController::API`를 상속합니다. 미들웨어와 마찬가지로 액션컨트롤러 모듈에서 브라우저용
   애플리케이션에서만 사용되는 모듈을 모두 제외합니다.
-- 제너레이터가 뷰, 헬퍼, 애셋을 생성하지 않습니다.
+* 제너레이터가 뷰, 헬퍼, 애셋을 생성하지 않습니다.
 
 생성된 API 애플리케이션은 API 제공하기 위한 토대가 되며, 필요에 따라서
 [기능을 추가](api_app.html) 할 수 있습니다.
@@ -367,7 +367,7 @@ Action Pack
 *   `ActionController::TestCase`는 Rails 5.1에서 gem으로 추출될 예정. 앞으로는 `ActionDispatch::IntegrationTest`를 사용.
     ([commit](https://github.com/rails/rails/commit/4414c5d1795e815b102571425974a8b1d46d932d))
 
-*   Rails에서 기본으로 '약한' ETag를 생성함.
+*   Rails에서 ETag이 '약한' 방식을 기본으로 사용함.
     ([Pull Request](https://github.com/rails/rails/pull/17573))
 
 *   컨트롤러 액션에서 `render`가 명시적으로 호출되지 않고, 대응하는 템플릿도 없는 경우, 에러 대신에 `head :no_content`를 암묵적으로 호출하게 됨.
@@ -395,8 +395,8 @@ Action Pack
     이에 대응하기 위해 `Warden`/`Devise`의 인증 에러를 다루는 특수한 코드를 포함하는 별도의 모듈을 사용하는 개발자들이 있었음.
     ([이에 대한 자세한 설명이 포함된 이슈](https://github.com/rails/rails/issues/25581))
 
-*   `Response#strong_etag=`와 `#weak_etag=`와 `fresh_when`과 `stale?`에 관련된
-    옵션이 추가됨.
+*   `Response#strong_etag=`와 `#weak_etag=`를 도입하고,
+    `fresh_when`와 `stale?`에 관련 옵션이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/24387))
 
 Action View
@@ -436,6 +436,8 @@ Action View
 *   `datetime_tag` 헬퍼에서 `datetime-local`를 지정한 input 태그를 생성할 수 있게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/25469))
 
+*   `render partial:`을 사용하여 랜더링하는 경우에 블록을 넘길 수 있도록 변경.
+    ([Pull Request](https://github.com/rails/rails/pull/17974))
 
 Action Mailer
 -------------
