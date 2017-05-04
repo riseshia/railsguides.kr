@@ -15,7 +15,7 @@ script: ./deploy.sh
 env:
   global:
     - "GUIDES_LANGUAGE=ko"
-    - "RAILS_VERSION=v5.0.1"
+    - "RAILS_VERSION=v5.0.2"
 
 rvm:
   - ruby-head
