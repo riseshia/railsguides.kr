@@ -448,7 +448,7 @@ Finished in 0.024899s, 240.9735 runs/s, 1204.8677 assertions/s.
 
 1. 비밀번호는 반드시 존재해야 합니다.
 2. 비밀번호는 반드시 확인용 비밀번호와 동일해야 합니다.
-3. 길이는 72자 이하여야 합니다.
+3. 길이는 72자 이하여야 합니다. (ActiveModel::SecurePassword가 의존하는 `bcrypt`의 요구사항입니다)
 
 #### 예제
 
@@ -472,6 +472,10 @@ person.valid? # => false
 # 비밀번호의 길이가 72자보다 길 때
 person.password = person.password_confirmation = 'a' * 100
 person.valid? # => false
+
+# 확인용 비밀번호가 없을 때
+person.password = 'aditya'
+person.valid? # => true
 
 # 모든 검증을 통과할 때
 person.password = person.password_confirmation = 'aditya'

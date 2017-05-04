@@ -218,10 +218,11 @@ WebNotificationsChannel.broadcast_to(
 ```
 
 `WebNotificationsChannel.broadcast_to` 호출에서는 사용자마다 다른 브로드캐스트 이름으로
-현재 구독 어댑터(기본값은 `redis`입니다.) pubsub 큐에 메시지를 저장합니다.
-ID가 1인 사용자라면 브로드캐스트의 이름은 `web_notifications_1`이 사용됩니다.
+현재 구독 어댑터(기본값은 `redis`)의 pubsub 큐에 메시지를 저장합니다.
+ID가 1인 사용자라면 브로드캐스트의 이름은
+`web_notifications_1`이 사용됩니다.
 
-`received` 콜백을 호출하면 이 채널은 `web_notifications_1`이 수신하는 모든 것을
+`received` 콜백을 호출하면 이 채널은 `web_notifications:1`이 수신하는 모든 것을
 클라이언트에 직접 스트리밍하게 됩니다.
 
 ### 구독
@@ -287,7 +288,7 @@ App.cable.subscriptions.create { channel: "ChatChannel", room: "Best Room" },
 ```ruby
 # 이 코드는 애플리케이션 어딘가에서 호출된다.
 # ex: NewCommentJob
-ChatChannel.broadcast(
+ChatChannel.broadcast_to(
   "chat_#{room}",
   sent_by: 'Paul',
   body: 'This is a cool chat app.'
@@ -525,12 +526,12 @@ URL을 설정하려면 HTML 레이아웃의 HEAD에 `action_cable_meta_tag` 호�
 
 ### 기타 설정
 
-이외에도 커넥션마다 로거에 태그를 설정할 수도 있습니다.
-다음 예제에서는 Basecamp에서 사용하고 있는 것과 유사한 예제를 보입니다.
+이외에도 커넥션마다 로거에 태그를 설정할 수도 있습니다. 다음 예제에서는
+Basecamp에서 사용하고 있는 것과 유사한 코드를 보입니다.
 
 ```ruby
 config.action_cable.log_tags = [
-  -> request { request.env['bc_account_id'] || "no-account" },
+  -> request { request.env['bc.account_id'] || "no-account" },
   :action_cable,
   -> request { request.uuid }
 ]
@@ -538,9 +539,8 @@ config.action_cable.log_tags = [
 
 사용 가능한 모든 옵션은 `ActionCable::Server::Configuration` 클래스를 확인해주세요.
 
-또한 서버가 제공하는 데이터베이스 커넥션의 갯수는 적어도 워커의 숫자보다 많아야
-합니다. 기본 워커 풀의 크기는 100이므로, 데이터베이스 커넥션도 이 이상을
-준비해야 합니다.
+또한 서버가 제공하는 데이터베이스 커넥션의 갯수는 적어도 워커의 숫자보다 많아야 합니다.
+기본 워커 풀의 크기는 100이므로, 데이터베이스 커넥션도 이 이상을 준비해야 합니다.
 이 값은 `config/database.yml`의 `pool`에서 변경할 수 있습니다.
 
 ## 액션케이블 전용 서버를 실행하기
