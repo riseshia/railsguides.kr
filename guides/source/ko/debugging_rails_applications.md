@@ -1,23 +1,22 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
 
-Debugging Rails Applications
+Rails 애플리케이션 디버깅
 ============================
 
-This guide introduces techniques for debugging Ruby on Rails applications.
+이 가이드에서는 Ruby on Rails 애플리케이션을 디버깅하는 다양한 방법을 소개합니다.
 
-After reading this guide, you will know:
+이 가이드의 내용:
 
-* The purpose of debugging.
-* How to track down problems and issues in your application that your tests aren't identifying.
-* The different ways of debugging.
-* How to analyze the stack trace.
+* 디버깅의 목적
+* 테스트에서 잡아낼 수 없었던 문제가 애플리케이션에서 발생했을 때의 추적 방법
+* 다양한 디버깅 방법
+* 스택 트레이스를 분석하는 방법
 
 --------------------------------------------------------------------------------
 
-View Helpers for Debugging
+디버깅을 위한 뷰 헬퍼
 --------------------------
 
-One common task is to inspect the contents of a variable. Rails provides three different ways to do this:
+변수에 어떤 값이 저장되어 있는지를 확인하는 작업은 여러모로 필요합니다. Rails에서는 아래의 3개의 메소드를 사용할 수 있습니다.
 
 * `debug`
 * `to_yaml`
@@ -25,7 +24,7 @@ One common task is to inspect the contents of a variable. Rails provides three d
 
 ### `debug`
 
-The `debug` helper will return a \<pre> tag that renders the object using the YAML format. This will generate human-readable data from any object. For example, if you have this code in a view:
+`debug` 헬퍼는 \<pre> 태그를 반환합니다. 이 태그 속에 YAML 형식으로 객체를 출력합니다. 이를 통해 객체의 정보를 사람이 읽을 수 있는 형태의 데이터로 변환할 수 있습니다. 예를 들자면, 아래의 코드가 뷰에 있다고 해봅시다.
 
 ```html+erb
 <%= debug @article %>
@@ -35,7 +34,7 @@ The `debug` helper will return a \<pre> tag that renders the object using the YA
 </p>
 ```
 
-You'll see something like this:
+여기에서는 다음의 출력을 얻을 수 있습니다.
 
 ```yaml
 --- !ruby/object Article
@@ -54,7 +53,7 @@ Title: Rails debugging guide
 
 ### `to_yaml`
 
-Alternatively, calling `to_yaml` on any object converts it to YAML. You can pass this converted object into the `simple_format` helper method to format the output. This is how `debug` does its magic.
+인스턴스 변수나 그 외의 모든 객체나 메소드를 YAML 형식으로 변환하여 출력합니다. 아래와 같이 사용할 수 있습니다.
 
 ```html+erb
 <%= simple_format @article.to_yaml %>
@@ -64,7 +63,9 @@ Alternatively, calling `to_yaml` on any object converts it to YAML. You can pass
 </p>
 ```
 
-The above code will render something like this:
+`to_yaml` 메소드는 메소드를 YAML 형식으로 변환하여 읽기 쉽게 만들어 주며, `simple_format` 헬퍼는 출력 결과를 콘솔처럼 각 줄별로 개행처리를 해줍니다. 이것이 `debug` 메소드가 동작하는 방식입니다.
+
+결과, 아래와 같은 정보가 출력됩니다.
 
 ```yaml
 --- !ruby/object Article
@@ -82,7 +83,7 @@ Title: Rails debugging guide
 
 ### `inspect`
 
-Another useful method for displaying object values is `inspect`, especially when working with arrays or hashes. This will print the object value as a string. For example:
+객체의 값을 출력하기 위한 메소드로 `inspect`도 사용할 수 있습니다. 특히 배열이나 해시값을 다루는 경우에 유용합니다. 이 메소드는 객체의 값을 문자열로 출력합니다. 다음은 예시입니다.
 
 ```html+erb
 <%= [1, 2, 3, 4, 5].inspect %>
@@ -92,7 +93,7 @@ Another useful method for displaying object values is `inspect`, especially when
 </p>
 ```
 
-Will render:
+이 코드로부터 다음 결과를 얻을 수 있습니다.
 
 ```
 [1, 2, 3, 4, 5]
@@ -100,54 +101,56 @@ Will render:
 Title: Rails debugging guide
 ```
 
-The Logger
+로거(Logger)
 ----------
 
-It can also be useful to save information to log files at runtime. Rails maintains a separate log file for each runtime environment.
+실행시에 정보를 로그에 저장해두면 유용하게 활용할 수 있습니다. Rails는 실행 환경마다 다른 로그 파일을 사용하도록 되어있습니다.
 
-### What is the Logger?
+### 로거란?
 
-Rails makes use of the `ActiveSupport::Logger` class to write log information. Other loggers, such as `Log4r`, may also be substituted.
+Rails는 `ActiveSupport::Logger` 클래스를 사용하여 로그 정보를 출력합니다.
+필요에 따라, `Log4r` 등의 다른 로거로 변경해도 좋습니다.
 
-You can specify an alternative logger in `config/application.rb` or any other environment file, for example:
-
-```ruby
-config.logger = Logger.new(STDOUT)
-config.logger = Log4r::Logger.new("Application Log")
-```
-
-Or in the `Initializer` section, add _any_ of the following
+다른 로거의 설정은 `config/application.rb` 또는 각 환경의 설정파일에서 할 수 있습니다.
 
 ```ruby
 Rails.logger = Logger.new(STDOUT)
 Rails.logger = Log4r::Logger.new("Application Log")
 ```
 
-TIP: By default, each log is created under `Rails.root/log/` and the log file is named after the environment in which the application is running.
-
-### Log Levels
-
-When something is logged, it's printed into the corresponding log if the log
-level of the message is equal to or higher than the configured log level. If you
-want to know the current log level, you can call the `Rails.logger.level`
-method.
-
-The available log levels are: `:debug`, `:info`, `:warn`, `:error`, `:fatal`,
-and `:unknown`, corresponding to the log level numbers from 0 up to 5,
-respectively. To change the default log level, use
+또는 `Initializer`에 _다음 중 하나_를 추가합니다.を追加します。
 
 ```ruby
-config.log_level = :warn # In any environment initializer, or
-Rails.logger.level = 0 # at any time
+config.logger = Logger.new(STDOUT)
+config.logger = Log4r::Logger.new("Application Log")
 ```
 
-This is useful when you want to log under development or staging without flooding your production log with unnecessary information.
+TIP: 로그의 저장 위치는 기본으로 `Rails.root/log/`로 되어 있습니다. 로그 파일 이름은 애플리케이션이 실행되었을 때의 환경(development/test/production 등)이 사용됩니다.
 
-TIP: The default Rails log level is `debug` in all environments.
+### 로그의 출력 레벨
 
-### Sending Messages
+메시지의 로그 레벨이 설정되어 있는 최소 로그 레벨 이상이 되었을 경우에만 로그
+파일에 그 메시지를 출력합니다. 현재 로그 레벨을 알고 싶은 경우에는
+`Rails.logger.level` 메소드를 호출하세요.
 
-To write in the current log use the `logger.(debug|info|warn|error|fatal)` method from within a controller, model or mailer:
+지정가능한 로그 레벨은 `:debug`, `:info`, `:warn`, `:error`, `:fatal`,
+`:unknown`의 6가지가 있으며, 각각 0부터 5까지의 숫자에 대응합니다. 기본 로그
+레벨을 변경하려면 아래와 같이 추가하세요.
+
+```ruby
+config.log_level = :warn # 환경마다, 또는 initializer에서 사용 가능
+Rails.logger.level = 0 # 언제라도 사용 가능
+```
+
+이것은 development 환경이나 staging 환경에서는 로그를 출력하고, 실제 환경에서는
+필요 없는 정보를 로그에 출력하고 싶지 않을 경우 등에 유용합니다.
+
+TIP: Rails의 기본 로그 레벨은 모든 환경에서 `debug`입니다.
+
+### 메시지 전송
+
+컨트롤러, 모델, 메일러에서 로그를 남기고 싶은 경우에는
+`logger.(debug|info|warn|error|fatal)`를 사용합니다.
 
 ```ruby
 logger.debug "Person attributes hash: #{@person.attributes.inspect}"
@@ -155,20 +158,20 @@ logger.info "Processing the request..."
 logger.fatal "Terminating application, raised unrecoverable error!!!"
 ```
 
-Here's an example of a method instrumented with extra logging:
+예를 들어 로그에 다른 정보를 기록하는 기능을 가지고 있는 메소드를 예시로 듭니다.
 
 ```ruby
-class ArticlesController < ApplicationController
+  class ArticlesController < ApplicationController
   # ...
 
   def create
     @article = Article.new(params[:article])
-    logger.debug "New article: #{@article.attributes.inspect}"
-    logger.debug "Article should be valid: #{@article.valid?}"
+    logger.debug "새로운 글: #{@article.attributes.inspect}"
+    logger.debug "글이 문제 없는지?: #{@article.valid?}"
 
     if @article.save
       flash[:notice] =  'Article was successfully created.'
-      logger.debug "The article was saved and now the user is going to be redirected..."
+      logger.debug "글을 정상적으로 저장하고, 사용자를 이동시키는 중..."
       redirect_to(@article)
     else
       render action: "new"
@@ -179,33 +182,31 @@ class ArticlesController < ApplicationController
 end
 ```
 
-Here's an example of the log generated when this controller action is executed:
+이 컨트롤러의 액션을 실행하면 아래와 같은 로그가 생성됩니다.
 
-```
+``` 
 Processing ArticlesController#create (for 127.0.0.1 at 2008-09-08 11:52:54) [POST]
   Session ID: BAh7BzoMY3NyZl9pZCIlMDY5MWU1M2I1ZDRjODBlMzkyMWI1OTg2NWQyNzViZjYiCmZsYXNoSUM6J0FjdGl
 vbkNvbnRyb2xsZXI6OkZsYXNoOjpGbGFzaEhhc2h7AAY6CkB1c2VkewA=--b18cd92fba90eacf8137e5f6b3b06c4d724596a4
   Parameters: {"commit"=>"Create", "article"=>{"title"=>"Debugging Rails",
- "body"=>"I'm learning how to print in logs!!!", "published"=>"0"},
- "authenticity_token"=>"2059c1286e93402e389127b1153204e0d1e275dd", "action"=>"create", "controller"=>"articles"}
-New article: {"updated_at"=>nil, "title"=>"Debugging Rails", "body"=>"I'm learning how to print in logs!!!",
- "published"=>false, "created_at"=>nil}
-Article should be valid: true
+"body"=>"I'm learning how to print in logs!!!", "published"=>"0"},
+"authenticity_token"=>"2059c1286e93402e389127b1153204e0d1e275dd", "action"=>"create", "controller"=>"articles"}
+새로운 글: {"updated_at"=>nil, "title"=>"Debugging Rails", "body"=>"I'm learning how to print in logs!!!",
+"published"=>false, "created_at"=>nil}
+글이 문제 없는지?: true
   Article Create (0.000443)   INSERT INTO "articles" ("updated_at", "title", "body", "published",
- "created_at") VALUES('2008-09-08 14:52:54', 'Debugging Rails',
- 'I''m learning how to print in logs!!!', 'f', '2008-09-08 14:52:54')
-The article was saved and now the user is going to be redirected...
+"created_at") VALUES('2008-09-08 14:52:54', 'Debugging Rails',
+'I''m learning how to print in logs!!!', 'f', '2008-09-08 14:52:54')
+글을 정상적으로 저장하고, 사용자를 이동시키는 중...
 Redirected to # Article:0x20af760>
 Completed in 0.01224 (81 reqs/sec) | DB: 0.00044 (3%) | 302 Found [http://localhost/articles]
 ```
 
-Adding extra logging like this makes it easy to search for unexpected or unusual behavior in your logs. If you add extra logging, be sure to make sensible use of log levels to avoid filling your production logs with useless trivia.
+이처럼 로그에 추가 정보를 기록하게 되면, 예상외의 동작을 발견하기 용이하게 됩니다. 로그에 이런 저보를 추가한 경우에는, production 로그가 의미없는 대량의 메시지를 생성하지 않도록 적절한 로그 레벨을 사용해주세요.
 
-### Tagged Logging
+### 태깅된 로깅
 
-When running multi-user, multi-account applications, it's often useful
-to be able to filter the logs using some custom rules. `TaggedLogging`
-in Active Support helps you do exactly that by stamping log lines with subdomains, request ids, and anything else to aid debugging such applications.
+사용자와 계정을 여럿 사용하는 애플리케이션을 실행할 때에, 어떤 식으로든 커스텀 규칙을 만들어서 사용하는 것이 유용할 때가 있습니다. Active Support의 `TaggedLogging`을 사용하면 서브 도메인이나 요청의 ID등을 지정하여 로그에 포함시킬 수 있으며 애플리케이션 디버깅에서 무척 유용하게 호라용할 수 있습니다.
 
 ```ruby
 logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
@@ -214,63 +215,43 @@ logger.tagged("BCX", "Jason") { logger.info "Stuff" }                   # Logs "
 logger.tagged("BCX") { logger.tagged("Jason") { logger.info "Stuff" } } # Logs "[BCX] [Jason] Stuff"
 ```
 
-### Impact of Logs on Performance
-Logging will always have a small impact on the performance of your Rails app,
-        particularly when logging to disk. Additionally, there are a few subtleties:
+### 로그가 성능에 주는 영향
+로그 출력이 Rails 애플리케이션의 성능에 주는 영향은 무척 적습니다. 로그를 디스크에 저장하는 경우에는 특히나 더 그렇습니다. 단 상황에 따라서는 그렇다고 단언하기 힘들 때도 있습니다.
 
-Using the `:debug` level will have a greater performance penalty than `:fatal`,
-      as a far greater number of strings are being evaluated and written to the
-      log output (e.g. disk).
+로그 레벨 `:debug`는 `:fatal`과 비교해서 무척 많은 문자열을 평가하고 (디스크 등에) 출력하기 때문에 성능에 주는 영향이 상대적으로 많이 커집니다.
 
-Another potential pitfall is too many calls to `Logger` in your code:
+그 이외에도 아래처럼 `Logger`를 여러번 호출했을 경우에 발생할 수 있는 실수도 주의해야 합니다.
 
 ```ruby
 logger.debug "Person attributes hash: #{@person.attributes.inspect}"
 ```
 
-In the above example, there will be a performance impact even if the allowed
-output level doesn't include debug. The reason is that Ruby has to evaluate
-these strings, which includes instantiating the somewhat heavy `String` object
-and interpolating the variables.
-Therefore, it's recommended to pass blocks to the logger methods, as these are
-only evaluated if the output level is the same as — or included in — the allowed level
-(i.e. lazy loading). The same code rewritten would be:
+이 예제에서는 로그 출력 레벨을 debug로 하지 않은 경우에도 성능이 저하됩니다. 외냐하면 이 코드에서 문자열을 평가할 필요가 있으며, 그 때에 비교적 동작이 느린 `String` 객체의 인스턴스화 작업과 실행에 시간이 걸리는 변수의 식전개(interpolation)가 필요하기 때문입니다. 따라서, 로거 메소드에 넘기는 인수는 블럭으로 만드는 것을 추천합니다. 블럭을 만들어 넘겨주면, 블럭에 대한 실행은 출력 레벨이 설정 레벨 이상일 경우에만 처리되기 때문입니다. 이 방법을 위의 코드에 적용하면 아래와 같이 다시 작성할 수 있습니다.
 
 ```ruby
 logger.debug {"Person attributes hash: #{@person.attributes.inspect}"}
 ```
 
-The contents of the block, and therefore the string interpolation, are only
-evaluated if debug is enabled. This performance savings are only really
-noticeable with large amounts of logging, but it's a good practice to employ.
+넘긴 블럭의 내용(여기에서는 문자열의 식전개)은 debug가 유효한 경우에만 처리됩니다. 이 방법을 통해서 얻어지는 성능의 개선은 대량의 로그를 출력하는 경우가 아니라면 크게 실감이 되지 않을 수 있습니다만, 그렇다 하더라도 채용할 만한 가치는 있습니다.
 
-Debugging with the `byebug` gem
+`byebug` 젬을 사용해서 디버깅하기
 ---------------------------------
 
-When your code is behaving in unexpected ways, you can try printing to logs or
-the console to diagnose the problem. Unfortunately, there are times when this
-sort of error tracking is not effective in finding the root cause of a problem.
-When you actually need to journey into your running source code, the debugger
-is your best companion.
+코드가 기대한대로 동작하지 않는 경우에는 로그나 콘솔에 출력해서 문제를 진단할 필요가 있습니다. 하지만 이 방법으로는 에러 추적을 몇번이고 반복해야 하므로, 근본적인 원인을 찾기에는 그다지 효율이 좋다고 말할 수 없습니다. 실행중인 코드의 상황을 확인할 필요가 있는 경우에 가장 의지할 만한 것은 역시 디버거입니다.
 
-The debugger can also help you if you want to learn about the Rails source code
-but don't know where to start. Just debug any request to your application and
-use this guide to learn how to move from the code you have written into the
-underlying Rails code.
+디버거는 어디서 시작되는지 모르는 Rails의 코드를 추적할 때에도 유용합니다. 애플리케이션의 요청을 모두 디버깅하여, 자신이 작성한 코드로부터 Rails의 가장 깊은 부분까지 확인하는 방법을 배워봅시다.
 
-### Setup
+### 설치
 
-You can use the `byebug` gem to set breakpoints and step through live code in
-Rails. To install it, just run:
+`byebug` 젬을 사용하면, Rails 코드에 중단점을 지정하여 단계별로 실행할 수 있습니다. 다음을 실행하는 것으로 젬을 설치할 수 있습니다.
 
 ```bash
 $ gem install byebug
 ```
 
-Inside any Rails application you can then invoke the debugger by calling the
-`byebug` method.
+그러면 Rails 애플리케이션에서 `byebug` 메소드를 호출하면 언제든지 디버거를 동작시킬 수 있습니다.
 
-Here's an example:
+다음은 예시입니다.
 
 ```ruby
 class PeopleController < ApplicationController
@@ -279,17 +260,13 @@ class PeopleController < ApplicationController
     @person = Person.new
   end
 end
-```
+``` 
 
-### The Shell
+### 쉘
 
-As soon as your application calls the `byebug` method, the debugger will be
-started in a debugger shell inside the terminal window where you launched your
-application server, and you will be placed at the debugger's prompt `(byebug)`.
-Before the prompt, the code around the line that is about to be run will be
-displayed and the current line will be marked by '=>', like this:
+애플리케이션에서 `byebug`를 호출하면, 애플리케이션 서버가 실행되고 있는 터미널 윈도우 내부에서 디버거 쉘이 실행되고, `(byebug)`라는 프롬프트가 나타납니다. 프롬프트의 앞에는 실행하려고 했던 부분 전후의 코드가 나타나며, '=>'로 현재의 실행 라인을 보여줍니다. 다음은 예시입니다.
 
-```
+``` 
 [1, 10] in /PathTo/project/app/controllers/articles_controller.rb
     3:
     4:   # GET /articles
@@ -305,15 +282,13 @@ displayed and the current line will be marked by '=>', like this:
 (byebug)
 ```
 
-If you got there by a browser request, the browser tab containing the request
-will be hung until the debugger has finished and the trace has finished
-processing the entire request.
+브라우저로부터의 요청에 의해서 디버그 라인에 도착했을 경우, 요청한 브라우저 상의 처리는 디버거가 종료되어 요청에 대한 처리가 완전히 끝날 때까지 중단됩니다.
 
-For example:
+다음은 예시입니다.
 
 ```bash
 => Booting Puma
-=> Rails 5.1.0 application starting in development on http://0.0.0.0:3000
+=> Rails 5.0.0 application starting in development on http://0.0.0.0:3000
 => Run `rails server -h` for more startup options
 Puma starting in single mode...
 * Version 3.4.0 (ruby 2.3.1-p112), codename: Owl Bowl Brawl
@@ -339,8 +314,8 @@ Processing by ArticlesController#index as HTML
 (byebug)
 ```
 
-Now it's time to explore your application. A good place to start is
-by asking the debugger for help. Type: `help`
+그러면 애플리케이션의 깊은 곳으로 들어가봅시다. 우선 디버거의 헬프를 확인해
+보는 것이 좋습니다. `help`를 입력해보세요.
 
 ```
 (byebug) help
@@ -386,7 +361,7 @@ by asking the debugger for help. Type: `help`
 (byebug)
 ```
 
-To see the previous ten lines you should type `list-` (or `l-`).
+이전의 10줄을 확인하고 싶다면 `list-`(또는 `l-`)를 입력하세요.
 
 ```
 (byebug) l-
@@ -404,9 +379,7 @@ To see the previous ten lines you should type `list-` (or `l-`).
    10      respond_to do |format|
 ```
 
-This way you can move inside the file and see the code above the line where you
-added the `byebug` call. Finally, to see where you are in the code again you can
-type `list=`
+이를 통해서 파일 내부에서 `byebug`를 호출한 라인의 윗부분에 어떤 코드가 있는지를 확인할 수 있습니다. 마지막으로, 원래 있었던 곳으로 돌아가려면 `list=`를 입력하면 됩니다.
 
 ```
 (byebug) list=
@@ -425,43 +398,33 @@ type `list=`
 (byebug)
 ```
 
-### The Context
+### 컨텍스트
 
-When you start debugging your application, you will be placed in different
-contexts as you go through the different parts of the stack.
+애플리케이션을 디버깅하는 동안은 평소와는 다른 '컨텍스트'에 포함됩니다. 구체적으로는 스택의 다른 부분을 살펴볼 수 있는 컨텍스트입니다.
 
-The debugger creates a context when a stopping point or an event is reached. The
-context has information about the suspended program which enables the debugger
-to inspect the frame stack, evaluate variables from the perspective of the
-debugged program, and know the place where the debugged program is stopped.
+디버거는 중지 위치나 이벤트에 도달할 때에 '컨텍스트'를 생성합니다. 생성된 컨텍스트에는 중단되어 있는 프로그램에 대한 정보가 포함되어 있으며, 디버거는 그 정보를 사용하여 프레임 스택을 조사하거나 디버깅 중인 프로그램에 있는 변수를 평가합니다. 또한 디버깅 중인 프로그램이 어디에서 정지되어 있는지에 대한 정보도 포함됩니다.
 
-At any time you can call the `backtrace` command (or its alias `where`) to print
-the backtrace of the application. This can be very helpful to know how you got
-where you are. If you ever wondered about how you got somewhere in your code,
-then `backtrace` will supply the answer.
+`backtrace` 명령어(또는 그 별칭이기도 한 `where`명령어)를 사용하면 언제라도 애플리케이션의 백트레이스를 출력할 수 있습니다. 이것은 코드의 특정 위치에 도달할 때까지 어떤 과정을 거쳤는지 확인할 때에 사용할 수 있습니다.
 
 ```
 (byebug) where
 --> #0  ArticlesController.index
       at /PathToProject/app/controllers/articles_controller.rb:8
     #1  ActionController::BasicImplicitRender.send_action(method#String, *args#Array)
-      at /PathToGems/actionpack-5.1.0/lib/action_controller/metal/basic_implicit_render.rb:4
+      at /PathToGems/actionpack-5.0.0/lib/action_controller/metal/basic_implicit_render.rb:4
     #2  AbstractController::Base.process_action(action#NilClass, *args#Array)
-      at /PathToGems/actionpack-5.1.0/lib/abstract_controller/base.rb:181
+      at /PathToGems/actionpack-5.0.0/lib/abstract_controller/base.rb:181
     #3  ActionController::Rendering.process_action(action, *args)
-      at /PathToGems/actionpack-5.1.0/lib/action_controller/metal/rendering.rb:30
+      at /PathToGems/actionpack-5.0.0/lib/action_controller/metal/rendering.rb:30
 ...
 ```
 
-The current frame is marked with `-->`. You can move anywhere you want in this
-trace (thus changing the context) by using the `frame n` command, where _n_ is
-the specified frame number. If you do that, `byebug` will display your new
-context.
+현재의 프레임은 `-->`로 표시됩니다. `frame `_n_ 명령어(_n_은 프레임 번호)를 사용하면 트레이스 내의 어떤 컨텍스트로도 자유롭게 이동할 수 있습니다. 이 명령을 실행하면 `byebug`는 새로운 컨텍스트를 표시합니다.
 
 ```
 (byebug) frame 2
 
-[176, 185] in /PathToGems/actionpack-5.1.0/lib/abstract_controller/base.rb
+[176, 185] in /PathToGems/actionpack-5.0.0/lib/abstract_controller/base.rb
    176:       # is the intended way to override action dispatching.
    177:       #
    178:       # Notice that the first argument is the method to be dispatched
@@ -475,37 +438,27 @@ context.
 (byebug)
 ```
 
-The available variables are the same as if you were running the code line by
-line. After all, that's what debugging is.
+코드를 한줄씩 실행하는 경우에도, 사용할 수 있는 변수는 동일합니다. 다시 말해, 이것이 바로 디버깅이라는 작업입니다.
 
-You can also use `up [n]` and `down [n]` commands in order to change the context
-_n_ frames up or down the stack respectively. _n_ defaults to one. Up in this
-case is towards higher-numbered stack frames, and down is towards lower-numbered
-stack frames.
+`up [n]`(단축형인 `u`도 가능) 명령이나 `down [n]` 명령을 사용해서 스택을 _n_ 프레임 위로, 또는 아래로 이동하여 컨텍스트를 변경하는 것도 가능합니다. up은 스택 프레임 번호가 큰 방향으로 이동하며, down은 작은 방향으로 이동합니다.
 
-### Threads
+### 스레드(Threads)
 
-The debugger can list, stop, resume and switch between running threads by using
-the `thread` command (or the abbreviated `th`). This command has a handful of
-options:
+디버거에서 `thread`(단축형은 `th`) 명령을 사용하면, 실행중인 스레드 목록을 통해 표시/정지/재개/변경을 할 수 있습니다. 이 명령에서는 다음과 같은 옵션들이 있습니다.
 
-* `thread`: shows the current thread.
-* `thread list`: is used to list all threads and their statuses. The current
-thread is marked with a plus (+) sign.
-* `thread stop n`: stops thread _n_.
-* `thread resume n`: resumes thread _n_.
-* `thread switch n`: switches the current thread context to _n_.
+* `thread`는 현재의 스레드를 표시합니다.
+* `thread list`는 모든 스레드의 목록을 현재 상태 정보와 포함하여 보여줍니다. 현재 실행중인 스레드는 '+' 기호와 숫자로 표시됩니다.
+* `thread stop `_n_는 스레드 _n_을 정지합니다.
+* `thread resume `_n_는 스레드 _n_을 재개합니다.
+* `thread switch `_n_은 현재의 스레드 컨텍스트를 _n_으로 변경합니다.
 
-This command is very helpful when you are debugging concurrent threads and need
-to verify that there are no race conditions in your code.
+이 명령은 동시 실행중인 스레드의 디버깅 중에 경쟁 상태에 빠져있는 것은 아닌지 확인할 필요가 있는 경우 등에 무척 유용합니다.
 
-### Inspecting Variables
+### 변수를 조사하기
 
-Any expression can be evaluated in the current context. To evaluate an
-expression, just type it!
+모든 식은, 현재 컨텍스트에서 평가됩니다. 식을 평가하기 위해서는 그냥 그 식을 입력하면 됩니다.
 
-This example shows how you can print the instance variables defined within the
-current context:
+다음 예제에서는 현재 컨텍스트에서 정의된 인스턴스 변수를 출력하는 방법을 보이고 있습니다.
 
 ```
 [3, 12] in /PathTo/project/app/controllers/articles_controller.rb
@@ -526,14 +479,10 @@ current context:
  :@_config]
 ```
 
-As you may have figured out, all of the variables that you can access from a
-controller are displayed. This list is dynamically updated as you execute code.
-For example, run the next line using `next` (you'll learn more about this
-command later in this guide).
+이와 같이, 컨트롤러에서 접근할 수 있는 모든 변수가 출력됩니다. 출력된 변수 목록은 코드의 실행과 함께 동적으로 갱신됩니다. 예를 들어, `next` 명령으로 한 라인을 실행했다고 해봅시다(이 명령에 대해서는 다음에 설명합니다).
 
 ```
 (byebug) next
-
 [5, 14] in /PathTo/project/app/controllers/articles_controller.rb
    5     # GET /articles.json
    6     def index
@@ -549,7 +498,7 @@ command later in this guide).
 (byebug)
 ```
 
-And then ask again for the instance_variables:
+그러면 instance_variables을 다시 한번 확인해보죠.
 
 ```
 (byebug) instance_variables
@@ -558,14 +507,12 @@ And then ask again for the instance_variables:
  :@_config, :@articles]
 ```
 
-Now `@articles` is included in the instance variables, because the line defining
-it was executed.
+정의 부분이 실행된 것으로, 이번에는 `@articles`도 인스턴스 변수 목록에 포함되어 있습니다.
 
-TIP: You can also step into **irb** mode with the command `irb` (of course!).
-This will start an irb session within the context you invoked it.
+TIP: `irb` 명령을 사용하는 것으로, **irb** 모드로 실행할 수도 있습니다. 이를 통해 호출한 시점의 컨텍스트 내에서 irb 세션이 시작됩니다. 단, 이 기능은 아직 테스트 단계입니다.
 
-The `var` method is the most convenient way to show variables and their values.
-Let's have `byebug` help us with it.
+변수와 값의 목록을 확인하기 위해서 유용한 것은 `var` 메소드입니다.
+`byebug`에서 이 메소드를 사용해 보세요.
 
 ```
 (byebug) help var
@@ -584,15 +531,14 @@ Let's have `byebug` help us with it.
 
 ```
 
-This is a great way to inspect the values of the current context variables. For
-example, to check that we have no local variables currently defined:
+이 메소드는 현재 컨텍스트에서 변수의 값을 검사할 때에 유용한 방법입니다. 예를 들자면, 현 시점에서 지역 변수가 아무것도 정의되지 않은 상태인지 확인해봅시다.
 
 ```
 (byebug) var local
 (byebug)
 ```
 
-You can also inspect for an object method this way:
+다음 방법으로 객체의 메소드를 조사해볼 수도 있습니다.
 
 ```
 (byebug) var instance Article.new
@@ -606,34 +552,28 @@ You can also inspect for an object method this way:
 @new_record = true
 @readonly = false
 @transaction_state = nil
+@txn = nil
 ```
 
-You can also use `display` to start watching variables. This is a good way of
-tracking the values of a variable while the execution goes on.
+`display` 명령을 사용해서 변수를 모니터링할 수도 있습니다. 이것은 디버거에서 코드를 계속 실행하면서 변수의 값이 어떤 식으로 변하는지 추적할 때에 무척 유용합니다.
 
 ```
 (byebug) display @articles
 1: @articles = nil
 ```
 
-The variables inside the displayed list will be printed with their values after
-you move in the stack. To stop displaying a variable use `undisplay n` where
-_n_ is the variable number (1 in the last example).
+스택 내에서 이동할 때마다 그 때의 변수와 값의 목록이 출력됩니다. 변수를 더이상 보고 싶지 않은 경우에는 `undisplay`_n_(_n_은 변수 번호)를 실행하세요. 위의 예제에서라면 변수 번호는 1입니다.
 
-### Step by Step
+### 순차 실행
 
-Now you should know where you are in the running trace and be able to print the
-available variables. But let's continue and move on with the application
-execution.
+이것으로 트레이스 실행 중에 현재 실행 중인 위치를 확인하고, 이용 가능한 변수를 언제든지 확인할 수 있게 되었습니다. 애플리케이션의 실행에 대해서 좀 더 배워봅시다.
 
-Use `step` (abbreviated `s`) to continue running your program until the next
-logical stopping point and return control to the debugger. `next` is similar to
-`step`, but while `step` stops at the next line of code executed, doing just a
-single step, `next` moves to the next line without descending inside methods.
+`step` 명령(단축형은 `s`)를 사용하면, 프로그램을 계속 실행하고, 다음 중단점까지
+진행하면 디버거에게 제어 권한을 돌려줍니다. `next`는 `step`과 유사합니다만, `step`은 다음 줄의 코드를 실행하기 직전까지 진행하는 반면, `next`는 메소드가 있어도 그 내부를 확인하지 않고 진행합니다.
 
-For example, consider the following situation:
+다음과 같은 예제를 생각해봅시다.
 
-```
+```ruby
 Started GET "/" for 127.0.0.1 at 2014-04-11 13:39:23 +0200
 Processing by ArticlesController#index as HTML
 
@@ -648,10 +588,7 @@ Processing by ArticlesController#index as HTML
 (byebug)
 ```
 
-If we use `next`, we won't go deep inside method calls. Instead, `byebug` will
-go to the next line within the same context. In this case, it is the last line
-of the current method, so `byebug` will return to the next line of the caller
-method.
+`next`를 사용하여 메소드 호출 내부로 들어갔다고 해봅시다. 그런데 byebug는 들어가는 대신에 단순히 같은 컨텍스트의 다음 줄로 진행합니다. 이 예제의 경우, 다음 줄이란 메소드의 마지막 줄이 됩니다. 따라서 `byebug`는 이전 프레임에 있는 다음 줄로 점프합니다.
 
 ```
 (byebug) next
@@ -670,47 +607,41 @@ method.
 (byebug)
 ```
 
-If we use `step` in the same situation, `byebug` will literally go to the next
-Ruby instruction to be executed -- in this case, Active Support's `week` method.
+같은 상황에서 `step`을 사용하면, 말그대로 'Ruby 코드에서 실행해야하는 다음 줄'로 진행합니다. 여기에서는 ActiveSupport의 `week` 메소드로 들어가게 됩니다.
 
 ```
 (byebug) step
 
-[49, 58] in /PathToGems/activesupport-5.1.0/lib/active_support/core_ext/numeric/time.rb
-   49:
-   50:   # Returns a Duration instance matching the number of weeks provided.
-   51:   #
-   52:   #   2.weeks # => 14 days
-   53:   def weeks
-=> 54:     ActiveSupport::Duration.weeks(self)
-   55:   end
-   56:   alias :week :weeks
-   57:
-   58:   # Returns a Duration instance matching the number of fortnights provided.
+[50, 59] in /PathToGems/activesupport-5.0.0/lib/active_support/core_ext/numeric/time.rb
+   50:     ActiveSupport::Duration.new(self * 24.hours, [[:days, self]])
+   51:   end
+   52:   alias :day :days
+   53:
+   54:   def weeks
+=> 55:     ActiveSupport::Duration.new(self * 7.days, [[:days, self * 7]])
+   56:   end
+   57:   alias :week :weeks
+   58:
+   59:   def fortnights
+
 (byebug)
 ```
 
-This is one of the best ways to find bugs in your code.
+이것은 자신의 코드의 버그를 찾기 위한 무척 좋은 방법입니다.
 
-TIP: You can also use `step n` or `next n` to move forward `n` steps at once.
+TIP: `step n`이나 `next n`을 사용하여 `n`번 만큼 한번에 진행할 수 있습니다.
 
-### Breakpoints
+### 중단점
 
-A breakpoint makes your application stop whenever a certain point in the program
-is reached. The debugger shell is invoked in that line.
+중단점이란, 애플리케이션의 실행이 프로그램의 특정 장소에 도착했을 때에 중지할 위치를 가리킵니다. 그리고 그 장소에서 디버거 쉘이 실행됩니다.
 
-You can add breakpoints dynamically with the command `break` (or just `b`).
-There are 3 possible ways of adding breakpoints manually:
+`break`(또는 `b`) 명령을 사용해서 중단점을 동적으로 추가할 수도 있습니다. 직접 중단점을 추가할 수 있는 방법은 아래의 3가지가 있습니다.
 
-* `break n`: set breakpoint in line number _n_ in the current source file.
-* `break file:n [if expression]`: set breakpoint in line number _n_ inside
-file named _file_. If an _expression_ is given it must evaluated to _true_ to
-fire up the debugger.
-* `break class(.|\#)method [if expression]`: set breakpoint in _method_ (. and
-\# for class and instance method respectively) defined in _class_. The
-_expression_ works the same way as with file:n.
+* `break n`: 현재 소스 파일의 숫자 _n_이 가리키는 줄에 중단점을 설정합니다.
+* `break file:line [if expression]`: _file_의 _n_번째 줄에 중단점을 설정합니다. _expression_이 주어진 경우, 그 식이 _true_를 반환하는 경우에만 디버거가 실행됩니다.
+* `break class(.|\#)method [if expression]`: _class_에 정의되어 있는 _method_에 중단점을 설정합니다('.'과 '\#'는 각각 클래스와 인스턴스 메소드를 가리킵니다). _expression_의 동작은 file:n의 경우와 같습니다.
 
-For example, in the previous situation
+아까와 같은 상황으로 예시를 들어보겠습니다.
 
 ```
 [4, 13] in /PathToProject/app/controllers/articles_controller.rb
@@ -730,18 +661,15 @@ Successfully created breakpoint with id 1
 
 ```
 
-Use `info breakpoints` to list breakpoints. If you supply a number, it lists
-that breakpoint. Otherwise it lists all breakpoints.
+`info breakpoints`를 사용하여 중단점 목록을 확인하세요. 숫자를 넘기면 그 번호의 중단점을 보여줍니다. 그렇지 않으면 모든 중단점을 보여줍니다.
 
 ```
 (byebug) info breakpoints
 Num Enb What
-1   y   at /PathToProject/app/controllers/articles_controller.rb:11
+1   y   at /PathTo/project/app/controllers/articles_controller.rb:11
 ```
 
-To delete breakpoints: use the command `delete n` to remove the breakpoint
-number _n_. If no number is specified, it deletes all breakpoints that are
-currently active.
+`delete `_n_ 명령을 사용하면 _n_ 번 중단점을 제거합니다. 번호를 지정하지 않는 경우에는 현재 유효한 중단점을 모두 제거합니다.
 
 ```
 (byebug) delete 1
@@ -749,55 +677,39 @@ currently active.
 No breakpoints.
 ```
 
-You can also enable or disable breakpoints:
+중단점을 활성화하거나, 무효로 만들 수도 있습니다.
 
-* `enable breakpoints [n [m [...]]]`: allows a specific breakpoint list or all
-breakpoints to stop your program. This is the default state when you create a
-breakpoint.
-* `disable breakpoints [n [m [...]]]`: make certain (or all) breakpoints have
-no effect on your program.
+* `enable breakpoints [n [m [...]]]`: _breakpoints_로 지정한 중단점의 목록(지정하지 않은 경우는 모든 중단점)을 활성화합니다. 중단점은 활성화 상태로 생성됩니다.
+* `disable breakpoints [n [m [...]]]`: _breakpoints_로 지정한 중단점이 비활성화 되어, 해당 지점에서 디버거가 멈추지 않게 됩니다.
 
-### Catching Exceptions
+### 예외 잡기
 
-The command `catch exception-name` (or just `cat exception-name`) can be used to
-intercept an exception of type _exception-name_ when there would otherwise be no
-handler for it.
+`catch exception-name` (단축형은 `cat exception-name`)을 사용하면 예외를 받는 핸들러가 따로 없다고 판단되는 경우에 _exception-name_으로 예외의 종류를 지정하여 가로챌 수 있습니다.
 
-To list all active catchpoints use `catch`.
+예외를 잡는 시점을 모두 목록으로 보고 싶은 경우에는 `catch`라고 입력하세요.
 
-### Resuming Execution
+### 실행 재개
 
-There are two ways to resume execution of an application that is stopped in the
-debugger:
+디버거로 정지된 애플리케이션을 재개하는 방법은 두 가지가 있습니다.
 
-* `continue [n]`: resumes program execution at the address where your script last
-stopped; any breakpoints set at that address are bypassed. The optional argument
-`n` allows you to specify a line number to set a one-time breakpoint which is
-deleted when that breakpoint is reached.
-* `finish [n]`: execute until the selected stack frame returns. If no frame
-number is given, the application will run until the currently selected frame
-returns. The currently selected frame starts out the most-recent frame or 0 if
-no frame positioning (e.g up, down or frame) has been performed. If a frame
-number is given it will run until the specified frame returns.
+* `continue [n]`: 스크립트가 직전에 정지되어 있던 주소로부터 프로그램의 실행을 재개합니다. 이 경우, 그때까지 설정되어 있던 중단점이 모두 무시됩니다. 옵션으로 특정 줄 번호를 한번만 유효한 중단점으로 설정할 수 있습니다.
+* `finish [n]`: 지정한 스택 프레임이 돌아올 때까지 계속해서 실행합니다. frame-number가 지정되어 있지 않은 경우에는 현재 선택되어 있는 프레임이 돌아올 때까지 실행합니다. 프레임의 위치가 지정되어 있지 않은(up이나 down, 또는 프레임 번호가 지정되어 있지 않은) 경우에는 현재 위치로부터 가장 가까운 프레임 또는 0프레임부터 시작합니다. 프레임 번호를 지정하면, 그 프레임이 돌아올 때까지 계속 실행합니다.
 
-### Editing
+### 편집
 
-Two commands allow you to open code from the debugger into an editor:
+디버거 상의 코드를 에디터에서 열기 위한 명령어는 두 가지가 있습니다.
 
-* `edit [file:n]`: edit file named _file_ using the editor specified by the
-EDITOR environment variable. A specific line _n_ can also be given.
+* `edit [file:n]`: _file_을 에디터로 엽니다. 에디터는 EDITOR 환경 변수에 지정되어 있는 것을 사용합니다. _n_으로 몇번째 줄인지를 지정할 수 있습니다.
 
-### Quitting
+### 종료
 
-To exit the debugger, use the `quit` command (abbreviated to `q`). Or, type `q!`
-to bypass the `Really quit? (y/n)` prompt and exit unconditionally.
+디버깅을 종료할 때에는 `quit` 명령(단축형은 `q`) 또는 별칭인 `exit`을 사용하세요. 아니면 `q!`를 입력하여 `Really quit? (y/n)`를 무시할 수 있습니다.
 
-A simple quit tries to terminate all threads in effect. Therefore your server
-will be stopped and you will have to start it again.
+quit을 실행하면 사실상 모든 스레드가 종료됩니다. 결과적으로 서버도 종료되므로, 재기동시킬 필요가 있습니다.
 
-### Settings
+### 설정
 
-`byebug` has a few available options to tweak its behavior:
+`byebug`의 동작을 변경하기 위한 옵션이 몇가지 존재합니다.
 
 ```
 (byebug) help set
@@ -831,27 +743,23 @@ will be stopped and you will have to start it again.
   savefile       -- File where settings are saved to. Default: ~/.byebug_save
 ```
 
-TIP: You can save these settings in an `.byebugrc` file in your home directory.
-The debugger reads these global settings when it starts. For example:
+TIP: 이 설정들은 홈 폴더의 `.byebugrc` 파일에 저장해둘 수도 있습니다. 디버거가 실행되면, 이 설정이 전역으로 적용됩니다. 다음은 예시입니다.
 
 ```bash
 set callstyle short
 set listsize 25
 ```
 
-Debugging with the `web-console` gem
-------------------------------------
+`web-console` 젬으로 디버깅하기
+-----------------------------------
 
-Web Console is a bit like `byebug`, but it runs in the browser. In any page you
-are developing, you can request a console in the context of a view or a
-controller. The console would be rendered next to your HTML content.
+웹 콘솔은 `byebug`와 비슷하지만 브라우저에서 동작한다는 점이 다릅니다. 개발중인 페이지에서 뷰나 컨트롤러의 컨텍스트에 존재하는 콘솔을 요청할 수 있습니다. 콘솔은 HTML 요소들의 뒤에 랜더링됩니다.
 
-### Console
+### 콘솔
 
-Inside any controller action or view, you can invoke the console by
-calling the `console` method.
+컨트롤러의 액션이나 뷰에서 `console` 메소드로 콘솔을 호출할 수 있습니다.
 
-For example, in a controller:
+예를 들어, 컨트롤러라면,
 
 ```ruby
 class PostsController < ApplicationController
@@ -862,7 +770,7 @@ class PostsController < ApplicationController
 end
 ```
 
-Or in a view:
+뷰라면,
 
 ```html+erb
 <% console %>
@@ -870,85 +778,44 @@ Or in a view:
 <h2>New Post</h2>
 ```
 
-This will render a console inside your view. You don't need to care about the
-location of the `console` call; it won't be rendered on the spot of its
-invocation but next to your HTML content.
+와 같이 호출할 수 있습니다.
 
-The console executes pure Ruby code: You can define and instantiate
-custom classes, create new models and inspect variables.
+이는 뷰에 콘솔을 랜더링합니다. `console`의 호출 위치에 대해서 신경쓸 필요는 없습니다. 콘솔은 콘솔이 호출된 위치에 관계없이 HTML 요소들의 가장 마지막에 랜더링됩니다.
 
-NOTE: Only one console can be rendered per request. Otherwise `web-console`
-will raise an error on the second `console` invocation.
+콘솔은 순수한 Ruby 코드로 실행됩니다. 클래스를 선언하거나 초기화할 수 있고, 새 모델을 만들거나, 변수들을 검사할 수도 있습니다.
 
-### Inspecting Variables
+NOTE: 요청 당 단 하나의 콘솔만을 랜더링할 수 있습니다. 그렇지 않으면 `web-console`이 두번째 `console` 호출시에 에러를 던질 것입니다.
 
-You can invoke `instance_variables` to list all the instance variables
-available in your context. If you want to list all the local variables, you can
-do that with `local_variables`.
+메모리 누수 디버깅
+------------------------------------
 
-### Settings
+원인이 Ruby 코드 때문이든, 또는 C 코드 레벨 때문이든, Ruby 애플리케이션(Rails이든 아니든) 메모리 누수가 발생할 수 있습니다.
 
-* `config.web_console.whitelisted_ips`: Authorized list of IPv4 or IPv6
-addresses and networks (defaults: `127.0.0.1/8, ::1`).
-* `config.web_console.whiny_requests`: Log a message when a console rendering
-is prevented (defaults: `true`).
-
-Since `web-console` evaluates plain Ruby code remotely on the server, don't try
-to use it in production.
-
-Debugging Memory Leaks
-----------------------
-
-A Ruby application (on Rails or not), can leak memory — either in the Ruby code
-or at the C code level.
-
-In this section, you will learn how to find and fix such leaks by using tool
-such as Valgrind.
+여기에서는 이러한 Valgrind와 같은 도구를 사용해서 그러한 메모리 누수를 찾고, 고치는 방법에 대해서 설명합니다.
 
 ### Valgrind
 
-[Valgrind](http://valgrind.org/) is an application for detecting C-based memory
-leaks and race conditions.
+[Valgrind](http://valgrind.org/)는 Linux 전용 애플리케이션으로, C 코드 기반의 메모리 누수나 경쟁 상태를 검출할 때에 사용합니다.
 
-There are Valgrind tools that can automatically detect many memory management
-and threading bugs, and profile your programs in detail. For example, if a C
-extension in the interpreter calls `malloc()` but doesn't properly call
-`free()`, this memory won't be available until the app terminates.
+Valgrind에는 다양한 메모리 관리상의 버그나 스레드 버그 등을 자동으로 검출하고, 프로그램의 상세한 프로파일링을 수행하기 위한 각종 도구가 존재합니다. 예를 들자면 인터프리터에 있는 C확장기능이 `malloc()`을 호출한 뒤에 `free()`를 올바르게 호출하지 않았을 경우, 이 메모리는 애플리케이션이 종료할 때까지 사용할 수 없게 됩니다.
 
-For further information on how to install Valgrind and use with Ruby, refer to
-[Valgrind and Ruby](http://blog.evanweaver.com/articles/2008/02/05/valgrind-and-ruby/)
-by Evan Weaver.
+Valgrind의 설치 방법과 Ruby에서의 사용 방법에 대해서는 [Valgrind와 Ruby](http://blog.evanweaver.com/articles/2008/02/05/valgrind-and-ruby/)(Evan Weaver, 영어)를 참조해주세요.
 
-Plugins for Debugging
+디버그용 플러그인
 ---------------------
 
-There are some Rails plugins to help you to find errors and debug your
-application. Here is a list of useful plugins for debugging:
+애플리케이션의 에러를 검출하고, 디버깅하기 위한 Rails 플러그인이 다수 존재합니다. 디버깅할 때에 유용한 플러그인들을 소개합니다.
 
-* [Footnotes](https://github.com/josevalim/rails-footnotes) Every Rails page has
-footnotes that give request information and link back to your source via
-TextMate.
-* [Query Trace](https://github.com/ruckus/active-record-query-trace/tree/master) Adds query
-origin tracing to your logs.
-* [Query Reviewer](https://github.com/nesquena/query_reviewer) This Rails plugin
-not only runs "EXPLAIN" before each of your select queries in development, but
-provides a small DIV in the rendered output of each page with the summary of
-warnings for each query that it analyzed.
-* [Exception Notifier](https://github.com/smartinez87/exception_notification/tree/master)
-Provides a mailer object and a default set of templates for sending email
-notifications when errors occur in a Rails application.
-* [Better Errors](https://github.com/charliesome/better_errors) Replaces the
-standard Rails error page with a new one containing more contextual information,
-like source code and variable inspection.
-* [RailsPanel](https://github.com/dejan/rails_panel) Chrome extension for Rails
-development that will end your tailing of development.log. Have all information
-about your Rails app requests in the browser — in the Developer Tools panel.
-Provides insight to db/rendering/total times, parameter list, rendered views and
-more.
-* [Pry](https://github.com/pry/pry) An IRB alternative and runtime developer console.
+* [Footnotes](https://github.com/josevalim/rails-footnotes): 모든 Rails 페이지에 각주를 추가하고, 요청 정보를 보여주거나 TextMate로 소스 코드를 열어보기 위한 링크를 제공하거나 합니다.
+* [Query Trace](https://github.com/ruckus/active-record-query-trace/tree/master): 로그에 쿼리의 출처를 추가합니다.
+* [Query Reviewer](https://github.com/nesquena/query_reviewer): 이 Rails 플러그인은 개발중인 select 쿼리의 앞에 "EXPLAIN"을 실행합니다. 또한 페이지마다 DIV를 추가하여 분석 대상의 쿼리마다 경고의 개요를 보여줍니다.
+* [Exception Notifier](https://github.com/smartinez87/exception_notification/tree/master): Rails 애플리케이션에서의 에러 발생시의 메일러 객체와 메일 통지 전송 템플릿의 기본 값을 제공합니다.
+* [Better Errors](https://github.com/charliesome/better_errors): Rails 표준 에러 페이지를 소스 코드나 변수 조사에 편리한 컨텍스트 정보를 추가하여 보여줍니다.
+* [RailsPanel](https://github.com/dejan/rails_panel): Rails 개발용의 Chrome 확장 기능입니다. 이것이 있으면 development.log에서 tail 명령을 실행할 필요가 없어집니다. Rails 애플리케이션의 요청에 대한 모든 정보를 브라우저 상(Developer Tools 패널)에서 볼 수 있습니다. db 시간, 랜더링 시간, 총 시간, 파라미터 리스트, 출력한 뷰 등을 볼 수 있습니다.
+* [Pry](https://github.com/pry/pry): IRB를 대체할 수 있는 구현체입니다.
 
-References
+참고자료
 ----------
 
-* [byebug Homepage](https://github.com/deivid-rodriguez/byebug)
-* [web-console Homepage](https://github.com/rails/web-console)
+* [byebug 홈페이지](https://github.com/deivid-rodriguez/byebug)(영어)
+* [web-console 홈페이지](https://github.com/rails/web-console)(영어)

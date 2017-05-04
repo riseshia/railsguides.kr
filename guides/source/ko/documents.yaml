@@ -1,235 +1,233 @@
+
 -
-  name: Start Here
+  name: 시작하기 전에
   documents:
     -
-      name: Getting Started with Rails
+      name: 레일스 시작하기
       url: getting_started.html
-      description: Everything you need to know to install Rails and create your first application.
+      description: 레일스의 설치 방법과 첫 레일스 애플리케이션을 만들어보고 필요한 것들을 설명합니다.
 -
-  name: Models
+  name: Model
   documents:
     -
-      name: Active Record Basics
+      name: Active Record 기초
       url: active_record_basics.html
-      description: This guide will get you started with models, persistence to database, and the Active Record pattern and library.
+      description: Active Record의 기초가 되는 모델, 데이터베이스에 저장하기, Active Record 패턴과 라이브러리에 대해서 설명합니다.
     -
       name: Active Record Migrations
       url: active_record_migrations.html
-      description: This guide covers how you can use Active Record migrations to alter your database in a structured and organized manner.
+      description: Active Record 의 마이그레이션 (migration)을 사용하여, 어떻게 데이터베이스를 구조화된 방식으로 변경하는지 설명합니다.
     -
       name: Active Record Validations
       url: active_record_validations.html
-      description: This guide covers how you can use Active Record validations.
+      description: Active Record의 Validation(유효성 검사)에 대해서 설명합니다.
     -
       name: Active Record Callbacks
       url: active_record_callbacks.html
-      description: This guide covers how you can use Active Record callbacks.
+      description: Active Record의 콜백에 대해서 설명합니다.
     -
       name: Active Record Associations
       url: association_basics.html
-      description: This guide covers all the associations provided by Active Record.
+      description: Active Record가 제공하는 모든 관계 설정에 대해 설명합니다.
     -
       name: Active Record Query Interface
       url: active_record_querying.html
-      description: This guide covers the database query interface provided by Active Record.
+      description: Active Record가 제공하는 모든 데이터베이스 쿼리 인터페이스에 대해서 설명합니다.
     -
       name: Active Model Basics
       url: active_model_basics.html
-      description: This guide covers the use of model classes without Active Record.
+      description: Active Record를 사용하지 않고 모델 클래스를 다루는 방법에 대해서 설명합니다.
       work_in_progress: true
 -
-  name: Views
+  name: View
   documents:
     -
-      name: Action View Overview
+      name: Action View 개요
       url: action_view_overview.html
-      description: This guide provides an introduction to Action View and introduces a few of the more common view helpers.
+      description: Action View의 개념을 소개하고, 몇몇 공통적으로 사용하는 뷰 헬퍼에 대해서 설명합니다.
       work_in_progress: true
     -
-      name: Layouts and Rendering in Rails
+      name: 레이아웃과 랜더링
       url: layouts_and_rendering.html
-      description: This guide covers the basic layout features of Action Controller and Action View, including rendering and redirecting, using content_for blocks, and working with partials.
+      description: Action Controller과 Action View가 제공하는 기본적인 레이아웃 기능에 대해서 설명합니다. 랜더링과 리다이렉트, content_for 블럭과 파셜(부분 템플릿)의 사용 방법에 대해서도 설명합니다.
     -
-      name: Action View Form Helpers
+      name: Action View Form Helper
       url: form_helpers.html
-      description: Guide to using built-in Form helpers.
+      description: 내장되어있는 폼 헬퍼에 대해서 설명합니다.
 -
-  name: Controllers
+  name: Controller
   documents:
     -
-      name: Action Controller Overview
+      name: Action Controller 개요
       url: action_controller_overview.html
-      description: This guide covers how controllers work and how they fit into the request cycle in your application. It includes sessions, filters, and cookies, data streaming, and dealing with exceptions raised by a request, among other topics.
+      description: 컨트롤러의 동작과 애플리케이션에 들어온 요청을 처리할때 컨트롤러가 어떤 역할을 하는지 설명합니다. 세션, 필터, cookie, 데이터 스트리밍, 요청에 따라 발생하는 예외 처리 등에 대해서 다룹니다.
     -
-      name: Rails Routing from the Outside In
+      name: 레일스 라우팅
       url: routing.html
-      description: This guide covers the user-facing features of Rails routing. If you want to understand how to use routing in your own Rails applications, start here.
+      description: 레일스의 라우팅 기능에 대해서 설명합니다. 레일스 애플리케이션에서 이루어지는 라우팅에 대해서 이해하고 싶다면 이 부분을 읽어주세요.
 -
-  name: Digging Deeper
+  name: 심화 주제
   documents:
     -
-      name: Active Support Core Extensions
+      name: Active Support 코어 확장 기능
       url: active_support_core_extensions.html
-      description: This guide documents the Ruby core extensions defined in Active Support.
+      description: Active Support에 정의되어 있는 Ruby 코어 확장 기능에 대한 문서입니다.
     -
-      name: Rails Internationalization API
+      name: 레일스 국제화(i18n) API
       url: i18n.html
-      description: This guide covers how to add internationalization to your applications. Your application will be able to translate content to different languages, change pluralization rules, use correct date formats for each country, and so on.
+      description: 레일스 애플리케이션에서 국제화를 지원하는 방법에 대해서 설명합니다. 이를 이용하면 애플리케이션을 서로 다른 언어로 번역할 수 있으며, 단수형/복수형에 대한 규칙을 변경하거나, 각 나라에 맞는 날짜 형식을 설정할 수 있습니다.
     -
       name: Action Mailer Basics
       url: action_mailer_basics.html
-      description: This guide describes how to use Action Mailer to send and receive emails.
+      description: Action Mailer를 사용해서 메일을 송수신하는 방법에 대해 설명합니다.
     -
       name: Active Job Basics
       url: active_job_basics.html
-      description: This guide provides you with all you need to get started creating, enqueuing, and executing background jobs.
+      description: 백그라운드에서 동작하는 잡(Job)을 만들고, 큐에 전송하고 실행하는데에 있어 필요한 모든 것을 설명합니다.
     -
-      name: Testing Rails Applications
+      name: 레일스 애플리케이션 테스트하기
       url: testing.html
-      description: This is a rather comprehensive guide to the various testing facilities in Rails. It covers everything from 'What is a test?' to Integration Testing. Enjoy.
+      description: 레일스에서 유닛 테스트와 기능 테스트를 하는 방법에 대해서 전체적인 설명을 합니다. '테스트란 무엇인가'부터 테스트 API 까지 모든 토픽을 다룹니다.
     -
-      name: Securing Rails Applications
+      name: 레일스 보안 가이드
       url: security.html
-      description: This guide describes common security problems in web applications and how to avoid them with Rails.
+      description: Web 애플리케이션 전반에 걸친 보안 문제와, 레일스에서 각 문제를 해결하는 방법에 대해서 설명합니다.
     -
-      name: Debugging Rails Applications
+      name: 레일스 애플리케이션 디버깅
       url: debugging_rails_applications.html
-      description: This guide describes how to debug Rails applications. It covers the different ways of achieving this and how to understand what is happening "behind the scenes" of your code.
+      description: 레일스 애플리케이션을 디버깅하는 방법에 대해서 설명합니다. 다양한 디버깅 방법이나, 작성한 코드가 뒤에서는 어떤 식으로 동작하는지에 대해서도 설명합니다.
     -
-      name: Configuring Rails Applications
+      name: 레일스 애플리케이션 설정하기
       url: configuring.html
-      description: This guide covers the basic configuration settings for a Rails application.
+      description: 레일스 애플리케이션의 기본적인 설정 방법에 대해서 설명합니다.
     -
-      name: The Rails Command Line
+      name: 레일스 커맨드 라인
       url: command_line.html
-      description: This guide covers the command line tools provided by Rails.
+      description: 레일스가 제공하는 각종 커맨드라인 도구에 대해서 설명합니다.
     -
-      name: Asset Pipeline
+      name: 애셋 파이프라인
       url: asset_pipeline.html
-      description: This guide documents the asset pipeline.
+      description: 애셋 파이프라인에 대해서 설명합니다.
     -
-      name: Working with JavaScript in Rails
+      name: 레일스에서 JavaScript 사용하기
       url: working_with_javascript_in_rails.html
-      description: This guide covers the built-in Ajax/JavaScript functionality of Rails.
+      description: 레일스 내장 Ajax/JavaScript에 대해서 설명합니다.
     -
-      name: The Rails Initialization Process
+      name: 레일스의 초기화 프로세스
       work_in_progress: true
       url: initialization.html
-      description: This guide explains the internals of the Rails initialization process.
+      description: 레일스 내부의 초기화 프로세스에 대해서 설명합니다.
     -
-      name: Autoloading and Reloading Constants
+      name: 상수 자동 읽기와 다시 읽기
       url: autoloading_and_reloading_constants.html
-      description: This guide documents how autoloading and reloading constants work.
+      description: 상수 자동 읽기와 다시 읽기가 어떻게 이루어지는지 설명합니다.
     -
-      name: "Caching with Rails: An Overview"
+      name: "레일스에서 캐싱하기"
       url: caching_with_rails.html
-      description: This guide is an introduction to speeding up your Rails application with caching.
+      description: 캐시를 사용하여 레일스 애플리케이션을 빠르게 만드는 방법에 대해서 설명합니다.
     -
       name: Active Support Instrumentation
       work_in_progress: true
       url: active_support_instrumentation.html
-      description: This guide explains how to use the instrumentation API inside of Active Support to measure events inside of Rails and other Ruby code.
+      description: 액티브서포트를 통해 레일스나 다른 루비 코드에서 이벤트를 계측하는 방법에 대해서 설명합니다.
     -
-      name: Profiling Rails Applications
+      name: 레일스 애플리케이션 프로파일링
       work_in_progress: true
       url: profiling.html
-      description: This guide explains how to profile your Rails applications to improve performance.
+      description: 성능을 향상시키기 위해 레일스 애플리케이션을 분석하는 방법에 대해서 설명합니다.
     -
-      name: Using Rails for API-only Applications
+      name: 레일스로 API 전용 애플리케이션 만들기
       url: api_app.html
-      description: This guide explains how to effectively use Rails to develop a JSON API application.
+      description: 레일스를 통해 효율적으로 JSON API 애플리케이션을 만드는 방법에 대해서 설명합니다.
     -
-      name: Action Cable Overview
+      name: Action Cable 살펴보기
       url: action_cable_overview.html
-      description: This guide explains how Action Cable works, and how to use WebSockets to create real-time features.
+      description: 실시간 기능을 구현하기 위해 액션케이블이 어떻게 동작하는지, 웹소켓을 어떻게 사용하는지에 대해서 설명합니다.
 
 -
-  name: Extending Rails
+  name: 레일스 확장하기
   documents:
     -
-      name: The Basics of Creating Rails Plugins
+      name: 레일스 플러그인 입문
       work_in_progress: true
       url: plugins.html
-      description: This guide covers how to build a plugin to extend the functionality of Rails.
+      description: 플러그인을 만들어서 레일스의 기능을 확장하는 방법에 대해서 설명합니다.
     -
-      name: Rails on Rack
+      name: Rails와 Rack
       url: rails_on_rack.html
-      description: This guide covers Rails integration with Rack and interfacing with other Rack components.
+      description: Rails와 Rack이 어떤식으로 통합되어 있는지, 그리고 다른 Rack 컴포넌트와의 인터페이스에 대해서 설명합니다.
     -
-      name: Creating and Customizing Rails Generators
+      name: 레일스 제너레이터와 템플릿
       url: generators.html
-      description: This guide covers the process of adding a brand new generator to your extension or providing an alternative to an element of a built-in Rails generator (such as providing alternative test stubs for the scaffold generator).
+      description: 새로운 제너레이터를 추가하거나 레일스의 내장 제너레이터에 새로운 요소(예를 들어, scaffold 제너레이터에 새로운 테스트 스텁 등)를 추가하는 방법에 대해서 설명합니다.
     -
-      name: Getting Started with Engines
+      name: 레일스 엔진 입문
       url: engines.html
-      description: This guide explains how to write a mountable engine.
+      description: 마운트 가능한 엔진 개발 방법에 대해서 설명합니다.
       work_in_progress: true
 -
-  name: Contributing to Ruby on Rails
+  name: Ruby on Rails 에 기여하기
   documents:
     -
-      name: Contributing to Ruby on Rails
+      name: Ruby on Rails에 기여하는 방법
       url: contributing_to_ruby_on_rails.html
-      description: Rails is not 'somebody else's framework.' This guide covers a variety of ways that you can get involved in the ongoing development of Rails.
+      description: Rails는 '어떤 다른 사람의 프레임워크'가 아닙니다. 현재도 계속되고 있는 Rails 프레임워크 개발에 기여하는 다양한 방법에 대해서 설명합니다.
     -
-      name: API Documentation Guidelines
+      name: API 문서 작성 가이드라인
       url: api_documentation_guidelines.html
-      description: This guide documents the Ruby on Rails API documentation guidelines.
+      work_in_progress: true
+      description: Ruby on Rails API 문서의 가이드라인에 대해 설명합니다.
     -
-      name: Ruby on Rails Guides Guidelines
+      name: 레일스 가이드의 가이드라인
       url: ruby_on_rails_guides_guidelines.html
-      description: This guide documents the Ruby on Rails guides guidelines.
+      description: Ruby on Rails 가이드 작성 방법에 대한 가이드라인입니다.
 -
   name: Maintenance Policy
   documents:
     -
       name: Maintenance Policy
       url: maintenance_policy.html
-      description: What versions of Ruby on Rails are currently supported, and when to expect new versions.
+      description: 현재 지원되고 있는 Ruby on Rails 버전과 차기 버전 릴리스 일정에 대해서 설명합니다.
 -
-  name: Release Notes
+  name: 릴리스 노트
   documents:
     -
-      name: Upgrading Ruby on Rails
+      name: 레일스 업그레이드 가이드
       url: upgrading_ruby_on_rails.html
-      description: This guide helps in upgrading applications to latest Ruby on Rails versions.
+      description: 애플리케이션의 Ruby on Rails를 최신 버전으로 업그레이드 하는 방법에 대해서 설명합니다.
     -
-      name: Ruby on Rails 5.1 Release Notes
-      url: 5_1_release_notes.html
-      description: Release notes for Rails 5.1.
-    -
-      name: Ruby on Rails 5.0 Release Notes
+      name: Ruby on Rails 5.0 릴리스 노트
       url: 5_0_release_notes.html
-      description: Release notes for Rails 5.0.
+      description: Rails 5.0의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 4.2 Release Notes
+      name: Ruby on Rails 4.2 릴리스 노트
       url: 4_2_release_notes.html
-      description: Release notes for Rails 4.2.
+      description: Rails 4.2의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 4.1 Release Notes
+      name: Ruby on Rails 4.1 릴리스 노트
       url: 4_1_release_notes.html
-      description: Release notes for Rails 4.1.
+      description: Rails 4.1의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 4.0 Release Notes
+      name: Ruby on Rails 4.0 릴리스 노트
       url: 4_0_release_notes.html
-      description: Release notes for Rails 4.0.
+      description: Rails 4.0의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 3.2 Release Notes
+      name: Ruby on Rails 3.2 Release Notes [미번역]
       url: 3_2_release_notes.html
-      description: Release notes for Rails 3.2.
+      description: Rails 3.2의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 3.1 Release Notes
+      name: Ruby on Rails 3.1 Release Notes [미번역]
       url: 3_1_release_notes.html
-      description: Release notes for Rails 3.1.
+      description: Rails 3.1의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 3.0 Release Notes
+      name: Ruby on Rails 3.0 Release Notes [미번역]
       url: 3_0_release_notes.html
-      description: Release notes for Rails 3.0.
+      description: Rails 3.0의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 2.3 Release Notes
+      name: Ruby on Rails 2.3 Release Notes [미번역]
       url: 2_3_release_notes.html
-      description: Release notes for Rails 2.3.
+      description: Rails 2.3의 릴리스 노트입니다.
     -
-      name: Ruby on Rails 2.2 Release Notes
+      name: Ruby on Rails 2.2 Release Notes [미번역]
       url: 2_2_release_notes.html
-      description: Release notes for Rails 2.2.
+      description: Rails 2.2의 릴리스 노트입니다.

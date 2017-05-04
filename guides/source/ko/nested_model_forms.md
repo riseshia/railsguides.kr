@@ -1,6 +1,4 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
-
-Rails Nested Model Forms
+Rails nested model forms
 ========================
 
 Creating a form for a model _and_ its associations can become quite tedious. Therefore Rails provides helpers to assist in dealing with the complexities of generating these forms _and_ the required CRUD operations to create, update, and destroy associations.
@@ -11,7 +9,7 @@ After reading this guide, you will know:
 
 --------------------------------------------------------------------------------
 
-NOTE: This guide assumes the user knows how to use the [Rails form helpers](form_helpers.html) in general. Also, it's **not** an API reference. For a complete reference please visit [the Rails API documentation](http://api.rubyonrails.org/).
+NOTE: This guide assumes the user knows how to use the [Rails form helpers](form_helpers.html) in general. Also, it’s **not** an API reference. For a complete reference please visit [the Rails API documentation](http://api.rubyonrails.org/).
 
 
 Model setup
@@ -19,9 +17,9 @@ Model setup
 
 To be able to use the nested model functionality in your forms, the model will need to support some basic operations.
 
-First of all, it needs to define a writer method for the attribute that corresponds to the association you are building a nested model form for. The `fields_for` form helper will look for this method to decide whether or not a nested model form should be built.
+First of all, it needs to define a writer method for the attribute that corresponds to the association you are building a nested model form for. The `fields_for` form helper will look for this method to decide whether or not a nested model form should be build.
 
-If the associated object is an array, a form builder will be yielded for each object, else only a single form builder will be yielded.
+If the associated object is an array a form builder will be yielded for each object, else only a single form builder will be yielded.
 
 Consider a Person model with an associated Address. When asked to yield a nested FormBuilder for the `:address` attribute, the `fields_for` form helper will look for a method on the Person instance named `address_attributes=`.
 
@@ -32,7 +30,7 @@ For an ActiveRecord::Base model and association this writer method is commonly d
 #### has_one
 
 ```ruby
-class Person < ApplicationRecord
+class Person < ActiveRecord::Base
   has_one :address
   accepts_nested_attributes_for :address
 end
@@ -41,7 +39,7 @@ end
 #### belongs_to
 
 ```ruby
-class Person < ApplicationRecord
+class Person < ActiveRecord::Base
   belongs_to :firm
   accepts_nested_attributes_for :firm
 end
@@ -50,18 +48,15 @@ end
 #### has_many / has_and_belongs_to_many
 
 ```ruby
-class Person < ApplicationRecord
+class Person < ActiveRecord::Base
   has_many :projects
   accepts_nested_attributes_for :projects
 end
 ```
 
-NOTE: For greater detail on associations see [Active Record Associations](association_basics.html).
-For a complete reference on associations please visit the API documentation for [ActiveRecord::Associations::ClassMethods](http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html).
-
 ### Custom model
 
-As you might have inflected from this explanation, you _don't_ necessarily need an ActiveRecord::Base model to use this functionality. The following examples are sufficient to enable the nested model form behavior:
+As you might have inflected from this explanation, you _don’t_ necessarily need an ActiveRecord::Base model to use this functionality. The following examples are sufficient to enable the nested model form behavior:
 
 #### Single associated object
 
@@ -106,7 +101,7 @@ Consider the following typical RESTful controller which will prepare a new Perso
 class PeopleController < ApplicationController
   def new
     @person = Person.new
-    @person.build_address
+    @person.built_address
     2.times { @person.projects.build }
   end
 
@@ -182,7 +177,7 @@ When this form is posted the Rails parameter parser will construct a hash like t
 }
 ```
 
-That's it. The controller will simply pass this hash on to the model from the `create` action. The model will then handle building the `address` association for you and automatically save it when the parent (`person`) is saved.
+That’s it. The controller will simply pass this hash on to the model from the `create` action. The model will then handle building the `address` association for you and automatically save it when the parent (`person`) is saved.
 
 #### Nested form for a collection of associated objects
 
@@ -225,6 +220,6 @@ As you can see it has generated 2 `project name` inputs, one for each new `proje
 
 You can basically see the `projects_attributes` hash as an array of attribute hashes, one for each model instance.
 
-NOTE: The reason that `fields_for` constructed a hash instead of an array is that it won't work for any form nested deeper than one level deep.
+NOTE: The reason that `fields_for` constructed a form which would result in a hash instead of an array is that it won't work for any forms nested deeper than one level deep.
 
 TIP: You _can_ however pass an array to the writer method generated by `accepts_nested_attributes_for` if you're using plain Ruby or some other API access. See (TODO) for more info and example.

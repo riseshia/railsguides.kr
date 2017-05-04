@@ -1,23 +1,21 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
-
 The Rails Command Line
 ======================
 
-After reading this guide, you will know:
+이 가이드의 내용:
 
-* How to create a Rails application.
-* How to generate models, controllers, database migrations, and unit tests.
-* How to start a development server.
-* How to experiment with objects through an interactive shell.
+* Rails 애플리케이션을 생성하는 방법
+* 모델, 컨트롤러, 데이터베이스의 마이그레이션 파일, 그리고 단위 테스트를 생성하는 방법
+* 개발용 서버를 실행하는 방법
+* 인터랙티브 쉘을 사용하여 객체를 테스트하는 방법
 
 --------------------------------------------------------------------------------
 
-NOTE: This tutorial assumes you have basic Rails knowledge from reading the [Getting Started with Rails Guide](getting_started.html).
+NOTE: 이 가이드는 [Rails 시작하기](getting_started.html)를 읽고, 기본적인 Rails 지식이 있다는 것을 전제로 합니다.
 
-Command Line Basics
+커맨드라인의 기초
 -------------------
 
-There are a few commands that are absolutely critical to your everyday usage of Rails. In the order of how much you'll probably use them are:
+Rails를 사용할 때에 가장 중요한 명령이 몇 가지 있습니다. 이들을 사용빈도 순으로 나열해보면 다음과 같습니다.
 
 * `rails console`
 * `rails server`
@@ -26,44 +24,44 @@ There are a few commands that are absolutely critical to your everyday usage of 
 * `rails dbconsole`
 * `rails new app_name`
 
-All commands can run with `-h` or `--help` to list more information.
+어떤 명령어든 `-h` 또는 `--help` 옵션을 사용해서 자세한 설명을 확인할 수 있습니다.
 
-Let's create a simple Rails application to step through each of these commands in context.
+간단한 Rails 애플리케이션을 만들면서 하나씩 명령을 실행해봅시다.
 
 ### `rails new`
 
-The first thing we'll want to do is create a new Rails application by running the `rails new` command after installing Rails.
+Rails를 설치한 다음에 해야하는 것은 `rails new` 명령을 실행해서 새로운 Rails 애플리케이션을 생성하는 일입니다.
 
-INFO: You can install the rails gem by typing `gem install rails`, if you don't have it already.
+INFO: 아직 Rails를 설치하지 않은 경우에는 `gem install rails`를 실행해서 Rails를 설치할 수 있습니다.
 
 ```bash
 $ rails new commandsapp
-     create
-     create  README.md
-     create  Rakefile
-     create  config.ru
-     create  .gitignore
-     create  Gemfile
-     create  app
-     ...
-     create  tmp/cache
-     ...
-        run  bundle install
+    create
+    create README.md
+    create Rakefile
+    create config.ru
+    create .gitignore
+    create Gemfile
+    create app
+    ...
+    create  tmp/cache
+    ...
+        run bundle install
 ```
 
-Rails will set you up with what seems like a huge amount of stuff for such a tiny command! You've got the entire Rails directory structure now with all the code you need to run our simple application right out of the box.
+이러한 짧은 명령어를 실행하는 것만으로 Rails는 폴더 구성, 애플리케이션에 필요한 모든 코드 등, 무척 많은 것들을 준비해줍니다.
 
 ### `rails server`
 
-The `rails server` command launches a web server named Puma which comes bundled with Rails. You'll use this any time you want to access your application through a web browser.
+`rails server` 명령을 실행하면, Rails에 포함되어 있는 Puma라는 이름의 웹서버가 실행됩니다. 웹브라우저로 애플리케이션에 접속할 때에는 이 명령을 사용합니다.
 
-With no further work, `rails server` will run our new shiny Rails app:
+새로운 Rails 애플리케이션을 생성한 뒤 `rails server`로 바로 실행할 수 있습니다.
 
 ```bash
 $ cd commandsapp
 $ bin/rails server
 => Booting Puma
-=> Rails 5.1.0 application starting in development on http://0.0.0.0:3000
+=> Rails 5.0.0 application starting in development on http://0.0.0.0:3000
 => Run `rails server -h` for more startup options
 Puma starting in single mode...
 * Version 3.0.2 (ruby 2.3.0-p0), codename: Plethora of Penguin Pinatas
@@ -73,23 +71,23 @@ Puma starting in single mode...
 Use Ctrl-C to stop
 ```
 
-With just three commands we whipped up a Rails server listening on port 3000. Go to your browser and open [http://localhost:3000](http://localhost:3000), you will see a basic Rails app running.
+단 3개의 명령으로 Rails 서버를 3000번 포트에서 실행했습니다. 브라우저를 켜고 [http://localhost:3000](http://localhost:3000)를 열어보세요. Rails 애플리케이션이 동작중임을 확인할 수 있습니다.
 
-INFO: You can also use the alias "s" to start the server: `rails s`.
+INFO: 서버를 실행할 때에는 `rails s`처럼 "s"라는 별칭을 사용할 수 있습니다.
 
-The server can be run on a different port using the `-p` option. The default development environment can be changed using `-e`.
+`-p` 옵션을 사용하여 사용할 포트를 변경할 수 있습니다. 서버 환경은 `-e` 옵션으로 변경할 수 있으며, 지정하지 않으면 development 환경이 사용됩니다.
 
 ```bash
 $ bin/rails server -e production -p 4000
 ```
 
-The `-b` option binds Rails to the specified IP, by default it is localhost. You can run a server as a daemon by passing a `-d` option.
+`-b` 옵션을 사용하면 Rails를 특정 IP에 바인딩할 수 있습니다. 기본값은 0.0.0.0입니다. `-d` 옵션으로 서버를 데몬으로 기동할 수 있습니다.
 
 ### `rails generate`
 
-The `rails generate` command uses templates to create a whole lot of things. Running `rails generate` by itself gives a list of available generators:
+`rails generate` 명령으로 템플릿을 사용하여 다양한 코드를 생성할 수 있습니다. `rails generate`를 실행하면 이용가능한 제너레이터 목록을 확인할 수 있습니다.
 
-INFO: You can also use the alias "g" to invoke the generator command: `rails g`.
+INFO: 제너레이터 명령을 실행할 때에는 `rails g`처럼 "g"라는 별칭을 사용할 수 있습니다.
 
 ```bash
 $ bin/rails generate
@@ -108,13 +106,13 @@ Rails:
   ...
 ```
 
-NOTE: You can install more generators through generator gems, portions of plugins you'll undoubtedly install, and you can even create your own!
+NOTE: 제너레이터 잼을 설치하거나 플러그인에 포함되어 있는 제너레이터를 설치하여 사용할 수 있습니다. 또한 직접 제너레이터를 개발할 수도 있습니다.
 
-Using generators will save you a large amount of time by writing **boilerplate code**, code that is necessary for the app to work.
+제너레이터를 사용하면 애플리케이션을 움직일때 필요한 [**Boilerplate Code**](http://en.wikipedia.org/wiki/Boilerplate_code)를 작성할 필요가 없어지므로, 시간을 절약할 수 있습니다.
 
-Let's make our own controller with the controller generator. But what command should we use? Let's ask the generator:
+그렇다면 컨트롤러 제너레이터를 사용해서, 컨트롤러를 생성해봅시다. 어떤 명령을 사용하면 좋을까요? 제너레이터에게 물어봅시다.
 
-INFO: All Rails console utilities have help text. As with most *nix utilities, you can try adding `--help` or `-h` to the end, for example `rails server --help`.
+INFO: Rails의 모든 명령에는 각각의 도움말이 존재합니다. 많은 *nix(역주: Linux나 Unix, Unix 계열의 OS 등)의 유틸리티와 마찬가지로 명령의 마지막에 `--help` 또는 `-h` 옵션을 넘겨주세요(예: `rails server --help`).
 
 ```bash
 $ bin/rails generate controller
@@ -140,13 +138,14 @@ Example:
         Helper:     app/helpers/credit_cards_helper.rb
 ```
 
-The controller generator is expecting parameters in the form of `generate controller ControllerName action1 action2`. Let's make a `Greetings` controller with an action of **hello**, which will say something nice to us.
+
+컨트롤러 제너레이터에는 `generate controller ControllerName action1 action2`와 같은 형식의 인수를 넘길 수 있습니다. **hello** 액션을 실행하면, 멋진 메시지를 반환해주는 `Greetings` 컨트롤러를 만들어보죠.
 
 ```bash
 $ bin/rails generate controller Greetings hello
      create  app/controllers/greetings_controller.rb
       route  get "greetings/hello"
-     invoke  erb
+     invoke    erb 
      create    app/views/greetings
      create    app/views/greetings/hello.html.erb
      invoke  test_unit
@@ -155,42 +154,42 @@ $ bin/rails generate controller Greetings hello
      create    app/helpers/greetings_helper.rb
      invoke  assets
      invoke    coffee
-     create      app/assets/javascripts/greetings.coffee
+     create      app/assets/javascripts/greetings.js.coffee
      invoke    scss
-     create      app/assets/stylesheets/greetings.scss
+     create      app/assets/stylesheets/greetings.css.scss
 ```
 
-What all did this generate? It made sure a bunch of directories were in our application, and created a controller file, a view file, a functional test file, a helper for the view, a JavaScript file and a stylesheet file.
+어떠한 것들이 생성되었을까요? 몇몇 폴더가 애플리케이션에 존재하는 것을 확인하고, 컨트롤러 파일, 뷰 파일, 기능 테스트를 위한 파일, 뷰 헬퍼, JavaScript 파일, 그리고 스타일 시트를 생성했습니다.
 
-Check out the controller and modify it a little (in `app/controllers/greetings_controller.rb`):
+컨트롤러(`app/controllers/greetings_controller.rb`)를 찾아서 조금 고쳐봅시다.
 
-```ruby
+  ```ruby
 class GreetingsController < ApplicationController
   def hello
     @message = "Hello, how are you today?"
-  end
-end
+  end 
+end 
 ```
 
-Then the view, to display our message (in `app/views/greetings/hello.html.erb`):
+메시지를 표시하기 위한 뷰(`app/views/greetings/hello.html.erb`)도 편집합시다.
 
 ```erb
 <h1>A Greeting for You!</h1>
 <p><%= @message %></p>
 ```
 
-Fire up your server using `rails server`.
+`rails server`로 서버를 실행합니다.
 
 ```bash
 $ bin/rails server
 => Booting Puma...
 ```
 
-The URL will be [http://localhost:3000/greetings/hello](http://localhost:3000/greetings/hello).
+URL은 [http://localhost:3000/greetings/hello](http://localhost:3000/greetings/hello)입니다.
 
-INFO: With a normal, plain-old Rails application, your URLs will generally follow the pattern of http://(host)/(controller)/(action), and a URL like http://(host)/(controller) will hit the **index** action of that controller.
+INFO: 일반적인 Rails 애플리케이션에서는 URL이 http://(host)/(controller)/(action)와 같은 패턴이 됩니다. 또한 http://(host)/(controller)라는 패턴의 URL은 컨트롤러의 **index** 액션에 대한 URL로 인식됩니다.
 
-Rails comes with a generator for data models too.
+Rails에는 데이터 모델을 위한 제너레이터도 포함되어 있습니다.
 
 ```bash
 $ bin/rails generate model
@@ -209,34 +208,34 @@ Description:
     Create rails files for model generator.
 ```
 
-NOTE: For a list of available field types for the `type` parameter, refer to the [API documentation](http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column) for the add_column method for the `SchemaStatements` module. The `index` parameter generates a corresponding index for the column.
+NOTE: 사용가능한 필드 타입(field types)에 대해서는 [API 문서](http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_column)에 있는 `SchemaStatements` 모듈의 add_column 메소드를 참조해주세요. `index` 파라미터는 컬럼에 대응하는 인덱스를 생성합니다.
 
-But instead of generating a model directly (which we'll be doing later), let's set up a scaffold. A **scaffold** in Rails is a full set of model, database migration for that model, controller to manipulate it, views to view and manipulate the data, and a test suite for each of the above.
+여기에서는 직접 모델을 만드는 대신에(모델을 생성하는 방법은 나중에 설명하겠습니다), scaffold를 생성해봅시다. Rails에서의 **scaffold**란 모델, 모델을 위한 마이그레이션, 모델을 조작하기 위한 컨트롤러, 모델을 조작, 표시하기 위한 뷰, 이 모두를 위한 테스트 코드를 포함한 것을 가리킵니다.
 
-We will set up a simple resource called "HighScore" that will keep track of our highest score on video games we play.
+"HighScore"라는 이름의 리소스를 만들어봅시다. 이 리소스의 역할은 비디오 게임의 최고 득점을 기록하는 것입니다.
 
 ```bash
 $ bin/rails generate scaffold HighScore game:string score:integer
     invoke  active_record
     create    db/migrate/20130717151933_create_high_scores.rb
     create    app/models/high_score.rb
-    invoke    test_unit
+    invoke  test_unit
     create      test/models/high_score_test.rb
     create      test/fixtures/high_scores.yml
     invoke  resource_route
      route    resources :high_scores
     invoke  scaffold_controller
     create    app/controllers/high_scores_controller.rb
-    invoke    erb
+    invoke    erb 
     create      app/views/high_scores
     create      app/views/high_scores/index.html.erb
     create      app/views/high_scores/edit.html.erb
     create      app/views/high_scores/show.html.erb
     create      app/views/high_scores/new.html.erb
     create      app/views/high_scores/_form.html.erb
-    invoke    test_unit
+    invoke  test_unit
     create      test/controllers/high_scores_controller_test.rb
-    invoke    helper
+    invoke  helper
     create      app/helpers/high_scores_helper.rb
     invoke    jbuilder
     create      app/views/high_scores/index.json.jbuilder
@@ -250,9 +249,9 @@ $ bin/rails generate scaffold HighScore game:string score:integer
    identical    app/assets/stylesheets/scaffolds.scss
 ```
 
-The generator checks that there exist the directories for models, controllers, helpers, layouts, functional and unit tests, stylesheets, creates the views, controller, model and database migration for HighScore (creating the `high_scores` table and fields), takes care of the route for the **resource**, and new tests for everything.
+제너레이터는 모델, 컨트롤러, 헬퍼, 레이아웃, 기능 테스트, 유닛 테스트, 스타일시트용의 데이터가 존재하는지를 체크하고, 뷰, 컨트롤러, 모델, (`high_scores` 테이블과 필드를 생성하는)마이그레이션을 생성하고, 이 **리소스**를 가리키는 라우팅을 추가하고 마지막으로 이 모든 것을 위한 테스트를 생성합니다.
 
-The migration requires that we **migrate**, that is, run some Ruby code (living in that `20130717151933_create_high_scores.rb`) to modify the schema of our database. Which database? The SQLite3 database that Rails will create for you when we run the `bin/rails db:migrate` command. We'll talk more about bin/rails in-depth in a little while.
+그리고 **migrate**를 실행하여 마이그레이션을 적용해야 합니다. 다시 말해서, 데이터베이스 스키마를 변경하기 위한 Ruby 코드(`20130717151933_create_high_scores.rb`와 같은 파일에 작성되어 있는 코드입니다)를 실행해야 합니다. 데이터베이스란 어떤 데이터베이스를 가리키는 걸까요? `bin/rails db:migrate` 명령을 실행하면 Rails는 SQLite3에 새로운 데이터베이스를 생성합니다. bin/rails에 대해서는 나중에 더 자세하게 설명하겠습니다.
 
 ```bash
 $ bin/rails db:migrate
@@ -262,48 +261,42 @@ $ bin/rails db:migrate
 ==  CreateHighScores: migrated (0.0019s) ======================================
 ```
 
-INFO: Let's talk about unit tests. Unit tests are code that tests and makes assertions 
-about code. In unit testing, we take a little part of code, say a method of a model, 
-and test its inputs and outputs. Unit tests are your friend. The sooner you make 
-peace with the fact that your quality of life will drastically increase when you unit 
-test your code, the better. Seriously. Please visit 
-[the testing guide](http://guides.rubyonrails.org/testing.html) for an in-depth 
-look at unit testing.
+INFO: 유닛 테스트에 대해서 설명하겠습니다. 유닛 테스트란 코드를 테스트하고 단언을 하기 위한 코드입니다. 유닛 테스트에서는 모델의 메소드 중 일부를 가져와 그 인수와 반환값을 검사합니다. 유닛 테스트는 당신의 친구이며, 이를 작성하는 것이 좀 더 나은 삶을 살 수 있게 해줄 것입니다. 자세한 설명은 [테스팅 가이드](testing.html)를 참고하세요.
 
-Let's see the interface Rails created for us.
+Rails가 생성한 인터페이스를 확인해봅시다.
 
 ```bash
 $ bin/rails server
 ```
 
-Go to your browser and open [http://localhost:3000/high_scores](http://localhost:3000/high_scores), now we can create new high scores (55,160 on Space Invaders!)
+브라우저에서 [http://localhost:3000/high_scores](http://localhost:3000/high_scores)를 열어봅시다. 새로운 최고 점수를 생성할 수 있습니다(스페이스 인베이더에서 55,160점이라든가 말이죠!) (역주: 2003년에 Donald Hayes가 기록한 점수입니다).
 
 ### `rails console`
 
-The `console` command lets you interact with your Rails application from the command line. On the underside, `rails console` uses IRB, so if you've ever used it, you'll be right at home. This is useful for testing out quick ideas with code and changing data server-side without touching the website.
+`console` 명령을 사용하면 커맨드라인에서 Rails 애플리케이션을 직접 다룰 수 있습니다. `rails console`은 내부적으로 IRB를 사용하고 있으므로, IRB를 사용한 적이 있다면, 사용하는 것은 간단합니다. 떠오른 아이디어를 시험해보거나, 웹사이트에 접속하지 않고 서버의 데이터를 변경할 때에 유용합니다.
 
-INFO: You can also use the alias "c" to invoke the console: `rails c`.
+INFO: 이 명령을 실행할 때에는 `rails c`처럼 "c"라는 별칭을 사용할 수 있습니다.
 
-You can specify the environment in which the `console` command should operate.
+`console` 명령을 실행할 환경을 지정할 수도 있습니다.
 
 ```bash
 $ bin/rails console staging
 ```
 
-If you wish to test out some code without changing any data, you can do that by invoking `rails console --sandbox`.
+데이터를 변경하지 않고 테스트를 하고 싶은 경우에는 `rails console --sandbox`를 실행하세요.
 
 ```bash
 $ bin/rails console --sandbox
-Loading development environment in sandbox (Rails 5.1.0)
+Loading development environment in sandbox (Rails 5.0.0)
 Any modifications you make will be rolled back on exit
 irb(main):001:0>
 ```
 
-#### The app and helper objects
+#### app 객체와 helper 객체
 
-Inside the `rails console` you have access to the `app` and `helper` instances.
+`rails console`를 실행하는 도중 `app` 객체와 `helper` 객체에 접근할 수 있습니다.
 
-With the `app` method you can access url and path helpers, as well as do requests.
+`app` 메소드를 사용하면 URL 헬퍼와 path 헬퍼에 접근할 수 있습니다. 또한 request를 던질 수도 있습ㄴ니다.
 
 ```bash
 >> app.root_path
@@ -314,7 +307,7 @@ Started GET "/" for 127.0.0.1 at 2014-06-19 10:41:57 -0300
 ...
 ```
 
-With the `helper` method it is possible to access Rails and your application's helpers.
+`helper` 메소드를 사용하면 Rails 애플리케이션이 제공하는 헬퍼와 직접 구현한 헬퍼에 접근할 수 있습니다.
 
 ```bash
 >> helper.time_ago_in_words 30.days.ago
@@ -326,37 +319,38 @@ With the `helper` method it is possible to access Rails and your application's h
 
 ### `rails dbconsole`
 
-`rails dbconsole` figures out which database you're using and drops you into whichever command line interface you would use with it (and figures out the command line parameters to give to it, too!). It supports MySQL (including MariaDB), PostgreSQL and SQLite3.
+`rails dbconsole` 명령은 사용하고 있는 데이터베이스를 찾고, 적절한 데이터베이스 커맨드라인 툴을 실행합니다(또한 커맨드라인 툴에서 필요한 인수를 넘길 수도 있습니다). MySQL(MariaDB도 포함합니다), PostgreSQL, SQLite, 그리고 SQLite3을 지원합니다.
 
-INFO: You can also use the alias "db" to invoke the dbconsole: `rails db`.
+INFO: DB 콘솔 명령을 실행할 때에는 `rails db`와 같이 "db"라는 별칭을 사용할 수 있습니다.
 
 ### `rails runner`
 
-`runner` runs Ruby code in the context of Rails non-interactively. For instance:
+`runner` 명령으로 Rails의 컨텍스트에서 Ruby 코드를 실행할 수 있습니다. 예를 들자면 다음과 같이 말이죠.
 
 ```bash
 $ bin/rails runner "Model.long_running_method"
 ```
 
-INFO: You can also use the alias "r" to invoke the runner: `rails r`.
+INFO: 러너 명령을 실행할 때에는 `rails r`와 같은 별칭 "r"을 사용할 수 있습니다.
 
-You can specify the environment in which the `runner` command should operate using the `-e` switch.
+`-e`로 `runner` 명령을 실행할 환경을 지정할 수 있습니다.
 
 ```bash
 $ bin/rails runner -e staging "Model.long_running_method"
 ```
 
-You can even execute ruby code written in a file with runner.
+아니면 파일에 필요한 Ruby 코드를 작성해두고, 이를 넘길 수도 있습니다.
 
 ```bash
 $ bin/rails runner lib/code_to_be_run.rb
 ```
 
+
 ### `rails destroy`
 
-Think of `destroy` as the opposite of `generate`. It'll figure out what generate did, and undo it.
+`destroy`는 `generate`와 반대입니다. 제너레이터 명령이 무엇을 실행했는지 확인하고, 그것을 이전 상태로 되돌립니다.
 
-INFO: You can also use the alias "d" to invoke the destroy command: `rails d`.
+INFO: `rails d`처럼 "d"라는 별칭을 사용해 destroy 명령을 실행할 수 있습니다.
 
 ```bash
 $ bin/rails generate model Oops
@@ -380,9 +374,9 @@ $ bin/rails destroy model Oops
 bin/rails
 ---------
 
-Since Rails 5.0+ has rake commands built into the rails executable, `bin/rails` is the new default for running commands.
+Rails 5.0+ 부터 rake 명령이 rails 명령에 포함되어 `bin/rails`가 새로운 실행 명령이 되었습니다.
 
-You can get a list of bin/rails tasks available to you, which will often depend on your current directory, by typing `bin/rails --help`. Each task has a description, and should help you find the thing you need.
+애플리케이션의 최상단 폴더에서 `bin/rails --help`를 실행하면 bin/rails로 실행할 수 있는 명령 목록을 가져올 수 있습니다. 각 명령은 설명을 가지고 있으며, 필요한 것을 찾을 때에 도움을 줄 것입니다.
 
 ```bash
 $ bin/rails --help
@@ -407,8 +401,8 @@ db:fixtures:load                    Loads fixtures into the ...
 db:migrate                          Migrate the database ...
 db:migrate:status                   Display status of migrations
 db:rollback                         Rolls the schema back to ...
-db:schema:cache:clear               Clears a db/schema_cache.yml file
-db:schema:cache:dump                Creates a db/schema_cache.yml file
+db:schema:cache:clear               Clears a db/schema_cache.dump file
+db:schema:cache:dump                Creates a db/schema_cache.dump file
 db:schema:dump                      Creates a db/schema.rb file ...
 db:schema:load                      Loads a schema.rb file ...
 db:seed                             Loads the seed data ...
@@ -419,21 +413,22 @@ db:version                          Retrieves the current schema ...
 restart                             Restart app by touching ...
 tmp:create                          Creates tmp directories ...
 ```
-INFO: You can also use `bin/rails -T`  to get the list of tasks.
+
+INFO: 또는 `bin/rails -T`를 사용하여 목록을 가져올 수 있습니다.
 
 ### `about`
 
-`bin/rails about` gives information about version numbers for Ruby, RubyGems, Rails, the Rails subcomponents, your application's folder, the current Rails environment name, your app's database adapter, and schema version. It is useful when you need to ask for help, check if a security patch might affect you, or when you need some stats for an existing Rails installation.
+`bin/rails about`를 실행하면, Ruby, RubyGems, Rails, Rails의 서브 컴포넌트(역주: Active Record나 Action Pack 등)의 버전, Rails 애플리케이션의 폴더명, 현재 Rails의 환경 이름과 데이터베이스의 어댑터, 그리고 스키마의 버전이 표시됩니다. 누군가에게 질문을 하고 싶을 때나, 보안 패치가 자신의 애플리케이션에 영향을 주고 있는지 등, 현재 사용하고 있는 Rails에 대한 정보가 필요할 때에 사용할 수 있습니다.
 
 ```bash
 $ bin/rails about
 About your application's environment
-Rails version             5.1.0
+Rails version             5.0.0
 Ruby version              2.2.2 (x86_64-linux)
 RubyGems version          2.4.6
-Rack version              2.0.1
+Rack version              1.6
 JavaScript Runtime        Node.js (V8)
-Middleware:               Rack::Sendfile, ActionDispatch::Static, ActionDispatch::Executor, ActiveSupport::Cache::Strategy::LocalCache::Middleware, Rack::Runtime, Rack::MethodOverride, ActionDispatch::RequestId, ActionDispatch::RemoteIp, Sprockets::Rails::QuietAssets, Rails::Rack::Logger, ActionDispatch::ShowExceptions, WebConsole::Middleware, ActionDispatch::DebugExceptions, ActionDispatch::Reloader, ActionDispatch::Callbacks, ActiveRecord::Migration::CheckPending, ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, ActionDispatch::Flash, Rack::Head, Rack::ConditionalGet, Rack::ETag
+Middleware                Rack::Sendfile, ActionDispatch::Static, ActionDispatch::Executor, #<ActiveSupport::Cache::Strategy::LocalCache::Middleware:0x007ffd131a7c88>, Rack::Runtime, Rack::MethodOverride, ActionDispatch::RequestId, Rails::Rack::Logger, ActionDispatch::ShowExceptions, ActionDispatch::DebugExceptions, ActionDispatch::RemoteIp, ActionDispatch::Reloader, ActionDispatch::Callbacks, ActiveRecord::Migration::CheckPending, ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, ActionDispatch::Flash, Rack::Head, Rack::ConditionalGet, Rack::ETag
 Application root          /home/foobar/commandsapp
 Environment               development
 Database adapter          sqlite3
@@ -442,19 +437,19 @@ Database schema version   20110805173523
 
 ### `assets`
 
-You can precompile the assets in `app/assets` using `bin/rails assets:precompile`, and remove older compiled assets using `bin/rails assets:clean`. The `assets:clean` task allows for rolling deploys that may still be linking to an old asset while the new assets are being built.
+`bin/rails assets:precompile`를 실행하면 `app/assets` 하에 있는 파일을 컴파일합니다. 또한 `bin/rails assets:clean`를 실행하면 오래된 컴파일 후의 파일들을 삭제할 수 있습니다. `assets:clean`은 새로운 assets의 빌드를 실행하며 오래된 assets에 대한 링크를 남기는 'Rolling deploy'라는 방식을 채용하고 있습니다.
 
-If you want to clear `public/assets` completely, you can use `bin/rails assets:clobber`.
+`public/assets`에 있는 내용물을 완전히 제거할 때에는 `bin/rails assets:clobber`를 실행하세요.
 
 ### `db`
 
-The most common tasks of the `db:` bin/rails namespace are `migrate` and `create`, and it will pay off to try out all of the migration bin/rails tasks (`up`, `down`, `redo`, `reset`). `bin/rails db:version` is useful when troubleshooting, telling you the current version of the database.
+`db:`라는 bin/rails의 네임스페이스에 속해있는 태스크 중에서 가장 많이 사용되는 것은 `migrate`와 `create`입니다. 마이그레이션에 대한 태스크(`up`, `down`, `redo`, `reset`)은 모두 한번씩 실험해보는 것을 추천합니다. `bin/rails db:version`을 사용하면 데이터베이스의 버전을 알 수 있으므로 문제가 생겼을 때에 도움이 됩니다.
 
-More information about migrations can be found in the [Migrations](active_record_migrations.html) guide.
+마이그레이션에 대해서는 [마이그레이션](active_record_migrations.html)에서 좀 더 자세하게 다루고 있습니다.
 
 ### `notes`
 
-`bin/rails notes` will search through your code for comments beginning with FIXME, OPTIMIZE or TODO. The search is done in files with extension `.builder`, `.rb`, `.rake`, `.yml`, `.yaml`, `.ruby`, `.css`, `.js` and `.erb` for both default and custom annotations.
+`bin/rails notes`는 코드의 주석으로부터 FIXME, OPTIMIZE, TODO로 시작하는 줄을 찾아서 출력합니다. 검색 대상이 되는 파일의 확장자는 `.builder`, `.rb`, `.rake`, `.yml`, `.yaml`, `.ruby`, `.css`, `.js`, `.erb`로, 기본으로 사용되는 어노테이션 이외의 다른 것들도 사용할 수 있습니다.
 
 ```bash
 $ bin/rails notes
@@ -468,13 +463,13 @@ app/models/school.rb:
   * [ 17] [FIXME]
 ```
 
-You can add support for new file extensions using `config.annotations.register_extensions` option, which receives a list of the extensions with its corresponding regex to match it up.
+검색할 파일 확장자를 추가하려면 `config.annotations.register_extensions` 옵션을 사용하세요. 이 옵션은 확장자의 목록과, 출력할 줄을 선택하는 정규표현을 인수로 받습니다.
 
-```ruby
+  ```ruby
 config.annotations.register_extensions("scss", "sass", "less") { |annotation| /\/\/\s*(#{annotation}):?\s*(.*)$/ }
 ```
 
-If you are looking for a specific annotation, say FIXME, you can use `bin/rails notes:fixme`. Note that you have to lower case the annotation's name.
+특정 어노테이션만을 출력하고 싶은 경우(예를 들어 FIXME 만을 출력하고 싶은 때)에는 `bin/rails notes:fixme`처럼 실행하시면 됩니다. 이 때, 어노테이션은 소문자로 적어야한다는 점을 주의해주세요.
 
 ```bash
 $ bin/rails notes:fixme
@@ -486,7 +481,7 @@ app/models/school.rb:
   * [ 17]
 ```
 
-You can also use custom annotations in your code and list them using `bin/rails notes:custom` by specifying the annotation using an environment variable `ANNOTATION`.
+다른 어노테이션을 사용하고 싶은 경우에는 `bin/rails notes:custom`라고 쓰고 `ANNOTATION` 환경 변수를 사용해서 어노테이션 이름을 지정합니다.
 
 ```bash
 $ bin/rails notes:custom ANNOTATION=BUG
@@ -495,15 +490,9 @@ app/models/article.rb:
   * [ 23] Have to fix this one before pushing!
 ```
 
-NOTE. When using specific annotations and custom annotations, the annotation name (FIXME, BUG etc) is not displayed in the output lines.
+NOTE: 특정 어노테이션만을 출력할 때나, 독자적인 어노테이션을 출력하는 경우에는 FIXME나 BUG같은 각 어노테이션의 이름은 출력되지 않습니다.
 
-By default, `rails notes` will look in the `app`, `config`, `db`, `lib` and `test` directories. If you would like to search other directories, you can configure them using `config.annotations.register_directories` option.
-
-```ruby
-config.annotations.register_directories("spec", "vendor")
-```
-
-You can also provide them as a comma separated list in the environment variable `SOURCE_ANNOTATION_DIRECTORIES`.
+`rails notes` 태스크는 기본으로 `app`, `config`, `lib`, `bin`, `test` 폴더를 대상으로 합니다. 이 목록을 쉼표로 구분지어 환경변수 `SOURCE_ANNOTATION_DIRECTORIES`를 통해서 넘겨줄 수도 있습니다.
 
 ```bash
 $ export SOURCE_ANNOTATION_DIRECTORIES='spec,vendor'
@@ -517,65 +506,64 @@ spec/models/user_spec.rb:
 
 ### `routes`
 
-`rails routes` will list all of your defined routes, which is useful for tracking down routing problems in your app, or giving you a good overview of the URLs in an app you're trying to get familiar with.
+`rails routes`를 사용하면 정의되어있는 모든 라우팅을 출력할 수 있습니다. 이것은 라우팅에서 생긴 문제를 해결해야하거나, 애플리케이션의 라우팅 전체를 이해해야 할 때에 도움이 됩니다.
 
 ### `test`
 
-INFO: A good description of unit testing in Rails is given in [A Guide to Testing Rails Applications](testing.html)
+INFO: Rails에서의 유닛 테스트에 대해서는 [Rails 애플리케이션 테스트하기](testing.html)를 참조해주세요.
 
-Rails comes with a test suite called Minitest. Rails owes its stability to the use of tests. The tasks available in the `test:` namespace helps in running the different tests you will hopefully write.
+Rails에는 Minitest라고 불리는 테스트 라이브러리가 포함되어 있습니다. Rails에서는 테스트를 작성하여 안정적인 애플리케이션을 개발합니다. `test:`라는 네임스페이스에 정의되어 있는 태스크는 앞으로 작성할 다양한 테스트를 실행할 때에 도움이 될 것입니다.
 
 ### `tmp`
 
-The `Rails.root/tmp` directory is, like the *nix /tmp directory, the holding place for temporary files like process id files and cached actions.
+`Rails.root/tmp` 폴더는 (*nix 계열에서 말하는 `/tmp` 폴더처럼) 프로세스ID 파일, 액션 캐시와 같은 임시 파일을 저장하기 위한 폴더입니다.
 
-The `tmp:` namespaced tasks will help you clear and create the `Rails.root/tmp` directory:
+`tmp:`라는 네임스페이스에는 `Rails.root/tmp` 폴더를 생성, 삭제하기 위한 태스크가 포함되어 있습니다.
 
-* `rails tmp:cache:clear` clears `tmp/cache`.
-* `rails tmp:sockets:clear` clears `tmp/sockets`.
-* `rails tmp:clear` clears all cache and sockets files.
-* `rails tmp:create` creates tmp directories for cache, sockets and pids.
+* `rails tmp:cache:clear`로 `tmp/cache`를 비웁니다.
+* `rails tmp:sockets:clear`로 `tmp/sockets`를 비웁니다.
+* `rails tmp:clear`로 `cache, sessions, sockets`를 비웁니다.
+* `rails tmp:create`로 캐시, 소켓, pid의 tmp 폴더를 생성합니다.
 
-### Miscellaneous
+### 그 이외의 태스크
 
-* `rails stats` is great for looking at statistics on your code, displaying things like KLOCs (thousands of lines of code) and your code to test ratio.
-* `rails secret` will give you a pseudo-random key to use for your session secret.
-* `rails time:zones:all` lists all the timezones Rails knows about.
+* `rails stats`는 코드에 대한 테스트 비율이나 KLOCs(코드의 라인 수) 등, 코드에 대한 총계를 표시합니다.
+* `rails secret`는 세션 시크릿에 사용하는 의사난수를 생성합니다.
+* `rails time:zones:all`는 Rails가 다룰 수 있는 모든 시간대를 표시합니다.
 
-### Custom Rake Tasks
+### Rake 태스크 만들기
 
-Custom rake tasks have a `.rake` extension and are placed in
-`Rails.root/lib/tasks`. You can create these custom rake tasks with the
-`bin/rails generate task` command.
+Rake 태스크의 확장자는 `.rake`로 `Rails.root/lib/tasks`에 저장합니다.
+그리고 직접 태스크를 생성할 수 있는 `bin/rails generate task`라는 명령도 있습니다.
 
-```ruby
+  ```ruby
 desc "I am short, but comprehensive description for my cool task"
 task task_name: [:prerequisite_task, :another_task_we_depend_on] do
   # All your magic here
   # Any valid Ruby code is allowed
-end
+end 
 ```
 
-To pass arguments to your custom rake task:
+태스크에 인수를 넘기려면 다음과 같이 작성합니다.
 
-```ruby
+  ```ruby
 task :task_name, [:arg_1] => [:prerequisite_1, :prerequisite_2] do |task, args|
   argument_1 = args.arg_1
 end
 ```
 
-You can group tasks by placing them in namespaces:
+네임스페이스에서 태스크를 정의하여 태스크를 그룹으로 묶을 수 있습니다.
 
-```ruby
-namespace :db do
+  ```ruby
+namespace :db do 
   desc "This task does nothing"
   task :nothing do
     # Seriously, nothing
-  end
-end
+  end 
+end 
 ```
 
-Invocation of the tasks will look like:
+그리고 아래와 같이 태스크를 호출합니다.
 
 ```bash
 $ bin/rails task_name
@@ -583,18 +571,18 @@ $ bin/rails "task_name[value 1]" # entire argument string should be quoted
 $ bin/rails db:nothing
 ```
 
-NOTE: If your need to interact with your application models, perform database queries and so on, your task should depend on the `environment` task, which will load your application code.
+NOTE: 애플리케이션 내의 모델을 사용하거나, 데이터베이스에 대해서 쿼리를 던지고 싶은 경우에는 태스크에서 `environment` 태스크에 대한 의존성을 정의해야 합니다. `environment` 태스크는 애플리케이션의 코드를 읽어오는 태스크입니다.
 
-The Rails Advanced Command Line
+Rails의 고급 커맨드 라인 명령
 -------------------------------
 
-More advanced use of the command line is focused around finding useful (even surprising at times) options in the utilities, and fitting those to your needs and specific work flow. Listed here are some tricks up Rails' sleeve.
+여기에서는 작업을 줄여주는 유용하고 편리한(또는 놀랄만한) 옵션을 찾아서 소개합니다.
 
-### Rails with Databases and SCM
+### 데이터베이스와 소스 관리 시스템과 Rails
 
-When creating a new Rails application, you have the option to specify what kind of database and what kind of source code management system your application is going to use. This will save you a few minutes, and certainly many keystrokes.
+새로운 Rails 애플리케이션을 생성할 때에 데이터베이스의 종류나 소스 관리 시스템의 종류를 지정할 수 있습니다. 이 옵션을 사용해서 타이핑에 걸리는 시간을 절약할 수 있습니다.
 
-Let's see what a `--git` option and a `--database=postgresql` option will do for us:
+그러면 `--database=postgresql` 옵션과 `--git` 옵션이 어떻게 동작하는지 확인해봅시다.
 
 ```bash
 $ mkdir gitapp
@@ -621,7 +609,7 @@ add 'app/controllers/application_controller.rb'
 add 'log/test.log'
 ```
 
-We had to create the **gitapp** directory and initialize an empty git repository before Rails would add files it created to our repository. Let's see what it put in our database configuration:
+Rails가 git의 저장소에 파일을 생성하기 전에 **gitapp** 폴더를 생성하고 빈 git 저장소를 초기화 해둘 필요가 있습니다. Rails가 어떤 데이터베이스 설정을 생성했는지 확인해봅시다.
 
 ```bash
 $ cat config/database.yml
@@ -652,6 +640,6 @@ development:
 ...
 ```
 
-It also generated some lines in our database.yml configuration corresponding to our choice of PostgreSQL for database.
+Rails는 선택한 데이터베이스(PostgreSQL)에 대응하도록 database.yml를 구성합니다.
 
-NOTE. The only catch with using the SCM options is that you have to make your application's directory first, then initialize your SCM, then you can run the `rails new` command to generate the basis of your app.
+NOTE: 소스 코드 관리 시스템에 대한 옵션을 사용할 때에는, 우선 애플리케이션의 폴더를 생성하고 소스 코드 관리 시스템을 초기화한 이후에 `rails new` 명령어를 실행해주세요.

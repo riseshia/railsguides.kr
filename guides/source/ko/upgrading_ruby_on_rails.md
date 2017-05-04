@@ -1,53 +1,55 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
 
-A Guide for Upgrading Ruby on Rails
+레일스 업그레이드 가이드
 ===================================
 
-This guide provides steps to be followed when you upgrade your applications to a newer version of Ruby on Rails. These steps are also available in individual release guides.
+여기에서는 애플리케이션에서 사용되는 Ruby on Rails의 버전을 새로운 버전으로 업그레이드하는 순서에 대해서 설명합니다. 업그레이드의 순서는 레일스의 버전마다 각각 다르게 되어 있습니다.
 
 --------------------------------------------------------------------------------
 
-General Advice
+일반적인 조언
 --------------
 
-Before attempting to upgrade an existing application, you should be sure you have a good reason to upgrade. You need to balance several factors: the need for new features, the increasing difficulty of finding support for old code, and your available time and skills, to name a few.
+언급할 필요도 없습니다만, 기존의 애플리케이션을 업그레이드할 때에는 어째서 업그레이드를 해야하는지 이유를
+확실히 해야 합니다. 새로운 버전에서 어떤 기능이 필요한지, 기존의 코드를 관리하는 것이 얼마나 곤란한지, 업그레이드에 시간이나 능력은 어느 정도 필요한지, 등 많은 것들을 고려해야 할 필요가 있습니다.
 
-### Test Coverage
+### 테스트의 커버리지
 
-The best way to be sure that your application still works after upgrading is to have good test coverage before you start the process. If you don't have automated tests that exercise the bulk of your application, you'll need to spend time manually exercising all the parts that have changed. In the case of a Rails upgrade, that will mean every single piece of functionality in the application. Do yourself a favor and make sure your test coverage is good _before_ you start an upgrade.
+업그레이드 후에 애플리케이션이 정상적으로 동작합니다는 것을 확인할 방법으로 좋은 테스트 커버리지를 업그레이드 전에 확보해두는 것이 최선입니다. 애플리케이션을 한번에 확인할 수 있는 자동 테스트가 없다면, 변경점을 모두 손으로 확인해야하므로 막대한 시간이 걸리게 됩니다. 레일스와 같은 애플리케이션의 경우, 이것은 애플리케이션의 수많은 기능을 모두 확인하지 않으면 안된다는 의미입니다. 업그레이드를 하는 경우에는 테스트 커버리지를 충분히 확보해두길 바랍니다.
 
-### The Upgrade Process
+### 업그레이드 절차
 
-When changing Rails versions, it's best to move slowly, one minor version at a time, in order to make good use of the deprecation warnings. Rails version numbers are in the form Major.Minor.Patch. Major and Minor versions are allowed to make changes to the public API, so this may cause errors in your application. Patch versions only include bug fixes, and don't change any public API.
+Rails의 버전을 올릴 때에는 천천히, 제거 예정 경고를 확인하기 위해서 마이너 버전을 하나씩 올리는 것이 좋습니다. Rails 버전은 Major.Minor.Patch 형식으로 되어 있습니다. Major와 Minor 버전은 공개 API에 대한 변경이 될 수 있으므로 애플리케이션에 에러를 야기할 수 있습니다. Patch 버전은 버그 수정을 포함하며 공개 API를 변경하지 않습니다.
 
-The process should go as follows:
+절차는 다음을 따라주세요.
 
-1. Write tests and make sure they pass.
-2. Move to the latest patch version after your current version.
-3. Fix tests and deprecated features.
-4. Move to the latest patch version of the next minor version.
+1. 테스트를 작성하고 성공하는 지 확인하세요.
+2. 현재 버전의 가장 마지막 patch 버전을 적용하세요.
+3. 테스트를 수정하고, 제거 예정인 기능에 대해 알맞는 대응을 해주세요.
+4. 다음 minor 버전의 마지막 patch 버전을 적용하세요. 
 
-Repeat this process until you reach your target Rails version. Each time you move versions, you will need to change the Rails version number in the Gemfile (and possibly other gem versions) and run `bundle update`. Then run the Update task mentioned below to update configuration files, then run your tests.
+목표로 하는 Rails 버전에 도달할 때까지 이 절차를 반복하세요. 버전을 올릴
+때마다 Gemfile에 명시된 Rails 버전을 변경하고(그리고 다른 젬의 버전도 말이죠),
+`bundle update`를 실행하세요. 그리고 나서 아래에서 언급할 설정 파일을 변경하는
+업데이트 태스크를 실행한 뒤, 테스트를 실행하세요.
 
-You can find a list of all released Rails versions [here](https://rubygems.org/gems/rails/versions).
+[여기](https://rubygems.org/gems/rails/versions)에서 릴리스된 모든 Rails 버전
+목록을 확인할 수 있습니다.
 
-### Ruby Versions
+### 루비 버전
 
-Rails generally stays close to the latest released Ruby version when it's released:
+레일스는 그 버전이 릴리스 된 시점의 최신 버전 Ruby에 의존합니다.
 
-* Rails 5 requires Ruby 2.2.2 or newer.
-* Rails 4 prefers Ruby 2.0 and requires 1.9.3 or newer.
-* Rails 3.2.x is the last branch to support Ruby 1.8.7.
-* Rails 3 and above require Ruby 1.8.7 or higher. Support for all of the previous Ruby versions has been dropped officially. You should upgrade as early as possible.
+* 레일스 5에서는 2.2.2이후의 버전이 필요합니다.
+* 레일스 4에서는 루비 2.0가 권장됩니다. 루비 1.9.3 이상이 필요합니다.
+* 레일스 3.2.x는 루비 1.8.7이 지원하는 마지막 버전입니다.
+* 레일스 3 이상은 루비 1.8.7 이후의 버전이 필요합니다. 이보다 오래된 루비 버전에 대한 지원은 공식적으로 중지되어 있습니다. 가능한 빠르게 업그레이드하시기를 바랍니다.
 
-TIP: Ruby 1.8.7 p248 and p249 have marshaling bugs that crash Rails. Ruby Enterprise Edition has these fixed since the release of 1.8.7-2010.02. On the 1.9 front, Ruby 1.9.1 is not usable because it outright segfaults, so if you want to use 1.9.x, jump straight to 1.9.3 for smooth sailing.
+TIP: 루비 1.8.7 p248과 p249에는 레일스의 작동을 중단시키는 치명적인 마셜링 버그가 있습니다. 루비 Enterprise Edition에서는 1.8.7-2010.02 이후에 이 버그가 수정되었습니다. 루비 1.9 계열을 사용하는 경우 루비 1.9.1는 이미 명백한 세그먼테이션 위반이 발생하므로 사용할 수 없습니다. 1.9.3을 사용해주세요.
 
-### The Update Task
+### Update 태스크
 
-Rails provides the `app:update` task (`rake rails:update` on 4.2 and earlier). After updating the Rails version
-in the Gemfile, run this task.
-This will help you with the creation of new files and changes of old files in an
-interactive session.
+Rails에는 `app:update`라는 태스크(4.2 버전 이하라면 `rake rails:update`)가 있습니다. Gemfile에 기재된 레일스의 버전을 변경한 뒤, 이 태스크를 실행해주세요.
+이를 통해서, 새로운 버전에 필요한 파일 생성이나, 기존의 파일을 변경하는 것을 인터랙티브하게 진행할 수 있습니다.
 
 ```bash
 $ rails app:update
@@ -63,65 +65,25 @@ Overwrite /myapp/config/application.rb? (enter "h" for help) [Ynaqdh]
 ...
 ```
 
-Don't forget to review the difference, to see if there were any unexpected changes.
+예상치 않은 변경이 없도록, 반드시 차분을 확인해주세요.
 
-Upgrading from Rails 5.0 to Rails 5.1
+레일스 4.2에서 레일스 5.0으로 업그레이드
 -------------------------------------
 
-For more information on changes made to Rails 5.1 please see the [release notes](5_1_release_notes.html).
+Rails 5.0에서 변경된 점에 대한 더 자세한 설명은 [릴리스 노트](5_0_release_notes.html)를 참고하세요.
 
-### Top-level `HashWithIndifferentAccess` is soft-deprecated
+### Ruby 2.2.2+ 가 필요합니다.
 
-If your application uses the the top-level `HashWithIndifferentAccess` class, you
-should slowly move your code to instead use `ActiveSupport::HashWithIndifferentAccess`.
+Ruby on Rails 5.0부터는 Ruby 2.2.2 이상만을 지원합니다.
+지금 사용하고 있는 Ruby 버전이 2.2.2 이상인지 확인하고 진행해주세요.
 
-It is only soft-deprecated, which means that your code will not break at the
-moment and no deprecation warning will be displayed, but this constant will be
-removed in the future.
+### 액티브레코드 모델은 기본값으로 ApplicationRecord에서 상속
 
-Also, if you have pretty old YAML documents containing dumps of such objects,
-you may need to load and dump them again to make sure that they reference
-the right constant, and that loading them won't break in the future.
+레일스 4.2에서는 액티브레코드 모델은 `ActiveRecord::Base`로부터 상속합니다. 레일스 5.0에서는 모든 모델이 `ApplicationRecord`로부터 상속합니다.
 
-### `config.secrets` now loaded with all keys as symbols
+새로 도입한 `ApplicationRecord` 클래스가 애플리케이션 안에 있는 모든 모델의 상위클래스(superclass)가 되어서 모든 컨트롤러의 상위 클래스가 `ActionController::Base`가 아닌 `ApplicationController`인 것과 일관성을 갖게 되었습니다. 또한 한군데에서 전체 애플리케이션 모델의 동작을 설정할 수 있습니다.
 
-If your application stores nested configuration in `config/secrets.yml`, all keys
-are now loaded as symbols, so access using strings should be changed.
-
-From:
-
-```ruby
-Rails.appplication.config.secrets[:smtp_settings]["address"]
-```
-
-To:
-
-```ruby
-Rails.application.config.secrets[:smtp_settings][:address]
-```
-
-Upgrading from Rails 4.2 to Rails 5.0
--------------------------------------
-
-For more information on changes made to Rails 5.0 please see the [release notes](5_0_release_notes.html).
-
-### Ruby 2.2.2+ required
-
-From Ruby on Rails 5.0 onwards, Ruby 2.2.2+ is the only supported Ruby version.
-Make sure you are on Ruby 2.2.2 version or greater, before you proceed.
-
-### Active Record Models Now Inherit from ApplicationRecord by Default
-
-In Rails 4.2, an Active Record model inherits from `ActiveRecord::Base`. In Rails 5.0,
-all models inherit from `ApplicationRecord`.
-
-`ApplicationRecord` is a new superclass for all app models, analogous to app
-controllers subclassing `ApplicationController` instead of
-`ActionController::Base`. This gives apps a single spot to configure app-wide
-model behavior.
-
-When upgrading from Rails 4.2 to Rails 5.0, you need to create an
-`application_record.rb` file in `app/models/` and add the following content:
+레일스 4.2로부터 레일스 5.0으로 업그레이드하는 경우에는 `app/models/` 안에 `application_record.rb`을 만들어서 다음의 내용을 넣을 필요가 있습니다.
 
 ```
 class ApplicationRecord < ActiveRecord::Base
@@ -129,140 +91,116 @@ class ApplicationRecord < ActiveRecord::Base
 end
 ```
 
-Then make sure that all your models inherit from it.
+그리고 모든 모델이 이를 상속하고 있는지 확인하세요.
 
-### Halting Callback Chains via `throw(:abort)`
+### 콜백 체인은 `throw(:abort)`로 중단
 
-In Rails 4.2, when a 'before' callback returns `false` in Active Record
-and Active Model, then the entire callback chain is halted. In other words,
-successive 'before' callbacks are not executed, and neither is the action wrapped
-in callbacks.
+레일스 4.2에서는 액티브레코드 및 액티브모델 안에서 'before' 콜백이 `false`를 되돌리면, 전체 콜백 체인이 중단되었습니다. 다른 말로 하면, 따라오는 모든 'before' 콜백과 그 안의 액션은 실행되지 않았습니다.
 
-In Rails 5.0, returning `false` in an Active Record or Active Model callback
-will not have this side effect of halting the callback chain. Instead, callback
-chains must be explicitly halted by calling `throw(:abort)`.
+레일스 5.0에서는 체인을 중단하고 싶을 때에는 `false`를 반환하는 대신에 반드시 명시적으로 `throw(:abort)`를 호출해야 합니다.
 
-When you upgrade from Rails 4.2 to Rails 5.0, returning `false` in those kind of
-callbacks will still halt the callback chain, but you will receive a deprecation
-warning about this upcoming change.
+레일스 4.2로부터 레일스 5.0으로 업그레이드하는 경우에는 이와 같은 콜백이 여전히 콜백 체인이 중단될 것입니다만 제거 예정 경고(deprecation warning)이 출력됩니다.
 
-When you are ready, you can opt into the new behavior and remove the deprecation
-warning by adding the following configuration to your `config/application.rb`:
+준비가 되었으면 `config/application.rb` 파일에 다음 설정을 추가해 새로운 기능을 사용하고 제거 예정 경고를 없앨 수 있습니다.
 
     ActiveSupport.halt_callback_chains_on_return_false = false
 
-Note that this option will not affect Active Support callbacks since they never
-halted the chain when any value was returned.
+이 옵션은 Active Support 안의 다른 콜백에는 영향을 주지 않습니다. 'before' 콜백이 아닌 경우에는 체인을 중단시키지 않습니다.
 
-See [#17227](https://github.com/rails/rails/pull/17227) for more details.
+자세한 설명은 [#17227](https://github.com/rails/rails/pull/17227)을 참고해주세요.
 
-### ActiveJob Now Inherits from ApplicationJob by Default
+### 액티브잡이 ApplicationJob을 상속
 
-In Rails 4.2, an Active Job inherits from `ActiveJob::Base`. In Rails 5.0, this
-behavior has changed to now inherit from `ApplicationJob`.
+레일스 4.2에서는 Active Job이 `ActiveJob::Base`로부터 상속하며, 레일스 5.0에서는 바뀌어서 `ApplicationJob`으로부터 상속합니다.
 
-When upgrading from Rails 4.2 to Rails 5.0, you need to create an
-`application_job.rb` file in `app/jobs/` and add the following content:
+레일스 4.2로부터 레일스 5.0으로 업그레이드하는 경우에는 `app/jobs/` 안에 `application_job.rb` 파일을 만들어서 다음을 넣어야 합니다.
 
 ```
 class ApplicationJob < ActiveJob::Base
 end
 ```
 
-Then make sure that all your job classes inherit from it.
+그리고 나서 모든 잡 클래스가 이를 상속하도록 합니다.
 
-See [#19034](https://github.com/rails/rails/pull/19034) for more details.
+자세한 설명은 [#19034](https://github.com/rails/rails/pull/19034)을 참고해주세요.
 
-### Rails Controller Testing
+### Rails 컨트롤러 테스트
 
-#### Extraction of some helper methods to `rails-controller-testing`
+`assigns`와 `assert_template`가 `rails-controller-testing` 젬으로 분리되었습니다.
+컨트롤러 테스트에서 이 메소드들을 계속 사용하고 싶다면 Gemfile에
+`gem 'rails-controller-testing'`를 추가해주세요.
 
-`assigns` and `assert_template` have been extracted to the `rails-controller-testing` gem. To
-continue using these methods in your controller tests, add `gem 'rails-controller-testing'` to
-your Gemfile.
+만약 Rspec을 사용하고 있다면 필요한 추가 설정을 젬의 공식 문서에서 확인하세요.
 
-If you are using Rspec for testing, please see the extra configuration required in the gem's
-documentation.
+### 배포 환경에서 자동 로딩이 비활성화 됨
 
-#### New behavior when uploading files
+이제 배포 환경에서 실행 후에 자동 로딩이 비활성화됩니다.
 
-If you are using `ActionDispatch::Http::UploadedFile` in your tests to
-upload files, you will need to change to use the similar `Rack::Test::UploadedFile`
-class instead.
+Eager loading은 애플리케이션의 실행 과정 중 일부이므로 최상위 레벨의 상수들은 문제 없으며,
+여전히 자동으로 불러와지므로 직접 불러올 필요가 없습니다.
 
-See [#26404](https://github.com/rails/rails/issues/26404) for more details.
+정규 메소드 본체와 같은, 런타임에서만 실행되는 깊은 곳에 있는 상수들도 이들을 정의하고 있는
+파일이 실행 시점에 eager loading되기 때문에 문제 없이 동작합니다.
 
-### Autoloading is Disabled After Booting in the Production Environment
+대부분의 애플리케이션은 이 변경에 대해서 딱히 무언가를 할 필요는 없습니다. 하지만 아주 드믈게
+배포 환경에서 자동 로딩을 필요로 하는 경우에는
+`Rails.application.config.enable_dependency_loading`를 `true`로 설정해주세요.
 
-Autoloading is now disabled after booting in the production environment by
-default.
+### XML 직렬화
 
-Eager loading the application is part of the boot process, so top-level
-constants are fine and are still autoloaded, no need to require their files.
+`ActiveModel::Serializers::Xml`은 이제 `activemodel-serializers-xml` 젬으로
+추출되었습니다. XML 직렬화 기능을 계속 사용하고 싶다면 Gemfile에
+`gem 'activemodel-serializers-xml'`를 추가해주세요.
 
-Constants in deeper places only executed at runtime, like regular method bodies,
-are also fine because the file defining them will have been eager loaded while booting.
+### 오래된 `mysql` 데이터베이스 어댑터 호환성 제거
 
-For the vast majority of applications this change needs no action. But in the
-very rare event that your application needs autoloading while running in
-production mode, set `Rails.application.config.enable_dependency_loading` to
-true.
+Rails 5는 `mysql` 데이터베이스 어댑터 호환성을 제거했습니다. 사용자들은 이제 `mysql2`를
+대신 사용해야 합니다. 별도의 잼으로 분리될 예정이며, 유지보수할 사람을 찾고 있습니다.
 
-### XML Serialization
+### Debugger에 대한 호환성 제거
 
-`ActiveModel::Serializers::Xml` has been extracted from Rails to the `activemodel-serializers-xml`
-gem. To continue using XML serialization in your application, add `gem 'activemodel-serializers-xml'`
-to your Gemfile.
+Rails 5가 기본으로 요구하는 Ruby 2.2는 `debugger`를 더 이상 지원하지 않습니다.
+그 대신 `byebug`를 사용하세요.
 
-### Removed Support for Legacy `mysql` Database Adapter
+### 태스크와 테스트를 실행하기 위해서 bin/rails를 사용
 
-Rails 5 removes support for the legacy `mysql` database adapter. Most users should be able to
-use `mysql2` instead. It will be converted to a separate gem when we find someone to maintain
-it.
+Rails 5는 rake 대신에 `bin/rails`를 사용하여 태스크와 테스트를 실행할 수 있는 기능을
+추가했습니다.
 
-### Removed Support for Debugger
+새 테스트 러너를 사용하려면 `bin/rails test`를 입력하세요
 
-`debugger` is not supported by Ruby 2.2 which is required by Rails 5. Use `byebug` instead.
+`rake dev:cache`는 이제 `rails dev:cache`입니다.
 
-### Use bin/rails for running tasks and tests
+`bin/rails`를 실행해서 사용가능한 명령 목록을 확인하세요.
 
-Rails 5 adds the ability to run tasks and tests through `bin/rails` instead of rake. Generally
-these changes are in parallel with rake, but some were ported over altogether.
+### `ActionController::Parameters`는 더 이상 `HashWithIndifferentAccess`를 상속하지 않음
 
-To use the new test runner simply type `bin/rails test`.
-
-`rake dev:cache` is now `rails dev:cache`.
-
-Run `bin/rails` to see the list of commands available.
-
-### `ActionController::Parameters` No Longer Inherits from `HashWithIndifferentAccess`
-
-Calling `params` in your application will now return an object instead of a hash. If your
-parameters are already permitted, then you will not need to make any changes. If you are using `slice`
-and other methods that depend on being able to read the hash regardless of `permitted?` you will
-need to upgrade your application to first permit and then convert to a hash.
+애플리케이션에서 `params`를 호출하면 이제 해시 대신 객체를 반환합니다. 만약 매개변수를 허가된
+상태로만 사용하고 있었다면 어떠한 변경도 필요 없습니다. 만약 `slice`처럼 `permitted?`에
+관계 없이 해시에 의존하는 메소드를 사용하고 있었다면 이를 허가하고, 해시로 변환하도록
+애플리케이션을 업그레이드해야 합니다
 
     params.permit([:proceed_to, :return_to]).to_h
 
-### `protect_from_forgery` Now Defaults to `prepend: false`
+### `protect_from_forgery`의 기본 설정이 `prepend: false`로 변경
 
-`protect_from_forgery` defaults to `prepend: false` which means that it will be inserted into
-the callback chain at the point in which you call it in your application. If you want
-`protect_from_forgery` to always run first, then you should change your application to use
-`protect_from_forgery prepend: true`.
+`protect_from_forgery`의 기본 설정이 `prepend: false`로 변경되었습니다. 이는 호출된
+시점에 콜백 체인에 추가된다는 것을 의미합니다. 만약 `protect_from_forgery`를 가장 먼저
+호출하고 싶다면 애플리케이션이 `protect_from_forgery prepend: true`을 사용하도록
+변경하세요.
 
-### Default Template Handler is Now RAW
+### 기본 템플릿 핸들러가 RAW로 변경
 
-Files without a template handler in their extension will be rendered using the raw handler.
-Previously Rails would render files using the ERB template handler.
+이제 처리할 수 없는 확장자의 경우, RAW 핸들러를 사용하여 처리하게 됩니다. 지금까지 Rails는
+이러한 경우 ERB 템플릿 핸들러를 사용하고 있었습니다.
 
-If you do not want your file to be handled via the raw handler, you should add an extension
-to your file that can be parsed by the appropriate template handler.
+만약 이러한 파일들을 RAW 핸들러를 통해서 처리하고 싶지 않다면, 적절한 템플릿 핸들러를 사용할
+수 있도록 각 파일에 필요한 확장자를 추가해야 합니다.
 
-### Added Wildcard Matching for Template Dependencies
+### 템플릿 의존성 탐색시에 와일드 카드 매칭이 추가됨
 
-You can now use wildcard matching for your template dependencies. For example, if you were
-defining your templates as such:
+템플릿 의존성에서 와일드 카드 매칭을 사용할 수 있게 됩니다. 예를 들어 다음과 같은 템플릿을
+정의했다고 가정해봅시다.
 
 ```erb
 <% # Template Dependency: recordings/threads/events/subscribers_changed %>
@@ -270,24 +208,24 @@ defining your templates as such:
 <% # Template Dependency: recordings/threads/events/uncompleted %>
 ```
 
-You can now just call the dependency once with a wildcard.
+이제 이 의존성들을 와일드 카드를 사용하여 한번에 호출할 수 있습니다.
 
 ```erb
 <% # Template Dependency: recordings/threads/events/* %>
 ```
 
-### Removed Support for `protected_attributes` Gem
+### `protected_attributes` 젬 지원 제거
 
-The `protected_attributes` gem is no longer supported in Rails 5.
+`protected_attributes` 젬은 이제 Rails 5에서 지원되지 않습니다.
 
-### Removed support for `activerecord-deprecated_finders` gem
+### `activerecord-deprecated_finders` 젬 지원 제거
 
-The `activerecord-deprecated_finders` gem is no longer supported in Rails 5.
+`activerecord-deprecated_finders` 젬은 이제 Rails 5에서 지원되지 않습니다.
 
-### `ActiveSupport::TestCase` Default Test Order is Now Random
+### `ActiveSupport::TestCase`의 기본 테스트 순서가 임의로 변경됨
 
-When tests are run in your application, the default order is now `:random`
-instead of `:sorted`. Use the following config option to set it back to `:sorted`.
+애플리케이션에서 테스트를 실행할 때, 기본 순서가 `:sorted` 대신 `:random`로 변경됩니다.
+기존의 `:sorted`를 사용하려면 설정을 변경하세요.
 
 ```ruby
 # config/environments/test.rb
@@ -296,22 +234,20 @@ Rails.application.configure do
 end
 ```
 
-### `ActionController::Live` became a `Concern`
+### `ActionController::Live`이 `Concern`이 됨
 
-If you include `ActionController::Live` in another module that is included in your controller, then you
-should also extend the module with `ActiveSupport::Concern`. Alternatively, you can use the `self.included` hook
-to include `ActionController::Live` directly to the controller once the `StreamingSupport` is included.
+컨트롤러에서 `ActionController::Live`를 불러오고 있는 다른 모듈을 사용하고 있었다면, 이제 `ActiveSupport::Concern`도 확장해야 합니다. 또는 `self.included` 훅을 사용하여 `ActionController::Live`를 직접 컨트롤러에 불러오고 `StreamingSupport`를 포함시키세요.
 
-This means that if your application used to have its own streaming module, the following code
-would break in production mode:
+이 말은 만약 애플리케이션에서 전용 스트리밍 모듈을 사용하고 있었다면, 다음과 같은 코드는
+배포 환경에서 동작하지 않는다는 의미입니다.
 
 ```ruby
 # This is a work-around for streamed controllers performing authentication with Warden/Devise.
 # See https://github.com/plataformatec/devise/issues/2332
 # Authenticating in the router is another solution as suggested in that issue
 class StreamingSupport
-  include ActionController::Live # this won't work in production for Rails 5
-  # extend ActiveSupport::Concern # unless you uncomment this line.
+  include ActionController::Live # Rails 5 배포환경에서는 동작하지 않습니다.
+  # extend ActiveSupport::Concern # 이 코드를 활성화하기 전까지는
 
   def process(name)
     super(name)
@@ -325,78 +261,77 @@ class StreamingSupport
 end
 ```
 
-### New Framework Defaults
+### 새 프레임워크 기본값
 
-#### Active Record `belongs_to` Required by Default Option
+#### Active Record `belongs_to`가 필수로 변경됨
 
-`belongs_to` will now trigger a validation error by default if the association is not present.
+`belongs_to`는 이제 관계가 존재하지 않는 경우 검증 에러를 발생시킵니다.
 
-This can be turned off per-association with `optional: true`.
+이는 `optional: true`를 사용하여 비활성화할 수 있습니다.
 
-This default will be automatically configured in new applications. If existing application
-want to add this feature it will need to be turned on in an initializer.
+이 기본값은 새 애플리케이션에서 자동으로 설정됩니다. 만약 애플리케이션에서 이 기능을 사용하고
+싶다면 initializer에서 활성화시켜줘야 합니다.
 
     config.active_record.belongs_to_required_by_default = true
 
-#### Per-form CSRF Tokens
+#### 폼 별 CSRF 토큰
 
-Rails 5 now supports per-form CSRF tokens to mitigate against code-injection attacks with forms
-created by JavaScript. With this option turned on, forms in your application will each have their
-own CSRF token that is specified to the action and method for that form.
+Rails 5는 이제 JavaScript로 생성되는 폼을 통한 코드 주입 공격에 대응하기 위해 각 폼 별로
+CSRF 토큰을 지원합니다. 이 옵션을 켜면 애플리케이션의 각 폼은 액션과 전송 방식을 구별하는
+전용 CSRF 토큰을 가지게 됩니다.
 
     config.action_controller.per_form_csrf_tokens = true
 
-#### Forgery Protection with Origin Check
+#### Origin Check와 Forgery Protection
 
-You can now configure your application to check if the HTTP `Origin` header should be checked
-against the site's origin as an additional CSRF defense. Set the following in your config to
-true:
+추가 CSRF 방어를 위해 HTTP `Origin` 헤더를 확인하도록 설정할 수 있습니다. 다음을 설정에서
+`true`로 변경하세요.
 
     config.action_controller.forgery_protection_origin_check = true
 
-#### Allow Configuration of Action Mailer Queue Name
+#### Action Mailer 큐 이름 설정 추가
 
-The default mailer queue name is `mailers`. This configuration option allows you to globally change
-the queue name. Set the following in your config:
+기본 메일러 큐 이름은 `mailers`입니다. 이 설정은 큐 이름을 전역적으로 변경할 수 있게 해줍니다.
+다음을 설정에서 변경하세요.
 
     config.action_mailer.deliver_later_queue_name = :new_queue_name
 
-#### Support Fragment Caching in Action Mailer Views
+#### Action Mailer 뷰에서 조각 캐싱 지원 추가
 
-Set `config.action_mailer.perform_caching` in your config to determine whether your Action Mailer views
-should support caching.
+`config.action_mailer.perform_caching`를 통해 Action Mailer 뷰에서 캐싱을 지원할지를 설정하세요.
 
     config.action_mailer.perform_caching = true
 
-#### Configure the Output of `db:structure:dump`
+#### `db:structure:dump`의 출력을 변경
 
-If you're using `schema_search_path` or other PostgreSQL extensions, you can control how the schema is
-dumped. Set to `:all` to generate all dumps, or to `:schema_search_path` to generate from schema search path.
+`schema_search_path`나 다른 PostgreSQL 익스텐션을 사용하고 있다면 스키마를 어떻게
+덤프할지를 제어할 수 있을 것입니다. `:all`로 모든 덤프를 생성할 수 있으며, 아니면
+`:schema_search_path`로 설정하여 특정 스키마 검색 경로로부터 생성할 수도 있습니다.
 
     config.active_record.dump_schemas = :all
 
-#### Configure SSL Options to Enable HSTS with Subdomains
+#### 서브도메인에서 HSTS를 활성화하기 위한 SSL 옵션 추가
 
-Set the following in your config to enable HSTS when using subdomains:
+서브도메인에서 HSTS를 활성화하려면 다음과 같이 설정하세요.
 
     config.ssl_options = { hsts: { subdomains: true } }
 
-#### Preserve Timezone of the Receiver
+#### 수신자의 시간대 보존
 
-When using Ruby 2.4, you can preserve the timezone of the receiver when calling `to_time`.
+Ruby 2.4를 사용할 때, `to_time`를 호출할 때 수신자의 시간대를 보존할 수 있습니다.
 
     ActiveSupport.to_time_preserves_timezone = false
 
-Upgrading from Rails 4.1 to Rails 4.2
+레일스 4.1에서 레일스 4.2로 업그레이드
 -------------------------------------
 
-### Web Console
+### Web Console gem
 
-First, add `gem 'web-console', '~> 2.0'` to the `:development` group in your Gemfile and run `bundle install` (it won't have been included when you upgraded Rails). Once it's been installed, you can simply drop a reference to the console helper (i.e., `<%= console %>`) into any view you want to enable it for. A console will also be provided on any error page you view in your development environment.
+우선 Gemfile의 `development` 그룹에 `gem 'web-console', '~> 2.0'`를 추가하고 `bundle install`을 실행해주세요(이 레일스를 과거 버전으로부터 업그레이드하는 경우에는 포함되지 않으므로 수동으로 추가해야합니다). gem 설치가 끝난 후, `<%= console %>`등의 콘솔 헬퍼에 대한 참조를 뷰에 추가하는 것으로 어떤 뷰에서도 콘솔을 사용할 수 있게 됩니다. 이 콘솔은 development 환경의 뷰에서 출력되는 모든 에러 페이지에도 포함됩니다.
 
-### Responders
+### Responders gem
 
-`respond_with` and the class-level `respond_to` methods have been extracted to the `responders` gem. To use them, simply add `gem 'responders', '~> 2.0'` to your Gemfile. Calls to `respond_with` and `respond_to` (again, at the class level) will no longer work without having included the `responders` gem in your dependencies:
+`respond_with`와 클래스 레벨의 `respond_to` 메소드는 `responders` gem으로 추출되었습니다. 이러한 메소드를 사용하고 싶은 경우에는 Gemfile에 `gem 'responders', '~> 2.0'`를 추가해주세요. 이후, `respond_with` 호출, 그리고 클래스 레벨의 `respond_to` 호출은 `responders` gem 없이는 동작하지 않습니다.
 
 ```ruby
 # app/controllers/users_controller.rb
@@ -411,7 +346,7 @@ class UsersController < ApplicationController
 end
 ```
 
-Instance-level `respond_to` is unaffected and does not require the additional gem:
+인스턴스 레벨의 `respond_to`는 이번 업그레이드의 영향을 받지 않으므로, gem을 추가할 필요는 없습니다.
 
 ```ruby
 # app/controllers/users_controller.rb
@@ -425,84 +360,64 @@ class UsersController < ApplicationController
     end
   end
 end
-```
+``` 
 
-See [#16526](https://github.com/rails/rails/pull/16526) for more details.
+자세한 설명은 [#16526](https://github.com/rails/rails/pull/16526)을 참고해주세요.
 
-### Error handling in transaction callbacks
+### 트랜젝션 콜백 에러의 처리
 
-Currently, Active Record suppresses errors raised
-within `after_rollback` or `after_commit` callbacks and only prints them to
-the logs. In the next version, these errors will no longer be suppressed.
-Instead, the errors will propagate normally just like in other Active
-Record callbacks.
+현재, 액티브레코드에서는 `after_rollback`이나 `after_commit` 콜백에서 에러를 다루고 있으며, 예외가 발생한 경우에는 로그 출력만 발생합니다. 다음 버전부터는 이러한 에러를 잡아주지 않게 되므로 주의해주세요.
+앞으로는 다른 액티브레코드 콜백과 동일한 에러 처리를 하게 됩니다.
 
-When you define an `after_rollback` or `after_commit` callback, you
-will receive a deprecation warning about this upcoming change. When
-you are ready, you can opt into the new behavior and remove the
-deprecation warning by adding following configuration to your
-`config/application.rb`:
+`after_rollback` 콜백이나 `after_commit` 콜백을 정의하면 이 변경에 대한 제거 예정 안내가 출력됩니다. 이 변경 내용을 잘 이해하고, 이에 대한 대비가 되었습니다면 `config/application.rb`에 다음의 설정을 통해서 제거 예정 안내가 출력되지 않도록 변경할 수 있습니다.
 
     config.active_record.raise_in_transactional_callbacks = true
 
-See [#14488](https://github.com/rails/rails/pull/14488) and
-[#16537](https://github.com/rails/rails/pull/16537) for more details.
+자세한 설명은 [#14488](https://github.com/rails/rails/pull/14488) 또는 [#16537](https://github.com/rails/rails/pull/16537)를 참조해주세요.
 
-### Ordering of test cases
+### 테스트 케이스의 실행 순서
 
-In Rails 5.0, test cases will be executed in random order by default. In
-anticipation of this change, Rails 4.2 introduced a new configuration option
-`active_support.test_order` for explicitly specifying the test ordering. This
-allows you to either lock down the current behavior by setting the option to
-`:sorted`, or opt into the future behavior by setting the option to `:random`.
+Rails 5.0의 테스트 케이스는 임의의 순서로 실행될 예정입니다. 이 변경에 대비해서 테스트 실행순서를 명시적으로 지정하는 `active_support.test_order`라는 새로운 설정이 Rails 4.2에서 도입되었습니다. 이 옵션을 사용하여 테스트의 실행 순서를 지금 그대로 하고 싶은 경우에는 `:sorted`를 지정하고, 임의 순서대로 실행하는 것을 지금 도입하고 싶은 경우에는 `:random`를 지정할 수 있습니다.
 
-If you do not specify a value for this option, a deprecation warning will be
-emitted. To avoid this, add the following line to your test environment:
+이 옵션에 값을 주지 않으면 제거 예정 안내가 출력됩니다. 제거 예정 안내가 출력되지 않게 하려면 test 환경에 다음을 추가하세요.
 
 ```ruby
 # config/environments/test.rb
 Rails.application.configure do
-  config.active_support.test_order = :sorted # or `:random` if you prefer
+  config.active_support.test_order = :sorted # `:random`으로 해도 좋습니다.
 end
 ```
 
-### Serialized attributes
+### 직렬화된 속성
 
-When using a custom coder (e.g. `serialize :metadata, JSON`),
-assigning `nil` to a serialized attribute will save it to the database
-as `NULL` instead of passing the `nil` value through the coder (e.g. `"null"`
-when using the `JSON` coder).
+`serialize :metadata, JSON`등의 임의의 인코더를 사용하는 경우에 직렬화 속성(serialized attribute)에 `nil`를 대입하면, 인코더에서 `nil` 값을 넘기는 것이 아닌 데이터베이스에 `NULL`을 사용하여 저장되도록 변경되었습니다(`JSON` 인코더를 사용하고 잇는 경우에는 `"null"` 등).
 
-### Production log level
+### Production 로그 레벨
 
-In Rails 5, the default log level for the production environment will be changed
-to `:debug` (from `:info`). To preserve the current default, add the following
-line to your `production.rb`:
+레일스 5의 production 환경에서는 기본으로 로그 레벨이 `:info`에서 `:debug`로 변경될 예정입니다. 현재 로그 레벨을 변경하고 싶지 않은 경우에는 `production.rb`에 다음의 코드를 추가해주세요.
 
 ```ruby
-# Set to `:info` to match the current default, or set to `:debug` to opt-into
-# the future default.
+# `:info`를 지정하면 현재의 기본 설정이 사용되며,
+# `:debug`를 지정하면 이후의 기본 설정이 사용됩니다
 config.log_level = :info
 ```
 
-### `after_bundle` in Rails templates
+### 레일스 템플릿의 `after_bundle`
 
-If you have a Rails template that adds all the files in version control, it
-fails to add the generated binstubs because it gets executed before Bundler:
+레일스 템플릿을 사용하고 모든 파일을 (Git 등으로) 버전을 관리하고 있는 경우, 생성된 binstub을 버전 관리 시스템에 추가할 수 없습니다. 이것은 binstub의 생성이 Bundler의 실행 전에 이루어지기 때문입니다.
 
 ```ruby
 # template.rb
 generate(:scaffold, "person name:string")
 route "root to: 'people#index'"
-rake("db:migrate")
+$ rake db:migrate
 
 git :init
 git add: "."
 git commit: %Q{ -m 'Initial commit' }
 ```
 
-You can now wrap the `git` calls in an `after_bundle` block. It will be run
-after the binstubs have been generated.
+이 문제를 피하기 위해서 `git` 호출을 `after_bundle` 블록에서 할 수 있게 되었습니다. 이를 통해서 binstub의 생성이 끝난 뒤 번들러를 실행할 수 있습니다.
 
 ```ruby
 # template.rb
@@ -517,51 +432,40 @@ after_bundle do
 end
 ```
 
-### Rails HTML Sanitizer
+### 레일스의 HTML Sanitizer
 
-There's a new choice for sanitizing HTML fragments in your applications. The
-venerable html-scanner approach is now officially being deprecated in favor of
-[`Rails HTML Sanitizer`](https://github.com/rails/rails-html-sanitizer).
+애플리케이션에서 HTML 조각을 검증하는 새로운 방법이 추가되었습니다. 기존의 일반적인 HTML 스캔에 의한 검증은 이제 Deprecated로 변경되었습니다. 현재 권장되는 방법은 [`Rails HTML Sanitizer`](https://github.com/rails/rails-html-sanitizer)입니다.
 
-This means the methods `sanitize`, `sanitize_css`, `strip_tags` and
-`strip_links` are backed by a new implementation.
+이를 통해, `sanitize`, `sanitize_css`, `strip_tags`, 그리고 `strip_links` 메소드는 새로운 구현을 통해 동작합니다.
 
-This new sanitizer uses [Loofah](https://github.com/flavorjones/loofah) internally. Loofah in turn uses Nokogiri, which
-wraps XML parsers written in both C and Java, so sanitization should be faster
-no matter which Ruby version you run.
+새로운 Sanitizer는 내부에서 [Loofah](https://github.com/flavorjones/loofah)를 사용합니다. 그리고 Loofah는 Nokogiri를 사용하고 있습니다. Nokogiri에서 사용하고 있는 XML 파서는 C와 Java 양쪽으로 작성되어 있으므로, 사용하고 있는 Ruby 버전에 관계 없이 작업을 고속화할 수 있습니다.
 
-The new version updates `sanitize`, so it can take a `Loofah::Scrubber` for
-powerful scrubbing.
-[See some examples of scrubbers here](https://github.com/flavorjones/loofah#loofahscrubber).
+새로운 Rails에는 `sanitize` 메소드가 변경되었으며 `Loofah::Scrubber`를 사용하는 강력한 검증을 할 수 있게 되었습니다.
+[검증의 사용 예시는 여기를 참조하세요](https://github.com/flavorjones/loofah#loofahscrubber)。
 
-Two new scrubbers have also been added: `PermitScrubber` and `TargetScrubber`.
-Read the [gem's readme](https://github.com/rails/rails-html-sanitizer) for more information.
+`PermitScrubber` 그리고 `TargetScrubber`라는 2개의 처리기가 추가되었습니다.
+자세한 설명은 [gem의 Readme](https://github.com/rails/rails-html-sanitizer)를 참조해주세요.
 
-The documentation for `PermitScrubber` and `TargetScrubber` explains how you
-can gain complete control over when and how elements should be stripped.
+`PermitScrubber`, 그리고 `TargetScrubber`의 문서에는 어떤 요소를 어느 타이밍에 제거할지를 완전히 제어하는 방법이 설명되어 있습니다.
 
-If your application needs to use the old sanitizer implementation, include `rails-deprecated_sanitizer` in your Gemfile:
+기본의 검증자가 필요한 경우에는 애플리케이션의 Gemfile에 `rails-deprecated_sanitizer`를 추가해주세요.
 
 ```ruby
 gem 'rails-deprecated_sanitizer'
 ```
 
-### Rails DOM Testing
+### 레일스의 DOM 테스트
 
-The [`TagAssertions` module](http://api.rubyonrails.org/classes/ActionDispatch/Assertions/TagAssertions.html) (containing methods such as `assert_tag`), [has been deprecated](https://github.com/rails/rails/blob/6061472b8c310158a2a2e8e9a6b81a1aef6b60fe/actionpack/lib/action_dispatch/testing/assertions/dom.rb) in favor of the `assert_select` methods from the `SelectorAssertions` module, which has been extracted into the [rails-dom-testing gem](https://github.com/rails/rails-dom-testing).
+`assert_tag`를 포함하는 [`TagAssertions` 모듈](http://api.rubyonrails.org/classes/ActionDispatch/Assertions/TagAssertions.html)은 [Deprecated](https://github.com/rails/rails/blob/6061472b8c310158a2a2e8e9a6b81a1aef6b60fe/actionpack/lib/action_dispatch/testing/assertions/dom.rb)되었습니다. 이후 권장되는 것은 ActionView로부터 [rails-dom-testing gem](https://github.com/rails/rails-dom-testing)로 추출된 `SelectorAssertions` 모듈의 `assert_select` 메소드입니다.
 
 
-### Masked Authenticity Tokens
+### 필터링된 인증 토큰
 
-In order to mitigate SSL attacks, `form_authenticity_token` is now masked so that it varies with each request.  Thus, tokens are validated by unmasking and then decrypting.  As a result, any strategies for verifying requests from non-rails forms that relied on a static session CSRF token have to take this into account.
+SSL 공격을 완화하기 위해서 `form_authenticity_token`이 필터링됩니다. 이를 통해서, 이 토큰은 요청마다 변경됩니다. 토큰 검증은 마스크를 삭제(unmasking)와 그에 이은 복호화(decrypting)에 의해서 이루어집니다. 이 변경으로 rails 애플리케이션 이외의 폼에서 전송되는 정적인 세션 CSRF 토큰에 의존하는 요청을 검증할 때에는 이 필터링된 인증 토큰을 고려할 필요가 있으므로 주의해주세요.
 
 ### Action Mailer
 
-Previously, calling a mailer method on a mailer class will result in the
-corresponding instance method being executed directly. With the introduction of
-Active Job and `#deliver_later`, this is no longer true. In Rails 4.2, the
-invocation of the instance methods are deferred until either `deliver_now` or
-`deliver_later` is called. For example:
+기존에는 메일러 클래스에서 메일러 메소드를 호출하면 해당하는 인스턴스 메소드가 직접 실행되었습니다. Active Job과 `#deliver_later` 메소드가 도입됨으로 인해, 이 동작이 변경되었습니다. Rails 4.2에서는 이러한 인스턴스 메소드 호출은 `deliver_now` 또는 `deliver_later`가 호출될 때까지 실행이 지연됩니다. 다음은 예시입니다.
 
 ```ruby
 class Notifier < ActionMailer::Base
@@ -571,14 +475,11 @@ class Notifier < ActionMailer::Base
   end
 end
 
-mail = Notifier.notify(user, ...) # Notifier#notify is not yet called at this point
-mail = mail.deliver_now           # Prints "Called"
+mail = Notifier.notify(user, ...) # Notifier#notify는 이 시점에서 호출되지 않습니다.
+mail = mail.deliver_now           # "Called"를 출력합니다.
 ```
 
-This should not result in any noticeable differences for most applications.
-However, if you need some non-mailer methods to be executed synchronously, and
-you were previously relying on the synchronous proxying behavior, you should
-define them as class methods on the mailer class directly:
+이 변경을 통해서 실행 결과가 크게 달라지는 애플리케이션은 그렇게 많지 않을 것이라고 생각합니다. 단, 메일러 이외의 메소드를 동기적으로 실행하고 싶은 경우, 그리고 기존의 동기적인 프록시 동작에 의존하고 있는 경우에는 이 메소드를 메일러 클래스에 클래스 메소드로서 직접 정의할 필요가 있습니다.
 
 ```ruby
 class Notifier < ActionMailer::Base
@@ -588,69 +489,56 @@ class Notifier < ActionMailer::Base
 end
 ```
 
-### Foreign Key Support
+### Foreign Key 지원
+마이그레이션 DSL이 외래키 정의를 지원하기 위해서 확장되었습니다. 만약 Foreigner gem을 사용하고 있습니다면, 이를 제거하는 것을 고려할 수 있습니다. Rails에서 새로 지원하는 외래키 지원은 Foreigner의 일부분입니다. 이는 모든 Foreigner의 정의가 새로운 Rails 마이그레이션 DSL로 완전히 대체될 수 없다는 의미입니다.
 
-The migration DSL has been expanded to support foreign key definitions. If
-you've been using the Foreigner gem, you might want to consider removing it.
-Note that the foreign key support of Rails is a subset of Foreigner. This means
-that not every Foreigner definition can be fully replaced by its Rails
-migration DSL counterpart.
+변경하는 과정은 다음과 같습니다.
 
-The migration procedure is as follows:
+* "foreigner" gem을 Gemfile에서 제거합니다.
+* `bundle install`을 실행합니다.
+* `bin/rake db:schema:dump`를 실행합니다.
+* `db/schema.rb`에 모든 외래키 정의가 필요한 옵션과 함께 포함되어 있는지 확인하세요.
 
-1. remove `gem "foreigner"` from the Gemfile.
-2. run `bundle install`.
-3. run `bin/rake db:schema:dump`.
-4. make sure that `db/schema.rb` contains every foreign key definition with
-the necessary options.
-
-Upgrading from Rails 4.0 to Rails 4.1
+Rails 4.0에서 Rails 4.1로 업그레이드
 -------------------------------------
 
-### CSRF protection from remote `<script>` tags
+### 리모트 `<script>` 태그에 CSRF 보호를 적용
 
-Or, "whaaat my tests are failing!!!?" or "my `<script>` widget is busted!!"
+이를 변경하지 않으면 '어째서인지 테스트를 통과할 수 없어...OTL' 같은 상황이 발생할 수도 있습니다.
 
-Cross-site request forgery (CSRF) protection now covers GET requests with
-JavaScript responses, too. This prevents a third-party site from remotely
-referencing your JavaScript with a `<script>` tag to extract sensitive data.
+JavaScript 응답을 동반하는 GET 요청도 크로스 사이트 리퀘스트 포저리(CSRF) 보호 대상이 되었습니다. 이 보호에 의해서 제3자의 사이트가 중요한 데이터를 탈취할 목적으로 자신의 사이트에 JavaScript URL을 참조하여 실행하려는 시도를 저지할 수 있습니다.
 
-This means that your functional and integration tests that use
+다시 말해, 다음을 사용하는 기능 테스트와 통합 테스트는,
 
 ```ruby
 get :index, format: :js
 ```
 
-will now trigger CSRF protection. Switch to
+CSRF 보호를 사용하도록 변경되었습니다. 다음과 같이 변경하여,
 
 ```ruby
 xhr :get, :index, format: :js
-```
+``` 
 
-to explicitly test an `XmlHttpRequest`.
+`XmlHttpRequest`를 명시적으로 테스트해주세요.
 
-Note: Your own `<script>` tags are treated as cross-origin and blocked by
-default, too. If you really mean to load JavaScript from `<script>` tags,
-you must now explicitly skip CSRF protection on those actions.
+JavaScript를 원격의 `<script>` 태그로부터 읽어와야 합니다면, 그 액션에서는 CSRF 보호를 꺼주세요.
 
 ### Spring
 
-If you want to use Spring as your application preloader you need to:
+애플리케이션의 프리 로더로서 Spring을 사용하는 경우에는 다음을 실행해야합니다.
 
-1. Add `gem 'spring', group: :development` to your `Gemfile`.
-2. Install spring using `bundle install`.
-3. Springify your binstubs with `bundle exec spring binstub --all`.
+1. `gem 'spring', group: :development`를 `Gemfile`를 추가합니다.
+2. `bundle install`를 실행해서 Spring을 설치합니다.
+3. `bundle exec spring binstub --all`를 실행해서 binstub을 Spring화합니다.
 
-NOTE: User defined rake tasks will run in the `development` environment by
-default. If you want them to run in other environments consult the
-[Spring README](https://github.com/rails/spring#rake).
+NOTE: 사용자가 정의한 Rake 태스크는 기본으로 development 환경에서 동작하게 됩니다. 이러한 Rake 태스크를 다른 환경에서도 사용하고 싶은 경우에는 [Spring README](https://github.com/rails/spring#rake)를 참고해주세요.
 
 ### `config/secrets.yml`
 
-If you want to use the new `secrets.yml` convention to store your application's
-secrets, you need to:
+새로운 `secrets.yml`에 비밀키를 저장하고 싶은 경우에는 다음의 순서대로 실행합니다.
 
-1. Create a `secrets.yml` file in your `config` folder with the following content:
+1. `secrets.yml`파일을 `config` 폴더에 생성하고, 다음의 내용을 추가합니다.
 
     ```yaml
     development:
@@ -663,41 +551,29 @@ secrets, you need to:
       secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
     ```
 
-2. Use your existing `secret_key_base` from the `secret_token.rb` initializer to
-   set the SECRET_KEY_BASE environment variable for whichever users running the
-   Rails application in production mode. Alternatively, you can simply copy the existing
-   `secret_key_base` from the `secret_token.rb` initializer to `secrets.yml`
-   under the `production` section, replacing '<%= ENV["SECRET_KEY_BASE"] %>'.
+2. `secret_token.rb` initializer에 작성된 기존의 `secret_key_base`의 비밀키를 꺼내서 SECRET_KEY_BASE 환경변수를 설정하여 Rails 애플리케이션을 production 모드에서 실행하는 모든 사용자가 비밀키를 사용할 수 있게 됩니다. 또는 기존의 `secret_key_base`를 `secret_token.rb` initializer로부터 `secrets.yml`의 production 부분에 복사하고, '<%= ENV["SECRET_KEY_BASE"] %>'를 변경할 수도 있습니다.
 
-3. Remove the `secret_token.rb` initializer.
+3. `secret_token.rb` initializer를 삭제합니다.
 
-4. Use `rake secret` to generate new keys for the `development` and `test` sections.
+4. `rake secret`를 실행해서, `development`와 `test`에서 사용할 키를 새로 생성합니다.
 
-5. Restart your server.
+5. 서버를 다시 켭니다.
 
-### Changes to test helper
+### 테스트 헬퍼의 변경
 
-If your test helper contains a call to
-`ActiveRecord::Migration.check_pending!` this can be removed. The check
-is now done automatically when you `require 'rails/test_help'`, although
-leaving this line in your helper is not harmful in any way.
+테스트 헬퍼에 `ActiveRecord::Migration.check_pending!` 호출이 있는 경우, 이를 삭제할 수 있습니다. 이 확인은 `require 'rails/test_help'`에서 자동으로 이루어지도록 변경되었습니다. 이 호출을 삭제하지 않더라도 악영향을 주지 않습니다.
 
-### Cookies serializer
+### Cookies 직렬화
 
-Applications created before Rails 4.1 uses `Marshal` to serialize cookie values into
-the signed and encrypted cookie jars. If you want to use the new `JSON`-based format
-in your application, you can add an initializer file with the following content:
+레일스 4.1부터 이전에 생성된 애플리케이션에서는 `Marshal`을 사용하여 cookie값을 서명된, 또는 암호화된 cookies jar로 직렬화되었습니다. 애플리케이션에서 새로운 `JSON` 기반의 형식을 사용하고 싶은 경우에는 다음의 내용을 포함하는 initializer를 추가하세요.
 
 ```ruby
 Rails.application.config.action_dispatch.cookies_serializer = :hybrid
 ```
 
-This would transparently migrate your existing `Marshal`-serialized cookies into the
-new `JSON`-based format.
+이를 통해 `Marshal`에서 직렬화된 기존의 cookies를 새로운 `JSON` 기반의 형식으로 투명하게 넘어갈 수 있습니다.
 
-When using the `:json` or `:hybrid` serializer, you should beware that not all
-Ruby objects can be serialized as JSON. For example, `Date` and `Time` objects
-will be serialized as strings, and `Hash`es will have their keys stringified.
+`:json`또는 `:hybrid` 직렬화를 사용하는 경우, 일부의 Ruby 객체가 JSON으로서 직렬화되지 않을 가능성이 있습니다는 점에 주의해주세요. 예를 들면, `Date` 객체나 `Time` 객체는 문자열로 직렬화되며, `Hash`의 키도 직렬화됩니다.
 
 ```ruby
 class CookiesController < ApplicationController
@@ -712,61 +588,48 @@ class CookiesController < ApplicationController
 end
 ```
 
-It's advisable that you only store simple data (strings and numbers) in cookies.
-If you have to store complex objects, you would need to handle the conversion
-manually when reading the values on subsequent requests.
+cookie에는 문자열이나 숫자등의 단순한 데이터만을 저장하기를 권장합니다. cookie에 복잡한 객체를 저장해야하는 경우에는 이후의 요청에서 cookies로부터 값을 가져올 때에 변환에서 귀찮은 문제를 발생시킬 수 있습니다.
 
-If you use the cookie session store, this would apply to the `session` and
-`flash` hash as well.
+cookie 세션 스토어를 사용하는 경우, `session`는 `flash` 해시에 대해서도 이 내용이 해당됩니다.
 
-### Flash structure changes
+### Flash 구조 변경
 
-Flash message keys are
-[normalized to strings](https://github.com/rails/rails/commit/a668beffd64106a1e1fedb71cc25eaaa11baf0c1). They
-can still be accessed using either symbols or strings. Looping through the flash
-will always yield string keys:
+Flash 메시지의 키가 [문자열로 정규화](https://github.com/rails/rails/commit/a668beffd64106a1e1fedb71cc25eaaa11baf0c1)되었습니다. 심볼 또는 문자열, 어느 것이든 사용할 수 있습니다. Flash의 키를 꺼내면 언제나 문자열이 됩니다.
 
 ```ruby
 flash["string"] = "a string"
 flash[:symbol] = "a symbol"
 
-# Rails < 4.1
+# 레일스 < 4.1
 flash.keys # => ["string", :symbol]
 
-# Rails >= 4.1
+# 레일스 >= 4.1
 flash.keys # => ["string", "symbol"]
 ```
 
-Make sure you are comparing Flash message keys against strings.
+Flash 메시지의 키는 문자열과 비교해주세요.
 
-### Changes in JSON handling
+### JSON 취급 방식의 변경점
 
-There are a few major changes related to JSON handling in Rails 4.1.
+레일스 4.1에서는 JSON를 다루는 방식이 크게 네 가지가 변경되었습니다.
 
-#### MultiJSON removal
+#### MultiJSON의 폐기
 
-MultiJSON has reached its [end-of-life](https://github.com/rails/rails/pull/10576)
-and has been removed from Rails.
+MultiJSON는 [그 역할을 다하고](https://github.com/rails/rails/pull/10576) 레일스에서 제거되었습니다.
 
-If your application currently depends on MultiJSON directly, you have a few options:
+애플리케이션이 MultiJSON에 직접 의존하고 있는 경우, 다음과 같이 대응할 수 있습니다.
 
-1. Add 'multi_json' to your Gemfile. Note that this might cease to work in the future
+1. 'multi_json'을 Gemfile에 추가합니다. 단, 이 gem은 장래에 사용할 수 없을 수도 있습니다.
 
-2. Migrate away from MultiJSON by using `obj.to_json`, and `JSON.parse(str)` instead.
+2. `obj.to_json`와 `JSON.parse(str)`를 사용해서 MultiJSON을 의존하지 않게 변경합니다.
 
-WARNING: Do not simply replace `MultiJson.dump` and `MultiJson.load` with
-`JSON.dump` and `JSON.load`. These JSON gem APIs are meant for serializing and
-deserializing arbitrary Ruby objects and are generally [unsafe](http://www.ruby-doc.org/stdlib-2.2.2/libdoc/json/rdoc/JSON.html#method-i-load).
+WARNING: `MultiJson.dump`와 `MultiJson.load`를 각각 `JSON.dump`과 `JSON.load`로 단순히 변환해서는 '안됩니다'. 이러한 JSON gem들의 API는 임의의 Ruby 객체를 직렬화 그리고 역직렬화하기 위한 것이며, 일반적으로 [안전하지 않습니다](http://www.ruby-doc.org/stdlib-2.0.0/libdoc/json/rdoc/JSON.html#method-i-load).
 
-#### JSON gem compatibility
+#### JSON gem의 호환성
 
-Historically, Rails had some compatibility issues with the JSON gem. Using
-`JSON.generate` and `JSON.dump` inside a Rails application could produce
-unexpected errors.
+지금까지의 레일스에서는 JSON gem과의 호환성 문제가 있었습니다. 레일스 애플리케이션에서 `JSON.generate`와 `JSON.dump`를 사용하면 예기치 않은 에러를 발생시키곤 했습니다.
 
-Rails 4.1 fixed these issues by isolating its own encoder from the JSON gem. The
-JSON gem APIs will function as normal, but they will not have access to any
-Rails-specific features. For example:
+레일스 4.1에서는 레일스 자신의 인코더를 JSON gem으로부터 분리하는 것으로 이러한 문제를 수정했습니다. JSON gem은 앞으로도 정상적으로 동작합니다만, 대신에 JSON gem API으로부터 레일스 특유의 기능에 접근 할 수 없게 되었습니다. 다음은 예시입니다.
 
 ```ruby
 class FooBar
@@ -779,60 +642,49 @@ end
 >> JSON.generate(FooBar.new, quirks_mode: true) # => "\"#<FooBar:0x007fa80a481610>\""
 ```
 
-#### New JSON encoder
+#### 새 JSON 인코더
 
-The JSON encoder in Rails 4.1 has been rewritten to take advantage of the JSON
-gem. For most applications, this should be a transparent change. However, as
-part of the rewrite, the following features have been removed from the encoder:
+레일스 4.1의 JSON 인코더는 JSON gem을 사용하도록 변경되었습니다. 이 변경에 의해 애플리케이션이 받는 영향은 거의 없습니다. 단, 인코더가 재작성되면서 다음의 기능이 삭제되었습니다.
 
-1. Circular data structure detection
-2. Support for the `encode_json` hook
-3. Option to encode `BigDecimal` objects as numbers instead of strings
+1. 데이터 구조의 순환 검출
+2. `encode_json` 훅의 지원
+3. `BigDecimal` 객체를 문자가 아닌 숫자로 인코딩하는 옵션
 
-If your application depends on one of these features, you can get them back by
-adding the [`activesupport-json_encoder`](https://github.com/rails/activesupport-json_encoder)
-gem to your Gemfile.
+애플리케이션이 이러한 기능에 의존하고 있는 경우에는 [`activesupport-json_encoder`](https://github.com/rails/activesupport-json_encoder) gem을 Gemfile에 추가하여 이전의 상태로 되돌릴 수 있습니다.
 
-#### JSON representation of Time objects
+#### Time 객체의 JSON 형식 표현
 
-`#as_json` for objects with time component (`Time`, `DateTime`, `ActiveSupport::TimeWithZone`)
-now returns millisecond precision by default. If you need to keep old behavior with no millisecond
-precision, set the following in an initializer:
+일시에 관련된 컴포넌트(`Time`, `DateTime`, `ActiveSupport::TimeWithZone`)를 가지는 객체에 대해서 `#as_json`을 실행하면 기본으로 밀리초 단위의 값이 돌아오도록 변경되었습니다. 밀리초보다 정밀도가 낮은 이전의 방식으로 동작을 되돌리고 싶은 경우에는 initialzer에 다음을 추가해주세요.
 
 ```
 ActiveSupport::JSON::Encoding.time_precision = 0
 ```
 
-### Usage of `return` within inline callback blocks
+### 인라인 콜백 블록에서 `return` 사용법
 
-Previously, Rails allowed inline callback blocks to use `return` this way:
+이전의 레일스에서는 인라인 콜백 블록에서 다음과 같이 `return`을 사용하는 것이 허용되었습니다.
 
 ```ruby
 class ReadOnlyModel < ActiveRecord::Base
-  before_save { return false } # BAD
+  before_save { return false } # 좋지 않음
 end
 ```
 
-This behavior was never intentionally supported. Due to a change in the internals
-of `ActiveSupport::Callbacks`, this is no longer allowed in Rails 4.1. Using a
-`return` statement in an inline callback block causes a `LocalJumpError` to
-be raised when the callback is executed.
+이 동작은 절대 의도된 것이 아닙니다. `ActiveSupport::Callbacks`이 재작성되어, 위와 같은 동작을 레일스 4.1에서는 허용하지 않게 되었습니다. 인라인 콜백 블록에 `return` 문을 작성하면, 콜백 실행시에 `LocalJumpError`가 발생하게 되었습니다.
 
-Inline callback blocks using `return` can be refactored to evaluate to the
-returned value:
+인라인 콜백 블록에서 `return`을 사용하고 있는 경우, 다음과 같이 리팩토링해서 반환하는 값으로서 평가하도록 해주세요.
 
 ```ruby
 class ReadOnlyModel < ActiveRecord::Base
-  before_save { false } # GOOD
+  before_save { false } # 좋은 코드
 end
 ```
 
-Alternatively, if `return` is preferred it is recommended to explicitly define
-a method:
+`return`를 사용하고 싶은 경우라면 명시적으로 메소드를 정의하기를 추천합니다.
 
 ```ruby
 class ReadOnlyModel < ActiveRecord::Base
-  before_save :before_save_callback # GOOD
+  before_save :before_save_callback # 좋은 코드
 
   private
     def before_save_callback
@@ -841,21 +693,15 @@ class ReadOnlyModel < ActiveRecord::Base
 end
 ```
 
-This change applies to most places in Rails where callbacks are used, including
-Active Record and Active Model callbacks, as well as filters in Action
-Controller (e.g. `before_action`).
+이 변경은 레일스에서 콜백을 사용하고 있는 많은 장소에서 적용됩니다. 이에는 Active Record와 Active Model의 콜백이나 Action Controller의 필터(`before_action` 등)이 포함됩니다.
 
-See [this pull request](https://github.com/rails/rails/pull/13271) for more
-details.
+자세한 설명은 [이 풀 리퀘스트](https://github.com/rails/rails/pull/13271)를 참고해주세요.
 
-### Methods defined in Active Record fixtures
+### Active Record 픽스쳐에 정의된 메소드
 
-Rails 4.1 evaluates each fixture's ERB in a separate context, so helper methods
-defined in a fixture will not be available in other fixtures.
+레일스 4.1에서는 각 픽스쳐의 ERB는 독립된 컨텍스트에서 평가됩니다. 이 때문에, 어떤 픽스쳐에서 정의된 헬퍼 메소드는 다른 픽스쳐에서 사용할 수 없습니다.
 
-Helper methods that are used in multiple fixtures should be defined on modules
-included in the newly introduced `ActiveRecord::FixtureSet.context_class`, in
-`test_helper.rb`.
+헬퍼 메소드를 여러 픽스쳐에서 사용하고 싶은 경우에는 4.1에서 새롭게 도입된 `ActiveRecord::FixtureSet.context_class`(`test_helper.rb`)에 포함되는 모듈에 정의해야합니다.
 
 ```ruby
 module FixtureFileHelpers
@@ -863,53 +709,43 @@ module FixtureFileHelpers
     Digest::SHA2.hexdigest(File.read(Rails.root.join('test/fixtures', path)))
   end
 end
-ActiveRecord::FixtureSet.context_class.include FixtureFileHelpers
+ActiveRecord::FixtureSet.context_class.send :include, FixtureFileHelpers
 ```
 
-### I18n enforcing available locales
+### I18n 옵션으로 available_locales 목록 사용을 강제
 
-Rails 4.1 now defaults the I18n option `enforce_available_locales` to `true`. This
-means that it will make sure that all locales passed to it must be declared in
-the `available_locales` list.
+레일스 4.1부터는 I18n 옵션 `enforce_available_locales`의 기본값이 `true`로 변경되었습니다. 이 설정을 통해 I18n에 넘겨지는 모든 로케일은 available_locales 목록에 선언되어 있지 않다면 사용할 수 없습니다.
 
-To disable it (and allow I18n to accept *any* locale option) add the following
-configuration to your application:
+이 기능을 끄고 I18n에서 모든 종류릐 로케일 옵션을 사용할 수 있게 하려면 다음과 같이 변경하세요.
 
 ```ruby
 config.i18n.enforce_available_locales = false
-```
+``` 
 
-Note that this option was added as a security measure, to ensure user input
-cannot be used as locale information unless it is previously known. Therefore,
-it's recommended not to disable this option unless you have a strong reason for
-doing so.
+available_locales의 강제는 보안을 위한 것입니다. 다시 말해, 애플리케이션이 파악하지 못한 로케일을 가지는 사용자의 입력이 로케일 정보로서 사용되지 않도록 하는 것입니다. 따라서, 어쩔 수 없는 이유가 존재하지 않습니다면 이 옵션을 false로 변경하지 말아주세요.
 
-### Mutator methods called on Relation
+### 관계에 대한 mutator 메소드 호출
 
-`Relation` no longer has mutator methods like `#map!` and `#delete_if`. Convert
-to an `Array` by calling `#to_a` before using these methods.
+`Relation`에 `#map!`나 `#delete_if` 등의 변경 메소드(mutator method)가 포함되지 않게 되었습니다. 이러한 메소드를 사용하고 싶은 경우에는 `#to_a`를 호출하여 `Array`로 변환한 뒤에 사용해주세요.
 
-It intends to prevent odd bugs and confusion in code that call mutator
-methods directly on the `Relation`.
+이 변경은 `Relation`에 대한 직접적인 변경 메소드를 호출하는 것으로 발생하는 기묘한 버그나 혼란을 막기 위해 이루어졌습니다.
 
 ```ruby
-# Instead of this
+# 이전의 호출 방법
 Author.where(name: 'Hank Moody').compact!
 
-# Now you have to do this
+# 앞으로의 호출 방법
 authors = Author.where(name: 'Hank Moody').to_a
 authors.compact!
-```
+``` 
 
-### Changes on Default Scopes
+### 기본 스코프의 변경
 
-Default scopes are no longer overridden by chained conditions.
+기본 스코프는 조건을 연결하여 사용하는 경우에 재정의할 수 없게 되었습니다.
 
-In previous versions when you defined a `default_scope` in a model
-it was overridden by chained conditions in the same field. Now it
-is merged like any other scope.
+이전에서는 모델에 `default_scope`를 정의하면, 동일한 필드로 연쇄된 조건에 의해서 덮어쓸 수 있었습니다. 현재는 다른 스코프와 마찬가지로 병합됩니다.
 
-Before:
+변경전:
 
 ```ruby
 class User < ActiveRecord::Base
@@ -928,7 +764,7 @@ User.where(state: 'inactive')
 # SELECT "users".* FROM "users" WHERE "users"."state" = 'inactive'
 ```
 
-After:
+변경후:
 
 ```ruby
 class User < ActiveRecord::Base
@@ -947,9 +783,7 @@ User.where(state: 'inactive')
 # SELECT "users".* FROM "users" WHERE "users"."state" = 'pending' AND "users"."state" = 'inactive'
 ```
 
-To get the previous behavior it is needed to explicitly remove the
-`default_scope` condition using `unscoped`, `unscope`, `rewhere` or
-`except`.
+이전과 동일한 동작으로 되돌리고 싶은 경우에는 `unscoped`, `unscope`, `rewhere`, 그리고 `except`를 사용하여 `default_scope`의 조건을 명시적으로 제거해줄 필요가 있습니다.
 
 ```ruby
 class User < ActiveRecord::Base
@@ -968,60 +802,47 @@ User.inactive
 # SELECT "users".* FROM "users" WHERE "users"."state" = 'inactive'
 ```
 
-### Rendering content from string
+### 문자열에서 컨텐츠 추출하기
 
-Rails 4.1 introduces `:plain`, `:html`, and `:body` options to `render`. Those
-options are now the preferred way to render string-based content, as it allows
-you to specify which content type you want the response sent as.
+레일스 4.1의 `render`에 `:plain`, `:html`, `:body` 옵션이 도입되었습니다. 아래와 같이 컨텐츠 형식을 지정할 수 있으므로, 문자열 기반의 컨텐츠 출력에는 이 옵션을 사용하는 것을 추천됩니다.
 
-* `render :plain` will set the content type to `text/plain`
-* `render :html` will set the content type to `text/html`
-* `render :body` will *not* set the content type header.
+* `render :plain`를 실행하면 content type은 `text/plain`로 설정됩니다.
+* `render :html`를 실행하면 content type은 `text/html`로 설정됩니다.
+* `render :body`를 실행한 경우 content type 헤더는 '설정되지 않습니다'.
 
-From the security standpoint, if you don't expect to have any markup in your
-response body, you should be using `render :plain` as most browsers will escape
-unsafe content in the response for you.
+보안 상의 관점에서 응답의 body에 마크업을 포함하지 않는 경우에는 `render :plain`를 사용해야 합니다. 이를 통해 많은 브라우저가 안전하지 않은 컨텐츠를 이스케이프할 수 있기 때문입니다.
 
-We will be deprecating the use of `render :text` in a future version. So please
-start using the more precise `:plain`, `:html`, and `:body` options instead.
-Using `render :text` may pose a security risk, as the content is sent as
-`text/html`.
+앞으로는 `render :text`가 Deprecated될 예정입니다. 미리 `:plain`, `:html`, `:body` 옵션을 사용하도록 변경해주세요.
+`render :text`를 사용하면 `text/html`으로 전송되기 때문에 보안 상의 위험이 발생할 가능성이 있습니다.
 
-### PostgreSQL json and hstore datatypes
+### PostgreSQL의 데이터 형식 'json'과 'hstore'에 대해서
 
-Rails 4.1 will map `json` and `hstore` columns to a string-keyed Ruby `Hash`.
-In earlier versions, a `HashWithIndifferentAccess` was used. This means that
-symbol access is no longer supported. This is also the case for
-`store_accessors` based on top of `json` or `hstore` columns. Make sure to use
-string keys consistently.
+레일스 4.1에서는 PostgreSQL의 `json` 컬럼과 `hstore` 컬럼을 문자열을 키로 하는 Ruby의 `Hash`에 대응할 수 있게 되었습니다.
+그리고 이전의 버전에서는 `HashWithIndifferentAccess`가 사용되었습니다. 이 변경은 레일스 4.1 이후에는 심볼을 사용하여 이러한 데이터 형식에 접근할 수 없게 된다는 점을 의미합니다. `store_accessors` 메소드는 `json` 컬럼이나 `hstore` 컬럼에 의존하고 있으므로 마찬가지로 심볼로 접근할 수 없게 됩니다. 앞으로는 문자열을 키로서 사용해주세요.
 
-### Explicit block use for `ActiveSupport::Callbacks`
+### `ActiveSupport::Callbacks`에서 명시적으로 블록을 사용하기
 
-Rails 4.1 now expects an explicit block to be passed when calling
-`ActiveSupport::Callbacks.set_callback`. This change stems from
-`ActiveSupport::Callbacks` being largely rewritten for the 4.1 release.
+레일스 4.1부터 `ActiveSupport::Callbacks.set_callback`을 호출할 경우에는 명시적으로 블록을 넘겨야합니다. 이는 `ActiveSupport::Callbacks`이 레일스 4.1 릴리스에 대폭 변경된 것에 따른 것입니다.
 
 ```ruby
-# Previously in Rails 4.0
+# 레일스 4.0의 경우
 set_callback :save, :around, ->(r, &block) { stuff; result = block.call; stuff }
 
-# Now in Rails 4.1
+# 레일스 4.1의 경우
 set_callback :save, :around, ->(r, block) { stuff; result = block.call; stuff }
 ```
 
-Upgrading from Rails 3.2 to Rails 4.0
+레일스 3.2에서 레일스 4.0로 업그레이드
 -------------------------------------
 
-If your application is currently on any version of Rails older than 3.2.x, you should upgrade to Rails 3.2 before attempting one to Rails 4.0.
+레일스 애플리케이션의 버전을 3.2보다 이전인 경우, 우선 3.2로 업그레이드 한 뒤에 레일스 4.0으로 업그레이드를 시작해주세요.
 
-The following changes are meant for upgrading your application to Rails 4.0.
+이하의 설명은 애플리케이션을 레일스 4.0으로 업그레이드하기 위한 것들입니다.
 
 ### HTTP PATCH
 
-Rails 4 now uses `PATCH` as the primary HTTP verb for updates when a RESTful
-resource is declared in `config/routes.rb`. The `update` action is still used,
-and `PUT` requests will continue to be routed to the `update` action as well.
-So, if you're using only the standard RESTful routes, no changes need to be made:
+레일스 4에서는 `config/routes.rb`에서 RESTful한 리소스를 선언할 때에, 변경을 위한 HTTP 동사로 `PATCH`가 적용되었습니다. `update` 액션은 이전대로 사용할 수 있으며 `PUT` 요청은 앞으로도 `update` 액션으로 라우팅됩니다.
+표준적인 RESTful만을 사용하고 있습니다면 이에 대한 변경을 할 필요가 없습니다.
 
 ```ruby
 resources :users
@@ -1034,13 +855,12 @@ resources :users
 ```ruby
 class UsersController < ApplicationController
   def update
-    # No change needed; PATCH will be preferred, and PUT will still work.
+    # 변경 불필요: PATCH가 좋지만 PUT 역시 사용할 수 있음
   end
 end
 ```
 
-However, you will need to make a change if you are using `form_for` to update
-a resource in conjunction with a custom route using the `PUT` HTTP method:
+단, `form_for`를 사용하여 리소스를 변경하고, `PUT` HTTP 메소드를 사용하는 라우팅과 연동하고 있습니다면 변경해야할 필요가 있습니다.
 
 ```ruby
 resources :users, do
@@ -1055,17 +875,14 @@ end
 ```ruby
 class UsersController < ApplicationController
   def update_name
-    # Change needed; form_for will try to use a non-existent PATCH route.
+    # 변경이 필요: form_for는 존재하지 않는 PATCH 경로를 찾으려고 시도함
   end
 end
 ```
 
-If the action is not being used in a public API and you are free to change the
-HTTP method, you can update your route to use `patch` instead of `put`:
+이 액션이 공개 API에는 사용되고 있지 않고, HTTP 메소드를 자유롭게 변경할 수 있습니다면, 라우팅을 변경하여 `patch`를 `put` 대신에 사용할 수 있습니다.
 
-`PUT` requests to `/users/:id` in Rails 4 get routed to `update` as they are
-today. So, if you have an API that gets real PUT requests it is going to work.
-The router also routes `PATCH` requests to `/users/:id` to the `update` action.
+Rails 4에서는 `PUT` 요청을 `/users/:id`에 전송하면, 기존과 마찬가지로 `update`에 라우팅됩니다. 이를 위해, 실제의 PUT 요청을 받는 API는 앞으로도 사용할 수 있습니다. 이 경우, `PATCH` 요청도 `/users/:id` 경유로 `update` 액션에 라우팅됩니다.
 
 ```ruby
 resources :users do
@@ -1073,135 +890,107 @@ resources :users do
 end
 ```
 
-If the action is being used in a public API and you can't change to HTTP method
-being used, you can update your form to use the `PUT` method instead:
+이 액션이 공개된 API에서 사용되고 있어서 HTTP 메소드를 자유롭게 변경할 수 없다면, 폼을 분석하여 `PUT`을 대신에 사용할 수 있습니다.
 
 ```erb
 <%= form_for [ :update_name, @user ], method: :put do |f| %>
 ```
 
-For more on PATCH and why this change was made, see [this post](http://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates/)
-on the Rails blog.
+PATCH와 이 변경이 이루어진 이유에 대해서는 레일스 블로그의 [이 글](http://weblog.rubyonrails.org/2012/2/26/edge-rails-patch-is-the-new-primary-http-method-for-updates/)을 참고해주세요.
 
-#### A note about media types
+#### 미디어 타입에 관한 메모
 
-The errata for the `PATCH` verb [specifies that a 'diff' media type should be
-used with `PATCH`](http://www.rfc-editor.org/errata_search.php?rfc=5789). One
-such format is [JSON Patch](http://tools.ietf.org/html/rfc6902). While Rails
-does not support JSON Patch natively, it's easy enough to add support:
+`PATCH` 동사에 관련된 추가 정보로 [`PATCH`에서는 다른 미디어 형식을 사용할 필요가 있습니다](http://www.rfc-editor.org/errata_search.php?rfc=5789). [JSON Patch](http://tools.ietf.org/html/rfc6902)등이 해당됩니다. 레일스는 JSON Patch를 기본으로 지원하지는 않습니다만, 추가하는 것은 간단합니다.
 
 ```
-# in your controller
+# 컨트롤러에 다음을 추가합니다.
 def update
   respond_to do |format|
     format.json do
-      # perform a partial update
+      # 부분적으로 변경합니다.
       @article.update params[:article]
     end
 
     format.json_patch do
-      # perform sophisticated change
+      # 필요한 변경 작업을 합니다.
     end
   end
 end
 
-# In config/initializers/json_patch.rb:
+# config/initializers/json_patch.rb에 다음을 추가
 Mime::Type.register 'application/json-patch+json', :json_patch
 ```
 
-As JSON Patch was only recently made into an RFC, there aren't a lot of great
-Ruby libraries yet. Aaron Patterson's
-[hana](https://github.com/tenderlove/hana) is one such gem, but doesn't have
-full support for the last few changes in the specification.
+JSON Patch는 최근 RFC에 올라갔으므로 루비 라이브러리는 많지 않습니다. Aaron Patterson의 [hana](https://github.com/tenderlove/hana) gem이 대표적입니다만, 최신의 사양 변경을 모두 지원하는 것은 아닙니다.
 
 ### Gemfile
 
-Rails 4.0 removed the `assets` group from Gemfile. You'd need to remove that
-line from your Gemfile when upgrading. You should also update your application
-file (in `config/application.rb`):
+레일스 4.0에서는 `assets` 그룹이 Gemfile에서 삭제되었습니다. 업그레이드를 할 때에는 이 내용을 Gemfile로부터 제거할 필요가 있습니다.  애플리케이션의 `config/application.rb` 파일에 다음을 추가할 필요가 있습니다.
 
 ```ruby
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
-```
+Bundler.require(:default, Rails.env)
+``` 
 
 ### vendor/plugins
 
-Rails 4.0 no longer supports loading plugins from `vendor/plugins`. You must replace any plugins by extracting them to gems and adding them to your Gemfile. If you choose not to make them gems, you can move them into, say, `lib/my_plugin/*` and add an appropriate initializer in `config/initializers/my_plugin.rb`.
+레일스 4.0에서는 `vendor/plugins`을 불러오지 않게 되었습니다. 사용하는 플러그인은 모두 gem으로 만들어서 Gemfile에 추가해야합니다. 이유가 있어서 플러그인을 gem으로 만들 수 없다면, 플러그인을 `lib/my_plugin/*`에 옮기고, 적절한 초기화 작업을 `config/initializers/my_plugin.rb`에서 수행해주세요.
 
 ### Active Record
 
-* Rails 4.0 has removed the identity map from Active Record, due to [some inconsistencies with associations](https://github.com/rails/rails/commit/302c912bf6bcd0fa200d964ec2dc4a44abe328a6). If you have manually enabled it in your application, you will have to remove the following config that has no effect anymore: `config.active_record.identity_map`.
+* [관계에 관한 부정합](https://github.com/rails/rails/commit/302c912bf6bcd0fa200d964ec2dc4a44abe328a6)때문에 레일스 4.0에서는 Active Record에서 identity map이 삭제되었습니다. 이 기능을 애플리케이션에서 사용하고 싶은 경우에는 지금은 영향을 주지 않는 `config.active_record.identity_map`을 삭제할 필요가 있습니다.
 
-* The `delete` method in collection associations can now receive `Integer` or `String` arguments as record ids, besides records, pretty much like the `destroy` method does. Previously it raised `ActiveRecord::AssociationTypeMismatch` for such arguments. From Rails 4.0 on `delete` automatically tries to find the records matching the given ids before deleting them.
+* 컬렉션 관계에서의 `delete` 메소드는 인수로 레코드ID를 `Fixnum`나 `String`로 받게 되었습니다. 이를 통해 `destroy` 메소드의 동작과 비슷해졌습니다. 이전에는 이러한 인수를 사용하면 `ActiveRecord::AssociationTypeMismatch` 예외가 발생했습니다. Rails4.0부터는 `delete` 메소드를 사용하면 주어진 ID에 매칭하는 레코드를 자동적으로 찾게 되었습니다.
 
-* In Rails 4.0 when a column or a table is renamed the related indexes are also renamed. If you have migrations which rename the indexes, they are no longer needed.
+* 레일스 4.0에서는 컬럼이나 테이블의 이름을 변경하면 관계된 인덱스도 자동적으로 이름이 변경되도록 바뀌었습니다. 인덱스 이름만을 변경하는 마이그레이션을 추가로 작성할 필요가 없어졌습니다.
 
-* Rails 4.0 has changed `serialized_attributes` and `attr_readonly` to class methods only. You shouldn't use instance methods since it's now deprecated. You should change them to use class methods, e.g. `self.serialized_attributes` to `self.class.serialized_attributes`.
+* 레일스 4.0의 `serialized_attributes` 메소드와 `attr_readonly` 메소드는 클래스 메소드로서만 사용할 수 있도록 변경되었습니다. 이러한 메소드를 인스턴스 메소드로서 사용하는 것은 Deprecated되었으므로 사용하지 말아주세요. 예를 들어, `self.serialized_attributes`는 `self.class.serialized_attributes`처럼 클래스 메소드로서 사용해주세요.
 
-* When using the default coder, assigning `nil` to a serialized attribute will save it
-to the database as `NULL` instead of passing the `nil` value through YAML (`"--- \n...\n"`).
+* 기본 인코더를 사용하는 경우 직렬화 속성에 `nil`를 넘기면 YAML 전체에 걸쳐서(`nil` 값을 넘기는 대신에) `NULL`로서 데이터베이스에 저장됩니다(`"--- \n...\n"`).
 
-* Rails 4.0 has removed `attr_accessible` and `attr_protected` feature in favor of Strong Parameters. You can use the [Protected Attributes gem](https://github.com/rails/protected_attributes) for a smooth upgrade path.
+* 레일스 4.0에서는 Strong Parameters가 도입되면서 `attr_accessible`과 `attr_protected`가 제거되었습니다. 이를 계속해서 사용하고 싶은 경우에는 [Protected Attributes gem](https://github.com/rails/protected_attributes)를 도입하여 부드럽게 업그레이드를 할 수 있습니다.
 
-* If you are not using Protected Attributes, you can remove any options related to
-this gem such as `whitelist_attributes` or `mass_assignment_sanitizer` options.
+* Protected Attributes를 사용하지 않습니다면 `whitelist_attributes`나 `mass_assignment_sanitizer` 옵션 등, 이 gem에 관련된 모든 옵션을 제거할 수 있습니다.
 
-* Rails 4.0 requires that scopes use a callable object such as a Proc or lambda:
+* 레일스 4.0의 스코프에서는 Proc이나 lambda 등의 호출 가능한 객체를 사용하는 것이 의무가 되었습니다.
 
 ```ruby
   scope :active, where(active: true)
 
-  # becomes
+  # 이 코드는 다음과 같이 변경해야합니다
   scope :active, -> { where active: true }
 ```
 
-* Rails 4.0 has deprecated `ActiveRecord::Fixtures` in favor of `ActiveRecord::FixtureSet`.
+* `ActiveRecord::FixtureSet`의 도입에 따라, 레일스 4.0에서는 `ActiveRecord::Fixtures` Deprecated 되었습니다.
 
-* Rails 4.0 has deprecated `ActiveRecord::TestCase` in favor of `ActiveSupport::TestCase`.
+* `ActiveSupport::TestCase`의 도입에 따라, 레일스 4.0에서는 `ActiveRecord::TestCase`Deprecated 되었습니다.
 
-* Rails 4.0 has deprecated the old-style hash based finder API. This means that
-  methods which previously accepted "finder options" no longer do.  For example, `Book.find(:all, conditions: { name: '1984' })` has been deprecated in favor of `Book.where(name: '1984')`
+* 레일스 4.0에서는 해시를 사용하는 기존의 finder API가 Deprecated 되었습니다. 지금까지 finder 옵션을 받고 있던 메소드는 이러한 옵션을 받을 수 없게 됩니다. 예를 들어, `Book.find(:all, conditions: { name: '1984' })`은 권장되지 않습니다. 앞으로는 `Book.where(name: '1984')`을 사용해주세요.
 
-* All dynamic methods except for `find_by_...` and `find_by_...!` are deprecated.
-  Here's how you can handle the changes:
+* 동적인 메소드는 `find_by_...`와 `find_by_...!`를 제외하고 모두 Deprecated 되었습니다. 다음으로 변경해주세요.
 
-      * `find_all_by_...`           becomes `where(...)`.
-      * `find_last_by_...`          becomes `where(...).last`.
-      * `scoped_by_...`             becomes `where(...)`.
-      * `find_or_initialize_by_...` becomes `find_or_initialize_by(...)`.
-      * `find_or_create_by_...`     becomes `find_or_create_by(...)`.
+      * `find_all_by_...`           대신에 `where(...)`를 사용
+      * `find_last_by_...`          대신에 `where(...).last`를 사용
+      * `scoped_by_...`             대신에 `where(...)`를 사용
+      * `find_or_initialize_by_...` 대신에 `find_or_initialize_by(...)`를 사용
+      * `find_or_create_by_...`     대신에 `find_or_create_by(...)`를 사용
 
-* Note that `where(...)` returns a relation, not an array like the old finders. If you require an `Array`, use `where(...).to_a`.
+* 이전의 finder가 배열을 돌려줬던 반면, `where(...)`은 Relation을 돌려줍니다. `Array`가 필요한 경우에는 `where(...).to_a`를 사용해주세요.
 
-* These equivalent methods may not execute the same SQL as the previous implementation.
+* 이와 동등한 메소드가 실행하는 SQL은 이전의 구현과 동일하지 않습니다.
 
-* To re-enable the old finders, you can use the [activerecord-deprecated_finders gem](https://github.com/rails/activerecord-deprecated_finders).
+* 이전의 finder를 다시 사용하고 싶은 경우에는 [activerecord-deprecated_finders gem](https://github.com/rails/activerecord-deprecated_finders)를 사용할 수 있습니다.
 
-* Rails 4.0 has changed to default join table for `has_and_belongs_to_many` relations to strip the common prefix off the second table name. Any existing `has_and_belongs_to_many` relationship between models with a common prefix must be specified with the `join_table` option. For example:
+### 액티브리소스
 
-```ruby
-CatalogCategory < ActiveRecord::Base
-  has_and_belongs_to_many :catalog_products, join_table: 'catalog_categories_catalog_products'
-end
-
-CatalogProduct < ActiveRecord::Base
-  has_and_belongs_to_many :catalog_categories, join_table: 'catalog_categories_catalog_products'
-end
-```
-
-* Note that the prefix takes scopes into account as well, so relations between `Catalog::Category` and `Catalog::Product` or `Catalog::Category` and `CatalogProduct` need to be updated similarly.
-
-### Active Resource
-
-Rails 4.0 extracted Active Resource to its own gem. If you still need the feature you can add the [Active Resource gem](https://github.com/rails/activeresource) in your Gemfile.
+레일스 4.0에서는 Active Resource가 gem으로 추출되었습니다. 이 기능이 필요한 경우에는 [Active Resource gem](https://github.com/rails/activeresource)을 Gemfile에 추가하세요.
 
 ### Active Model
 
-* Rails 4.0 has changed how errors attach with the `ActiveModel::Validations::ConfirmationValidator`. Now when confirmation validations fail, the error will be attached to `:#{attribute}_confirmation` instead of `attribute`.
+* 레일스 4.0에서는 `ActiveModel::Validations::ConfirmationValidator`에 에러가 추가되는 방법이 변경되었습니다. 확인(Confirmation) 검증이 실패한 경우 `attribute`가 아닌 `:#{attribute}_confirmation`에 추가되도록 변경되었습니다.
 
-* Rails 4.0 has changed `ActiveModel::Serializers::JSON.include_root_in_json` default value to `false`. Now, Active Model Serializers and Active Record objects have the same default behavior. This means that you can comment or remove the following option in the `config/initializers/wrap_parameters.rb` file:
+* 레일스 4.0의 `ActiveModel::Serializers::JSON.include_root_in_json`의 기본값이 `false`로 변경되었습니다. 이로 인해, Active Model Serializers와 Active Record 객체의 기본 동작이 동일해졌습니다. 덕분에 `config/initializers/wrap_parameters.rb` 파일의 다음 옵션을 주석 처리하거나 삭제할 수 있습니다.
 
 ```ruby
 # Disable root element in JSON by default.
@@ -1210,9 +999,9 @@ Rails 4.0 extracted Active Resource to its own gem. If you still need the featur
 # end
 ```
 
-### Action Pack
+### 액션팩
 
-* Rails 4.0 introduces `ActiveSupport::KeyGenerator` and uses this as a base from which to generate and verify signed cookies (among other things). Existing signed cookies generated with Rails 3.x will be transparently upgraded if you leave your existing `secret_token` in place and add the new `secret_key_base`.
+* 레일스 4.0부터는 `ActiveSupport::KeyGenerator`가 도입되어 서명이 추가된 cookies의 생성과 대조에 사용됩니다. 레일스 3.x로 생성된 기존의 서명된 cookies는 이전의 `secret_token`은 그대로 두고 `secret_key_base`를 새로 추가하여 투명하게 업그레이드할 수 있습니다.
 
 ```ruby
   # config/initializers/secret_token.rb
@@ -1220,36 +1009,32 @@ Rails 4.0 extracted Active Resource to its own gem. If you still need the featur
   Myapp::Application.config.secret_key_base = 'new secret key base'
 ```
 
-Please note that you should wait to set `secret_key_base` until you have 100% of your userbase on Rails 4.x and are reasonably sure you will not need to rollback to Rails 3.x. This is because cookies signed based on the new `secret_key_base` in Rails 4.x are not backwards compatible with Rails 3.x. You are free to leave your existing `secret_token` in place, not set the new `secret_key_base`, and ignore the deprecation warnings until you are reasonably sure that your upgrade is otherwise complete.
+`secret_key_base`를 설정하는 작업은 레일스 4.x로 이전이 100% 완료되어, 레일스 3.x로 롤백할 필요가 완전히 없어졌을 때에 진행해주세요. 이는 레일스 4.x의 새로운 `secret_key_base`를 사용해서 서명된 cookies에는 레일스 3.x의 cookies와의 후방 호환성이 없기 때문입니다. 다른 업그레이드 작업이 완전히 완료되기 전까지는 기존의 `secret_token`를 그대로 두고 `secret_key_base`를 설정하지 않은 채로 Deprecated 경고를 무시하는 선택지도 있습니다.
 
-If you are relying on the ability for external applications or JavaScript to be able to read your Rails app's signed session cookies (or signed cookies in general) you should not set `secret_key_base` until you have decoupled these concerns.
+외부 애플리케이션이나 JavaScript로부터의 레일스 애플리케이션의 서명된 세션 cookies(또는 일반적인 서명된 cookies)를 읽어올 필요가 있는 경우에는 이러한 문제를 해결할 때까지 `secret_key_base`를 설정하지 말아주세요.
 
-* Rails 4.0 encrypts the contents of cookie-based sessions if `secret_key_base` has been set. Rails 3.x signed, but did not encrypt, the contents of cookie-based session. Signed cookies are "secure" in that they are verified to have been generated by your app and are tamper-proof. However, the contents can be viewed by end users, and encrypting the contents eliminates this caveat/concern without a significant performance penalty.
+* 레일스 4.0에는 `secret_key_base`가 설정되어 있으면 cookie 기반의 세션의 내용이 암호화됩니다. 레일스 3.x에서는 cookies 기반의 세션에는 서명이 되지만, 암호화는 되지 않았습니다. 서명된 cookies는 그 레일스 애플리케이션에서 생성된 것을 확인할 수 있으며, 악의있는 변경을 막는다는 의미에서는 안전합니다. 하지만 세션의 내용은 최종 사용자에게 노출됩니다. 내용을 암호화하는 것으로 이러한 걱정을 제거할 수 있으며, 이에 따른 성능의 저하는 거의 없습니다.
 
-Please read [Pull Request #9978](https://github.com/rails/rails/pull/9978) for details on the move to encrypted session cookies.
+세션 cookies를 암호화하는 방법에 대해서는 [Pull Request #9978](https://github.com/rails/rails/pull/9978)를 참조해주세요.
 
-* Rails 4.0 removed the `ActionController::Base.asset_path` option. Use the assets pipeline feature.
+* 레일스 4.0에서는 `ActionController::Base.asset_path` 옵션이 제거되었습니다. 대신에 애셋 파이프라인 기능을 사용해주세요.
 
-* Rails 4.0 has deprecated `ActionController::Base.page_cache_extension` option. Use `ActionController::Base.default_static_extension` instead.
+* 레일스 4.0에서는 `ActionController::Base.page_cache_extension` 옵션이 Deprecated되었습니다. 대신에 `ActionController::Base.default_static_extension`를 사용해주세요.
 
-* Rails 4.0 has removed Action and Page caching from Action Pack. You will need to add the `actionpack-action_caching` gem in order to use `caches_action` and the `actionpack-page_caching` to use `caches_page` in your controllers.
+* 레일스 4.0의 Action Pack으로부터 Action과 Page의 캐시 기능이 제거되었습니다. 컨트롤러에서 `caches_action`를 사용하고 싶은 경우에는 `actionpack-action_caching` gem을, `caches_pages`를 사용하고 싶은 경우에는 `actionpack-page_caching` gem을 각각 Gemfile에 추가해주세요.
 
-* Rails 4.0 has removed the XML parameters parser. You will need to add the `actionpack-xml_parser` gem if you require this feature.
+* 레일스 4.0에서 XML 파라미터 파서가 제거되었습니다. 이 기능이 필요한 경우에는 `actionpack-xml_parser` gem을 Gemfile에 추가해주세요.
 
-* Rails 4.0 changes the default `layout` lookup set using symbols or procs that return nil. To get the "no layout" behavior, return false instead of nil.
+* 레일스 4.0의 기본 memcached 클라이언트가 `memcache-client`에서 `dalli`로 변경되었습니다. 업그레이드를 하기 위해서는 `gem 'dalli'`를 `Gemfile`에 추가하세요.
 
-* Rails 4.0 changes the default memcached client from `memcache-client` to `dalli`. To upgrade, simply add `gem 'dalli'` to your `Gemfile`.
+* 레일스 4.0에서는 컨트롤러에서의 `dom_id`와 `dom_class` 메소드가 Deprecated되었습니다(뷰에서 사용하는 것은 문제 없습니다). 그 기능이 필요한 컨트롤러에서는 `ActionView::RecordIdentifier` 모듈을 포함시킬 필요가 있습니다.
 
-* Rails 4.0 deprecates the `dom_id` and `dom_class` methods in controllers (they are fine in views). You will need to include the `ActionView::RecordIdentifier` module in controllers requiring this feature.
+* 레일스 4.0에서는 `link_to` 헬퍼에서 `:confirm` 옵션이 Deprecated되었습니다. 대신에 data 속성을 사용해주세요(예시: `data: { confirm: 'Are you sure?' }`).
+`link_to_if`나 `link_to_unless` 등에서도 같은 대응이 필요합니다.
 
-* Rails 4.0 deprecates the `:confirm` option for the `link_to` helper. You should
-instead rely on a data attribute (e.g. `data: { confirm: 'Are you sure?' }`).
-This deprecation also concerns the helpers based on this one (such as `link_to_if`
-or `link_to_unless`).
+* 레일스 4.0에서는 `assert_generates`, `assert_recognizes`, `assert_routing`의 동작이 변경되었습니다. 이러한 단언에서는 `ActionController::RoutingError` 대신에 `Assertion`이 발생하도게 되었습니다.
 
-* Rails 4.0 changed how `assert_generates`, `assert_recognizes`, and `assert_routing` work. Now all these assertions raise `Assertion` instead of `ActionController::RoutingError`.
-
-* Rails 4.0 raises an `ArgumentError` if clashing named routes are defined. This can be triggered by explicitly defined named routes or by the `resources` method. Here are two examples that clash with routes named `example_path`:
+* 레일스 4.0에서는 이름 있는 라우팅의 정의가 중복되는 경우에 `ArgumentError`가 발생하도록 변경되었습니다. 이 에러는 명시적으로 정의된 이름 있는 라우팅이나 `resources` 메소드에 의해서 발생합니다.다음은 이름 있는 라우팅 `example_path`가 충돌하는 예제를 2개입니다.
 
 ```ruby
   get 'one' => 'test#example', as: :example
@@ -1261,84 +1046,77 @@ or `link_to_unless`).
   get 'clashing/:id' => 'test#example', as: :example
 ```
 
-In the first case, you can simply avoid using the same name for multiple
-routes. In the second, you can use the `only` or `except` options provided by
-the `resources` method to restrict the routes created as detailed in the
-[Routing Guide](routing.html#restricting-the-routes-created).
+첫번째 예제에서는 복수의 라우팅에서 같은 이름을 사용하지 않도록 하는 것으로 회피할 수 있습니다. 다음 예제에서는 `only` 또는 `except` 옵션을 `resources` 메소드에서 사용하는 것으로 생성되는 라우팅을 제한할 수 있습니다. 자세한 것은 [라우팅 가이드](routing.html#라우팅-생성을-제한하기)를 참조하세요.
 
-* Rails 4.0 also changed the way unicode character routes are drawn. Now you can draw unicode character routes directly. If you already draw such routes, you must change them, for example:
+* 레일스 4.0에서는 unicode 문자 라우팅의 추출 방법이 변경되었습니다. unicode 문자를 사용하는 라우팅을 직접 추출할 수 있게 되었습니다.
 
 ```ruby
-get Rack::Utils.escape('こんにちは'), controller: 'welcome', action: 'index'
+get Rack::Utils.escape('안녕하세요'), controller: 'welcome', action: 'index'
 ```
 
-becomes
+이 코드를 다음과 같이 변경하세요.
 
 ```ruby
-get 'こんにちは', controller: 'welcome', action: 'index'
+get '안녕하세요', controller: 'welcome', action: 'index'
 ```
 
-* Rails 4.0 requires that routes using `match` must specify the request method. For example:
+* 레일스 4.0에서 라우팅에서 `match`를 사용하는 경우에는 요청 메소드를 지정하는 것이 필수가 되었습니다. 다음은 예시입니다.
 
 ```ruby
-  # Rails 3.x
+  # 레일스 3.x
   match '/' => 'root#index'
 
-  # becomes
+  # 이 코드는 다음처럼 변경해야 합니다.
   match '/' => 'root#index', via: :get
 
-  # or
+  # 또는
   get '/' => 'root#index'
 ```
 
-* Rails 4.0 has removed `ActionDispatch::BestStandardsSupport` middleware, `<!DOCTYPE html>` already triggers standards mode per http://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx and ChromeFrame header has been moved to `config.action_dispatch.default_headers`.
+* 레일스 4.0부터 `ActionDispatch::BestStandardsSupport` 미들웨어가 제거되었습니다. `<!DOCTYPE html>`은 이미 http://msdn.microsoft.com/en-us/library/jj676915(v=vs.85).aspx 의 표준 모드를 실행하도록 되어있으며, ChromeFrame의 헤더는 `config.action_dispatch.default_headers`로 이동되었습니다.
 
-Remember you must also remove any references to the middleware from your application code, for example:
+그러므로 애플리케이션 코드에 있는 이 미들웨어에 대한 참조를 모두 제거해야 합니다.
 
 ```ruby
-# Raise exception
+# 예외 발생
 config.middleware.insert_before(Rack::Lock, ActionDispatch::BestStandardsSupport)
 ```
 
-Also check your environment settings for `config.action_dispatch.best_standards_support` and remove it if present.
+환경 설정을 확인하고 `config.action_dispatch.best_standards_support`가 있는 경우에 제거해주세요.
 
-* In Rails 4.0, precompiling assets no longer automatically copies non-JS/CSS assets from `vendor/assets` and `lib/assets`. Rails application and engine developers should put these assets in `app/assets` or configure `config.assets.precompile`.
+* 레일스 4.0의 애셋 사전 컴파일에서는 `vendor/assets`와 `lib/assets`에 있는 비JS/CSS 애셋을 자동적으로 복사하지 않게 되었습니다. 레일스 애플리케이션과 엔진의 개발자는 이러한 애셋을 직접 `app/assets`에 옮기고 `config.assets.precompile`를 지정해주세요.
 
-* In Rails 4.0, `ActionController::UnknownFormat` is raised when the action doesn't handle the request format. By default, the exception is handled by responding with 406 Not Acceptable, but you can override that now. In Rails 3, 406 Not Acceptable was always returned. No overrides.
+* 레일스 4.0에서는 요청된 형식이 액션에서 사용할 수 없을 경우에 `ActionController::UnknownFormat`가 발생하게 되었습니다. 기본으로 이 예외는 406 Not Acceptable 응답으로 처리됩니다만, 이 동작을 재정의할 수도 있습니다. 레일스 3에서는 항상 406 Not Acceptable가 반환됩니다. 재정의는 할 수 없습니다.
 
-* In Rails 4.0, a generic `ActionDispatch::ParamsParser::ParseError` exception is raised when `ParamsParser` fails to parse request params. You will want to rescue this exception instead of the low-level `MultiJson::DecodeError`, for example.
+* 레일스 4.0에서는 `ParamsParser`가 요청 파라미터를 넘기지 않은 경우에 일반적인 `ActionDispatch::ParamsParser::ParseError` 예외가 발생하게 되었습니다. `MultiJson::DecodeError`와 같은 저레벨의 예외 대신에 이 예외를 사용할 수 있습니다.
 
-* In Rails 4.0, `SCRIPT_NAME` is properly nested when engines are mounted on an app that's served from a URL prefix. You no longer have to set `default_url_options[:script_name]` to work around overwritten URL prefixes.
+* 레일스 4.0에서는 URL 프리픽스에서 지정된 애플리케이션에 엔진이 마운트 되어 있는 경우에 `SCRIPT_NAME`가 올바르게 중첩되게 변경되었습니다. 앞으로는 URL 프리픽스의 재정의를 피하기 위해서 `default_url_options[:script_name]`를 설정할 필요가 없습니다.
 
-* Rails 4.0 deprecated `ActionController::Integration` in favor of `ActionDispatch::Integration`.
-* Rails 4.0 deprecated `ActionController::IntegrationTest` in favor of `ActionDispatch::IntegrationTest`.
-* Rails 4.0 deprecated `ActionController::PerformanceTest` in favor of `ActionDispatch::PerformanceTest`.
-* Rails 4.0 deprecated `ActionController::AbstractRequest` in favor of `ActionDispatch::Request`.
-* Rails 4.0 deprecated `ActionController::Request` in favor of `ActionDispatch::Request`.
-* Rails 4.0 deprecated `ActionController::AbstractResponse` in favor of `ActionDispatch::Response`.
-* Rails 4.0 deprecated `ActionController::Response` in favor of `ActionDispatch::Response`.
-* Rails 4.0 deprecated `ActionController::Routing` in favor of `ActionDispatch::Routing`.
+* 레일스 4.0에서는 `ActionDispatch::Integration`의 도입에 따라 `ActionController::Integration`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::IntegrationTest`의 도입에 따라 `ActionController::IntegrationTest`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::PerformanceTest`의 도입에 따라 `ActionController::PerformanceTest`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::Request`의 도입에 따라 `ActionController::AbstractRequest`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::Request`의 도입에 따라 `ActionController::Request`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::Response`의 도입에 따라 `ActionController::AbstractResponse`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::Response`의 도입에 따라 `ActionController::Response`가 Deprecated되었습니다.
+* 레일스 4.0에서는 `ActionDispatch::Routing`의 도입에 따라 `ActionController::Routing`가 Deprecated되었습니다.
 
 ### Active Support
 
-Rails 4.0 removes the `j` alias for `ERB::Util#json_escape` since `j` is already used for `ActionView::Helpers::JavaScriptHelper#escape_javascript`.
+레일스 4.0에서는 `ERB::Util#json_escape`의 별칭인 `j`가 폐기되었습니다. 이 별칭 `j`는 이미 `ActionView::Helpers::JavaScriptHelper#escape_javascript`에서 사용되고 있기 때문입니다.
 
-#### Cache
+### 헬퍼 로딩 순서
 
-The caching method changed between Rails 3.x and 4.0. You should [change the cache namespace](http://guides.rubyonrails.org/caching_with_rails.html#activesupport-cache-store) and roll out with a cold cache.
+레일스 4.0에서는 다수의 폴더로부터 헬퍼들의 로딩 순서가 변경되었습니다. 이전은 모든 헬퍼를 모아서 알파벳 순서대로 정렬했습니다. 레일스 4.0으로 업그레이드를 하면, 헬퍼는 로딩된 폴더의 순서를 저장하고, 정렬은 각 폴더 내에서 이루어집니다. `helpers_path` 파라미터를 명시적으로 사용하는 경우를 제외하고, 이 변경은 엔진에서 헬퍼를 로딩하는 방법에만 영향을 줍니다. 헬퍼 로딩의 순서에 의존하고 있는 경우에는 업그레이드 이후에 올바른 메소드가 사용되고 있는지 확인할 필요가 있습니다. 엔진이 읽어오는 순서를 변경하고 싶은 경우에는 `config.railties_order=` 메소드를 사용할 수 있습니다.
 
-### Helpers Loading Order
+### Active Record Observer와 Action Controller Sweeper
 
-The order in which helpers from more than one directory are loaded has changed in Rails 4.0. Previously, they were gathered and then sorted alphabetically. After upgrading to Rails 4.0, helpers will preserve the order of loaded directories and will be sorted alphabetically only within each directory. Unless you explicitly use the `helpers_path` parameter, this change will only impact the way of loading helpers from engines. If you rely on the ordering, you should check if correct methods are available after upgrade. If you would like to change the order in which engines are loaded, you can use `config.railties_order=` method.
-
-### Active Record Observer and Action Controller Sweeper
-
-`ActiveRecord::Observer` and `ActionController::Caching::Sweeper` have been extracted to the `rails-observers` gem. You will need to add the `rails-observers` gem if you require these features.
+`Active Record Observer`와 `Action Controller Sweeper`는 `rails-observers` gem으로 분리되었습니다. 이러한 기능이 필요한 경우에는 `rails-observers` gem을 추가해주세요.
 
 ### sprockets-rails
 
-* `assets:precompile:primary` and `assets:precompile:all` have been removed. Use `assets:precompile` instead.
-* The `config.assets.compress` option should be changed to `config.assets.js_compressor` like so for instance:
+* `assets:precompile:primary`와 `assets:precompile:all`이 삭제되었습니다. `assets:precompile`를 대신 사용해주세요.
+* `config.assets.compress` 옵션은 예를 들어 다음과 같이 `config.assets.js_compressor`로 변경해야합니다.
 
 ```ruby
 config.assets.js_compressor = :uglifier
@@ -1346,20 +1124,16 @@ config.assets.js_compressor = :uglifier
 
 ### sass-rails
 
-* `asset-url` with two arguments is deprecated. For example: `asset-url("rails.png", image)` becomes `asset-url("rails.png")`.
+* 인수를 2개 사용하는 `asset-url`이 Deprecated되었습니다. 예를 들어, `asset-url("rails.png", image)`은 `asset-url("rails.png")`로 변경해주세요.
 
-Upgrading from Rails 3.1 to Rails 3.2
+레일스 3.1에서 레일스 3.2로 업그레이드
 -------------------------------------
 
-If your application is currently on any version of Rails older than 3.1.x, you
-should upgrade to Rails 3.1 before attempting an update to Rails 3.2.
-
-The following changes are meant for upgrading your application to the latest
-3.2.x version of Rails.
+레일스 애플리케이션의 버전이 3.1보다 이전인 경우, 우선 3.1로 업그레이드를 완료한 이후에 레일스 3.2로 업그레이드를 시작해주세요.
 
 ### Gemfile
 
-Make the following changes to your `Gemfile`.
+`Gemfile`을 다음과 같이 변경합니다.
 
 ```ruby
 gem 'rails', '3.2.21'
@@ -1373,141 +1147,139 @@ end
 
 ### config/environments/development.rb
 
-There are a couple of new configuration settings that you should add to your development environment:
+development 환경에 몇몇 새로운 설정을 추가해야합니다.
 
 ```ruby
-# Raise exception on mass assignment protection for Active Record models
+# Active Record의 모델을 대량할당으로부터 보호하기 위해 예외를 발생시킵니다
 config.active_record.mass_assignment_sanitizer = :strict
 
-# Log the query plan for queries taking more than this (works
-# with SQLite, MySQL, and PostgreSQL)
+# 쿼리의 실행 계획(Query Plan)을 현재보다 많이 출력합니다
+# (SQLite、MySQL、PostgreSQL에서 동작)
 config.active_record.auto_explain_threshold_in_seconds = 0.5
 ```
 
 ### config/environments/test.rb
 
-The `mass_assignment_sanitizer` configuration setting should also be added to `config/environments/test.rb`:
+`mass_assignment_sanitizer` 설정을 `config/environments/test.rb`에도 추가해야 합니다.
 
 ```ruby
-# Raise exception on mass assignment protection for Active Record models
+# Active Record의 모델을 대량할당으로부터 보호하기 위해서 예외를 발생시킵니다
 config.active_record.mass_assignment_sanitizer = :strict
 ```
 
 ### vendor/plugins
 
-Rails 3.2 deprecates `vendor/plugins` and Rails 4.0 will remove them completely. While it's not strictly necessary as part of a Rails 3.2 upgrade, you can start replacing any plugins by extracting them to gems and adding them to your Gemfile. If you choose not to make them gems, you can move them into, say, `lib/my_plugin/*` and add an appropriate initializer in `config/initializers/my_plugin.rb`.
+`vendor/plugins`는 레일스 3.2에서 Deprecated되었으며, 레일스 3.0에서는 완전히 삭제되었습니다. 레일스 3.2로 업그레이드할 때에는 필수가 아닙니다만, 미리 플러그인을 gem으로 내보내서 Gemfile에 추가하는 것이 좋습니다. 이유가 있어 gem으로 만들 수 없는 경우라면, 플러그인을 `lib/my_plugin/*`로 옮기고, 적절한 초기화 작업을 `config/initializers/my_plugin.rb`에 추가해주세요.
 
 ### Active Record
 
-Option `:dependent => :restrict` has been removed from `belongs_to`. If you want to prevent deleting the object if there are any associated objects, you can set `:dependent => :destroy` and return `false` after checking for existence of association from any of the associated object's destroy callbacks.
+`:dependent => :restrict` 옵션은 `belongs_to`로부터 삭제되었습니다. 관계로 연결된 객체가 있는 경우에 이 객체를 삭제하고싶지 않은 경우에는 `:dependent => :destroy`를 설정하고, 관계로 연결된 객체의 destroy 콜백에서 연결된 다른 객체가 있는지를 확인한 뒤 `false`를 반환합니다.
 
-Upgrading from Rails 3.0 to Rails 3.1
+레일스 3.0에서 레일스 3.1로 업그레이드
 -------------------------------------
 
-If your application is currently on any version of Rails older than 3.0.x, you should upgrade to Rails 3.0 before attempting an update to Rails 3.1.
+레일스 애플리케이션이 3.0보다 이전인 경우, 우선 3.0으로 업그레이드를 완료한 이후에 레일스 3.1로의 업그레이드 작업을 시작해주세요.
 
-The following changes are meant for upgrading your application to Rails 3.1.12, the last 3.1.x version of Rails.
+다음의 설명은 레일스 3.1.x의 최신판인 레일스 3.1.12로 업그레이드하기 위한 것입니다.
 
 ### Gemfile
 
-Make the following changes to your `Gemfile`.
+`Gemfile`를 다음과 같이 변경합니다.
 
 ```ruby
 gem 'rails', '3.1.12'
-gem 'mysql2'
+gem 'mysql2' 
 
-# Needed for the new asset pipeline
+# 새로운 애셋 파이프라인으로 변경
 group :assets do
   gem 'sass-rails',   '~> 3.1.7'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier',     '>= 1.0.3'
 end
 
-# jQuery is the default JavaScript library in Rails 3.1
+# 레일스 3.1에서 jQuery가 기본 JavaScript 라이브러리가 되었습니다
 gem 'jquery-rails'
 ```
 
 ### config/application.rb
 
-The asset pipeline requires the following additions:
+애셋 파이프라인을 사용하기 위해서 다음을 변경하세요.
 
 ```ruby
 config.assets.enabled = true
 config.assets.version = '1.0'
 ```
 
-If your application is using an "/assets" route for a resource you may want change the prefix used for assets to avoid conflicts:
+레일스 애플리케이션에서 리소스의 라우팅에 "/assets" 라우팅을 사용하는 경우, 충돌을 피하기 위해서 다음을 추가하세요.
 
 ```ruby
-# Defaults to '/assets'
+# '/assets'가 기본값
 config.assets.prefix = '/asset-files'
-```
+``` 
 
 ### config/environments/development.rb
 
-Remove the RJS setting `config.action_view.debug_rjs = true`.
+RJS의 설정 `config.action_view.debug_rjs = true`을 삭제해주세요.
 
-Add these settings if you enable the asset pipeline:
+애셋 파이프라인을 활성화하고 싶은 경우에는 다음 설정을 추가합니다.
 
 ```ruby
-# Do not compress assets
+# 개발환경에서는 애셋을 압축하지 않습니다
 config.assets.compress = false
 
-# Expands the lines which load the assets
+# 애셋에서 가져온 라인을 전개합니다
 config.assets.debug = true
 ```
 
 ### config/environments/production.rb
 
-Again, most of the changes below are for the asset pipeline. You can read more about these in the [Asset Pipeline](asset_pipeline.html) guide.
+아래의 변경사항은 대부분이 애셋 파이프라인을 위한 것입니다. 자세한 설명은 [애셋 파이프라인](asset_pipeline.html) 가이드를 참조해주세요.
 
 ```ruby
-# Compress JavaScripts and CSS
+# JavaScript와 CSS를 압축합니다
 config.assets.compress = true
 
-# Don't fallback to assets pipeline if a precompiled asset is missed
+# 사전 컴파일된 애셋이 발견되지 않는 경우 애셋 파이프라인으로 폴백하지 않습니다
 config.assets.compile = false
 
-# Generate digests for assets URLs
+# 애셋 URL의 다이제스트를 생성합니다
 config.assets.digest = true
 
-# Defaults to Rails.root.join("public/assets")
-# config.assets.manifest = YOUR_PATH
+# Rails.root.join("public/assets")의 기본값
+# config.assets.manifest = 해당하는 경로
 
-# Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-# config.assets.precompile += %w( admin.js admin.css )
+# 추가 애셋(application.js, application.css 과 모든 비JS/CSS가 추가되어 있음)을 사전 컴파일합니다
+# config.assets.precompile += %w( search.js )
 
-# Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+# 애플리케이션에 대한 모든 접근을 강제적으로 SSL로 만들고, Strict-Transport-Security와 보안 쿠키를 사용합니다
 # config.force_ssl = true
-```
+``` 
 
 ### config/environments/test.rb
 
-You can help test performance with these additions to your test environment:
+테스트 환겅에 다음을 추가하여 테스트 성능을 향상시킵니다.
 
 ```ruby
-# Configure static asset server for tests with Cache-Control for performance
-config.public_file_server.enabled = true
-config.public_file_server.headers = {
-  'Cache-Control' => 'public, max-age=3600'
-}
+# Cache-Control를 사용하는 테스트에서 정적인 애셋 서버를 구성하고, 성능을 향상시킵니다
+config.serve_static_assets = true
+config.static_cache_control = 'public, max-age=3600'
 ```
 
 ### config/initializers/wrap_parameters.rb
 
-Add this file with the following contents, if you wish to wrap parameters into a nested hash. This is on by default in new applications.
+중첩된 해시에 파라미터를 포함하고 싶은 경우에는, 이 파일에 다음의 내용을 추가합니다. 새로운 애플리케이션에서는 이것이 기본값입니다.
 
 ```ruby
-# Be sure to restart your server when you modify this file.
-# This file contains settings for ActionController::ParamsWrapper which
-# is enabled by default.
+# 이 파일을 변경한 뒤에 반드시 서버를 다시 기동해주세요.
+# 이 파일에는 ActionController::ParamsWrapper용의 설정이 포함되어 있으며
+# 기본으로 활성화되어 있습니다.
 
-# Enable parameter wrapping for JSON. You can disable this by setting :format to an empty array.
+# JSON 용의 파라미터를 감쌉니다. :format에 빈 배열을 설정하는 것으로 무효화할 수 있습니다.
 ActiveSupport.on_load(:action_controller) do
   wrap_parameters format: [:json]
 end
 
-# Disable root element in JSON by default.
+# JSON의 루트 요소를 기본으로 비활성화 합니다
 ActiveSupport.on_load(:active_record) do
   self.include_root_in_json = false
 end
@@ -1515,19 +1287,21 @@ end
 
 ### config/initializers/session_store.rb
 
-You need to change your session key to something new, or remove all sessions:
+세로운 세션 키를 설정하거나, 모든 세선을 삭제할지를 선택해야합니다.
 
 ```ruby
-# in config/initializers/session_store.rb
+# config/initializers/session_store.rb에 다음을 설정합니다
 AppName::Application.config.session_store :cookie_store, key: 'SOMETHINGNEW'
 ```
 
-or
+또는
 
 ```bash
 $ bin/rake db:sessions:clear
 ```
 
-### Remove :cache and :concat options in asset helpers references in views
+###  뷰의 애셋 헬퍼 참조로부터 :cache 옵션과 :concat 옵션을 삭제하기
 
-* With the Asset Pipeline the :cache and :concat options aren't used anymore, delete these options from your views.
+* Asset Pipeline의 :cache 옵션과 :concat 옵션이 삭제되었습니다. 뷰에서 이 옵션들을 제거해주세요.
+
+TIP: 이 가이드는 [Rails Guilde 일본어판](http://railsguides.jp)으로부터 번역되었습니다.

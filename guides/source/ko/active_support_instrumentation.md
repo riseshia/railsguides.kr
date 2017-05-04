@@ -1,5 +1,3 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
-
 Active Support Instrumentation
 ==============================
 
@@ -19,7 +17,7 @@ After reading this guide, you will know:
 Introduction to instrumentation
 -------------------------------
 
-The instrumentation API provided by Active Support allows developers to provide hooks which other developers may hook into. There are several of these within the [Rails framework](#rails-framework-hooks). With this API, developers can choose to be notified when certain events occur inside their application or another piece of Ruby code.
+The instrumentation API provided by Active Support allows developers to provide hooks which other developers may hook into. There are several of these within the Rails framework, as described below in <TODO: link to section detailing each hook point>. With this API, developers can choose to be notified when certain events occur inside their application or another piece of Ruby code.
 
 For example, there is a hook provided within Active Record that is called every time Active Record uses an SQL query on a database. This hook could be **subscribed** to, and used to track the number of queries during a certain action. There's another hook around the processing of an action of a controller. This could be used, for instance, to track how long a specific action has taken.
 
@@ -41,7 +39,7 @@ Action Controller
 
 ```ruby
 {
-  key: 'posts/1-dashboard-view'
+  key: 'posts/1-dasboard-view'
 }
 ```
 
@@ -53,7 +51,7 @@ Action Controller
 
 ```ruby
 {
-  key: 'posts/1-dashboard-view'
+  key: 'posts/1-dasboard-view'
 }
 ```
 
@@ -65,7 +63,7 @@ Action Controller
 
 ```ruby
 {
-  key: 'posts/1-dashboard-view'
+  key: 'posts/1-dasboard-view'
 }
 ```
 
@@ -77,7 +75,7 @@ Action Controller
 
 ```ruby
 {
-  key: 'posts/1-dashboard-view'
+  key: 'posts/1-dasboard-view'
 }
 ```
 
@@ -112,7 +110,6 @@ Action Controller
 | `:controller` | The controller name                                       |
 | `:action`     | The action                                                |
 | `:params`     | Hash of request parameters without any filtered parameter |
-| `:headers`    | Request headers                                           |
 | `:format`     | html/js/json/xml etc                                      |
 | `:method`     | HTTP request verb                                         |
 | `:path`       | Request path                                              |
@@ -122,7 +119,6 @@ Action Controller
   controller: "PostsController",
   action: "new",
   params: { "action" => "new", "controller" => "posts" },
-  headers: #<ActionDispatch::Http::Headers:0x0055a67a519b88>,
   format: :html,
   method: "GET",
   path: "/posts/new"
@@ -136,20 +132,16 @@ Action Controller
 | `:controller`   | The controller name                                       |
 | `:action`       | The action                                                |
 | `:params`       | Hash of request parameters without any filtered parameter |
-| `:headers`      | Request headers                                           |
 | `:format`       | html/js/json/xml etc                                      |
 | `:method`       | HTTP request verb                                         |
 | `:path`         | Request path                                              |
-| `:status`       | HTTP status code                                          |
 | `:view_runtime` | Amount spent in view in ms                                |
-| `:db_runtime`   | Amount spent executing database queries in ms             |
 
 ```ruby
 {
   controller: "PostsController",
   action: "index",
   params: {"action" => "index", "controller" => "posts"},
-  headers: #<ActionDispatch::Http::Headers:0x0055a67a519b88>,
   format: :html,
   method: "GET",
   path: "/posts",
@@ -222,25 +214,7 @@ Action View
 
 ```ruby
 {
-  identifier: "/Users/adam/projects/notifications/app/views/posts/_form.html.erb"
-}
-```
-
-### render_collection.action_view
-
-| Key           | Value                                 |
-| ------------- | ------------------------------------- |
-| `:identifier` | Full path to template                 |
-| `:count`      | Size of collection                    |
-| `:cache_hits` | Number of partials fetched from cache |
-
-`:cache_hits` is only included if the collection is rendered with `cached: true`.
-
-```ruby
-{
-  identifier: "/Users/adam/projects/notifications/app/views/posts/_post.html.erb",
-  count: 3,
-  cache_hits: 0
+  identifier: "/Users/adam/projects/notifications/app/views/posts/_form.html.erb",
 }
 ```
 
@@ -249,13 +223,11 @@ Active Record
 
 ### sql.active_record
 
-| Key              | Value                                    |
-| ---------------- | ---------------------------------------- |
-| `:sql`           | SQL statement                            |
-| `:name`          | Name of the operation                    |
-| `:connection_id` | `self.object_id`                         |
-| `:binds`         | Bind parameters                          |
-| `:cached`        | `true` is added when cached queries used |
+| Key          | Value                 |
+| ------------ | --------------------- |
+| `:sql`       | SQL statement         |
+| `:name`      | Name of the operation |
+| `:object_id` | `self.object_id`      |
 
 INFO. The adapters will add their own data as well.
 
@@ -268,19 +240,13 @@ INFO. The adapters will add their own data as well.
 }
 ```
 
-### instantiation.active_record
+### identity.active_record
 
 | Key              | Value                                     |
 | ---------------- | ----------------------------------------- |
-| `:record_count`  | Number of records that instantiated       |
-| `:class_name`    | Record's class                            |
-
-```ruby
-{
-  record_count: 1,
-  class_name: "User"
-}
-```
+| `:line`          | Primary Key of object in the identity map |
+| `:name`          | Record's class                            |
+| `:connection_id` | `self.object_id`                          |
 
 Action Mailer
 -------------
@@ -337,6 +303,17 @@ Action Mailer
 }
 ```
 
+ActiveResource
+--------------
+
+### request.active_resource
+
+| Key            | Value                |
+| -------------- | -------------------- |
+| `:method`      | HTTP method          |
+| `:request_uri` | Complete URI         |
+| `:result`      | HTTP response object |
+
 Active Support
 --------------
 
@@ -387,7 +364,7 @@ INFO. Options passed to fetch will be merged with the payload.
 | ------ | --------------------- |
 | `:key` | Key used in the store |
 
-INFO. Cache stores may add their own keys
+INFO. Cache stores my add their own keys
 
 ```ruby
 {
@@ -419,47 +396,6 @@ INFO. Cache stores may add their own keys
 }
 ```
 
-Active Job
---------
-
-### enqueue_at.active_job
-
-| Key          | Value                                  |
-| ------------ | -------------------------------------- |
-| `:adapter`   | QueueAdapter object processing the job |
-| `:job`       | Job object                             |
-
-### enqueue.active_job
-
-| Key          | Value                                  |
-| ------------ | -------------------------------------- |
-| `:adapter`   | QueueAdapter object processing the job |
-| `:job`       | Job object                             |
-
-### perform_start.active_job
-
-| Key          | Value                                  |
-| ------------ | -------------------------------------- |
-| `:adapter`   | QueueAdapter object processing the job |
-| `:job`       | Job object                             |
-
-### perform.active_job
-
-| Key          | Value                                  |
-| ------------ | -------------------------------------- |
-| `:adapter`   | QueueAdapter object processing the job |
-| `:job`       | Job object                             |
-
-
-Railties
---------
-
-### load_config_initializer.railties
-
-| Key            | Value                                                 |
-| -------------- | ----------------------------------------------------- |
-| `:initializer` | Path to loaded initializer from `config/initializers` |
-
 Rails
 -----
 
@@ -481,7 +417,7 @@ The block receives the following arguments:
 * The name of the event
 * Time when it started
 * Time when it finished
-* A unique ID for this event
+* An unique ID for this event
 * The payload (described in previous sections)
 
 ```ruby
@@ -512,7 +448,6 @@ Most times you only care about the data itself. Here is a shortcut to just get t
 ActiveSupport::Notifications.subscribe "process_action.action_controller" do |*args|
   data = args.extract_options!
   data # { extra: :information }
-end
 ```
 
 You may also subscribe to events matching a regular expression. This enables you to subscribe to

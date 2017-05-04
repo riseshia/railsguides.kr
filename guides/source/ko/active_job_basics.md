@@ -1,53 +1,49 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
 
-Active Job Basics
+Active Job 기초
 =================
 
-This guide provides you with all you need to get started in creating,
-enqueuing and executing background jobs.
+이 가이드에서는 백그라운드에서 실행하는 잡(Job)의 생성과 큐에 등록하는 방법(enqueue), 실행 방법에 대해서 설명합니다.
 
-After reading this guide, you will know:
+이 가이드의 내용:
 
-* How to create jobs.
-* How to enqueue jobs.
-* How to run jobs in the background.
-* How to send emails from your application asynchronously.
+* 잡 만들기
+* 잡 등록하기
+* 백그라운드에서 잡 실행하기
+* 애플리케이션에서 비동기로 메일 전송하기
 
 --------------------------------------------------------------------------------
 
 
-Introduction
+시작하기 전에
 ------------
 
-Active Job is a framework for declaring jobs and making them run on a variety
-of queuing backends. These jobs can be everything from regularly scheduled
-clean-ups, to billing charges, to mailings. Anything that can be chopped up
-into small units of work and run in parallel, really.
+Active Job은 잡을 선언하고, 이를 이용하여 큐를 사용하는 백엔드에서 다양한
+방법으로 이를 처리하는 프레임워크입니다. 여기서 잡이란 정기적으로 정기적으로
+실행되는 작업이나, 인보이스 발행이나 메일 전송 등, 어떤 것이라도 가능합니다.
+이 작업들을 좀 더 작은 단위로 분할해서 병렬 실행할 수도 있습니다.
 
 
-The Purpose of Active Job
+Active Job의 목적
 -----------------------------
-The main point is to ensure that all Rails apps will have a job infrastructure
-in place. We can then have framework features and other gems build on top of that,
-without having to worry about API differences between various job runners such as
-Delayed Job and Resque. Picking your queuing backend becomes more of an operational
-concern, then. And you'll be able to switch between them without having to rewrite
-your jobs.
+Active Job의 주 목적은 Rails 애플리케이션이 곧바로 실행하는 작업일지라도,
+자신만의 잡 관리 인프라를 가질 수 있도록 하는 것입니다. 이를 통해서
+Delayed Job과 Resque와 같은, 다양한 잡마다의 실행 방식의 차이를 신경쓰지 않고
+잡 프레임워크의 기능이나 그 이외의 gem을 탑재할 수 있게 됩니다. 백엔드에서
+큐를 관리할 때에는 조작 이외에는 신경을 쓸 필요가 없게 됩니다. 또한 잡 관리
+프레임워크를 변경하더라도 잡을 새로 작성할 필요가 없다는 장점도 있습니다.
 
-NOTE: Rails by default comes with an asynchronous queuing implementation that
-runs jobs with an in-process thread pool. Jobs will run asynchronously, but any
-jobs in the queue will be dropped upon restart.
+NOTE: Rails는 기본으로 "즉시 실행" 큐를 사용합니다.
+다시 말해 큐에 삽입된 잡은 즉시 실행된다는 의미입니다.
 
-
-Creating a Job
+잡 만들기
 --------------
 
-This section will provide a step-by-step guide to creating a job and enqueuing it.
+여기에서는 잡의 생성 방법과 잡을 등록하는 방법에 대해서 순서대로 설명합니다.
 
-### Create the Job
+### 잡 생성하기
 
-Active Job provides a Rails generator to create jobs. The following will create a
-job in `app/jobs` (with an attached test case under `test/jobs`):
+Active Job은 잡 생성을 위한 Rails 제너레이터를 제공합니다. 이를 실행하면
+`app/jobs`에 잡이 하나 생성됩니다.
 
 ```bash
 $ bin/rails generate job guests_cleanup
@@ -56,130 +52,117 @@ create    test/jobs/guests_cleanup_job_test.rb
 create  app/jobs/guests_cleanup_job.rb
 ```
 
-You can also create a job that will run on a specific queue:
+아래와 같이 작성하면 특정 큐에 잡을 하나 생성합니다.
 
 ```bash
 $ bin/rails generate job guests_cleanup --queue urgent
+create  app/jobs/guests_cleanup_job.rb
 ```
 
-If you don't want to use a generator, you could create your own file inside of
-`app/jobs`, just make sure that it inherits from `ApplicationJob`.
+이처럼, Rails에서 다른 제너레이터를 사용할 때와 완전히 동일한 방법으로 잡을
+생성할 수 있습니다.
 
-Here's what a job looks like:
+제너레이터를 사용하고 싶지 않다면, `app/jobs`의 아래에 자신의 잡 파일을 직접
+생성할 수도 있습니다. 이런 경우에는 반드시 `ApplicationJob`를 상속해주세요.
+
+생성된 잡은 아래와 같습니다.
 
 ```ruby
 class GuestsCleanupJob < ApplicationJob
   queue_as :default
 
-  def perform(*guests)
-    # Do something later
+  def perform(*args)
+    # 나중에 실행하고 싶은 작업을 여기에 작성한다.
   end
 end
 ```
 
-Note that you can define `perform` with as many arguments as you want.
+### 큐에 잡을 등록하기
 
-### Enqueue the Job
-
-Enqueue a job like so:
+다음과 같은 방식으로 큐에 잡을 등록할 수 있습니다.
 
 ```ruby
-# Enqueue a job to be performed as soon as the queuing system is
-# free.
-GuestsCleanupJob.perform_later guest
+MyJob.perform_later record  # 큐 시스템에 여유가 생기면 잡을 등록한다
 ```
 
 ```ruby
-# Enqueue a job to be performed tomorrow at noon.
-GuestsCleanupJob.set(wait_until: Date.tomorrow.noon).perform_later(guest)
+MyJob.set(wait_until: Date.tomorrow.noon).perform_later(record)  # 내일 점심에 실행하고 싶은 잡을 등록한다
 ```
 
 ```ruby
-# Enqueue a job to be performed 1 week from now.
-GuestsCleanupJob.set(wait: 1.week).perform_later(guest)
+MyJob.set(wait: 1.week).perform_later(record) # 일주일 뒤에 실행하고 싶은 잡을 등록한다
 ```
 
-```ruby
-# `perform_now` and `perform_later` will call `perform` under the hood so
-# you can pass as many arguments as defined in the latter.
-GuestsCleanupJob.perform_later(guest1, guest2, filter: 'some_filter')
-```
+이상입니다.
 
-That's it!
 
-Job Execution
+잡 실행하기
 -------------
 
-For enqueuing and executing jobs in production you need to set up a queuing backend,
-that is to say you need to decide for a 3rd-party queuing library that Rails should use.
-Rails itself only provides an in-process queuing system, which only keeps the jobs in RAM.
-If the process crashes or the machine is reset, then all outstanding jobs are lost with the
-default async backend. This may be fine for smaller apps or non-critical jobs, but most
-production apps will need to pick a persistent backend.
+어댑터가 설정되어 있지 않은 경우, 잡은 바로 실행됩니다.
 
-### Backends
+### 백엔드
 
-Active Job has built-in adapters for multiple queuing backends (Sidekiq,
-Resque, Delayed Job and others). To get an up-to-date list of the adapters
-see the API Documentation for [ActiveJob::QueueAdapters](http://api.rubyonrails.org/classes/ActiveJob/QueueAdapters.html).
+Active Job에는 Sidekiq, Resque, Delayed Job 등의 다양한 큐용 백엔드에 접속
+가능한 어댑터가 내장되어 있습니다. 사용가능한 최신 어댑터 리스트에 대해서는
+API 문서의 [ActiveJob::QueueAdapters](http://api.rubyonrails.org/classes/ActiveJob/QueueAdapters.html)를 참조해주세요.
 
-### Setting the Backend
+### 백엔드 설정하기
 
-You can easily set your queuing backend:
+사용하는 큐는 자유롭게 설정하고 변경할 수 있습니다.
 
 ```ruby
 # config/application.rb
 module YourApp
   class Application < Rails::Application
-    # Be sure to have the adapter's gem in your Gemfile
-    # and follow the adapter's specific installation
-    # and deployment instructions.
+    # 반드시 어댑터 잼을 Gemfile에 추가하고
+    # 어댑터마다 반드시 인스톨과 배포하는 것을 잊지 말아주세요.
     config.active_job.queue_adapter = :sidekiq
   end
 end
 ```
 
-You can also configure your backend on a per job basis.
+또는 잡 별로 백엔드를 다르게 설정할 수도 있습니다.
 
 ```ruby
 class GuestsCleanupJob < ApplicationJob
   self.queue_adapter = :resque
-  #....
+  # ...
 end
 
-# Now your job will use `resque` as it's backend queue adapter overriding what
-# was configured in `config.active_job.queue_adapter`.
+# `config.active_job.queue_adapter`에 어떤 백엔드를 설정했는지에 관계없이
+# 이 잡은 `resque`를 백엔드로 사용할 것입니다.
 ```
 
-### Starting the Backend
+### 백엔드 시작하기
 
-Since jobs run in parallel to your Rails application, most queuing libraries
-require that you start a library-specific queuing service (in addition to
-starting your Rails app) for the job processing to work. Refer to library
-documentation for instructions on starting your queue backend.
+잡은 Rails 애플리케이션에서 대해서 병렬로 실행되기 때문에 많은 큐 라이브러리는
+잡을 처리하기 위한 라이브러리의 큐 서비스를 별도로 실행하기를 요구합니다.
+큐 백엔드를 시작하는데에 필요한 설명은 각 라이브러리의 문서를
+참조하세요. 
 
-Here is a noncomprehensive list of documentation:
+각 라이브러리들의 문서 목록입니다.
 
 - [Sidekiq](https://github.com/mperham/sidekiq/wiki/Active-Job)
 - [Resque](https://github.com/resque/resque/wiki/ActiveJob)
 - [Sucker Punch](https://github.com/brandonhilkert/sucker_punch#active-job)
 - [Queue Classic](https://github.com/QueueClassic/queue_classic#active-job)
 
-Queues
+큐
 ------
 
-Most of the adapters support multiple queues. With Active Job you can schedule
-the job to run on a specific queue:
+대부분의 어댑터에서는 다수의 큐를 사용할 수 있습니다. Active Job을 사용하면
+특정 큐에 잡을 추가할 수 있습니다.
 
 ```ruby
 class GuestsCleanupJob < ApplicationJob
   queue_as :low_priority
-  #....
+  # ....
 end
 ```
 
-You can prefix the queue name for all your jobs using
-`config.active_job.queue_name_prefix` in `application.rb`:
+`application.rb`에서 아래와 같이 `config.active_job.queue_name_prefix`를
+사용해서 큐 이름에 특정 접두어를 추가할 수 있습니다.
 
 ```ruby
 # config/application.rb
@@ -189,19 +172,19 @@ module YourApp
   end
 end
 
-# app/jobs/guests_cleanup_job.rb
+# app/jobs/guests_cleanup.rb
 class GuestsCleanupJob < ApplicationJob
   queue_as :low_priority
   #....
 end
 
-# Now your job will run on queue production_low_priority on your
-# production environment and on staging_low_priority
-# on your staging environment
+# 이상으로 production 환경에서 production_low_priority 라는 큐에서 잡이
+# 실행되게 되며, staging 환경에서는 staging_low_priority라는 큐에서 잡이
+# 실행되게 됩니다.
 ```
 
-The default queue name prefix delimiter is '\_'.  This can be changed by setting
-`config.active_job.queue_name_delimiter` in `application.rb`:
+기본 큐 이름 구분 기호는 '\_'입니다.이는 `application.rb`의
+`config.active_job.queue_name_delimiter`를 통해서 변경할 수 있습니다.
 
 ```ruby
 # config/application.rb
@@ -218,21 +201,21 @@ class GuestsCleanupJob < ApplicationJob
   #....
 end
 
-# Now your job will run on queue production.low_priority on your
-# production environment and on staging.low_priority
-# on your staging environment
+# 이제 잡은 production 환경이라면 production.low_priority 큐에,
+# staging 환경이라면 staging.low_priority 큐에 추가됩니다.
 ```
 
-If you want more control on what queue a job will be run you can pass a `:queue`
-option to `#set`:
+잡을 추가하는 시점에서 큐를 제어하고 싶은 경우에는 #set에 `:queue` 옵션을
+추가하면 됩니다.
 
 ```ruby
 MyJob.set(queue: :another_queue).perform_later(record)
 ```
 
-To control the queue from the job level you can pass a block to `#queue_as`. The
-block will be executed in the job context (so you can access `self.arguments`)
-and you must return the queue name:
+잡을 동작하는 시점에서 큐를 제어하기 위해서 `#queue_as`에 블록을 넘겨줄 수도
+있습니다. 넘겨진 블록은 그 잡의 컨텍스트 내에서 실행됩니다(따라서
+self.arguments에도 접근할 수 있습니다). 그리고 이 블록에서는 큐의 이름을
+반환해야 합니다.
 
 ```ruby
 class ProcessVideoJob < ApplicationJob
@@ -246,24 +229,25 @@ class ProcessVideoJob < ApplicationJob
   end
 
   def perform(video)
-    # Do process video
+    # do process video
   end
 end
 
 ProcessVideoJob.perform_later(Video.last)
 ```
 
-NOTE: Make sure your queuing backend "listens" on your queue name. For some
-backends you need to specify the queues to listen to.
+NOTE: 설정한 큐의 이름을 큐를 관리하는 백엔드에서 '이해할 수' 있도록 해주세요.
+일부 백엔드에서는 넘겨받는 큐의 이름을 지정해야 할 필요가 있습니다.
 
 
-Callbacks
+콜백
 ---------
 
-Active Job provides hooks during the life cycle of a job. Callbacks allow you to
-trigger logic during the life cycle of a job.
+Active Job은 잡의 생애 주기에 따른 훅을 제공합니다. 이를 이용해서 콜백을
+사용할 수 있으므로 잡의 생애 주기의 특정 시점에 원하는 이벤트를 호출할 수
+있습니다.
 
-### Available callbacks
+### 사용 가능한 콜백
 
 * `before_enqueue`
 * `around_enqueue`
@@ -272,50 +256,50 @@ trigger logic during the life cycle of a job.
 * `around_perform`
 * `after_perform`
 
-### Usage
+### 사용법
 
 ```ruby
 class GuestsCleanupJob < ApplicationJob
   queue_as :default
 
   before_enqueue do |job|
-    # Do something with the job instance
+    # 잡 인스턴스로 처리해야하는 작업
   end
 
   around_perform do |job, block|
-    # Do something before perform
+    # 실행 전에 해야하는 작업
     block.call
-    # Do something after perform
+    # 실행 후에 해야하는 작업
   end
 
   def perform
-    # Do something later
+    # 나중에 실행할 작업
   end
 end
 ```
 
 
-Action Mailer
+ActionMailer
 ------------
 
-One of the most common jobs in a modern web application is sending emails outside
-of the request-response cycle, so the user doesn't have to wait on it. Active Job
-is integrated with Action Mailer so you can easily send emails asynchronously:
+최근 웹 애플리케이션에서 자주 쓰는 잡 중의 한 가지는 요청-응답 주기 밖에서
+발생하는 메일 전송일 것입니다. 이를 잡으로 처리하는 것으로 사용자가 메일
+송신을 기다릴 필요가 없어집니다. Active Job은 Action Mailer와 통합되어
+있으므로 비동기 메일 전송도 간단하게 처리할 수 있습니다.
 
 ```ruby
-# If you want to send the email now use #deliver_now
+# 곧바로 전송하고 싶은 경우에는 #deliver_now를 사용
 UserMailer.welcome(@user).deliver_now
 
-# If you want to send the email through Active Job use #deliver_later
+# Active Job을 사용해서 나중에 메일을 전송하고 싶은 경우에는 #deliver_later를 사용
 UserMailer.welcome(@user).deliver_later
 ```
 
+국제화
+--------
 
-Internationalization
---------------------
-
-Each job uses the `I18n.locale` set when the job was created. Useful if you send
-emails asynchronously:
+각 잡은 생성될 때의 `I18n.locale`설정을 사용합니다. 메일을 비동기로 전송하는
+경우에 유용합니다.
 
 ```ruby
 I18n.locale = :eo
@@ -326,13 +310,14 @@ UserMailer.welcome(@user).deliver_later # Email will be localized to Esperanto.
 
 GlobalID
 --------
-
-Active Job supports GlobalID for parameters. This makes it possible to pass live
-Active Record objects to your job instead of class/id pairs, which you then have
-to manually deserialize. Before, jobs would look like this:
+Active Job에서는 GlobalID를 파라미터로 사용할 수 있습니다. GlobalID를 사용하면,
+동작 중인 Active Record 객체를 잡에 넘겨줄 때에 클래스와 id를 지정할 필요가
+없어집니다. 클래스와 id를 지정하는 이전의 방법은 나중에 명시적으로
+역직렬화(deserialize)를 할 필요가 있었습니다. 이전대로라면 이런 식으로
+작성하던 코드를,
 
 ```ruby
-class TrashableCleanupJob < ApplicationJob
+class TrashableCleanupJob
   def perform(trashable_class, trashable_id, depth)
     trashable = trashable_class.constantize.find(trashable_id)
     trashable.cleanup(depth)
@@ -340,50 +325,49 @@ class TrashableCleanupJob < ApplicationJob
 end
 ```
 
-Now you can simply do:
+지금은 아래처럼 간결하게 작성할 수 있습니다.
 
 ```ruby
-class TrashableCleanupJob < ApplicationJob
+class TrashableCleanupJob
   def perform(trashable, depth)
     trashable.cleanup(depth)
   end
 end
 ```
 
-This works with any class that mixes in `GlobalID::Identification`, which
-by default has been mixed into Active Record classes.
+이 코드는 `GlobalID::Identification`을 믹스인해둔 모든 클래스에서 동작하며,
+이 모듈은 Active Model 클래스에 기본적으로 믹스인되어 있습니다.
 
 
-Exceptions
+예외
 ----------
 
-Active Job provides a way to catch exceptions raised during the execution of the
-job:
+Active Job에서는 잡 실행시에 발생하는 예외를 처리하기 위한 방법을 제공합니다.
 
 ```ruby
+
 class GuestsCleanupJob < ApplicationJob
   queue_as :default
 
   rescue_from(ActiveRecord::RecordNotFound) do |exception|
-   # Do something with the exception
+   # 예외 처리를 작성한다
   end
 
   def perform
-    # Do something later
+    # 나중에 실행하고 싶은 작업을 작성한다
   end
 end
 ```
 
-### Deserialization
+### 역직렬화(Deserialization)
 
-GlobalID allows serializing full Active Record objects passed to `#perform`.
+GlobalID는 `#perform`을 통해서 넘겨진 Active Record 객체를 직렬화합니다.
 
-If a passed record is deleted after the job is enqueued but before the `#perform`
-method is called Active Job will raise an `ActiveJob::DeserializationError`
-exception.
+만약 잡이 큐에 등록된 이후에 `#perform` 메소드라 실행되기 전에 레코드가
+삭제되면, Active Job은 `ActiveJob::DeserializationError` 예외를 던집니다.
 
-Job Testing
+잡 테스트하기
 --------------
 
-You can find detailed instructions on how to test your jobs in the
-[testing guide](testing.html#testing-jobs).
+잡을 테스트하는 방법에 대해서는 [테스팅 가이드](testing.html#잡-테스트하기)에서
+자세한 설명을 확인할 수 있습니다.
