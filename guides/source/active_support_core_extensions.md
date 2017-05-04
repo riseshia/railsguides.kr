@@ -135,53 +135,36 @@ NOTE: Defined in `active_support/core_ext/object/blank.rb`.
 
 ### `duplicable?`
 
-In Ruby 2.4 most objects can be duplicated via `dup` or `clone` except 
-methods and certain numbers. Though Ruby 2.2 and 2.3 can't duplicate `nil`,
-`false`, `true`, and  symbols as well as instances `Float`, `Fixnum`, 
-and `Bignum` instances.
+A few fundamental objects in Ruby are singletons. For example, in the whole life of a program the integer 1 refers always to the same instance:
 
 ```ruby
-"foo".dup           # => "foo"
-"".dup              # => ""
-1.method(:+).dup    # => TypeError: allocator undefined for Method
-Complex(0).dup      # => TypeError: can't copy Complex
+1.object_id                 # => 3
+Math.cos(0).to_i.object_id  # => 3
 ```
 
-Active Support provides `duplicable?` to query an object about this:
+Hence, there's no way these objects can be duplicated through `dup` or `clone`:
 
 ```ruby
-"foo".duplicable?           # => true
-"".duplicable?              # => true
-Rational(1).duplicable?     # => false
-Complex(1).duplicable?      # => false
-1.method(:+).duplicable?    # => false
+true.dup  # => TypeError: can't dup TrueClass
 ```
 
-`duplicable?` matches Ruby's `dup` according to the Ruby version.
-
-So in 2.4:
+Some numbers which are not singletons are not duplicable either:
 
 ```ruby
-nil.dup                 # => nil
-:my_symbol.dup          # => :my_symbol
-1.dup                   # => 1
-
-nil.duplicable?         # => true
-:my_symbol.duplicable?  # => true
-1.duplicable?           # => true
+0.0.clone        # => allocator undefined for Float
+(2**1024).clone  # => allocator undefined for Bignum
 ```
 
-Whereas in 2.2 and 2.3:
+Active Support provides `duplicable?` to programmatically query an object about this property:
 
 ```ruby
-nil.dup                 # => TypeError: can't dup NilClass
-:my_symbol.dup          # => TypeError: can't dup Symbol
-1.dup                   # => TypeError: can't dup Fixnum
-
-nil.duplicable?         # => false
-:my_symbol.duplicable?  # => false
-1.duplicable?           # => false
+"foo".duplicable? # => true
+"".duplicable?    # => true
+0.0.duplicable?   # => false
+false.duplicable? # => false
 ```
+
+By definition all objects are `duplicable?` except `nil`, `false`, `true`, symbols, numbers, class, module, and method objects.
 
 WARNING: Any class can disallow duplication by removing `dup` and `clone` or raising exceptions from them. Thus only `rescue` can tell whether a given arbitrary object is duplicable. `duplicable?` depends on the hard-coded list above, but it is much faster than `rescue`. Use it only if you know the hard-coded list is enough in your use case.
 

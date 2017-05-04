@@ -1,99 +1,87 @@
-**DO NOT READ THIS FILE ON GITHUB, GUIDES ARE PUBLISHED ON http://guides.rubyonrails.org.**
-
-Ruby on Rails 5.0 Release Notes
+Ruby on Rails 5.0 릴리스 노트
 ===============================
 
-Highlights in Rails 5.0:
+Rails 5.0에서 주목할 점
 
-* Action Cable
+* 액션 케이블
 * Rails API
-* Active Record Attributes API
-* Test Runner
-* Exclusive use of `rails` CLI over Rake
+* 액션 레코드 속성 API
+* 테스트 러너
+* Rake 명령을 `rails` 명령으로 통일
 * Sprockets 3
 * Turbolinks 5
-* Ruby 2.2.2+ required
+* 루비 2.2.2 이상의 버전을 요구
 
-These release notes cover only the major changes. To learn about various bug
-fixes and changes, please refer to the change logs or check out the [list of
-commits](https://github.com/rails/rails/commits/5-0-stable) in the main Rails
-repository on GitHub.
+이 릴리스에서는 주요 변경점에 대해서만 설명합니다. 수정된 버그 및 변경점에 대해서는 Github Rails
+저장소에 있는 changelog나 [커밋 목록](https://github.com/rails/rails/commits/5-0-stable)을
+참고해주세요.
 
 --------------------------------------------------------------------------------
 
-Upgrading to Rails 5.0
+Rails 5.0로 업그레이드하기
 ----------------------
 
-If you're upgrading an existing application, it's a great idea to have good test
-coverage before going in. You should also first upgrade to Rails 4.2 in case you
-haven't and make sure your application still runs as expected before attempting
-an update to Rails 5.0. A list of things to watch out for when upgrading is
-available in the
-[Upgrading Ruby on Rails](upgrading_ruby_on_rails.html#upgrading-from-rails-4-2-to-rails-5-0)
-guide.
+기존 애플리케이션을 업그레이드한다면 그 전에 충분한 테스트 커버리지를 확보하는 것이 좋습니다.
+애플리케이션이 Rails 4.2로 업그레이드되지 않았다면 우선 이를 우선하고, 애플리케이션이 정상적으로
+동작하는지 충분히 확인한 뒤에 Rails 5.0을 올려주세요. 업그레이드 시의 주의점에 대해서는
+[Ruby on Rails 업그레이드 가이드](upgrading_ruby_on_rails.html#rails-4-2에서-rails-5-0로-업그레이드)를 참고해주세요.
 
 
-Major Features
+주요 변경점
 --------------
 
-### Action Cable
+### 액션 케이블
+[Pull Request](https://github.com/rails/rails/pull/22586)
 
-Action Cable is a new framework in Rails 5. It seamlessly integrates
-[WebSockets](https://en.wikipedia.org/wiki/WebSocket) with the rest of your
-Rails application.
+액션 케이블은 Rails 5에서 새롭게 도입된 프레임워크로 Rails 애플리케이션에서
+[웹 소켓](https://en.wikipedia.org/wiki/WebSocket)과 관련된 부분을 부드럽게 통합합니다.
 
-Action Cable allows for real-time features to be written in Ruby in the
-same style and form as the rest of your Rails application, while still being
-performant and scalable. It's a full-stack offering that provides both a
-client-side JavaScript framework and a server-side Ruby framework. You have
-access to your full domain model written with Active Record or your ORM of
-choice.
+액션 케이블을 도입하면, Rails 애플리케이션의 좋은 생산성과 확장 가능성을 유지하며 기존의 Rails
+애플리케이션과 동일한 스타일, 방법으로 실시간 기능을 루비로 작성할 수 있습니다. 액션 케이블은 클라이언트
+쪽의 자바 스크립트 프레임워크와 서버 쪽의 루비 프레임워크를 동시에 제공합니다. 액션 레코드와 같은
+ORM으로 작성된 모든 도메인 모델에 접근할 수 있습니다.
 
-See the [Action Cable Overview](action_cable_overview.html) guide for more
-information.
+자세한 설명은 [액션 케이블의 개요](action_cable_overview.html)를 참조해주세요.
 
-### API Applications
+### API 애플리케이션
 
-Rails can now be used to create slimmed down API only applications.
-This is useful for creating and serving APIs similar to [Twitter](https://dev.twitter.com) or [GitHub](http://developer.github.com) API, 
-that can be used to serve public facing, as well as, for custom applications.
+API만을 제공하는 간단한 애플리케이션을 Rails를 사용해 생성할 수 있게 되었습니다.
+[Twitter](https://dev.twitter.com) API나 [GitHub](http://developer.github.com)
+API와 같은 공용 API 서버는 물론, 그 외의 애플리케이션을 위한 API 서버를 작성할 때에도 편리합니다.
 
-You can generate a new api Rails app using:
+API Rails 애플리케이션을 생성하려면 다음의 명령어를 사용합니다.
 
 ```bash
 $ rails new my_api --api
 ```
 
-This will do three main things:
+이 명령은 다음 3개의 동작을 실행합니다.
 
-- Configure your application to start with a more limited set of middleware
-  than normal. Specifically, it will not include any middleware primarily useful
-  for browser applications (like cookies support) by default.
-- Make `ApplicationController` inherit from `ActionController::API` instead of
-  `ActionController::Base`. As with middleware, this will leave out any Action
-  Controller modules that provide functionalities primarily used by browser
-  applications.
-- Configure the generators to skip generating views, helpers and assets when
-  you generate a new resource. 
+- 사용하는 미들웨어를 일반적인 상황보다 적게 사용하여 서버를 실행하도록 설정합니다.
+  특히 브라우저용 애플리케이션에서 유용한 미들웨어(쿠키에 대한 지원 등)를 일체 사용할 수 없게 됩니다.
+- `ApplicationController`는 기존의 `ActionController::Base` 대신에
+  `ActionController::API`를 상속합니다. 미들웨어와 마찬가지로 액션컨트롤러 모듈에서 브라우저용
+  애플리케이션에서만 사용되는 모듈을 모두 제외합니다.
+- 제너레이터가 뷰, 헬퍼, 애셋을 생성하지 않습니다.
 
-The application provides a base for APIs, 
-that can then be [configured to pull in functionality](api_app.html) as suitable for the application's needs.  
- 
-See the [Using Rails for API-only Applications](api_app.html) guide for more
-information.
+생성된 API 애플리케이션은 API 제공하기 위한 토대가 되며, 필요에 따라서
+[기능을 추가](api_app.html) 할 수 있습니다.
 
-### Active Record attributes API
+자세한 설명은 [Rails에서 API 전용 애플리케이션을 만들기](api_app.html)를 참고하세요.
 
-Defines an attribute with a type on a model. It will override the type of existing attributes if needed.
-This allows control over how values are converted to and from SQL when assigned to a model.
-It also changes the behavior of values passed to `ActiveRecord::Base.where`, which lets use our domain objects across much of Active Record,
-without having to rely on implementation details or monkey patching.
+### 액티브 레코드 속성 API
 
-Some things that you can achieve with this:
+모델에 type 속성을 정의합니다. 필요하다면 기존의 속성을 덮어써도 좋습니다.
+이를 사용하여 모델의 속성을 SQL로 어떻게 상호변환할지를 제어할 수 있습니다.
+또한 `ActiveRecord::Base.where`에 넘겨진 값의 동작을 변경할 수도 있습니다.
+이를 통하여 구현의 세부나 몽키 패치에 의존하지 않고 액티브 레코드의 대부분에서 도메인
+객체를 사용할 수 있게 됩니다.
 
-- The type detected by Active Record can be overridden.
-- A default can also be provided.
-- Attributes do not need to be backed by a database column.
+다음과 같이 사용할 수도 있습니다.
+
+* 액티브 레코드에서 검출된 타입을 덮어쓸 수 있습니다.
+* 기본 동작을 지정할 수 있습니다.
+* 속성은 데이터베이스 컬럼을 요구하지 않습니다.
 
 ```ruby
 
@@ -105,22 +93,22 @@ end
 
 # app/models/store_listing.rb
 class StoreListing < ActiveRecord::Base
-end
+end 
 
 store_listing = StoreListing.new(price_in_cents: '10.1')
 
-# before
+# 변경전
 store_listing.price_in_cents # => BigDecimal.new(10.1)
 StoreListing.new.my_string # => "original default"
 
 class StoreListing < ActiveRecord::Base
-  attribute :price_in_cents, :integer # custom type
-  attribute :my_string, :string, default: "new default" # default value
-  attribute :my_default_proc, :datetime, default: -> { Time.now } # default value
+  attribute :price_in_cents, :integer # 커스텀 타입
+  attribute :my_string, :string, default: "new default" # 기본값
+  attribute :my_default_proc, :datetime, default: -> { Time.now } # 기본값
   attribute :field_without_db_column, :integer, array: true
-end
+end 
 
-# after
+# 변경후
 store_listing.price_in_cents # => 10
 StoreListing.new.my_string # => "new default"
 StoreListing.new.my_default_proc # => 2015-05-30 11:04:48 -0600
@@ -128,962 +116,825 @@ model = StoreListing.new(field_without_db_column: ["1", "2", "3"])
 model.attributes # => {field_without_db_column: [1, 2, 3]}
 ```
 
-**Creating Custom Types:**
+**커스텀 타입 만들기:**
 
-You can define your own custom types, as long as they respond
-to the methods defined on the value type. The method `deserialize` or
-`cast` will be called on your type object, with raw input from the
-database or from your controllers. This is useful, for example, when doing custom conversion,
-like Money data.
+독자적인 타입을 정의할 수 있으며, 이는 값의 타입으로 정의된 메소드에 응답하는 경우에 한해서만 가능합니다.
+`deserialize` 메소드나 `cast` 메소드는 작성한 타입 객체로 호출되어 데이터베이스나 컨트롤러에게
+받은 실제 입력을 인자로 사용합니다.
+이는 통화 변환처럼 직접 별도의 변환을 해야하는 경우에 유용합니다.
 
-**Querying:**
+**쿼리하기:**
 
-When `ActiveRecord::Base.where` is called, it will
-use the type defined by the model class to convert the value to SQL,
-calling `serialize` on your type object.
+`ActiveRecord::Base.where`이 호출되면 모델 클래스에 정의된 타입을 사용하여 값을 SQL로 변환하고,
+그 값의 객체로 `serialize`를 호출합니다.
 
-This gives the objects ability to specify, how to convert values when performing SQL queries.
+이를 통해서 SQL 쿼리를 실행할 때에 객체를 어떻게 변환할지를 지정할 수 있게 됩니다.
 
 **Dirty Tracking:**
 
-The type of an attribute is given the opportunity to change how dirty
-tracking is performed.
+타입의 속성은 'Dirty Tracking'의 실행 방법을 변경할 수 있게 해줍니다.
 
-See its
-[documentation](http://api.rubyonrails.org/v5.0.1/classes/ActiveRecord/Attributes/ClassMethods.html)
-for a detailed write up.
+자세한 내용은 [문서](http://api.rubyonrails.org/classes/ActiveRecord/Attributes/ClassMethods.html)를 참고해주세요.
 
 
-### Test Runner
+### 테스트 러너
 
-A new test runner has been introduced to enhance the capabilities of running tests from Rails.
-To use this test runner simply type `bin/rails test`.
+새로운 테스트 러너가 도입되어, Rails에서의 테스트 실행 기능이 강화되었습니다.
+`bin/rails test`로 명령하면 테스트 러너를 사용할 수 있습니다.
 
-Test Runner is inspired from `RSpec`, `minitest-reporters`, `maxitest` and others.
-It includes some of these notable advancements:
+테스트 러너는 `RSpec`, `minitest-reporters`, `maxitest` 등으로부터 영감을 얻었습니다.
+다음과 같은 많은 개선이 이루어졌습니다.
 
-- Run a single test using line number of test.
-- Run multiple tests pinpointing to line number of tests.
-- Improved failure messages, which also add ease of re-running failed tests.
-- Fail fast using `-f` option, to stop tests immediately on occurrence of failure,
-instead of waiting for the suite to complete.
-- Defer test output until the end of a full test run using the `-d` option.
-- Complete exception backtrace output using `-b` option.
-- Integration with `Minitest` to allow options like `-s` for test seed data,
-`-n` for running specific test by name, `-v` for better verbose output and so forth.
-- Colored test output.
+- 테스트의 줄번호를 지정하여 한 테스트만을 실행합니다.
+- 테스트의 줄번호를 지정하여 여러 테스트를 실행합니다.
+- 실패한 경우에 보여주는 메시지가 개선되어, 실패한 테스트를 곧장 재실행할 수 있게 되었습니다.
+- `-f` 옵션을 사용하면 실패했을 때에 곧바로 테스트를 정지할 수 있습니다.
+- `-d` 옵션을 사용하면 테스트가 완료될때까지 메시지 출력을 미룰 수 있습니다.
+- `-b` 옵션을 사용하면 예외에 대한 전체 백트레이스를 얻을 수 있습니다.
+- `Minitest`와 통합되어 `-s`로 시드 데이터를 지정, `-n`으로 특정 테스트명을 지정,
+  `-v`로 자세한 메시지 출력을 활성화 하는 등 다양한 옵션을 사용할 수 있게 되었습니다.
+- 테스트 출력에 색깔이 추가되었습니다.
 
 Railties
 --------
 
-Please refer to the [Changelog][railties] for detailed changes.
+자세한 변경사항은 [Changelog][railties]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed debugger support, use byebug instead. `debugger` is not supported by
-    Ruby
-    2.2. ([commit](https://github.com/rails/rails/commit/93559da4826546d07014f8cfa399b64b4a143127))
+*  `debugger`를 지원하지 않습니다. `debugger`는 루비 2.2에서는 지원되지 않으므로 앞으로는 byebug를 사용.
+    ([commit](https://github.com/rails/rails/commit/93559da4826546d07014f8cfa399b64b4a143127))
 
-*   Removed deprecated `test:all` and `test:all:db` tasks.
+*   제거 예정이었던 `test:all` 태스크와 `test:all:db` 태스크를 제거.
     ([commit](https://github.com/rails/rails/commit/f663132eef0e5d96bf2a58cec9f7c856db20be7c))
 
-*   Removed deprecated `Rails::Rack::LogTailer`.
+*   제거 예정이었던 `Rails::Rack::LogTailer`를 제거.
     ([commit](https://github.com/rails/rails/commit/c564dcb75c191ab3d21cc6f920998b0d6fbca623))
 
-*   Removed deprecated `RAILS_CACHE` constant.
+*   제거 예정이었던 `RAILS_CACHE` 상수를 제거.
     ([commit](https://github.com/rails/rails/commit/b7f856ce488ef8f6bf4c12bb549f462cb7671c08))
 
-*   Removed deprecated `serve_static_assets` configuration.
+*   제거 예정이었던 `serve_static_assets` 설정을 제거.
     ([commit](https://github.com/rails/rails/commit/463b5d7581ee16bfaddf34ca349b7d1b5878097c))
 
-*   Removed the documentation tasks `doc:app`, `doc:rails`, and `doc:guides`.
+*   문서 생성용 태스크 `doc:app`, `doc:rails`, `doc:guides`를 제거.
     ([commit](https://github.com/rails/rails/commit/cd7cc5254b090ccbb84dcee4408a5acede25ef2a))
 
-*   Removed `Rack::ContentLength` middleware from the default
-    stack. ([Commit](https://github.com/rails/rails/commit/56903585a099ab67a7acfaaef0a02db8fe80c450))
+*   `Rack::ContentLength` 미들웨어를 기본 스택으로부터 제거.
+    ([Commit](https://github.com/rails/rails/commit/56903585a099ab67a7acfaaef0a02db8fe80c450))
 
-### Deprecations
+### 제거 예정
 
-*   Deprecated `config.static_cache_control` in favor of
-    `config.public_file_server.headers`.
-    ([Pull Request](https://github.com/rails/rails/pull/19135))
-
-*   Deprecated `config.serve_static_files` in favor of `config.public_file_server.enabled`.
+*   `config.static_cache_control`이 제거될 예정. 앞으로는 `config.public_file_server.headers`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/22173))
 
-*   Deprecated the tasks in the `rails` task namespace in favor of the `app` namespace.
-    (e.g. `rails:update` and `rails:template` tasks are renamed to `app:update` and `app:template`.)
+*  `config.serve_static_files`가 제거될 예정. 앞으로는 `config.public_file_server.enabled`를 사용.
+    ([Pull Request](https://github.com/rails/rails/pull/22173))
+
+*   태스크의 네임스페이스 `rails`가 제거될 예정. 앞으로는 `app`을 사용.
+    （e.g. `rails:update` 태스크나 `rails:template` 태스크는 `app:update`나 `app:template`로 변경됨）
     ([Pull Request](https://github.com/rails/rails/pull/23439))
 
-### Notable changes
+### 주요 변경점
 
-*   Added Rails test runner `bin/rails test`.
+*   Rails 테스트 러너 `bin/rails test`가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/19216))
 
-*   Newly generated applications and plugins get a `README.md` in Markdown.
+*   새 애플리케이션이나 플러그인의 README이 마크다운 형식인 `README.md`로 변경됨.
     ([commit](https://github.com/rails/rails/commit/89a12c931b1f00b90e74afffcdc2fc21f14ca663),
      [Pull Request](https://github.com/rails/rails/pull/22068))
 
-*   Added `bin/rails restart` task to restart your Rails app by touching `tmp/restart.txt`.
+*   Rails 애플리케이션을 touch `tmp/restart.txt`로 재기동하는 `bin/rails restart` 태스크가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18965))
 
-*   Added `bin/rails initializers` task to print out all defined initializers in
-    the order they are invoked by Rails.
+*   모든 정의된 이니셜라이져를 Rails가 실행하는 순서대로 출력하는 `bin/rails initializers` 태스크가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/19323))
 
-*   Added `bin/rails dev:cache` to enable or disable caching in development mode.
+*   development 모드에서 캐시의 활성화 여부를 지정하는 `bin/rails dev:cache`가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/20961))
 
-*   Added `bin/update` script to update the development environment automatically.
+*   developement 환경을 자동으로 업데이트하는 `bin/update` 스크립트가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/20972))
 
-*   Proxy Rake tasks through `bin/rails`.
+*   rake 태스크를 `bin/rails`로 사용할 수 있도록 위임함.
     ([Pull Request](https://github.com/rails/rails/pull/22457),
      [Pull Request](https://github.com/rails/rails/pull/22288))
 
-*   New applications are generated with the evented file system monitor enabled
-    on Linux and macOS. The feature can be opted out by passing
-    `--skip-listen` to the generator.
-    ([commit](https://github.com/rails/rails/commit/de6ad5665d2679944a9ee9407826ba88395a1003),
-    [commit](https://github.com/rails/rails/commit/94dbc48887bf39c241ee2ce1741ee680d773f202))
+*   새로 생성된 애플리케이션은 Linux나 Mac OS X 상에서 '파일 시스템의 이벤트 감시'（evented file system monitor）가 활성화됨. `--skip-listen` 옵션을 사용하여 이 기능을 끌 수 있음.
+    ([commit](https://github.com/rails/rails/commit/de6ad5665d2679944a9ee9407826ba88395a1003), [commit](https://github.com/rails/rails/commit/94dbc48887bf39c241ee2ce1741ee680d773f202))
 
-*   Generate applications with an option to log to STDOUT in production
-    using the environment variable `RAILS_LOG_TO_STDOUT`.
+*   새로 생성된 애플리케이션은 `RAILS_LOG_TO_STDOUT` 환경 변수를 사용해서 production 환경에서 STDOUT으로 로그를 출력하도록 지정할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/23734))
 
-*   Enable HSTS with IncludeSudomains header for new applications.
+*   새 애플리케이션에서는 HSTS（HTTP Strict Transport Security）에서 IncludeSudomains 헤더가 기본으로 `true`임.
     ([Pull Request](https://github.com/rails/rails/pull/23852))
 
-*   The application generator writes a new file `config/spring.rb`, which tells
-    Spring to watch additional common files.
+*   애플리케이션 제너레이터로부터 새롭게 `config/spring.rb` 파일이 생성됨. 이를 사용하여 Spring의 감시 대상을 추가할 수 있음.
     ([commit](https://github.com/rails/rails/commit/b04d07337fd7bc17e88500e9d6bcd361885a45f8))
 
-*   Added `--skip-action-mailer` to skip Action Mailer while generating new app.
+*   새 애플리케이션 생성 시에 액션메일러를 생략하는 `--skip-action-mailer`를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18288))
 
-*   Removed `tmp/sessions` directory and the clear rake task associated with it.
+*   `tmp/sessions` 폴더와 여기에 관련된 코드를 제거.
     ([Pull Request](https://github.com/rails/rails/pull/18314))
 
-*   Changed `_form.html.erb` generated by scaffold generator to use local variables.
+*   scaffold 제너레이터가 생성하는 `_form.html.erb`를 지역 변수를 사용하도록 변경.
     ([Pull Request](https://github.com/rails/rails/pull/13434))
 
-*   Disabled autoloading of classes in production environment.
+*   production 환경에서 클래스를 자동 로딩하지 않도록 변경.
     ([commit](https://github.com/rails/rails/commit/a71350cae0082193ad8c66d65ab62e8bb0b7853b))
 
 Action Pack
 -----------
 
-Please refer to the [Changelog][action-pack] for detailed changes.
+자세한 변경사항은 [Changelog][action-pack]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed `ActionDispatch::Request::Utils.deep_munge`.
+*   `ActionDispatch::Request::Utils.deep_munge`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/52cf1a71b393486435fab4386a8663b146608996))
 
-*   Removed `ActionController::HideActions`.
+*   `ActionController::HideActions`가 제거됨.
     ([Pull Request](https://github.com/rails/rails/pull/18371))
 
-*   Removed `respond_to` and `respond_with` placeholder methods, this functionality
-    has been extracted to the
-    [responders](https://github.com/plataformatec/responders) gem.
+*   플레이스 홀더 메소드인 `respond_to`와 `respond_with`를 [responders](https://github.com/plataformatec/responders) gem로 추출됨.
     ([commit](https://github.com/rails/rails/commit/afd5e9a7ff0072e482b0b0e8e238d21b070b6280))
 
-*   Removed deprecated assertion files.
+*   제거 예정이었던 단언(assertion) 파일들이 제거됨.
     ([commit](https://github.com/rails/rails/commit/92e27d30d8112962ee068f7b14aa7b10daf0c976))
 
-*   Removed deprecated usage of string keys in URL helpers.
+*   제거 예정이던 URL 헬퍼에서 문자열 키를 사용하는 방식이 제거됨.
     ([commit](https://github.com/rails/rails/commit/34e380764edede47f7ebe0c7671d6f9c9dc7e809))
 
-*   Removed deprecated `only_path` option on `*_path` helpers.
+*   제거 예정이던 `only_path` 옵션을 `*_path` 헬퍼에서 제거됨.
     ([commit](https://github.com/rails/rails/commit/e4e1fd7ade47771067177254cb133564a3422b8a))
 
-*   Removed deprecated `NamedRouteCollection#helpers`.
+*   제거 예정이던 `NamedRouteCollection#helpers`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/2cc91c37bc2e32b7a04b2d782fb8f4a69a14503f))
 
-*   Removed deprecated support to define routes with `:to` option that doesn't contain `#`.
+*  `#`을 포함하지 않는 `:to` 옵션(제거 예정)의 라우팅 정의 방법이 제거됨.
     ([commit](https://github.com/rails/rails/commit/1f3b0a8609c00278b9a10076040ac9c90a9cc4a6))
 
-*   Removed deprecated `ActionDispatch::Response#to_ary`.
+*   제거 예정이던 `ActionDispatch::Response#to_ary`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/4b19d5b7bcdf4f11bd1e2e9ed2149a958e338c01))
 
-*   Removed deprecated `ActionDispatch::Request#deep_munge`.
+*   제거 예정이던 `ActionDispatch::Request#deep_munge`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/7676659633057dacd97b8da66e0d9119809b343e))
 
-*   Removed deprecated
-    `ActionDispatch::Http::Parameters#symbolized_path_parameters`.
+*   제거 예정이던 `ActionDispatch::Http::Parameters#symbolized_path_parameters`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/7fe7973cd8bd119b724d72c5f617cf94c18edf9e))
 
-*   Removed deprecated option `use_route` in controller tests.
+*   컨트롤러 테스트로부터 제거 예정이던 `use_route`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/e4cfd353a47369dd32198b0e67b8cbb2f9a1c548))
 
-*   Removed `assigns` and `assert_template`. Both methods have been extracted
-    into the
-    [rails-controller-testing](https://github.com/rails/rails-controller-testing)
-    gem.
+*   `assigns`와 `assert_template`가 [rails-controller-testing](https://github.com/rails/rails-controller-testing) gem으로 추출됨.
     ([Pull Request](https://github.com/rails/rails/pull/20138))
 
-### Deprecations
+### 제거 예정
 
-*   Deprecated all `*_filter` callbacks in favor of `*_action` callbacks.
+*   `*_filter` 콜백이 모두 제거 예정. 앞으로는 `*_action` 콜백을 사용.
     ([Pull Request](https://github.com/rails/rails/pull/18410))
 
-*   Deprecated `*_via_redirect` integration test methods. Use `follow_redirect!`
-    manually after the request call for the same behavior.
+*   통합 테스트 메소드 `*_via_redirect`가 제거 예정. 앞으로 동일한 동작이 필요한 상황에는 요청을 호출한 뒤, `follow_redirect!`를 직접 실행.
     ([Pull Request](https://github.com/rails/rails/pull/18693))
 
-*   Deprecated `AbstractController#skip_action_callback` in favor of individual
-    skip_callback methods.
+*  `AbstractController#skip_action_callback`가 제거 예정. 앞으로는 각각의 skip_callback 메소드를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/19060))
 
-*   Deprecated `:nothing` option for `render` method.
+*  `render`메소드의 `:nothing` 옵션이 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/20336))
 
-*   Deprecated passing first parameter as `Hash` and default status code for
-    `head` method.
+*  `head` 메소드의 첫번째 인수를 `Hash`로 넘기는 방식과 기본 상태 코드를 넘기는 방식이 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/20407))
 
-*   Deprecated using strings or symbols for middleware class names. Use class
-    names instead.
+*   미들웨어의 클래스명을 문자열이나 심볼로 표현하는 방식이 제거 예정. 앞으로는 클래스명을 그대로 사용할 것.
     ([commit](https://github.com/rails/rails/commit/83b767ce))
 
-*   Deprecated accessing mime types via constants (eg. `Mime::HTML`). Use the
-    subscript operator with a symbol instead (eg. `Mime[:html]`).
+*   MIME 타입을 상수로 자정하여 사용하는 방식을 제거 예정(e.g. `Mime::HTML`). 앞으로는 대괄호로 감싼 심볼을 사용할 것(e.g. `Mime[:html]`)
     ([Pull Request](https://github.com/rails/rails/pull/21869))
 
-*   Deprecated `redirect_to :back` in favor of `redirect_back`, which accepts a
-    required `fallback_location` argument, thus eliminating the possibility of a
-    `RedirectBackError`.
+*   `RedirectBackError`를 피하기 위해 `fallback_location`를 반드시 넘겨야하는 `redirect_back`를 장려하기 위해 `redirect_to :back`가 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/22506))
 
-*   `ActionDispatch::IntegrationTest` and `ActionController::TestCase` deprecate positional arguments in favor of
-    keyword arguments. ([Pull Request](https://github.com/rails/rails/pull/18323))
-
-*   Deprecated `:controller` and `:action` path parameters.
-    ([Pull Request](https://github.com/rails/rails/pull/23980))
-
-*   Deprecated env method on controller instances.
-    ([commit](https://github.com/rails/rails/commit/05934d24aff62d66fc62621aa38dae6456e276be))
-
-*   `ActionDispatch::ParamsParser` is deprecated and was removed from the
-    middleware stack. To configure the parameter parsers use
-    `ActionDispatch::Request.parameter_parsers=`.
-    ([commit](https://github.com/rails/rails/commit/38d2bf5fd1f3e014f2397898d371c339baa627b1),
-    [commit](https://github.com/rails/rails/commit/5ed38014811d4ce6d6f957510b9153938370173b))
-
-### Notable changes
-
-*   Added `ActionController::Renderer` to render arbitrary templates
-    outside controller actions.
-    ([Pull Request](https://github.com/rails/rails/pull/18546))
-
-*   Migrating to keyword arguments syntax in `ActionController::TestCase` and
-    `ActionDispatch::Integration` HTTP request methods.
+*   `ActionDispatch::IntegrationTest`와 `ActionController::TestCase`에서 순서대로 들어오는 인자를 받는 방식을 제거 예정. 앞으로는 키워드 인자를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/18323))
 
-*   Added `http_cache_forever` to Action Controller, so we can cache a response
-    that never gets expired.
+*   경로 파라미터 `:controller`와 `:action`가 제거 예정.
+    ([Pull Request](https://github.com/rails/rails/pull/23980))
+
+*   컨트롤러의 인스턴스에서 env 메소드가 제거 예정.
+    ([commit](https://github.com/rails/rails/commit/05934d24aff62d66fc62621aa38dae6456e276be))
+
+*   `ActionDispatch::ParamsParser`가 제거 예정이 되고, 미들웨어 스택에서 제거됨.
+    앞으로 파라미터 파서가 필요한 경우에는 `ActionDispatch::Request.parameter_parsers=`를 사용.
+    ([commit](https://github.com/rails/rails/commit/38d2bf5fd1f3e014f2397898d371c339baa627b1), [commit](https://github.com/rails/rails/commit/5ed38014811d4ce6d6f957510b9153938370173b))
+
+### 주요 변경점
+
+*   컨트롤러 액션의 외부에서 임의의 템플릿을 랜더링할 수 있는 `ActionController::Renderer`가 추가됨.
+    ([Pull Request](https://github.com/rails/rails/pull/18546))
+
+*   `ActionController::TestCase`와 `ActionDispatch::Integration`의 HTTP 요청 메소드에 키워드 인자 구문이 통합됨.
+    ([Pull Request](https://github.com/rails/rails/pull/18323))
+
+*   만료 기한이 없는 응답을 캐싱하는 `http_cache_forever`가 액션컨트롤러에 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18394))
 
-*   Provide friendlier access to request variants.
+*   요청의 variant에 알기 쉬운 지정 방식이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18939))
 
-*   For actions with no corresponding templates, render `head :no_content`
-    instead of raising an error.
+*   대응하는 템플릿이 없는 경우에는 에러 대신 `head :no_content`를 랜더링하게됨.
     ([Pull Request](https://github.com/rails/rails/pull/19377))
 
-*   Added the ability to override default form builder for a controller.
+*   컨트롤러의 기본 폼 빌더를 덮어쓰는 기능이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/19736))
 
-*   Added support for API only apps.
-    `ActionController::API` is added as a replacement of
-    `ActionController::Base` for this kind of applications.
+*   API 전용의 애플리케이션에 대한 지원 기능을 추가. 이러한 경우에는 `ActionController::Base` 대신에 `ActionController::API`가 사용됨.
     ([Pull Request](https://github.com/rails/rails/pull/19832))
 
-*   Make `ActionController::Parameters` no longer inherits from
-    `HashWithIndifferentAccess`.
+*   `ActionController::Parameters`는 앞으로 `HashWithIndifferentAccess`를 상속하지 않음.
     ([Pull Request](https://github.com/rails/rails/pull/20868))
 
-*   Make it easier to opt in to `config.force_ssl` and `config.ssl_options` by
-    making them less dangerous to try and easier to disable.
+*   보다 안전한 SSL을 실험하거나 쉽게 비활성화할 수 있도록 `config.force_ssl`와 `config.ssl_options`를 사용하기 쉽게 만듬.
     ([Pull Request](https://github.com/rails/rails/pull/21520))
 
-*   Added the ability of returning arbitrary headers to `ActionDispatch::Static`.
+*   `ActionDispatch::Static`에 임의의 헤더를 반환하는 기능이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/19135))
 
-*   Changed the `protect_from_forgery` prepend default to `false`.
+*   `protect_from_forgery`의 prepend의 기본값이 `false`로 변경됨.
     ([commit](https://github.com/rails/rails/commit/39794037817703575c35a75f1961b01b83791191))
 
-*   `ActionController::TestCase` will be moved to its own gem in Rails 5.1. Use
-    `ActionDispatch::IntegrationTest` instead.
+*   `ActionController::TestCase`는 Rails 5.1에서 gem으로 추출될 예정. 앞으로는 `ActionDispatch::IntegrationTest`를 사용.
     ([commit](https://github.com/rails/rails/commit/4414c5d1795e815b102571425974a8b1d46d932d))
 
-*   Rails generates weak ETags by default.
+*   Rails에서 기본으로 '약한' ETag를 생성함.
     ([Pull Request](https://github.com/rails/rails/pull/17573))
 
-*   Controller actions without an explicit `render` call and with no
-    corresponding templates will render `head :no_content` implicitly
-    instead of raising an error.
-    (Pull Request [1](https://github.com/rails/rails/pull/19377),
-    [2](https://github.com/rails/rails/pull/23827))
+*   컨트롤러 액션에서 `render`가 명시적으로 호출되지 않고, 대응하는 템플릿도 없는 경우, 에러 대신에 `head :no_content`를 암묵적으로 호출하게 됨.
+    (Pull Request [1](https://github.com/rails/rails/pull/19377), [2](https://github.com/rails/rails/pull/23827))
 
-*   Added an option for per-form CSRF tokens.
+*   폼마다 CSRF 토큰을 생성할 수 있는 옵션이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/22275))
 
-*   Added request encoding and response parsing to integration tests.
+*   요청의 인코딩과 응답을 해석하는 부분이 통합 테스트에 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/21671))
 
-*   Add `ActionController#helpers` to get access to the view context
-    at the controller level.
+*   컨트롤러 레벨에서 뷰 컨텍스트에 접근하는 `ActionController#helpers`가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/24866))
 
-*   Discarded flash messages get removed before storing into session.
+*   버려진 플래시 메시지를 세션에 저장하지 않고 제거하게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/18721))
 
-*   Added support for passing collection of records to `fresh_when` and
-    `stale?`.
+*   `fresh_when`나 `stale?`에 레코드의 컬렉션을 넘기는 기능이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18374))
 
-*   `ActionController::Live` became an `ActiveSupport::Concern`. That
-    means it can't be just included in other modules without extending
-    them with `ActiveSupport::Concern` or `ActionController::Live`
-    won't take effect in production. Some people may be using another
-    module to include some special `Warden`/`Devise` authentication
-    failure handling code as well since the middleware can't catch a
-    `:warden` thrown by a spawned thread which is the case when using
-    `ActionController::Live`.
-    ([More details in this issue](https://github.com/rails/rails/issues/25581))
+*   `ActionController::Live`가 `ActiveSupport::Concern`로 변경됨.
+    `ActiveSupport::Concern`에서 확장하지 않은 다른 모듈에는 포함되지 않음.
+    그리고 `ActionController::Live`는 production 환경에서는 사용되지 않는다.
+    `ActionController::Live`가 사용되는 경우 생성된 스레드에서 던진 `:warden`을 미들웨어에서 잡지 못하는 문제가 있었음.
+    이에 대응하기 위해 `Warden`/`Devise`의 인증 에러를 다루는 특수한 코드를 포함하는 별도의 모듈을 사용하는 개발자들이 있었음.
+    ([이에 대한 자세한 설명이 포함된 이슈](https://github.com/rails/rails/issues/25581))
 
-*   Introduce `Response#strong_etag=` and `#weak_etag=` and analogous
-    options for `fresh_when` and `stale?`.
+*   `Response#strong_etag=`와 `#weak_etag=`와 `fresh_when`과 `stale?`에 관련된
+    옵션이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/24387))
 
 Action View
 -------------
 
-Please refer to the [Changelog][action-view] for detailed changes.
+자세한 변경사항은 [Changelog][action-view]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed deprecated `AbstractController::Base::parent_prefixes`.
+*   제거 예정이었던 `AbstractController::Base::parent_prefixes`를 제거함.
     ([commit](https://github.com/rails/rails/commit/34bcbcf35701ca44be559ff391535c0dd865c333))
 
-*   Removed `ActionView::Helpers::RecordTagHelper`, this functionality
-    has been extracted to the
-    [record_tag_helper](https://github.com/rails/record_tag_helper) gem.
+*   `ActionView::Helpers::RecordTagHelper`를 제거함.
+    이 기능은 [record_tag_helper](https://github.com/rails/record_tag_helper) gem에 추출되어 있음.
     ([Pull Request](https://github.com/rails/rails/pull/18411))
 
-*   Removed `:rescue_format` option for `translate` helper since it's no longer
-    supported by I18n.
+*   `translate`의 `:rescue_format`에 대한 i18n 지원이 중지됨에 따라 해당 옵션을 제거함.
     ([Pull Request](https://github.com/rails/rails/pull/20019))
 
-### Notable Changes
+### 주요 변경점
 
-*   Changed the default template handler from `ERB` to `Raw`.
+*   기본 템플릿 핸들러가 `ERB`에서 `Raw`로 변경됨.
     ([commit](https://github.com/rails/rails/commit/4be859f0fdf7b3059a28d03c279f03f5938efc80))
 
-*   Collection rendering can cache and fetches multiple partials at once.
-    ([Pull Request](https://github.com/rails/rails/pull/18948),
-    [commit](https://github.com/rails/rails/commit/e93f0f0f133717f9b06b1eaefd3442bd0ff43985))
+*   컬렉션 렌더링에서 여러 부분(파셜) 템플릿의 캐싱을 한번에 처리할 수 있게 됨.
+    ([Pull Request](https://github.com/rails/rails/pull/18948), [commit](https://github.com/rails/rails/commit/e93f0f0f133717f9b06b1eaefd3442bd0ff43985))
 
-*   Added wildcard matching to explicit dependencies.
+*   명시적인 의존 관계 지정 시에 와일드 카드를 사용하는 매칭 방식을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/20904))
 
-*   Make `disable_with` the default behavior for submit tags. Disables the
-    button on submit to prevent double submits.
+*   `disable_with`를 submit 태그의 기본 동작으로 설정. 이를 통해 전송시에 버튼의 동작을 무시하여 이중 전송을 예방함.
     ([Pull Request](https://github.com/rails/rails/pull/21135))
 
-*   Partial template name no longer has to be a valid Ruby identifier.
+*   부분(파셜) 템플릿 이름에서 유효하지 않은 루비 식별자가 허용됨.
     ([commit](https://github.com/rails/rails/commit/da9038e))
 
-*   The `datetime_tag` helper now generates an input tag with the type of
-    `datetime-local`.
+*   `datetime_tag` 헬퍼에서 `datetime-local`를 지정한 input 태그를 생성할 수 있게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/25469))
 
-*   Allow blocks while rendering with the `render partial:` helper.
-    ([Pull Request](https://github.com/rails/rails/pull/17974))
 
 Action Mailer
 -------------
 
-Please refer to the [Changelog][action-mailer] for detailed changes.
+자세한 변경사항은 [Changelog][action-mailer]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed deprecated `*_path` helpers in email views.
+*   제거 예정이었던 `*_path` 헬퍼를 email 뷰로부터 제거.
     ([commit](https://github.com/rails/rails/commit/d282125a18c1697a9b5bb775628a2db239142ac7))
 
-*   Removed deprecated `deliver` and `deliver!` methods.
+*   제거 예정이었던 `deliver` 메소드와 `deliver!`를 제거.
     ([commit](https://github.com/rails/rails/commit/755dcd0691f74079c24196135f89b917062b0715))
 
-### Notable changes
+### 주요 변경점
 
-*   Template lookup now respects default locale and I18n fallbacks.
+*   템플릿을 검색할 때에 기본 로케일과 i18n 폴백을 사용하게 됨.
     ([commit](https://github.com/rails/rails/commit/ecb1981b))
 
-*   Added `_mailer` suffix to mailers created via generator, following the same
-    naming convention used in controllers and jobs.
+*   제너레이터로 생성된 메일러에 `_mailer` 접미자가 추가됨. 컨트롤러나 잡과 동일한 명명 규칙을 따름.
     ([Pull Request](https://github.com/rails/rails/pull/18074))
 
-*   Added `assert_enqueued_emails` and `assert_no_enqueued_emails`.
+*   `assert_enqueued_emails`와 `assert_no_enqueued_emails`가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18403))
 
-*   Added `config.action_mailer.deliver_later_queue_name` configuration to set
-    the mailer queue name.
+*   메일러 큐 이름을 설정하기 위한 `config.action_mailer.deliver_later_queue_name` 옵션이 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18587))
 
-*   Added support for fragment caching in Action Mailer views.
-    Added new config option `config.action_mailer.perform_caching` to determine
-    whether your templates should perform caching or not.
+*   Action Mailer 뷰에서 조각 캐시를 지원.
+    템플릿에서 케시가 유효한지를 확인하기 위한 `config.action_mailer.perform_caching` 옵션이 추가.
     ([Pull Request](https://github.com/rails/rails/pull/22825))
 
 
 Active Record
 -------------
 
-Please refer to the [Changelog][active-record] for detailed changes.
+자세한 변경사항은 [Changelog][active-record]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed deprecated behavior allowing nested arrays to be passed as query
-    values. ([Pull Request](https://github.com/rails/rails/pull/17919))
+*   제거 예정이었던 중첩된 배열을 쿼리로 넘기는 기능이 제거됨.
+    ([Pull Request](https://github.com/rails/rails/pull/17919))
 
-*   Removed deprecated `ActiveRecord::Tasks::DatabaseTasks#load_schema`. This
-    method was replaced by `ActiveRecord::Tasks::DatabaseTasks#load_schema_for`.
+*   제거 예정이었던 `ActiveRecord::Tasks::DatabaseTasks#load_schema`이 제거됨.
+    이 메소드는 `ActiveRecord::Tasks::DatabaseTasks#load_schema_for`로 대체되어 있음.
     ([commit](https://github.com/rails/rails/commit/ad783136d747f73329350b9bb5a5e17c8f8800da))
 
-*   Removed deprecated `serialized_attributes`.
+*   제거 예정이었던 `serialized_attributes`이 제거됨.
     ([commit](https://github.com/rails/rails/commit/82043ab53cb186d59b1b3be06122861758f814b2))
 
-*   Removed deprecated automatic counter caches on `has_many :through`.
+*   제거 예정이었던 `has_many :through`의 자동 카운터 캐시가 제거됨.
     ([commit](https://github.com/rails/rails/commit/87c8ce340c6c83342df988df247e9035393ed7a0))
 
-*   Removed deprecated `sanitize_sql_hash_for_conditions`.
+*   제거 예정이었던 `sanitize_sql_hash_for_conditions`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/3a59dd212315ebb9bae8338b98af259ac00bbef3))
 
-*   Removed deprecated `Reflection#source_macro`.
+*   제거 예정이었던 `Reflection#source_macro`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/ede8c199a85cfbb6457d5630ec1e285e5ec49313))
 
-*   Removed deprecated `symbolized_base_class` and `symbolized_sti_name`.
+*   제거 예정이었던 `symbolized_base_class`와 `symbolized_sti_name`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/9013e28e52eba3a6ffcede26f85df48d264b8951))
 
-*   Removed deprecated `ActiveRecord::Base.disable_implicit_join_references=`.
+*   제거 예정이었던 `ActiveRecord::Base.disable_implicit_join_references=`가 제거됨.
     ([commit](https://github.com/rails/rails/commit/0fbd1fc888ffb8cbe1191193bf86933110693dfc))
 
-*   Removed deprecated access to connection specification using a string accessor.
+*   제거 예정이었던 문자열 접근자에 의한 커넥션에 접근하는 방식이 제거됨.
     ([commit](https://github.com/rails/rails/commit/efdc20f36ccc37afbb2705eb9acca76dd8aabd4f))
 
-*   Removed deprecated support to preload instance-dependent associations.
+*   제거 예정이었던 인스턴스에 의존하는 미리 읽기 기능에 대한 지원이 제거됨.
     ([commit](https://github.com/rails/rails/commit/4ed97979d14c5e92eb212b1a629da0a214084078))
 
-*   Removed deprecated support for PostgreSQL ranges with exclusive lower bounds.
+*   제거 예정이었던 PostgreSQL에서만 사용되는 배타 하한치가 제거됨.
     ([commit](https://github.com/rails/rails/commit/a076256d63f64d194b8f634890527a5ed2651115))
 
-*   Removed deprecation when modifying a relation with cached Arel.
-    This raises an `ImmutableRelation` error instead.
+*   제거 예정이었던 캐시된 Arel과의 관계를 변경했을 시의 동작이 제거됨.
+    앞으로는 `ImmutableRelation` 에러가 발생.
     ([commit](https://github.com/rails/rails/commit/3ae98181433dda1b5e19910e107494762512a86c))
 
-*   Removed `ActiveRecord::Serialization::XmlSerializer` from core. This feature
-    has been extracted into the
-    [activemodel-serializers-xml](https://github.com/rails/activemodel-serializers-xml)
-    gem. ([Pull Request](https://github.com/rails/rails/pull/21161))
+*   `ActiveRecord::Serialization::XmlSerializer`이 제거됨.
+    이 기능은 [activemodel-serializers-xml](https://github.com/rails/activemodel-serializers-xml) gem으로 추출됨.
+    ([Pull Request](https://github.com/rails/rails/pull/21161))
 
-*   Removed support for the legacy `mysql` database adapter from core. Most users should
-    be able to use `mysql2`. It will be converted to a separate gem when we find someone
-    to maintain it. ([Pull Request 1](https://github.com/rails/rails/pull/22642),
-    [Pull Request 2](https://github.com/rails/rails/pull/22715))
+*   오래된 `mysql` 데이터베이스 어댑터에 대한 지원이 제거됨.
+    앞으로는 `mysql2`를 사용. 오래된 어댑터에 대한 유지 보수 담당자가 정해지면 해당 어댑터는 별도의 gem으로 분리될 예정.
+    ([Pull Request 1](https://github.com/rails/rails/pull/22642), [Pull Request 2](https://github.com/rails/rails/pull/22715))
 
-*   Removed support for the `protected_attributes` gem.
+*   `protected_attributes` 잼 지원이 종료됨.
     ([commit](https://github.com/rails/rails/commit/f4fbc0301021f13ae05c8e941c8efc4ae351fdf9))
 
-*   Removed support for PostgreSQL versions below 9.1.
+*   PostgreSQL 9.1 이하 지원이 종료.
     ([Pull Request](https://github.com/rails/rails/pull/23434))
 
-*   Removed support for `activerecord-deprecated_finders` gem.
+*   `activerecord-deprecated_finders` 잼 지원이 종료됨.
     ([commit](https://github.com/rails/rails/commit/78dab2a8569408658542e462a957ea5a35aa4679))
 
-*   Removed `ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES` constant.
+*   `ActiveRecord::ConnectionAdapters::Column::TRUE_VALUES` 상수가 제거됨.
     ([commit](https://github.com/rails/rails/commit/a502703c3d2151d4d3b421b29fefdac5ad05df61))
 
-### Deprecations
+### 제거 예정
 
-*   Deprecated passing a class as a value in a query. Users should pass strings
-    instead. ([Pull Request](https://github.com/rails/rails/pull/17916))
+*   쿼리로 클래스를 값으로 넘기는 기능이 제거 예정. 사용자는 문자열을 넘길 것.
+    ([Pull Request](https://github.com/rails/rails/pull/17916))
 
-*   Deprecated returning `false` as a way to halt Active Record callback
-    chains. The recommended way is to
-    `throw(:abort)`. ([Pull Request](https://github.com/rails/rails/pull/17227))
+*   Active Record의 콜백 체인을 멈추기 위해 `false`를 반환하는 방식을 제거 예정.
+    대신 `throw(:abort)`의 사용을 권장.
+    ([Pull Request](https://github.com/rails/rails/pull/17227))
 
-*   Deprecated `ActiveRecord::Base.errors_in_transactional_callbacks=`.
+*   `ActiveRecord::Base.errors_in_transactional_callbacks=`이 제거 예정.
     ([commit](https://github.com/rails/rails/commit/07d3d402341e81ada0214f2cb2be1da69eadfe72))
 
-*   Deprecated `Relation#uniq` use `Relation#distinct` instead.
+*   `Relation#uniq`이 제거 예정. 앞으로는 `Relation#distinct`를 사용.
     ([commit](https://github.com/rails/rails/commit/adfab2dcf4003ca564d78d4425566dd2d9cd8b4f))
 
-*   Deprecated the PostgreSQL `:point` type in favor of a new one which will return
-    `Point` objects instead of an `Array`
+*   PostgreSQL의 `:point` 타입이 제거 예정. 앞으로는 `Array`가 아닌 `Point` 객체를 반환하는 새 타입을 사용.
     ([Pull Request](https://github.com/rails/rails/pull/20448))
 
-*   Deprecated force association reload by passing a truthy argument to
-    association method.
+*   true가 되는 인자를 관계용 메소드에 넘겨서 관계된 객체들을 강제적으로 새로고침하는 방법이 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/20888))
 
-*   Deprecated the keys for association `restrict_dependent_destroy` errors in favor
-    of new key names.
+*   관계 `restrict_dependent_destroy` 에러의 키를 제거 예정. 앞으로는 새로운 키 이름을 사용.
     ([Pull Request](https://github.com/rails/rails/pull/20668))
 
-*   Synchronize behavior of `#tables`.
+*   `#tables`의 동작을 통일.
     ([Pull Request](https://github.com/rails/rails/pull/21601))
 
-*   Deprecated `SchemaCache#tables`, `SchemaCache#table_exists?` and
-    `SchemaCache#clear_table_cache!` in favor of their new data source
-    counterparts.
+*   `SchemaCache#tables`, `SchemaCache#table_exists?`, `SchemaCache#clear_table_cache!`이 제거 예정.
+    앞으로는 새로운 데이터 소스를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/21715))
 
-*   Deprecated `connection.tables` on the SQLite3 and MySQL adapters.
+*   SQLite3 어댑터와 MySQL 어댑터의 `connection.tables`가 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/21601))
 
-*   Deprecated passing arguments to `#tables` - the `#tables` method of some
-    adapters (mysql2, sqlite3) would return both tables and views while others
-    (postgresql) just return tables. To make their behavior consistent,
-    `#tables` will return only tables in the future.
+*   `#tables`에 인자를 넘기는 방식이 제거 예정.
+    일부 어댑터(mysql2, sqlite3)의 `#tables` 메소드는 테이블과 뷰를 모두 반환하지만, 다른 어뎁터는 테이블만을 반환함.
+    동작을 통일하기 위해서, 앞으로는 `#tables`는 테이블 만을 반환할 예정.
     ([Pull Request](https://github.com/rails/rails/pull/21601))
 
-*   Deprecated `table_exists?` - The `#table_exists?` method would check both
-    tables and views. To make their behavior consistent with `#tables`,
-    `#table_exists?` will check only tables in the future.
+*   `table_exists?`가 제거 예정.
+    `#table_exists?` 메소드에서 테이블과 뷰가 확인되는 경우가 있기 때문에.
+    `#tables`의 동작을 통일하기 위해서, 앞으로 `#table_exists?`는 테이블만을 체크할 예정.
     ([Pull Request](https://github.com/rails/rails/pull/21601))
 
-*   Deprecate sending the `offset` argument to `find_nth`. Please use the
-    `offset` method on relation instead.
+*   `find_nth`에 `offset`을 인자로 넘기는 방식이 제거 예정. 앞으로 관계에서는 `offset` 메소드를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/22053))
 
-*   Deprecated `{insert|update|delete}_sql` in `DatabaseStatements`.
-    Use the `{insert|update|delete}` public methods instead.
+*   `DatabaseStatements`의 `{insert|update|delete}_sql`가 제거 예정.
+    앞으로는 `{insert|update|delete}` 공개 메소드를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/23086))
 
-*   Deprecated `use_transactional_fixtures` in favor of
-    `use_transactional_tests` for more clarity.
+*   `use_transactional_fixtures`가 제거 예정. 앞으로는 좀 더 명확한 `use_transactional_tests`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/19282))
 
-*   Deprecated passing a column to `ActiveRecord::Connection#quote`.
+*   `ActiveRecord::Connection#quote`에 컬럼을 넘기는 방식이 제거 예정.
     ([commit](https://github.com/rails/rails/commit/7bb620869725ad6de603f6a5393ee17df13aa96c))
 
-*   Added an option `end` to `find_in_batches` that complements the `start`
-    parameter to specify where to stop batch processing.
+*   `start` 파라미터를 보완하며 어느 시점에서 배치 처리를 중단할 지 지정하는 `end` 옵션을 `find_in_batches`에 추가.
     ([Pull Request](https://github.com/rails/rails/pull/12257))
 
 
-### Notable changes
+### 주요 변경점
 
-*   Added a `foreign_key` option to `references` while creating the table.
+*   테이블 생성 중에 `foreign_key` 옵션을 `references`에 추가.
     ([commit](https://github.com/rails/rails/commit/99a6f9e60ea55924b44f894a16f8de0162cf2702))
 
-*   New attributes
-    API. ([commit](https://github.com/rails/rails/commit/8c752c7ac739d5a86d4136ab1e9d0142c4041e58))
+*   새 속성 API. ([commit](https://github.com/rails/rails/commit/8c752c7ac739d5a86d4136ab1e9d0142c4041e58))
 
-*   Added `:_prefix`/`:_suffix` option to `enum` definition.
+*   `enum`의 정의에 `:_prefix`/`:_suffix` 옵션을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/19813),
      [Pull Request](https://github.com/rails/rails/pull/20999))
 
-*   Added `#cache_key` to `ActiveRecord::Relation`.
+*   `ActiveRecord::Relation`에 `#cache_key`를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/20884))
 
-*   Changed the default `null` value for `timestamps` to `false`.
+*   `timestamps`의 기본 `null` 값을 `false`로 변경.
     ([commit](https://github.com/rails/rails/commit/a939506f297b667291480f26fa32a373a18ae06a))
 
-*   Added `ActiveRecord::SecureToken` in order to encapsulate generation of
-    unique tokens for attributes in a model using `SecureRandom`.
+*   `ActiveRecord::SecureToken`을 추가. `SecureRandom`을 사용하여 유일한 토큰을 생성하는 작업을 캡슐화.
     ([Pull Request](https://github.com/rails/rails/pull/18217))
 
-*   Added `:if_exists` option for `drop_table`.
+*   `drop_table`에 `:if_exists` 옵션을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18597))
 
-*   Added `ActiveRecord::Base#accessed_fields`, which can be used to quickly
-    discover which fields were read from a model when you are looking to only
-    select the data you need from the database.
+*   `ActiveRecord::Base#accessed_fields`을 추가.
+    데이터베이스에 필요한 데이터만을 가져오고 싶은 경우에, 참조한 모델에서 어떤 필드가 접근되었는지를 쉽게 확인할 수 있음.
     ([commit](https://github.com/rails/rails/commit/be9b68038e83a617eb38c26147659162e4ac3d2c))
 
-*   Added the `#or` method on `ActiveRecord::Relation`, allowing use of the OR
-    operator to combine WHERE or HAVING clauses.
+*   `ActiveRecord::Relation`에 `#or` 메소드를 추가. WHERE절이나 HAVING절을 결합.
     ([commit](https://github.com/rails/rails/commit/b0b37942d729b6bdcd2e3178eda7fa1de203b3d0))
 
-*   Added `ActiveRecord::Base.suppress` to prevent the receiver from being saved
-    during the given block.
+*   `ActiveRecord::Base.suppress`을 추가. 지정 블럭을 실행 중에 수신자가 저장되지 않도록 함.
     ([Pull Request](https://github.com/rails/rails/pull/18910))
 
-*   `belongs_to` will now trigger a validation error by default if the
-    association is not present. You can turn this off on a per-association basis
-    with `optional: true`. Also deprecate `required` option in favor of `optional`
-    for `belongs_to`.
+*   관계가 존재하지 않는 경우 `belongs_to`에서 검증 에러가 발생하게 됨.
+    이는 관계 마다 `optional: true`를 사용해서 비활성화 할 수 있음.
+    또한 `belongs_to`의 `required` 옵션이 제거 예정. 앞으로는 `optional`을 사용.
     ([Pull Request](https://github.com/rails/rails/pull/18937))
 
-*   Added `config.active_record.dump_schemas` to configure the behavior of
-    `db:structure:dump`.
+*  `db:structure:dump`의 동작을 정의하는 `config.active_record.dump_schemas`를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/19347))
 
-*   Added `config.active_record.warn_on_records_fetched_greater_than` option.
+*  `config.active_record.warn_on_records_fetched_greater_than` 옵션을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18846))
 
-*   Added a native JSON data type support in MySQL.
+*   MySQL에서 네이티브 JSON 데이터 형식을 지원.
     ([Pull Request](https://github.com/rails/rails/pull/21110))
 
-*   Added support for dropping indexes concurrently in PostgreSQL.
+*   PostgreSQL에서의 인덱스 삭제를 병렬로 실행할 수 있도록 지원.
     ([Pull Request](https://github.com/rails/rails/pull/21317))
 
-*   Added `#views` and `#view_exists?` methods on connection adapters.
+*   커넥션 어댑터에 `#views` 메소드와 `#view_exists?` 메소드가 추가.
     ([Pull Request](https://github.com/rails/rails/pull/21609))
 
-*   Added `ActiveRecord::Base.ignored_columns` to make some columns
-    invisible from Active Record.
+*   `ActiveRecord::Base.ignored_columns`를 추가.
+    컬럼의 일부를 Active Record에서는 보이지 않게 함.
     ([Pull Request](https://github.com/rails/rails/pull/21720))
 
-*   Added `connection.data_sources` and `connection.data_source_exists?`.
-    These methods determine what relations can be used to back Active Record
-    models (usually tables and views).
+*   `connection.data_sources`와 `connection.data_source_exists?`.
+    Active Record 모델 뒤에서 어떤 것(일반적으로는 테이블이나 뷰)을 사용할지 지정할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/21715))
 
-*   Allow fixtures files to set the model class in the YAML file itself.
+*   픽스쳐 파일을 사용하여 모델의 클래스를 YAML 파일 내에서 그 자체를 정의할 수 있게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/20574))
 
-*   Added ability to default to `uuid` as primary key when generating database
-    migrations. ([Pull Request](https://github.com/rails/rails/pull/21762))
+*   데이터베이스 마이그레이션 생성시에 `uuid`를 기본키로 지정할 수 있는 기능을 추가.
+    ([Pull Request](https://github.com/rails/rails/pull/21762))
 
-*   Added `ActiveRecord::Relation#left_joins` and
-    `ActiveRecord::Relation#left_outer_joins`.
+*   `ActiveRecord::Relation#left_joins`와 `ActiveRecord::Relation#left_outer_joins`를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/12071))
 
-*   Added `after_{create,update,delete}_commit` callbacks.
+*   `after_{create,update,delete}_commit` 콜백을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/22516))
 
-*   Version the API presented to migration classes, so we can change parameter
-    defaults without breaking existing migrations, or forcing them to be
-    rewritten through a deprecation cycle.
+*   마이그레이션 클래스에 출현하는 API 버전을 관리하고, 제거 예정인 것과 관계 있더라도 기존의 마이그레이션에 영향을 주지 않고 파라미터를 변경하거나 제거하기 위해 버전을 강제적으로 적용할 수 있게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/21538))
 
-*   `ApplicationRecord` is a new superclass for all app models, analogous to app
-    controllers subclassing `ApplicationController` instead of
-    `ActionController::Base`. This gives apps a single spot to configure app-wide
-    model behavior.
+*   `ActionController::Base` 대신에 `ApplicationController`를 상속하는 것처럼 `ApplicationRecord`가 애플리케이션의 모든 모델의 부모 클래스로서 추가됨. 이 변경으로 애플리케이션 모델 전체에 영향을 미치는 동작을 한 곳에서 관리 가능해짐.
     ([Pull Request](https://github.com/rails/rails/pull/22567))
 
-*   Added ActiveRecord `#second_to_last` and `#third_to_last` methods.
+*   ActiveRecord에 `#second_to_last` 메소드와 `#third_to_last` 메소드를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/23583))
 
-*   Added ability to annotate database objects (tables, columns, indexes)
-    with comments stored in database metadata for PostgreSQL & MySQL.
+*   데이터베이스 객체(테이블, 컬럼, 인덱스)에 코멘트를 추가하여, PostgreSQL이나 MySQL의 데이터베이스 메타 데이터로 저장하는 기능을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/22911))
 
-*   Added prepared statements support to `mysql2` adapter, for mysql2 0.4.4+,
-    Previously this was only supported on the deprecated `mysql` legacy adapter.
-    To enable, set `prepared_statements: true` in config/database.yml.
+*   Prepared Statement를 `mysql2` 어댑터에 추가(mysql2 0.4.4 이후 적용).
+    기존의 오래된 `mysql` 어댑터에서만 지원되었었음.
+    config/database.yml에 `prepared_statements: true`를 추가하면 사용할 수 있게됨.
     ([Pull Request](https://github.com/rails/rails/pull/23461))
 
-*   Added ability to call `ActionRecord::Relation#update` on relation objects
-    which will run validations on callbacks on all objects in the relation.
+*  `ActionRecord::Relation#update`를 추가.
+    관계 객체에 대해서 해당 관계에 있는 모든 객체의 콜백에 대해서 검증을 실행할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/11898))
 
-*   Added `:touch` option to the `save` method so that records can be saved without
-    updating timestamps.
+*  `save` 메소드에 `:touch` 옵션이 추가됨. 타임 스탬프를 변경하지 않고 레코드를 저장할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/18225))
 
-*   Added expression indexes and operator classes support for PostgreSQL.
+*   PostgreSQL를 위한 식 인덱스와 연산자 클래스 지원을 추가.
     ([commit](https://github.com/rails/rails/commit/edc2b7718725016e988089b5fb6d6fb9d6e16882))
 
-*   Added `:index_errors` option to add indexes to errors of nested attributes.
+*   중첩된 속성의 에러에 인덱스를 추가하는 `:index_errors` 옵션을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/19686))
 
-*   Added support for bidirectional destroy dependencies.
+*   양방향 의존 관계 삭제를 할 수 있는 기능을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18548))
 
-*   Added support for `after_commit` callbacks in transactional tests.
+*   트랜잭션 테스트에서 `after_commit` 콜백 지원을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18458))
 
-*   Added `foreign_key_exists?` method to see if a foreign key exists on a table
-    or not.
+*   `foreign_key_exists?` 메소드를 추가. 테이블에 외래키가 존재하는지를 확인할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/18662))
 
-*   Added `:time` option to `touch` method to touch records with different time
-    than the current time.
+*   `touch` 메소드에 `:time` 옵션을 추가. 레코드에 현재 시각 이외의 시각을 지정할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/18956))
-
-*   Change transaction callbacks to not swallow errors.
-    Before this change any errors raised inside a transaction callback
-    were getting rescued and printed in the logs, unless you used
-    the (newly deprecated) `raise_in_transactional_callbacks = true` option.
-
-    Now these errors are not rescued anymore and just bubble up, matching the
-    behavior of other callbacks.
-    ([commit](https://github.com/rails/rails/commit/07d3d402341e81ada0214f2cb2be1da69eadfe72))
 
 Active Model
 ------------
 
-Please refer to the [Changelog][active-model] for detailed changes.
+자세한 변경사항은 [Changelog][active-model]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed deprecated `ActiveModel::Dirty#reset_#{attribute}` and
-    `ActiveModel::Dirty#reset_changes`.
+*   제거 예정이었던 `ActiveModel::Dirty#reset_#{attribute}`와 `ActiveModel::Dirty#reset_changes`를 제거.
     ([Pull Request](https://github.com/rails/rails/commit/37175a24bd508e2983247ec5d011d57df836c743))
 
-*   Removed XML serialization. This feature has been extracted into the
-    [activemodel-serializers-xml](https://github.com/rails/activemodel-serializers-xml) gem.
+*   XML 직렬화를 제거.
+    이 기능은 [activemodel-serializers-xml](https://github.com/rails/activemodel-serializers-xml) gem으로 추출되었음.
     ([Pull Request](https://github.com/rails/rails/pull/21161))
 
-*   Removed `ActionController::ModelNaming` module.
+*   `ActionController::ModelNaming` 모듈을 제거.
     ([Pull Request](https://github.com/rails/rails/pull/18194))
 
-### Deprecations
+### 제거 예정
 
-*   Deprecated returning `false` as a way to halt Active Model and
-    `ActiveModel::Validations` callback chains. The recommended way is to
-    `throw(:abort)`. ([Pull Request](https://github.com/rails/rails/pull/17227))
+*   Active Model의 콜백 체인을 멈추기 위해서 `false`를 반환하던 방식을 제거 예정.
+    대신에 `throw(:abort)`의 이용을 추천.
+    ([Pull Request](https://github.com/rails/rails/pull/17227))
 
-*   Deprecated `ActiveModel::Errors#get`, `ActiveModel::Errors#set` and
-    `ActiveModel::Errors#[]=` methods that have inconsistent behavior.
+*   `ActiveModel::Errors#get`, `ActiveModel::Errors#set`, `ActiveModel::Errors#[]=` 메소드의 동작이 일관적이지 않아 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/18634))
 
-*   Deprecated the `:tokenizer` option for `validates_length_of`, in favor of
-    plain Ruby.
+*   `validates_length_of`의 `:tokenizer` 옵션이 제거 예정. 앞으로는 순수하게 Ruby의 기능을 사용.
     ([Pull Request](https://github.com/rails/rails/pull/19585))
 
-*   Deprecated `ActiveModel::Errors#add_on_empty` and `ActiveModel::Errors#add_on_blank`
-    with no replacement.
+*   `ActiveModel::Errors#add_on_empty`와 `ActiveModel::Errors#add_on_blank`가 제거 예정. 대체 예정 없음.
     ([Pull Request](https://github.com/rails/rails/pull/18996))
 
-### Notable changes
+### 주요 변경점
 
-*   Added `ActiveModel::Errors#details` to determine what validator has failed.
+*   어떤 검증자가 실패했는지 확인하는 `ActiveModel::Errors#details`를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18322))
 
-*   Extracted `ActiveRecord::AttributeAssignment` to `ActiveModel::AttributeAssignment`
-    allowing to use it for any object as an includable module.
+*   `ActiveRecord::AttributeAssignment`를 `ActiveModel::AttributeAssignment`로 추출하여 include 가능한 모듈로 만듬.
+    이를 통해 어디서든 include하여 사용할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/10776))
 
-*   Added `ActiveModel::Dirty#[attr_name]_previously_changed?` and
-    `ActiveModel::Dirty#[attr_name]_previous_change` to improve access
-    to recorded changes after the model has been saved.
+*   `ActiveModel::Dirty#[attr_name]_previously_changed?`와 `ActiveModel::Dirty#[attr_name]_previous_change`를 추가.
+    모델을 저장된 이후에 기록된 변경점에 간단하게 접근할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/19847))
 
-*   Validate multiple contexts on `valid?` and `invalid?` at once.
+*   `valid?`와 `invalid?`에서 다양한 컨텍스트를 한번에 검증하는 기능이 추가.
     ([Pull Request](https://github.com/rails/rails/pull/21069))
 
-*   Change `validates_acceptance_of` to accept `true` as default value
-    apart from `1`.
+*   `validates_acceptance_of`의 기본 값으로 `1` 대신에 `true`를 지정할 수 있게 변경.
     ([Pull Request](https://github.com/rails/rails/pull/18439))
 
 Active Job
 -----------
 
-Please refer to the [Changelog][active-job] for detailed changes.
+자세한 변경사항은 [Changelog][active-job]를 참고해주세요.
 
-### Notable changes
+### 주요 변경점
 
-*   `ActiveJob::Base.deserialize` delegates to the job class. This allows jobs
-    to attach arbitrary metadata when they get serialized and read it back when
-    they get performed.
+*   `ActiveJob::Base.deserialize`를 잡 클래스로 위임.
+    이를 통해 잡이 직렬화되었을 때나 잡 실행시에 다시 로딩될 때에 잡에 임의의 메타 데이터를 붙일 수 있게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/18260))
 
-*   Add ability to configure the queue adapter on a per job basis without
-    affecting each other.
+*   큐 어댑터를 잡 단위로 구성하는 기능을 추가. 잡들이 서로 영향을 주지 않도록 구성할 수 있음.
     ([Pull Request](https://github.com/rails/rails/pull/16992))
 
-*   A generated job now inherits from `app/jobs/application_job.rb` by default.
+*   제터레이터의 잡이 기본으로 `app/jobs/application_job.rb`를 상속.
     ([Pull Request](https://github.com/rails/rails/pull/19034))
 
-*   Allow `DelayedJob`, `Sidekiq`, `qu`, `que`, and `queue_classic` to report
-    the job id back to `ActiveJob::Base` as `provider_job_id`.
-    ([Pull Request](https://github.com/rails/rails/pull/20064),
-     [Pull Request](https://github.com/rails/rails/pull/20056),
-     [commit](https://github.com/rails/rails/commit/68e3279163d06e6b04e043f91c9470e9259bbbe0))
+*   `DelayedJob`, `Sidekiq`, `qu`, `que`, `queue_classic`에서 잡 ID를 `provider_job_id`로 하여 `ActiveJob::Base`에 반환하는 기능을 추가.
+    ([Pull Request](https://github.com/rails/rails/pull/20064)、[Pull Request](https://github.com/rails/rails/pull/20056)、[commit](https://github.com/rails/rails/commit/68e3279163d06e6b04e043f91c9470e9259bbbe0))
 
-*   Implement a simple `AsyncJob` processor and associated `AsyncAdapter` that
-    queue jobs to a `concurrent-ruby` thread pool.
+*   잡을 `concurrent-ruby` 스레드 풀에 큐잉하는 간단한 `AsyncJob` 프로세서와, 이와 관련된 `AsyncAdapter`를 구현.
     ([Pull Request](https://github.com/rails/rails/pull/21257))
 
-*   Change the default adapter from inline to async. It's a better default as
-    tests will then not mistakenly come to rely on behavior happening
-    synchronously.
+*   기본의 어뎁터를 인라인에서 비동기로 변경. 테스트 환경에서 동기적인 상황에 의존하지 않도록 해줌.
     ([commit](https://github.com/rails/rails/commit/625baa69d14881ac49ba2e5c7d9cac4b222d7022))
 
 Active Support
 --------------
 
-Please refer to the [Changelog][active-support] for detailed changes.
+자세한 변경사항은 [Changelog][active-support]를 참고해주세요.
 
-### Removals
+### 제거된 것들
 
-*   Removed deprecated `ActiveSupport::JSON::Encoding::CircularReferenceError`.
+*   제거 예정이었던 `ActiveSupport::JSON::Encoding::CircularReferenceError`을 삭제.
     ([commit](https://github.com/rails/rails/commit/d6e06ea8275cdc3f126f926ed9b5349fde374b10))
 
-*   Removed deprecated methods `ActiveSupport::JSON::Encoding.encode_big_decimal_as_string=`
-    and `ActiveSupport::JSON::Encoding.encode_big_decimal_as_string`.
+*   제거 예정이었던 `ActiveSupport::JSON::Encoding.encode_big_decimal_as_string=` 메소드와 `ActiveSupport::JSON::Encoding.encode_big_decimal_as_string` 메소드를 제거.
     ([commit](https://github.com/rails/rails/commit/c8019c0611791b2716c6bed48ef8dcb177b7869c))
 
-*   Removed deprecated `ActiveSupport::SafeBuffer#prepend`.
+*   제거 예정이었던 `ActiveSupport::SafeBuffer#prepend`을 제거.
     ([commit](https://github.com/rails/rails/commit/e1c8b9f688c56aaedac9466a4343df955b4a67ec))
 
-*   Removed deprecated methods from `Kernel`. `silence_stderr`, `silence_stream`,
-    `capture` and `quietly`.
+*   `Kernel`, `silence_stderr`, `silence_stream`, `capture`, `quietly`에서 제거 예정이었던 메소드를 다수 제거.
     ([commit](https://github.com/rails/rails/commit/481e49c64f790e46f4aff3ed539ed227d2eb46cb))
 
-*   Removed deprecated `active_support/core_ext/big_decimal/yaml_conversions`
-    file.
+*   제거 예정이었던 `active_support/core_ext/big_decimal/yaml_conversions` 파일을 제거.
     ([commit](https://github.com/rails/rails/commit/98ea19925d6db642731741c3b91bd085fac92241))
 
-*   Removed deprecated methods `ActiveSupport::Cache::Store.instrument` and
-    `ActiveSupport::Cache::Store.instrument=`.
+*   제거 예정이었던 `ActiveSupport::Cache::Store.instrument` 메소드와 `ActiveSupport::Cache::Store.instrument=` 메소드를 제거.
     ([commit](https://github.com/rails/rails/commit/a3ce6ca30ed0e77496c63781af596b149687b6d7))
 
-*   Removed deprecated `Class#superclass_delegating_accessor`.
-    Use `Class#class_attribute` instead.
+*   제거 예정이었던 `Class#superclass_delegating_accessor`를 제거.
+    앞으로는 `Class#class_attribute`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/16938))
 
-*   Removed deprecated `ThreadSafe::Cache`. Use `Concurrent::Map` instead.
+*   제거 예정이었던 `ThreadSafe::Cache`을 제거. 앞으로는 `Concurrent::Map`을 사용.
     ([Pull Request](https://github.com/rails/rails/pull/21679))
 
-*   Removed `Object#itself` as it is implemented in Ruby 2.2.
+*   Ruby 2.2에서 구현되어 있는 `Object#itself`를 제거.
     ([Pull Request](https://github.com/rails/rails/pull/18244))
 
-### Deprecations
+### 제거 예정
 
-*   Deprecated `MissingSourceFile` in favor of `LoadError`.
+*   `MissingSourceFile`가 제거 예정. 앞으로는 `LoadError`를 사용.
     ([commit](https://github.com/rails/rails/commit/734d97d2))
 
-*   Deprecated `alias_method_chain` in favour of `Module#prepend` introduced in
-    Ruby 2.0.
+*   `alias_method_chain`가 제거 예정. 앞으로는 Ruby 2.0에서 도입된 `Module#prepend`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/19434))
 
-*   Deprecated `ActiveSupport::Concurrency::Latch` in favor of
-    `Concurrent::CountDownLatch` from concurrent-ruby.
+*   `ActiveSupport::Concurrency::Latch`가 제거 예정.
+    앞으로는 `concurrent-ruby`의 `Concurrent::CountDownLatch`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/20866))
 
-*   Deprecated `:prefix` option of `number_to_human_size` with no replacement.
+*   `number_to_human_size`의 `:prefix` 옵션이 제거 예정. 대체 예정 없음.
     ([Pull Request](https://github.com/rails/rails/pull/21191))
 
-*   Deprecated `Module#qualified_const_` in favour of the builtin
-    `Module#const_` methods.
+*   `Module#qualified_const_`가 제거 예정. 앞으로는 내정된 `Module#const_` 메소드를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/17845))
 
-*   Deprecated passing string to define callback.
+*   콜백 정의에 문자열을 넘기는 기능이 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/22598))
 
-*   Deprecated `ActiveSupport::Cache::Store#namespaced_key`,
-    `ActiveSupport::Cache::MemCachedStore#escape_key`, and
-    `ActiveSupport::Cache::FileStore#key_file_path`.
-    Use `normalize_key` instead.
-    ([Pull Request](https://github.com/rails/rails/pull/22215),
-     [commit](https://github.com/rails/rails/commit/a8f773b0))
+*  `ActiveSupport::Cache::Store#namespaced_key`, `ActiveSupport::Cache::MemCachedStore#escape_key`, `ActiveSupport::Cache::FileStore#key_file_path`이 제거 예정.
+    앞으로는 `normalize_key`를 사용.
 
-*   Deprecated `ActiveSupport::Cache::LocaleCache#set_cache_value` in favor of `write_cache_value`.
+*   `ActiveSupport::Cache::LocaleCache#set_cache_value`가 제거 예정. 앞으로는 `write_cache_value`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/22215))
 
-*   Deprecated passing arguments to `assert_nothing_raised`.
+*   `assert_nothing_raised`에 인자를 넘기는 방식이 제거 예정.
     ([Pull Request](https://github.com/rails/rails/pull/23789))
 
-*   Deprecated `Module.local_constants` in favor of `Module.constants(false)`.
+*   `Module.local_constants`가 제거 예정. 앞으로는 `Module.constants(false)`를 사용.
     ([Pull Request](https://github.com/rails/rails/pull/23936))
 
 
-### Notable changes
+### 주요 변경점
 
-*   Added `#verified` and `#valid_message?` methods to
-    `ActiveSupport::MessageVerifier`.
+*   `ActiveSupport::MessageVerifier`에 `#verified` 메소드와 `#valid_message?` 메소드가 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/17727))
 
-*   Changed the way in which callback chains can be halted. The preferred method
-    to halt a callback chain from now on is to explicitly `throw(:abort)`.
+*   콜백 체인을 정지하는 방법이 변경. 앞으로는 명시적으로 `throw(:abort)`로 멈추는 것을 추천.
     ([Pull Request](https://github.com/rails/rails/pull/17227))
 
-*   New config option
-    `config.active_support.halt_callback_chains_on_return_false` to specify
-    whether ActiveRecord, ActiveModel and ActiveModel::Validations callback
-    chains can be halted by returning `false` in a 'before' callback.
+*   새로운 설정 옵션 `config.active_support.halt_callback_chains_on_return_false` 이 추가.
+    ActiveRecord, ActiveModel, ActiveModel::Validations의 콜백 체인을 'before' 콜벡에서 `false`를 반환할 때 멈출지를 지정.
     ([Pull Request](https://github.com/rails/rails/pull/17227))
 
-*   Changed the default test order from `:sorted` to `:random`.
+*   기본 테스트 실행 순서가 `:sorted`에서 `:random`로 변경.
     ([commit](https://github.com/rails/rails/commit/5f777e4b5ee2e3e8e6fd0e2a208ec2a4d25a960d))
 
-*   Added `#on_weekend?`, `#on_weekday?`, `#next_weekday`, `#prev_weekday` methods to `Date`,
-    `Time`, and `DateTime`.
+*   `#on_weekend?`, `#on_weekday?`, `#next_weekday`, `#prev_weekday` 메소드가 `Date`, `Time`, `DateTime`에 추가됨.
     ([Pull Request](https://github.com/rails/rails/pull/18335),
      [Pull Request](https://github.com/rails/rails/pull/23687))
 
-*   Added `same_time` option to `#next_week` and `#prev_week` for `Date`, `Time`,
-    and `DateTime`.
+*  `Date`, `Time`, `DateTime`의 `#next_week`와 `#prev_week`에 `same_time`을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18335))
 
-*   Added `#prev_day` and `#next_day` counterparts to `#yesterday` and
-    `#tomorrow` for `Date`, `Time`, and `DateTime`.
+*  `Date`, `Time`, `DateTime`의 `#yesterday`와 `#tomorrow`에 `#prev_day`와 `#next_day`에 대응하는 메소드를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18335))
 
-*   Added `SecureRandom.base58` for generation of random base58 strings.
+*   임의의 base58 문자열을 생성하는 `SecureRandom.base58`을 추가.
     ([commit](https://github.com/rails/rails/commit/b1093977110f18ae0cafe56c3d99fc22a7d54d1b))
 
-*   Added `file_fixture` to `ActiveSupport::TestCase`.
-    It provides a simple mechanism to access sample files in your test cases.
+*   `file_fixture`를 `ActiveSupport::TestCase`에 추가.
+    테스트 케이스에서 샘플 파일에 접근하는 간단한 기능을 제공.
     ([Pull Request](https://github.com/rails/rails/pull/18658))
 
-*   Added `#without` on `Enumerable` and `Array` to return a copy of an
-    enumerable without the specified elements.
+*   `Enumerable`와 `Array`에 `#without`을 추가. 지정한 요소를 제외한 사본을 반환.
     ([Pull Request](https://github.com/rails/rails/pull/19157))
 
-*   Added `ActiveSupport::ArrayInquirer` and `Array#inquiry`.
+*   `ActiveSupport::ArrayInquirer`와 `Array#inquiry`를 추가.
     ([Pull Request](https://github.com/rails/rails/pull/18939))
 
-*   Added `ActiveSupport::TimeZone#strptime` to allow parsing times as if
-    from a given timezone.
+*   지정한 타임존으로 시각을 해석하는 `ActiveSupport::TimeZone#strptime`을 추가.
     ([commit](https://github.com/rails/rails/commit/a5e507fa0b8180c3d97458a9b86c195e9857d8f6))
 
-*   Added `Integer#positive?` and `Integer#negative?` query methods
-    in the vein of `Integer#zero?`.
+*   `Integer#zero?`에 더불어 `Integer#positive?`와 `Integer#negative?` 메소드를 추가.
     ([commit](https://github.com/rails/rails/commit/e54277a45da3c86fecdfa930663d7692fd083daa))
 
-*   Added a bang version to `ActiveSupport::OrderedOptions` get methods which will raise
-    an `KeyError` if the value is `.blank?`.
+*   `ActiveSupport::OrderedOptions`에 파괴적인 get 메소드가 추가. 값이 `.blank?`인 경우에는 `KeyError`가 발생.
     ([Pull Request](https://github.com/rails/rails/pull/20208))
 
-*   Added `Time.days_in_year` to return the number of days in the given year, or the
-    current year if no argument is provided.
+*   지정한 년도의 일수를 반환하는 `Time.days_in_year`가 추가. 인자가 없는 경우는 현재 년도를 사용.
     ([commit](https://github.com/rails/rails/commit/2f4f4d2cf1e4c5a442459fc250daf66186d110fa))
 
-*   Added an evented file watcher to asynchronously detect changes in the
-    application source code, routes, locales, etc.
+*   파일의 이벤트 감시 기능이 추가. 애플리케이션의 소스 코드, 라우팅, 로케일 등의 변경을 비동기적으로 검출.
     ([Pull Request](https://github.com/rails/rails/pull/22254))
 
-*   Added thread_m/cattr_accessor/reader/writer suite of methods for declaring
-    class and module variables that live per-thread.
+*   스레드마다 클래스 변수나 모듈 변수를 선언하는 메소드 군 thread_m/cattr_accessor/reader/writer을 추가.
     ([Pull Request](https://github.com/rails/rails/pull/22630))
 
-*   Added `Array#second_to_last` and `Array#third_to_last` methods.
+*   `Array#second_to_last`와 `Array#third_to_last` 메소드가 추가.
     ([Pull Request](https://github.com/rails/rails/pull/23583))
 
-*   Publish `ActiveSupport::Executor` and `ActiveSupport::Reloader` APIs to allow
-    components and libraries to manage, and participate in, the execution of
-    application code, and the application reloading process.
+*   `ActiveSupport::Executor` API와 `ActiveSupport::Reloader` API를 공개.
+    애플리케이션 코드 실행이나 애플리케이션의 리로딩 프로세스에서 컴포넌트나 라이브러리로 관리하거나 추가할 수 있게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/23807))
 
-*   `ActiveSupport::Duration` now supports ISO8601 formatting and parsing.
+*   `ActiveSupport::Duration`에서 ISO8601 형식의 형식 및 해석을 지원.
     ([Pull Request](https://github.com/rails/rails/pull/16917))
 
-*   `ActiveSupport::JSON.decode` now supports parsing ISO8601 local times when
-    `parse_json_times` is enabled.
+*   `parse_json_times`이 유효한 경우, `ActiveSupport::JSON.decode`에서 ISO8601 형식의 로컬 시각을 지원.
     ([Pull Request](https://github.com/rails/rails/pull/23011))
 
-*   `ActiveSupport::JSON.decode` now return `Date` objects for date strings.
+*   `ActiveSupport::JSON.decode`가 날짜 문자열이 아닌 `Date` 객체를 반환하게 됨.
     ([Pull Request](https://github.com/rails/rails/pull/23011))
 
-*   Added ability to `TaggedLogging` to allow loggers to be instantiated multiple
-    times so that they don't share tags with each other.
+*   `TaggedLogging`를 로거에 추가. 로거 인스턴스를 복수 생성하여 태그가 로거간에 공유되지 않도록 함.
     ([Pull Request](https://github.com/rails/rails/pull/9065))
 
-Credits
+크레딧 표기
 -------
 
-See the
-[full list of contributors to Rails](http://contributors.rubyonrails.org/) for
-the many people who spent many hours making Rails, the stable and robust
-framework it is. Kudos to all of them.
+Rails를 견고하고 안정적인 프레임워크로 만들기 위해 많은 시간을 사용해주신 많은 개발자들에 대해서는 [Rails 기여자 목록](http://contributors.rubyonrails.org/)을 참고해주세요. 이 분들에게 경의를 표합니다.
 
 [railties]:       https://github.com/rails/rails/blob/5-0-stable/railties/CHANGELOG.md
 [action-pack]:    https://github.com/rails/rails/blob/5-0-stable/actionpack/CHANGELOG.md

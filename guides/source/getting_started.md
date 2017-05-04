@@ -46,7 +46,7 @@ development with Rails.
 What is Rails?
 --------------
 
-Rails is a web application development framework written in the Ruby programming language.
+Rails is a web application development framework written in the Ruby language.
 It is designed to make programming web applications easier by making assumptions
 about what every developer needs to get started. It allows you to write less
 code while accomplishing more than many other languages and frameworks.
@@ -86,7 +86,7 @@ your prompt will look something like `c:\source_code>`
 
 ### Installing Rails
 
-Open up a command line prompt. On macOS open Terminal.app, on Windows choose
+Open up a command line prompt. On Mac OS X open Terminal.app, on Windows choose
 "Run" from your Start menu and type 'cmd.exe'. Any commands prefaced with a
 dollar sign `$` should be run in the command line. Verify that you have a
 current version of Ruby installed:
@@ -98,7 +98,7 @@ ruby 2.3.1p112
 
 TIP: A number of tools exist to help you quickly install Ruby and Ruby
 on Rails on your system. Windows users can use [Rails Installer](http://railsinstaller.org),
-while macOS users can use [Tokaido](https://github.com/tokaido/tokaidoapp).
+while Mac OS X users can use [Tokaido](https://github.com/tokaido/tokaidoapp).
 For more installation methods for most Operating Systems take a look at
 [ruby-lang.org](https://www.ruby-lang.org/en/documentation/installation/).
 
@@ -127,7 +127,7 @@ run the following:
 $ rails --version
 ```
 
-If it says something like "Rails 5.1.0", you are ready to continue.
+If it says something like "Rails 5.0.0", you are ready to continue.
 
 ### Creating the Blog Application
 
@@ -182,7 +182,7 @@ of the files and folders that Rails created by default:
 |test/|Unit tests, fixtures, and other test apparatus. These are covered in [Testing Rails Applications](testing.html).|
 |tmp/|Temporary files (like cache and pid files).|
 |vendor/|A place for all third-party code. In a typical Rails application this includes vendored gems.|
-|.gitignore|This file tells git which files (or patterns) it should ignore. See [GitHub - Ignoring files](https://help.github.com/articles/ignoring-files) for more info about ignoring files.
+|.gitignore|This file tells git which files (or patterns) it should ignore. See [Github - Ignoring files](https://help.github.com/articles/ignoring-files) for more info about ignoring files.
 
 Hello, Rails!
 -------------
@@ -206,7 +206,7 @@ folder directly to the Ruby interpreter e.g. `ruby bin\rails server`.
 TIP: Compiling CoffeeScript and JavaScript asset compression requires you
 have a JavaScript runtime available on your system, in the absence
 of a runtime you will see an `execjs` error during asset compilation.
-Usually macOS and Windows come with a JavaScript runtime installed.
+Usually Mac OS X and Windows come with a JavaScript runtime installed.
 Rails adds the `therubyracer` gem to the generated `Gemfile` in a
 commented line for new apps and you can uncomment if you need it.
 `therubyrhino` is the recommended runtime for JRuby users and is added by
@@ -221,7 +221,7 @@ your application in action, open a browser window and navigate to
 
 TIP: To stop the web server, hit Ctrl+C in the terminal window where it's
 running. To verify the server has stopped you should see your command prompt
-cursor again. For most UNIX-like systems including macOS this will be a
+cursor again. For most UNIX-like systems including Mac OS X this will be a
 dollar sign `$`. In development mode, Rails does not generally require you to
 restart the server; changes you make in files will be automatically picked up by
 the server.
@@ -827,7 +827,7 @@ NOTE: A frequent practice is to place the standard CRUD actions in each
 controller in the following order: `index`, `show`, `new`, `edit`, `create`, `update`
 and `destroy`. You may use any order you choose, but keep in mind that these
 are public methods; as mentioned earlier in this guide, they must be placed
-before declaring `private` visibility in the controller.
+before any private or protected method in the controller in order to work.
 
 Given that, let's add the `show` action, as follows:
 
