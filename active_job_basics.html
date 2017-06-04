@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Active Job 기초 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Active Job 기초</h2><p>이 가이드에서는 백그라운드에서 실행하는 잡(Job)의 생성과 큐에 등록하는 방법(enqueue), 실행 방법에 대해서 설명합니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>잡 만들기</li>
+<li>잡 등록하기</li>
+<li>백그라운드에서 잡 실행하기</li>
+<li>애플리케이션에서 비동기로 메일 전송하기</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90">시작하기 전에</a></li>
+<li><a href="#active-job%EC%9D%98-%EB%AA%A9%EC%A0%81">Active Job의 목적</a></li>
+<li>
+<a href="#%EC%9E%A1-%EB%A7%8C%EB%93%A4%EA%B8%B0">잡 만들기</a>
+
+<ul>
+<li><a href="#%EC%9E%A1-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0">잡 생성하기</a></li>
+<li><a href="#%ED%81%90%EC%97%90-%EC%9E%A1%EC%9D%84-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0">큐에 잡을 등록하기</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%9E%A1-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0">잡 실행하기</a>
+
+<ul>
+<li><a href="#%EB%B0%B1%EC%97%94%EB%93%9C">백엔드</a></li>
+<li><a href="#%EB%B0%B1%EC%97%94%EB%93%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">백엔드 설정하기</a></li>
+<li><a href="#%EB%B0%B1%EC%97%94%EB%93%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0">백엔드 시작하기</a></li>
+</ul>
+</li>
+<li><a href="#%ED%81%90">큐</a></li>
+<li>
+<a href="#%EC%BD%9C%EB%B0%B1">콜백</a>
+
+<ul>
+<li><a href="#%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%BD%9C%EB%B0%B1">사용 가능한 콜백</a></li>
+<li><a href="#%EC%82%AC%EC%9A%A9%EB%B2%95">사용법</a></li>
+</ul>
+</li>
+<li><a href="#actionmailer">ActionMailer</a></li>
+<li><a href="#%EA%B5%AD%EC%A0%9C%ED%99%94">국제화</a></li>
+<li><a href="#globalid">GlobalID</a></li>
+<li>
+<a href="#%EC%98%88%EC%99%B8">예외</a>
+
+<ul>
+<li><a href="#%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94-deserialization">역직렬화(Deserialization)</a></li>
+</ul>
+</li>
+<li><a href="#%EC%9E%A1-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0">잡 테스트하기</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="시작하기-전에"><a class="anchorlink" href="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0-%EC%A0%84%EC%97%90">1 시작하기 전에</a></h3><p>Active Job은 잡을 선언하고, 이를 이용하여 큐를 사용하는 백엔드에서 다양한
+방법으로 이를 처리하는 프레임워크입니다. 여기서 잡이란 정기적으로 정기적으로
+실행되는 작업이나, 인보이스 발행이나 메일 전송 등, 어떤 것이라도 가능합니다.
+이 작업들을 좀 더 작은 단위로 분할해서 병렬 실행할 수도 있습니다.</p><h3 id="active-job의-목적"><a class="anchorlink" href="#active-job%EC%9D%98-%EB%AA%A9%EC%A0%81">2 Active Job의 목적</a></h3><p>Active Job의 주 목적은 Rails 애플리케이션이 곧바로 실행하는 작업일지라도,
+자신만의 잡 관리 인프라를 가질 수 있도록 하는 것입니다. 이를 통해서
+Delayed Job과 Resque와 같은, 다양한 잡마다의 실행 방식의 차이를 신경쓰지 않고
+잡 프레임워크의 기능이나 그 이외의 gem을 탑재할 수 있게 됩니다. 백엔드에서
+큐를 관리할 때에는 조작 이외에는 신경을 쓸 필요가 없게 됩니다. 또한 잡 관리
+프레임워크를 변경하더라도 잡을 새로 작성할 필요가 없다는 장점도 있습니다.</p><div class="note"><p>Rails는 기본으로 "즉시 실행해주는 러너"를 사용합니다. 다시 말해 각 잡은
+큐에 삽입되는 즉시 실행됩니다.</p></div><h3 id="잡-만들기"><a class="anchorlink" href="#%EC%9E%A1-%EB%A7%8C%EB%93%A4%EA%B8%B0">3 잡 만들기</a></h3><p>여기에서는 잡의 생성 방법과 잡을 등록하는 방법에 대해서 순서대로 설명합니다.</p><h4 id="잡-생성하기"><a class="anchorlink" href="#%EC%9E%A1-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0">3.1 잡 생성하기</a></h4><p>Active Job은 잡 생성을 위한 Rails 제너레이터를 제공합니다. 이를 실행하면
+<code>app/jobs</code>에 잡이 하나 생성됩니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate job guests_cleanup
+invoke  test_unit
+create    test/jobs/guests_cleanup_job_test.rb
+create  app/jobs/guests_cleanup_job.rb
+
+</pre>
+</div>
+<p>아래와 같이 작성하면 특정 큐에 잡을 하나 생성합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate job guests_cleanup --queue urgent
+create  app/jobs/guests_cleanup_job.rb
+
+</pre>
+</div>
+<p>이처럼, Rails에서 다른 제너레이터를 사용할 때와 완전히 동일한 방법으로 잡을
+생성할 수 있습니다.</p><p>제너레이터를 사용하고 싶지 않다면, <code>app/jobs</code>의 아래에 자신의 잡 파일을 직접
+생성할 수도 있습니다. 이런 경우에는 반드시 <code>ApplicationJob</code>를 상속해주세요.</p><p>생성된 잡은 아래와 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class GuestsCleanupJob &lt; ApplicationJob
+  queue_as :default
+
+  def perform(*args)
+    # 나중에 실행하고 싶은 작업을 여기에 작성한다.
+  end
+end
+
+</pre>
+</div>
+<h4 id="큐에-잡을-등록하기"><a class="anchorlink" href="#%ED%81%90%EC%97%90-%EC%9E%A1%EC%9D%84-%EB%93%B1%EB%A1%9D%ED%95%98%EA%B8%B0">3.2 큐에 잡을 등록하기</a></h4><p>다음과 같은 방식으로 큐에 잡을 등록할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+MyJob.perform_later record  # 큐 시스템에 여유가 생기면 잡을 등록한다
+
+</pre>
+</div>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+MyJob.set(wait_until: Date.tomorrow.noon).perform_later(record)  # 내일 점심에 실행하고 싶은 잡을 등록한다
+
+</pre>
+</div>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+MyJob.set(wait: 1.week).perform_later(record) # 일주일 뒤에 실행하고 싶은 잡을 등록한다
+
+</pre>
+</div>
+<p>이상입니다.</p><h3 id="잡-실행하기"><a class="anchorlink" href="#%EC%9E%A1-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0">4 잡 실행하기</a></h3><p>어댑터가 설정되어 있지 않은 경우, 잡은 바로 실행됩니다.</p><h4 id="백엔드"><a class="anchorlink" href="#%EB%B0%B1%EC%97%94%EB%93%9C">4.1 백엔드</a></h4><p>Active Job에는 Sidekiq, Resque, Delayed Job 등의 다양한 큐용 백엔드에 접속
+가능한 어댑터가 내장되어 있습니다. 사용가능한 최신 어댑터 리스트에 대해서는
+API 문서의 <a href="http://api.rubyonrails.org/v5.0.2/classes/ActiveJob/QueueAdapters.html">ActiveJob::QueueAdapters</a>를 참조해주세요.</p><h4 id="백엔드-설정하기"><a class="anchorlink" href="#%EB%B0%B1%EC%97%94%EB%93%9C-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">4.2 백엔드 설정하기</a></h4><p>사용하는 큐는 자유롭게 설정하고 변경할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+module YourApp
+  class Application &lt; Rails::Application
+    # 반드시 어댑터 잼을 Gemfile에 추가하고
+    # 어댑터마다 반드시 인스톨과 배포하는 것을 잊지 말아주세요.
+    config.active_job.queue_adapter = :sidekiq
+  end
+end
+
+</pre>
+</div>
+<p>또는 잡 별로 백엔드를 다르게 설정할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class GuestsCleanupJob &lt; ApplicationJob
+  self.queue_adapter = :resque
+  # ...
+end
+
+# `config.active_job.queue_adapter`에 어떤 백엔드를 설정했는지에 관계없이
+# 이 잡은 `resque`를 백엔드로 사용할 것입니다.
+
+</pre>
+</div>
+<h4 id="백엔드-시작하기"><a class="anchorlink" href="#%EB%B0%B1%EC%97%94%EB%93%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0">4.3 백엔드 시작하기</a></h4><p>잡은 Rails 애플리케이션에서 대해서 병렬로 실행되기 때문에 많은 큐 라이브러리는
+잡을 처리하기 위한 라이브러리의 큐 서비스를 별도로 실행하기를 요구합니다.
+큐 백엔드를 시작하는데에 필요한 설명은 각 라이브러리의 문서를
+참조하세요. </p><p>각 라이브러리들의 문서 목록입니다.</p>
+<ul>
+<li><a href="https://github.com/mperham/sidekiq/wiki/Active-Job">Sidekiq</a></li>
+<li><a href="https://github.com/resque/resque/wiki/ActiveJob">Resque</a></li>
+<li><a href="https://github.com/brandonhilkert/sucker_punch#active-job">Sucker Punch</a></li>
+<li><a href="https://github.com/QueueClassic/queue_classic#active-job">Queue Classic</a></li>
+</ul>
+<h3 id="큐"><a class="anchorlink" href="#%ED%81%90">5 큐</a></h3><p>대부분의 어댑터에서는 다수의 큐를 사용할 수 있습니다. Active Job을 사용하면
+특정 큐에 잡을 추가할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class GuestsCleanupJob &lt; ApplicationJob
+  queue_as :low_priority
+  # ....
+end
+
+</pre>
+</div>
+<p><code>application.rb</code>에서 아래와 같이 <code>config.active_job.queue_name_prefix</code>를
+사용해서 큐 이름에 특정 접두어를 추가할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+module YourApp
+  class Application &lt; Rails::Application
+    config.active_job.queue_name_prefix = Rails.env
+  end
+end
+
+# app/jobs/guests_cleanup.rb
+class GuestsCleanupJob &lt; ApplicationJob
+  queue_as :low_priority
+  #....
+end
+
+# 이상으로 production 환경에서 production_low_priority 라는 큐에서 잡이
+# 실행되게 되며, staging 환경에서는 staging_low_priority라는 큐에서 잡이
+# 실행되게 됩니다.
+
+</pre>
+</div>
+<p>기본 큐 이름 구분 기호는 '_'입니다.이는 <code>application.rb</code>의
+<code>config.active_job.queue_name_delimiter</code>를 통해서 변경할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+module YourApp
+  class Application &lt; Rails::Application
+    config.active_job.queue_name_prefix = Rails.env
+    config.active_job.queue_name_delimiter = '.'
+  end
+end
+
+# app/jobs/guests_cleanup_job.rb
+class GuestsCleanupJob &lt; ApplicationJob
+  queue_as :low_priority
+  #....
+end
+
+# 이제 잡은 production 환경이라면 production.low_priority 큐에,
+# staging 환경이라면 staging.low_priority 큐에 추가됩니다.
+
+</pre>
+</div>
+<p>잡을 추가하는 시점에서 큐를 제어하고 싶은 경우에는 #set에 <code>:queue</code> 옵션을
+추가하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+MyJob.set(queue: :another_queue).perform_later(record)
+
+</pre>
+</div>
+<p>잡을 동작하는 시점에서 큐를 제어하기 위해서 <code>#queue_as</code>에 블록을 넘겨줄 수도
+있습니다. 넘겨진 블록은 그 잡의 컨텍스트 내에서 실행됩니다(따라서
+self.arguments에도 접근할 수 있습니다). 그리고 이 블록에서는 큐의 이름을
+반환해야 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ProcessVideoJob &lt; ApplicationJob
+  queue_as do
+    video = self.arguments.first
+    if video.owner.premium?
+      :premium_videojobs
+    else
+      :videojobs
+    end
+  end
+
+  def perform(video)
+    # do process video
+  end
+end
+
+ProcessVideoJob.perform_later(Video.last)
+
+</pre>
+</div>
+<div class="note"><p>설정한 큐의 이름을 큐를 관리하는 백엔드에서 '이해할 수' 있도록 해주세요.
+일부 백엔드에서는 넘겨받는 큐의 이름을 지정해야 할 필요가 있습니다.</p></div><h3 id="콜백"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1">6 콜백</a></h3><p>Active Job은 잡의 생애 주기에 따른 훅을 제공합니다. 이를 이용해서 콜백을
+사용할 수 있으므로 잡의 생애 주기의 특정 시점에 원하는 이벤트를 호출할 수
+있습니다.</p><h4 id="사용-가능한-콜백"><a class="anchorlink" href="#%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%BD%9C%EB%B0%B1">6.1 사용 가능한 콜백</a></h4>
+<ul>
+<li><code>before_enqueue</code></li>
+<li><code>around_enqueue</code></li>
+<li><code>after_enqueue</code></li>
+<li><code>before_perform</code></li>
+<li><code>around_perform</code></li>
+<li><code>after_perform</code></li>
+</ul>
+<h4 id="사용법"><a class="anchorlink" href="#%EC%82%AC%EC%9A%A9%EB%B2%95">6.2 사용법</a></h4><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class GuestsCleanupJob &lt; ApplicationJob
+  queue_as :default
+
+  before_enqueue do |job|
+    # 잡 인스턴스로 처리해야하는 작업
+  end
+
+  around_perform do |job, block|
+    # 실행 전에 해야하는 작업
+    block.call
+    # 실행 후에 해야하는 작업
+  end
+
+  def perform
+    # 나중에 실행할 작업
+  end
+end
+
+</pre>
+</div>
+<h3 id="actionmailer"><a class="anchorlink" href="#actionmailer">7 ActionMailer</a></h3><p>최근 웹 애플리케이션에서 자주 쓰는 잡 중의 한 가지는 요청-응답 주기 밖에서
+발생하는 메일 전송일 것입니다. 이를 잡으로 처리하는 것으로 사용자가 메일
+송신을 기다릴 필요가 없어집니다. Active Job은 Action Mailer와 통합되어
+있으므로 비동기 메일 전송도 간단하게 처리할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 곧바로 전송하고 싶은 경우에는 #deliver_now를 사용
+UserMailer.welcome(@user).deliver_now
+
+# Active Job을 사용해서 나중에 메일을 전송하고 싶은 경우에는 #deliver_later를 사용
+UserMailer.welcome(@user).deliver_later
+
+</pre>
+</div>
+<h3 id="국제화"><a class="anchorlink" href="#%EA%B5%AD%EC%A0%9C%ED%99%94">8 국제화</a></h3><p>각 잡은 생성될 때의 <code>I18n.locale</code>설정을 사용합니다. 메일을 비동기로 전송하는
+경우에 유용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+I18n.locale = :eo
+
+UserMailer.welcome(@user).deliver_later # Email will be localized to Esperanto.
+
+</pre>
+</div>
+<h3 id="globalid"><a class="anchorlink" href="#globalid">9 GlobalID</a></h3><p>Active Job에서는 GlobalID를 파라미터로 사용할 수 있습니다. GlobalID를 사용하면,
+동작 중인 Active Record 객체를 잡에 넘겨줄 때에 클래스와 id를 지정할 필요가
+없어집니다. 클래스와 id를 지정하는 이전의 방법은 나중에 명시적으로
+역직렬화(deserialize)를 할 필요가 있었습니다. 이전대로라면 이런 식으로
+작성하던 코드를,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class TrashableCleanupJob
+  def perform(trashable_class, trashable_id, depth)
+    trashable = trashable_class.constantize.find(trashable_id)
+    trashable.cleanup(depth)
+  end
+end
+
+</pre>
+</div>
+<p>지금은 아래처럼 간결하게 작성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class TrashableCleanupJob
+  def perform(trashable, depth)
+    trashable.cleanup(depth)
+  end
+end
+
+</pre>
+</div>
+<p>이 코드는 <code>GlobalID::Identification</code>을 믹스인해둔 모든 클래스에서 동작하며,
+이 모듈은 Active Model 클래스에 기본적으로 믹스인되어 있습니다.</p><h3 id="예외"><a class="anchorlink" href="#%EC%98%88%EC%99%B8">10 예외</a></h3><p>Active Job에서는 잡 실행시에 발생하는 예외를 처리하기 위한 방법을 제공합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+
+class GuestsCleanupJob &lt; ApplicationJob
+  queue_as :default
+
+  rescue_from(ActiveRecord::RecordNotFound) do |exception|
+   # 예외 처리를 작성한다
+  end
+
+  def perform
+    # 나중에 실행하고 싶은 작업을 작성한다
+  end
+end
+
+</pre>
+</div>
+<h4 id="역직렬화-deserialization"><a class="anchorlink" href="#%EC%97%AD%EC%A7%81%EB%A0%AC%ED%99%94-deserialization">10.1 역직렬화(Deserialization)</a></h4><p>GlobalID는 <code>#perform</code>을 통해서 넘겨진 Active Record 객체를 직렬화합니다.</p><p>만약 잡이 큐에 등록된 이후에 <code>#perform</code> 메소드라 실행되기 전에 레코드가
+삭제되면, Active Job은 <code>ActiveJob::DeserializationError</code> 예외를 던집니다.</p><h3 id="잡-테스트하기"><a class="anchorlink" href="#%EC%9E%A1-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0">11 잡 테스트하기</a></h3><p>잡을 테스트하는 방법에 대해서는 <a href="testing.html#%EC%9E%A1-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0">테스팅 가이드</a>에서
+자세한 설명을 확인할 수 있습니다.</p>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:03 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

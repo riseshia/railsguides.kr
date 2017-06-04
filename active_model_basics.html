@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>액티브 모델 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>액티브 모델</h2><p>이 가이드에서는 모델 클래스를 사용하는 경우에 필요한 모든 것에 대해 설명합니다.
+액티브 모델은 액션 팩 헬퍼 덕분에 일반 루비 객체와도 사용할 수 있습니다.
+액티브 모델을 통해 커스텀 ORM을 만들어 레일스 프레임워크 외부에서 사용할 수도
+있습니다. </p><p>이 가이드의 내용:</p>
+<ul>
+<li>액티브 모델의 동작.</li>
+<li>콜백과 검증의 동작.</li>
+<li>직렬화의 동작 방식.</li>
+<li>액티브 모델과 Rails 국제화(i18n) 프레임워크의 동작</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li>
+<a href="#%EB%93%A4%EC%96%B4%EA%B0%80%EA%B8%B0-%EC%A0%84%EC%97%90">들어가기 전에</a>
+
+<ul>
+<li><a href="#attribute-methods">Attribute Methods</a></li>
+<li><a href="#callbacks">Callbacks</a></li>
+<li><a href="#conversion">Conversion</a></li>
+<li><a href="#dirty">Dirty</a></li>
+<li><a href="#validations">Validations</a></li>
+<li><a href="#naming">Naming</a></li>
+<li><a href="#model">Model</a></li>
+<li><a href="#serialization">Serialization</a></li>
+<li><a href="#translation">Translation</a></li>
+<li><a href="#lint-tests">Lint Tests</a></li>
+<li><a href="#securepassword">SecurePassword</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="들어가기-전에"><a class="anchorlink" href="#%EB%93%A4%EC%96%B4%EA%B0%80%EA%B8%B0-%EC%A0%84%EC%97%90">1 들어가기 전에</a></h3><p>액티브 모델은 액티브 레코드에서 사용되는 많은 모듈을 포함하는 라이브러리입니다.
+몇몇 모듈에 대해서는 아래에서 설명합니다.</p><h4 id="attribute-methods"><a class="anchorlink" href="#attribute-methods">1.1 Attribute Methods</a></h4><p><code>ActiveModel::AttributeMethods</code> 모듈은 클래스의 메소드에 접두사, 또는 접미사를
+추가할 수 있습니다. 이 모듈을 사용하려면 접두사, 또는 접미사를 정의하고 이를
+적용할 메소드를 지정하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::AttributeMethods
+
+  attribute_method_prefix 'reset_'
+  attribute_method_suffix '_highest?'
+  define_attribute_methods 'age'
+
+  attr_accessor :age
+
+    private
+    def reset_attribute(attribute)
+      send("#{attribute}=", 0)
+    end
+
+    def attribute_highest?(attribute)
+      send(attribute) &gt; 100
+    end
+end
+
+person = Person.new
+person.age = 110
+person.age_highest?  # =&gt; true
+person.reset_age     # =&gt; 0
+person.age_highest?  # =&gt; false
+
+</pre>
+</div>
+<h4 id="callbacks"><a class="anchorlink" href="#callbacks">1.2 Callbacks</a></h4><p><code>ActiveModel::Callbacks</code>을 사용하여 액티브 레코드 형식의 콜백을 사용할 수 있습니다. 이를 통해 원하는 콜백을 필요한 타이밍에 실행할 수 있습닏. 콜백을 정의한 뒤, 각각 커스텀 메소드의 실행 전(before), 실행 후(after), 또는 실행 중(around)인 코드를 감쌀 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  extend ActiveModel::Callbacks
+
+  define_model_callbacks :update
+
+  before_update :reset_me
+
+  def update
+    run_callbacks(:update) do
+      # 객체에 update 메소드가 호출되면 이 메소드가 호출된다.
+    end
+  end
+
+  def reset_me
+    # 이 메소드는 before_update 콜백에서 정의했 듯, 객체에 update 메소드가 호출되기 전에 호출된다.
+  end
+end
+
+</pre>
+</div>
+<h4 id="conversion"><a class="anchorlink" href="#conversion">1.3 Conversion</a></h4><p>클래스에 <code>persisted?</code> 메소드와 <code>id</code> 메소드가 정의되어 있다면, <code>ActiveModel::Conversion</code> 모듈을 include하여 해당 클래스의 객체에서 레일스의 변환 메소드를 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::Conversion
+
+  def persisted?
+    false
+  end
+
+  def id
+    nil
+  end
+end
+
+person = Person.new
+person.to_model == person  # =&gt; true
+person.to_key              # =&gt; nil
+person.to_param            # =&gt; nil
+
+</pre>
+</div>
+<h4 id="dirty"><a class="anchorlink" href="#dirty">1.4 Dirty</a></h4><p>객체가 여러 번의 변경을 거치고, 저장되지 않았다면 이를 더러운 상태라고 부릅니다. <code>ActiveModel::Dirty</code> 모듈은 객체가 변경되었는지, 아닌지를 확인할 수 있게 해줍니다. 속성명에 기반한 접근 메소드도 사용할 수 있습니다. <code>first_name</code>과 <code>last_name</code>을 가지고 있는 Person 클래스를 예로 들어봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'active_model'
+
+class Person
+  include ActiveModel::Dirty
+  define_attribute_methods :first_name, :last_name
+
+  def first_name
+    @first_name
+  end
+
+  def first_name=(value)
+    first_name_will_change!
+    @first_name = value
+  end
+
+  def last_name
+    @last_name
+  end
+
+  def last_name=(value)
+    last_name_will_change!
+    @last_name = value
+  end
+
+  def save
+    # 저장한다
+    changes_applied
+  end
+end
+
+</pre>
+</div>
+<h5 id="변경된-모든-속성-목록을-객체로부터-바로-가져오기"><a class="anchorlink" href="#%EB%B3%80%EA%B2%BD%EB%90%9C-%EB%AA%A8%EB%93%A0-%EC%86%8D%EC%84%B1-%EB%AA%A9%EB%A1%9D%EC%9D%84-%EA%B0%9D%EC%B2%B4%EB%A1%9C%EB%B6%80%ED%84%B0-%EB%B0%94%EB%A1%9C-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0">1.4.1 변경된 모든 속성 목록을 객체로부터 바로 가져오기</a></h5><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+person = Person.new
+person.changed? # =&gt; false 
+
+person.first_name = "First Name"
+person.first_name # =&gt; "First Name"
+
+# 속성이 1개 이상 변경된 경우
+person.changed? # =&gt; true
+
+# 저장하기 전에 변경된 속성의 목록을 반환
+person.changed # =&gt; ["first_name"]
+
+# 원래 값으로부터 변경된 속성들의 해시를 반환
+person.changed_attributes # =&gt; {"first_name"=&gt;nil}
+
+# 변경점 해시를 반환(해시의 키는 속성명, 해시의 값은 속성의 이전 값, 새 값의 배열)
+person.changes # =&gt; {"first_name"=&gt;[nil, "First Name"]}
+
+</pre>
+</div>
+<h5 id="속성명에-기반한-접근-메소드"><a class="anchorlink" href="#%EC%86%8D%EC%84%B1%EB%AA%85%EC%97%90-%EA%B8%B0%EB%B0%98%ED%95%9C-%EC%A0%91%EA%B7%BC-%EB%A9%94%EC%86%8C%EB%93%9C">1.4.2 속성명에 기반한 접근 메소드</a></h5><p>속성이 변경되었는지 확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# attr_name_changed?
+person.first_name # =&gt; "First Name"
+person.first_name_changed? # =&gt; true
+
+</pre>
+</div>
+<p>속성의 이전 값을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# attr_name_was accessor
+person.first_name_was # =&gt; "First Name"
+
+</pre>
+</div>
+<p>변경된 속성의 이전 값과 현재 값을 모두 반환합니다. 변경이 있는 경우에는 배열을, 없는 경우에는 nil을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# attr_name_change
+person.first_name_change # =&gt; [nil, "First Name"]
+person.last_name_change # =&gt; nil
+
+</pre>
+</div>
+<h4 id="validations"><a class="anchorlink" href="#validations">1.5 Validations</a></h4><p><code>ActiveModel::Validations</code> 모듈을 사용하여 액티브 레코드 형식의 검증 기능을 추가할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::Validations
+
+  attr_accessor :name, :email, :token
+
+  validates :name, presence: true
+  validates_format_of :email, with: /\A([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})\z/i
+  validates! :token, presence: true
+end
+
+person = Person.new(token: "2b1f325")
+person.valid? # =&gt; false 
+person.name = 'vishnu'
+person.email = 'me'
+person.valid? # =&gt; false 
+person.email = 'me@vishnuatrai.com'
+person.valid? # =&gt; true
+person.token = nil
+person.valid? # =&gt; ActiveModel::StrictValidationFailed 에러를 던짐
+
+</pre>
+</div>
+<h4 id="naming"><a class="anchorlink" href="#naming">1.6 Naming</a></h4><p><code>ActiveModel::Naming</code> 모듈은 네이밍이나 라우팅을 다루기 쉽게 만들어주는 클래스 메소드를 추가합니다.
+이 모듈은 <code>model_name</code> 클래스 메소드를 정의하고, 여기에 <code>ActiveSupport::Inflector</code>를 사용하여
+여러 접근자를 만듭니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  extend ActiveModel::Naming
+end
+
+Person.model_name.name                # =&gt; "Person"
+Person.model_name.singular            # =&gt; "person"
+Person.model_name.plural              # =&gt; "people"
+Person.model_name.element             # =&gt; "person"
+Person.model_name.human               # =&gt; "Person"
+Person.model_name.collection          # =&gt; "people"
+Person.model_name.param_key           # =&gt; "person"
+Person.model_name.i18n_key            # =&gt; :person
+Person.model_name.route_key           # =&gt; "people"
+Person.model_name.singular_route_key  # =&gt; "person"
+
+</pre>
+</div>
+<h4 id="model"><a class="anchorlink" href="#model">1.7 Model</a></h4><p><code>ActiveModel::Model</code> 모듈은 액션 팩과 액션 뷰의 기능을 사용할 수 있게 해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class EmailContact
+  include ActiveModel::Model
+
+  attr_accessor :name, :email, :message
+  validates :name, :email, :message, presence: true
+
+  def deliver
+    if valid?
+      # deliver email
+    end
+  end
+end
+
+</pre>
+</div>
+<p><code>ActiveModel::Model</code> 모듈을 사용하면 다음과 같은 기능을 얻을 수 있습니다.</p>
+<ul>
+<li>모델 이름 얻어오기</li>
+<li>변환</li>
+<li>번역</li>
+<li>검증</li>
+</ul>
+<p>더불어 액티브 레코드의 객체들처럼 해시를 이용하여 객체를 초기화할 수 있게 해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+email_contact = EmailContact.new(name: 'David',
+                                 email: 'david@example.com',
+                                 message: 'Hello World')
+email_contact.name       # =&gt; 'David'
+email_contact.email      # =&gt; 'david@example.com'
+email_contact.valid?     # =&gt; true
+email_contact.persisted? # =&gt; false
+
+</pre>
+</div>
+<p><code>ActiveModel::Model</code>를 포함하고 있는 클래스라면 <code>form_for</code>, 액티브 레코드 객체처럼
+<code>render</code>와 같은 액션 뷰 헬퍼 메소드를 사용할 수 있습니다.</p><h4 id="serialization"><a class="anchorlink" href="#serialization">1.8 Serialization</a></h4><p><code>ActiveModel::Serialization</code> 모듈은 객체의 기본적인 직렬화 기능을 제공합니다.
+이를 위해서 직렬화하고 싶은 속성의 목록을 포함하는 해시를 선언해야 합니다. 단, 속성명은 심볼이 아닌 문자열이어야 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::Serialization
+
+  attr_accessor :name
+
+  def attributes
+    {'name' =&gt; nil}
+  end
+end
+
+</pre>
+</div>
+<p>이제 <code>serializable_hash</code>를 사용해서 객체의 직렬화된 해시에 접근할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+person = Person.new
+person.serializable_hash   # =&gt; {"name"=&gt;nil}
+person.name = "Bob"
+person.serializable_hash   # =&gt; {"name"=&gt;"Bob"}
+
+</pre>
+</div>
+<h5 id="activemodel-serializers"><a class="anchorlink" href="#activemodel-serializers">1.8.1 ActiveModel::Serializers</a></h5><p>레일스는 <code>ActiveModel::Serializers::JSON</code> 모듈을 제공합니다.
+이 모듈은 <code>ActiveModel::Serialization</code>를 포함하면 자동적으로 로드됩니다.</p><h6 id="activemodel-serializers-json"><a class="anchorlink" href="#activemodel-serializers-json">1.8.1.1 ActiveModel::Serializers::JSON</a></h6><p><code>ActiveModel::Serializers::JSON</code> 모듈을 사용하려면 <code>ActiveModel::Serialization</code>를
+<code>ActiveModel::Serializers::JSON</code>로 변경하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::Serializers::JSON
+
+  attr_accessor :name
+
+  def attributes
+    {'name' =&gt; nil}
+  end
+end
+
+</pre>
+</div>
+<p><code>as_json</code> 메소드를 사용하면 해시로 표현된 모델을 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+person = Person.new
+person.as_json # =&gt; {"name"=&gt;nil}
+person.name = "Bob"
+person.as_json # =&gt; {"name"=&gt;"Bob"}
+
+</pre>
+</div>
+<p>JSON 문자열로부터 모델의 속성을 정의할 수 있습니다.
+클래스에 <code>attributes=</code> 메소드를 정의하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::Serializers::JSON
+
+  attr_accessor :name
+
+  def attributes=(hash)
+    hash.each do |key, value|
+      send("#{key}=", value)
+    end
+  end
+
+  def attributes
+    {'name' =&gt; nil}
+  end
+end
+
+</pre>
+</div>
+<p>이제 <code>from_json</code>를 통해서 Person 클래스의 인스턴스에 속성을 설정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+json = { name: 'Bob' }.to_json
+person = Person.new
+person.from_json(json) # =&gt; #&lt;Person:0x00000100c773f0 @name="Bob"&gt;
+person.name            # =&gt; "Bob"
+
+</pre>
+</div>
+<h4 id="translation"><a class="anchorlink" href="#translation">1.9 Translation</a></h4><p><code>ActiveModel::Translation</code> 모듈은 객체와 레일스의 국제화(i18n) 프레임워크를 통합해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  extend ActiveModel::Translation
+end
+
+</pre>
+</div>
+<p><code>human_attribute_name</code>를 사용해서 속성명을 사람이 읽기 쉬운 형식으로 변환할 수 있습니다.
+이 읽기 형식은 로케일 파일에 정의됩니다.</p>
+<ul>
+<li>config/locales/app.pt-BR.yml</li>
+</ul>
+<div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+  pt-BR:
+    activemodel:
+      attributes:
+        person:
+          name: 'Nome'
+
+</pre>
+</div>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Person.human_attribute_name('name') # =&gt; "Nome"
+
+</pre>
+</div>
+<h4 id="lint-tests"><a class="anchorlink" href="#lint-tests">1.10 Lint Tests</a></h4><p><code>ActiveModel::Lint::Tests</code> 모듈은 객체가 액티브 모델 API와 잘 동작하는지 테스트하는 기능을 제공합니다.</p>
+<ul>
+<li>
+<p>app/models/person.rb</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::Model
+
+end
+
+</pre>
+</div>
+</li>
+<li>
+<p>test/models/person_test.rb</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'test_helper'
+
+class PersonTest &lt; ActiveSupport::TestCase
+  include ActiveModel::Lint::Tests
+
+  setup do
+    @model = Person.new
+  end
+end
+
+</pre>
+</div>
+</li>
+</ul>
+<div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rails test
+
+Run options: --seed 14596
+
+# Running:
+
+......
+
+Finished in 0.024899s, 240.9735 runs/s, 1204.8677 assertions/s.
+
+6 runs, 30 assertions, 0 failures, 0 errors, 0 skips
+
+</pre>
+</div>
+<p>객체가 액션 팩을 사용하기 위해서 모든 API를 구현해야할 필요는 없습니다.  이
+모듈은 모든 기능을 구현하고 싶은 경우에 가이드라인을 제공하는 것이 목적입니다.</p><h4 id="securepassword"><a class="anchorlink" href="#securepassword">1.11 SecurePassword</a></h4><p><code>ActiveModel::SecurePassword</code> 모듈은 암호화된 폼에서 비밀번호를 안전하게
+저장하기 위한 방법을 제공합니다.
+이 모듈을 사용하면 <code>has_secure_password</code> 클래스 메소드가 추가되며, 이 메소드는
+<code>password</code>라는 접근자와 필요한 검증 기능을 추가합니다.</p><h5 id="요구조건"><a class="anchorlink" href="#%EC%9A%94%EA%B5%AC%EC%A1%B0%EA%B1%B4">1.11.1 요구조건</a></h5><p><code>ActiveModel::SecurePassword</code> 모듈은 <a href="https://github.com/codahale/bcrypt-ruby" title="BCrypt"><code>bcrypt</code></a>에 의존합니다.
+그러므로 <code>ActiveModel::SecurePassword</code>를 사용하고 싶다면 이 잼을 Gemfile에 추가해야 합니다.
+그리고 모델에는 <code>password_digest</code>라는 접근자가 존재해야 합니다.
+<code>has_secure_password</code>는 <code>password</code> 접근자에 다음과 같은 검증을 추가합니다.</p>
+<ol>
+<li>비밀번호는 반드시 존재해야 합니다.</li>
+<li>비밀번호는 반드시 확인용 비밀번호와 동일해야 합니다.</li>
+<li>길이는 72자 이하여야 합니다. (ActiveModel::SecurePassword가 의존하는 <code>bcrypt</code>의 요구사항입니다)</li>
+</ol>
+<h5 id="예제"><a class="anchorlink" href="#%EC%98%88%EC%A0%9C">1.11.2 예제</a></h5><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Person
+  include ActiveModel::SecurePassword
+  has_secure_password
+  attr_accessor :password_digest
+end
+
+person = Person.new
+
+# 비밀번호가 없을 때
+person.valid? # =&gt; false
+
+# 확인용 비밀번호가 비밀번호와 일치하지 않을 때
+person.password = 'aditya'
+person.password_confirmation = 'nomatch'
+person.valid? # =&gt; false
+
+# 비밀번호의 길이가 72자보다 길 때
+person.password = person.password_confirmation = 'a' * 100
+person.valid? # =&gt; false
+
+# 확인용 비밀번호가 없을 때
+person.password = 'aditya'
+person.valid? # =&gt; true
+
+# 모든 검증을 통과할 때
+person.password = person.password_confirmation = 'aditya'
+person.valid? # =&gt; true
+
+</pre>
+</div>
+
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:03 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

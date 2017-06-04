@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>The Rails Command Line — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>The Rails Command Line</h2><p>이 가이드의 내용:</p>
+<ul>
+<li>Rails 애플리케이션을 생성하는 방법</li>
+<li>모델, 컨트롤러, 데이터베이스의 마이그레이션 파일, 그리고 단위 테스트를 생성하는 방법</li>
+<li>개발용 서버를 실행하는 방법</li>
+<li>인터랙티브 쉘을 사용하여 객체를 테스트하는 방법</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li>
+<a href="#%EC%BB%A4%EB%A7%A8%EB%93%9C%EB%9D%BC%EC%9D%B8%EC%9D%98-%EA%B8%B0%EC%B4%88">커맨드라인의 기초</a>
+
+<ul>
+<li><a href="#rails-new"><code>rails new</code></a></li>
+<li><a href="#rails-server"><code>rails server</code></a></li>
+<li><a href="#rails-generate"><code>rails generate</code></a></li>
+<li><a href="#rails-console"><code>rails console</code></a></li>
+<li><a href="#rails-dbconsole"><code>rails dbconsole</code></a></li>
+<li><a href="#rails-runner"><code>rails runner</code></a></li>
+<li><a href="#rails-destroy"><code>rails destroy</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#bin-rails">bin/rails</a>
+
+<ul>
+<li><a href="#about"><code>about</code></a></li>
+<li><a href="#assets"><code>assets</code></a></li>
+<li><a href="#db"><code>db</code></a></li>
+<li><a href="#notes"><code>notes</code></a></li>
+<li><a href="#routes"><code>routes</code></a></li>
+<li><a href="#test"><code>test</code></a></li>
+<li><a href="#tmp"><code>tmp</code></a></li>
+<li><a href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%ED%83%9C%EC%8A%A4%ED%81%AC">그 이외의 태스크</a></li>
+<li><a href="#rake-%ED%83%9C%EC%8A%A4%ED%81%AC-%EB%A7%8C%EB%93%A4%EA%B8%B0">Rake 태스크 만들기</a></li>
+</ul>
+</li>
+<li>
+<a href="#rails%EC%9D%98-%EA%B3%A0%EA%B8%89-%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EB%AA%85%EB%A0%B9">Rails의 고급 커맨드 라인 명령</a>
+
+<ul>
+<li><a href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%99%80-%EC%86%8C%EC%8A%A4-%EA%B4%80%EB%A6%AC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B3%BC-rails">데이터베이스와 소스 관리 시스템과 Rails</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <div class="note"><p>이 가이드는 <a href="getting_started.html">Rails 시작하기</a>를 읽고, 기본적인 Rails 지식이 있다는 것을 전제로 합니다.</p></div><h3 id="커맨드라인의-기초"><a class="anchorlink" href="#%EC%BB%A4%EB%A7%A8%EB%93%9C%EB%9D%BC%EC%9D%B8%EC%9D%98-%EA%B8%B0%EC%B4%88">1 커맨드라인의 기초</a></h3><p>Rails를 사용할 때에 가장 중요한 명령이 몇 가지 있습니다. 이들을 사용빈도 순으로 나열해보면 다음과 같습니다.</p>
+<ul>
+<li><code>rails console</code></li>
+<li><code>rails server</code></li>
+<li><code>bin/rails</code></li>
+<li><code>rails generate</code></li>
+<li><code>rails dbconsole</code></li>
+<li><code>rails new app_name</code></li>
+</ul>
+<p>어떤 명령어든 <code>-h</code> 또는 <code>--help</code> 옵션을 사용해서 자세한 설명을 확인할 수 있습니다.</p><p>간단한 Rails 애플리케이션을 만들면서 하나씩 명령을 실행해봅시다.</p><h4 id="rails-new"><a class="anchorlink" href="#rails-new">1.1 <code>rails new</code></a></h4><p>Rails를 설치한 다음에 해야하는 것은 <code>rails new</code> 명령을 실행해서 새로운 Rails 애플리케이션을 생성하는 일입니다.</p><div class="info"><p>아직 Rails를 설치하지 않은 경우에는 <code>gem install rails</code>를 실행해서 Rails를 설치할 수 있습니다.</p></div><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rails new commandsapp
+    create
+    create README.md
+    create Rakefile
+    create config.ru
+    create .gitignore
+    create Gemfile
+    create app
+    ...
+    create  tmp/cache
+    ...
+        run bundle install
+
+</pre>
+</div>
+<p>이러한 짧은 명령어를 실행하는 것만으로 Rails는 폴더 구성, 애플리케이션에 필요한 모든 코드 등, 무척 많은 것들을 준비해줍니다.</p><h4 id="rails-server"><a class="anchorlink" href="#rails-server">1.2 <code>rails server</code></a></h4><p><code>rails server</code> 명령을 실행하면, Rails에 포함되어 있는 Puma라는 이름의 웹서버가 실행됩니다. 웹브라우저로 애플리케이션에 접속할 때에는 이 명령을 사용합니다.</p><p>새로운 Rails 애플리케이션을 생성한 뒤 <code>rails server</code>로 바로 실행할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ cd commandsapp
+$ bin/rails server
+=&gt; Booting Puma
+=&gt; Rails 5.0.0 application starting in development on http://0.0.0.0:3000
+=&gt; Run `rails server -h` for more startup options
+Puma starting in single mode...
+* Version 3.0.2 (ruby 2.3.0-p0), codename: Plethora of Penguin Pinatas
+* Min threads: 5, max threads: 5
+* Environment: development
+* Listening on tcp://localhost:3000
+Use Ctrl-C to stop
+
+</pre>
+</div>
+<p>단 3개의 명령으로 Rails 서버를 3000번 포트에서 실행했습니다. 브라우저를 켜고 <a href="http://localhost:3000">http://localhost:3000</a>를 열어보세요. Rails 애플리케이션이 동작중임을 확인할 수 있습니다.</p><div class="info"><p>서버를 실행할 때에는 <code>rails s</code>처럼 "s"라는 별칭을 사용할 수 있습니다.</p></div><p><code>-p</code> 옵션을 사용하여 사용할 포트를 변경할 수 있습니다. 서버 환경은 <code>-e</code> 옵션으로 변경할 수 있으며, 지정하지 않으면 development 환경이 사용됩니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails server -e production -p 4000
+
+</pre>
+</div>
+<p><code>-b</code> 옵션을 사용하면 Rails를 특정 IP에 바인딩할 수 있습니다. 기본값은 0.0.0.0입니다. <code>-d</code> 옵션으로 서버를 데몬으로 기동할 수 있습니다.</p><h4 id="rails-generate"><a class="anchorlink" href="#rails-generate">1.3 <code>rails generate</code></a></h4><p><code>rails generate</code> 명령으로 템플릿을 사용하여 다양한 코드를 생성할 수 있습니다. <code>rails generate</code>를 실행하면 이용가능한 제너레이터 목록을 확인할 수 있습니다.</p><div class="info"><p>제너레이터 명령을 실행할 때에는 <code>rails g</code>처럼 "g"라는 별칭을 사용할 수 있습니다.</p></div><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate
+Usage: rails generate GENERATOR [args] [options]
+
+...
+...
+
+Please choose a generator below.
+
+Rails:
+  assets
+  controller
+  generator
+  ...
+  ...
+
+</pre>
+</div>
+<div class="note"><p>제너레이터 잼을 설치하거나 플러그인에 포함되어 있는 제너레이터를 설치하여 사용할 수 있습니다. 또한 직접 제너레이터를 개발할 수도 있습니다.</p></div><p>제너레이터를 사용하면 애플리케이션을 움직일때 필요한 <a href="http://en.wikipedia.org/wiki/Boilerplate_code"><strong>Boilerplate Code</strong></a>를 작성할 필요가 없어지므로, 시간을 절약할 수 있습니다.</p><p>그렇다면 컨트롤러 제너레이터를 사용해서, 컨트롤러를 생성해봅시다. 어떤 명령을 사용하면 좋을까요? 제너레이터에게 물어봅시다.</p><div class="info"><p>Rails의 모든 명령에는 각각의 도움말이 존재합니다. 많은 *nix(역주: Linux나 Unix, Unix 계열의 OS 등)의 유틸리티와 마찬가지로 명령의 마지막에 <code>--help</code> 또는 <code>-h</code> 옵션을 넘겨주세요(예: <code>rails server --help</code>).</p></div><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate controller
+Usage: rails generate controller NAME [action action] [options]
+
+...
+...
+
+Description:
+    ...
+
+    To create a controller within a module, specify the controller name as a path like 'parent_module/controller_name'.
+
+    ...
+
+Example:
+    `rails generate controller CreditCards open debit credit close`
+
+    Credit card controller with URLs like /credit_cards/debit.
+        Controller: app/controllers/credit_cards_controller.rb
+        Test:       test/controllers/credit_cards_controller_test.rb
+        Views:      app/views/credit_cards/debit.html.erb [...]
+        Helper:     app/helpers/credit_cards_helper.rb
+
+</pre>
+</div>
+<p>컨트롤러 제너레이터에는 <code>generate controller ControllerName action1 action2</code>와 같은 형식의 인수를 넘길 수 있습니다. <strong>hello</strong> 액션을 실행하면, 멋진 메시지를 반환해주는 <code>Greetings</code> 컨트롤러를 만들어보죠.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate controller Greetings hello
+     create  app/controllers/greetings_controller.rb
+      route  get "greetings/hello"
+     invoke    erb 
+     create    app/views/greetings
+     create    app/views/greetings/hello.html.erb
+     invoke  test_unit
+     create    test/controllers/greetings_controller_test.rb
+     invoke  helper
+     create    app/helpers/greetings_helper.rb
+     invoke  assets
+     invoke    coffee
+     create      app/assets/javascripts/greetings.js.coffee
+     invoke    scss
+     create      app/assets/stylesheets/greetings.css.scss
+
+</pre>
+</div>
+<p>어떠한 것들이 생성되었을까요? 몇몇 폴더가 애플리케이션에 존재하는 것을 확인하고, 컨트롤러 파일, 뷰 파일, 기능 테스트를 위한 파일, 뷰 헬퍼, JavaScript 파일, 그리고 스타일 시트를 생성했습니다.</p><p>컨트롤러(<code>app/controllers/greetings_controller.rb</code>)를 찾아서 조금 고쳐봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class GreetingsController &lt; ApplicationController
+  def hello
+    @message = "Hello, how are you today?"
+  end 
+end 
+
+</pre>
+</div>
+<p>메시지를 표시하기 위한 뷰(<code>app/views/greetings/hello.html.erb</code>)도 편집합시다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;h1&gt;A Greeting for You!&lt;/h1&gt;
+&lt;p&gt;&lt;%= @message %&gt;&lt;/p&gt;
+
+</pre>
+</div>
+<p><code>rails server</code>로 서버를 실행합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails server
+=&gt; Booting Puma...
+
+</pre>
+</div>
+<p>URL은 <a href="http://localhost:3000/greetings/hello">http://localhost:3000/greetings/hello</a>입니다.</p><div class="info"><p>일반적인 Rails 애플리케이션에서는 URL이 http://(host)/(controller)/(action)와 같은 패턴이 됩니다. 또한 http://(host)/(controller)라는 패턴의 URL은 컨트롤러의 <strong>index</strong> 액션에 대한 URL로 인식됩니다.</p></div><p>Rails에는 데이터 모델을 위한 제너레이터도 포함되어 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate model
+Usage:
+  rails generate model NAME [field[:type][:index] field[:type][:index]] [options]
+
+...
+
+Active Record options:
+      [--migration]            # Indicates when to generate migration
+                               # Default: true
+
+...
+
+Description:
+    Create rails files for model generator.
+
+</pre>
+</div>
+<div class="note"><p>사용가능한 필드 타입(field types)에 대해서는 <code>TableDefinition</code>의 컬럼 메소드를 <a href="http://api.rubyonrails.org/v5.0.2/classes/ActiveRecord/ConnectionAdapters/TableDefinition.html#method-i-column">API 문서</a>를 참조해주세요.</p></div><p>여기에서는 직접 모델을 만드는 대신에(모델을 생성하는 방법은 나중에 설명하겠습니다), scaffold를 생성해봅시다. Rails에서의 <strong>scaffold</strong>란 모델, 모델을 위한 마이그레이션, 모델을 조작하기 위한 컨트롤러, 모델을 조작, 표시하기 위한 뷰, 이 모두를 위한 테스트 코드를 포함한 것을 가리킵니다.</p><p>"HighScore"라는 이름의 리소스를 만들어봅시다. 이 리소스의 역할은 비디오 게임의 최고 득점을 기록하는 것입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate scaffold HighScore game:string score:integer
+    invoke  active_record
+    create    db/migrate/20130717151933_create_high_scores.rb
+    create    app/models/high_score.rb
+    invoke  test_unit
+    create      test/models/high_score_test.rb
+    create      test/fixtures/high_scores.yml
+    invoke  resource_route
+     route    resources :high_scores
+    invoke  scaffold_controller
+    create    app/controllers/high_scores_controller.rb
+    invoke    erb 
+    create      app/views/high_scores
+    create      app/views/high_scores/index.html.erb
+    create      app/views/high_scores/edit.html.erb
+    create      app/views/high_scores/show.html.erb
+    create      app/views/high_scores/new.html.erb
+    create      app/views/high_scores/_form.html.erb
+    invoke  test_unit
+    create      test/controllers/high_scores_controller_test.rb
+    invoke  helper
+    create      app/helpers/high_scores_helper.rb
+    invoke    jbuilder
+    create      app/views/high_scores/index.json.jbuilder
+    create      app/views/high_scores/show.json.jbuilder
+    invoke  assets
+    invoke    coffee
+    create      app/assets/javascripts/high_scores.coffee
+    invoke    scss
+    create      app/assets/stylesheets/high_scores.scss
+    invoke  scss
+   identical    app/assets/stylesheets/scaffolds.scss
+
+</pre>
+</div>
+<p>제너레이터는 모델, 컨트롤러, 헬퍼, 레이아웃, 기능 테스트, 유닛 테스트, 스타일시트용의 데이터가 존재하는지를 체크하고, 뷰, 컨트롤러, 모델, (<code>high_scores</code> 테이블과 필드를 생성하는)마이그레이션을 생성하고, 이 <strong>리소스</strong>를 가리키는 라우팅을 추가하고 마지막으로 이 모든 것을 위한 테스트를 생성합니다.</p><p>그리고 <strong>migrate</strong>를 실행하여 마이그레이션을 적용해야 합니다. 다시 말해서, 데이터베이스 스키마를 변경하기 위한 Ruby 코드(<code>20130717151933_create_high_scores.rb</code>와 같은 파일에 작성되어 있는 코드입니다)를 실행해야 합니다. 데이터베이스란 어떤 데이터베이스를 가리키는 걸까요? <code>bin/rails db:migrate</code> 명령을 실행하면 Rails는 SQLite3에 새로운 데이터베이스를 생성합니다. bin/rails에 대해서는 나중에 더 자세하게 설명하겠습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails db:migrate
+==  CreateHighScores: migrating ===============================================
+-- create_table(:high_scores)
+   -&gt; 0.0017s
+==  CreateHighScores: migrated (0.0019s) ======================================
+
+</pre>
+</div>
+<div class="info"><p>유닛 테스트에 대해서 설명하겠습니다. 유닛 테스트란 코드를 테스트하고 단언을 하기 위한 코드입니다. 유닛 테스트에서는 모델의 메소드 중 일부를 가져와 그 인수와 반환값을 검사합니다. 유닛 테스트는 당신의 친구이며, 이를 작성하는 것이 좀 더 나은 삶을 살 수 있게 해줄 것입니다. 자세한 설명은 <a href="testing.html">테스팅 가이드</a>를 참고하세요.</p></div><p>Rails가 생성한 인터페이스를 확인해봅시다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails server
+
+</pre>
+</div>
+<p>브라우저에서 <a href="http://localhost:3000/high_scores">http://localhost:3000/high_scores</a>를 열어봅시다. 새로운 최고 점수를 생성할 수 있습니다(스페이스 인베이더에서 55,160점이라든가 말이죠!) (역주: 2003년에 Donald Hayes가 기록한 점수입니다).</p><h4 id="rails-console"><a class="anchorlink" href="#rails-console">1.4 <code>rails console</code></a></h4><p><code>console</code> 명령을 사용하면 커맨드라인에서 Rails 애플리케이션을 직접 다룰 수 있습니다. <code>rails console</code>은 내부적으로 IRB를 사용하고 있으므로, IRB를 사용한 적이 있다면, 사용하는 것은 간단합니다. 떠오른 아이디어를 시험해보거나, 웹사이트에 접속하지 않고 서버의 데이터를 변경할 때에 유용합니다.</p><div class="info"><p>이 명령을 실행할 때에는 <code>rails c</code>처럼 "c"라는 별칭을 사용할 수 있습니다.</p></div><p><code>console</code> 명령을 실행할 환경을 지정할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails console staging
+
+</pre>
+</div>
+<p>데이터를 변경하지 않고 테스트를 하고 싶은 경우에는 <code>rails console --sandbox</code>를 실행하세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails console --sandbox
+Loading development environment in sandbox (Rails 5.0.0)
+Any modifications you make will be rolled back on exit
+irb(main):001:0&gt;
+
+</pre>
+</div>
+<h5 id="app-객체와-helper-객체"><a class="anchorlink" href="#app-%EA%B0%9D%EC%B2%B4%EC%99%80-helper-%EA%B0%9D%EC%B2%B4">1.4.1 app 객체와 helper 객체</a></h5><p><code>rails console</code>를 실행하는 도중 <code>app</code> 객체와 <code>helper</code> 객체에 접근할 수 있습니다.</p><p><code>app</code> 메소드를 사용하면 URL 헬퍼와 path 헬퍼에 접근할 수 있습니다. 또한 request를 던질 수도 있습ㄴ니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+&gt;&gt; app.root_path
+=&gt; "/"
+
+&gt;&gt; app.get _
+Started GET "/" for 127.0.0.1 at 2014-06-19 10:41:57 -0300
+...
+
+</pre>
+</div>
+<p><code>helper</code> 메소드를 사용하면 Rails 애플리케이션이 제공하는 헬퍼와 직접 구현한 헬퍼에 접근할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+&gt;&gt; helper.time_ago_in_words 30.days.ago
+=&gt; "about 1 month"
+
+&gt;&gt; helper.my_custom_helper
+=&gt; "my custom helper"
+
+</pre>
+</div>
+<h4 id="rails-dbconsole"><a class="anchorlink" href="#rails-dbconsole">1.5 <code>rails dbconsole</code></a></h4><p><code>rails dbconsole</code> 명령은 사용하고 있는 데이터베이스를 찾고, 적절한 데이터베이스 커맨드라인 툴을 실행합니다(또한 커맨드라인 툴에서 필요한 인수를 넘길 수도 있습니다). MySQL(MariaDB도 포함합니다), PostgreSQL, SQLite, 그리고 SQLite3을 지원합니다.</p><div class="info"><p>DB 콘솔 명령을 실행할 때에는 <code>rails db</code>와 같이 "db"라는 별칭을 사용할 수 있습니다.</p></div><h4 id="rails-runner"><a class="anchorlink" href="#rails-runner">1.6 <code>rails runner</code></a></h4><p><code>runner</code> 명령으로 Rails의 컨텍스트에서 Ruby 코드를 실행할 수 있습니다. 예를 들자면 다음과 같이 말이죠.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails runner "Model.long_running_method"
+
+</pre>
+</div>
+<div class="info"><p>러너 명령을 실행할 때에는 <code>rails r</code>와 같은 별칭 "r"을 사용할 수 있습니다.</p></div><p><code>-e</code>로 <code>runner</code> 명령을 실행할 환경을 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails runner -e staging "Model.long_running_method"
+
+</pre>
+</div>
+<p>아니면 파일에 필요한 Ruby 코드를 작성해두고, 이를 넘길 수도 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails runner lib/code_to_be_run.rb
+
+</pre>
+</div>
+<h4 id="rails-destroy"><a class="anchorlink" href="#rails-destroy">1.7 <code>rails destroy</code></a></h4><p><code>destroy</code>는 <code>generate</code>와 반대입니다. 제너레이터 명령이 무엇을 실행했는지 확인하고, 그것을 이전 상태로 되돌립니다.</p><div class="info"><p><code>rails d</code>처럼 "d"라는 별칭을 사용해 destroy 명령을 실행할 수 있습니다.</p></div><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails generate model Oops
+      invoke  active_record
+      create    db/migrate/20120528062523_create_oops.rb
+      create    app/models/oops.rb
+      invoke    test_unit
+      create      test/models/oops_test.rb
+      create      test/fixtures/oops.yml
+
+</pre>
+</div>
+<div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails destroy model Oops
+      invoke  active_record
+      remove    db/migrate/20120528062523_create_oops.rb
+      remove    app/models/oops.rb
+      invoke    test_unit
+      remove      test/models/oops_test.rb
+      remove      test/fixtures/oops.yml
+
+</pre>
+</div>
+<h3 id="bin-rails"><a class="anchorlink" href="#bin-rails">2 bin/rails</a></h3><p>Rails 5.0+ 부터 rake 명령이 rails 명령에 포함되어 <code>bin/rails</code>가 새로운 실행 명령이 되었습니다.</p><p>애플리케이션의 최상단 폴더에서 <code>bin/rails --help</code>를 실행하면 bin/rails로 실행할 수 있는 명령 목록을 가져올 수 있습니다. 각 명령은 설명을 가지고 있으며, 필요한 것을 찾을 때에 도움을 줄 것입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails --help
+Usage: rails COMMAND [ARGS]
+
+The most common rails commands are:
+generate    Generate new code (short-cut alias: "g")
+console     Start the Rails console (short-cut alias: "c")
+server      Start the Rails server (short-cut alias: "s")
+...
+
+All commands can be run with -h (or --help) for more information.
+
+In addition to those commands, there are:
+about                               List versions of all Rails ...
+assets:clean[keep]                  Remove old compiled assets
+assets:clobber                      Remove compiled assets
+assets:environment                  Load asset compile environment
+assets:precompile                   Compile all the assets ...
+...
+db:fixtures:load                    Loads fixtures into the ...
+db:migrate                          Migrate the database ...
+db:migrate:status                   Display status of migrations
+db:rollback                         Rolls the schema back to ...
+db:schema:cache:clear               Clears a db/schema_cache.dump file
+db:schema:cache:dump                Creates a db/schema_cache.dump file
+db:schema:dump                      Creates a db/schema.rb file ...
+db:schema:load                      Loads a schema.rb file ...
+db:seed                             Loads the seed data ...
+db:structure:dump                   Dumps the database structure ...
+db:structure:load                   Recreates the databases ...
+db:version                          Retrieves the current schema ...
+...
+restart                             Restart app by touching ...
+tmp:create                          Creates tmp directories ...
+
+</pre>
+</div>
+<div class="info"><p>또는 <code>bin/rails -T</code>를 사용하여 목록을 가져올 수 있습니다.</p></div><h4 id="about"><a class="anchorlink" href="#about">2.1 <code>about</code></a></h4><p><code>bin/rails about</code>를 실행하면, Ruby, RubyGems, Rails, Rails의 서브 컴포넌트(역주: Active Record나 Action Pack 등)의 버전, Rails 애플리케이션의 폴더명, 현재 Rails의 환경 이름과 데이터베이스의 어댑터, 그리고 스키마의 버전이 표시됩니다. 누군가에게 질문을 하고 싶을 때나, 보안 패치가 자신의 애플리케이션에 영향을 주고 있는지 등, 현재 사용하고 있는 Rails에 대한 정보가 필요할 때에 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails about
+About your application's environment
+Rails version             5.0.0
+Ruby version              2.2.2 (x86_64-linux)
+RubyGems version          2.4.6
+Rack version              1.6
+JavaScript Runtime        Node.js (V8)
+Middleware                Rack::Sendfile, ActionDispatch::Static, ActionDispatch::Executor, #&lt;ActiveSupport::Cache::Strategy::LocalCache::Middleware:0x007ffd131a7c88&gt;, Rack::Runtime, Rack::MethodOverride, ActionDispatch::RequestId, Rails::Rack::Logger, ActionDispatch::ShowExceptions, ActionDispatch::DebugExceptions, ActionDispatch::RemoteIp, ActionDispatch::Reloader, ActionDispatch::Callbacks, ActiveRecord::Migration::CheckPending, ActiveRecord::ConnectionAdapters::ConnectionManagement, ActiveRecord::QueryCache, ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, ActionDispatch::Flash, Rack::Head, Rack::ConditionalGet, Rack::ETag
+Application root          /home/foobar/commandsapp
+Environment               development
+Database adapter          sqlite3
+Database schema version   20110805173523
+
+</pre>
+</div>
+<h4 id="assets"><a class="anchorlink" href="#assets">2.2 <code>assets</code></a></h4><p><code>bin/rails assets:precompile</code>를 실행하면 <code>app/assets</code> 하에 있는 파일을 컴파일합니다. 또한 <code>bin/rails assets:clean</code>를 실행하면 오래된 컴파일 후의 파일들을 삭제할 수 있습니다. <code>assets:clean</code>은 새로운 assets의 빌드를 실행하며 오래된 assets에 대한 링크를 남기는 'Rolling deploy'라는 방식을 채용하고 있습니다.</p><p><code>public/assets</code>에 있는 내용물을 완전히 제거할 때에는 <code>bin/rails assets:clobber</code>를 실행하세요.</p><h4 id="db"><a class="anchorlink" href="#db">2.3 <code>db</code></a></h4><p><code>db:</code>라는 bin/rails의 네임스페이스에 속해있는 태스크 중에서 가장 많이 사용되는 것은 <code>migrate</code>와 <code>create</code>입니다. 마이그레이션에 대한 태스크(<code>up</code>, <code>down</code>, <code>redo</code>, <code>reset</code>)은 모두 한번씩 실험해보는 것을 추천합니다. <code>bin/rails db:version</code>을 사용하면 데이터베이스의 버전을 알 수 있으므로 문제가 생겼을 때에 도움이 됩니다.</p><p>마이그레이션에 대해서는 <a href="active_record_migrations.html">마이그레이션</a>에서 좀 더 자세하게 다루고 있습니다.</p><h4 id="notes"><a class="anchorlink" href="#notes">2.4 <code>notes</code></a></h4><p><code>bin/rails notes</code>는 코드의 주석으로부터 FIXME, OPTIMIZE, TODO로 시작하는 줄을 찾아서 출력합니다. 검색 대상이 되는 파일의 확장자는 <code>.builder</code>, <code>.rb</code>, <code>.rake</code>, <code>.yml</code>, <code>.yaml</code>, <code>.ruby</code>, <code>.css</code>, <code>.js</code>, <code>.erb</code>로, 기본으로 사용되는 어노테이션 이외의 다른 것들도 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails notes
+(in /home/foobar/commandsapp)
+app/controllers/admin/users_controller.rb:
+  * [ 20] [TODO] any other way to do this?
+  * [132] [FIXME] high priority for next deploy
+
+app/models/school.rb:
+  * [ 13] [OPTIMIZE] refactor this code to make it faster
+  * [ 17] [FIXME]
+
+</pre>
+</div>
+<p>검색할 파일 확장자를 추가하려면 <code>config.annotations.register_extensions</code> 옵션을 사용하세요. 이 옵션은 확장자의 목록과, 출력할 줄을 선택하는 정규표현을 인수로 받습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.annotations.register_extensions("scss", "sass", "less") { |annotation| /\/\/\s*(#{annotation}):?\s*(.*)$/ }
+
+</pre>
+</div>
+<p>특정 어노테이션만을 출력하고 싶은 경우(예를 들어 FIXME 만을 출력하고 싶은 때)에는 <code>bin/rails notes:fixme</code>처럼 실행하시면 됩니다. 이 때, 어노테이션은 소문자로 적어야한다는 점을 주의해주세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails notes:fixme
+(in /home/foobar/commandsapp)
+app/controllers/admin/users_controller.rb:
+  * [132] high priority for next deploy
+
+app/models/school.rb:
+  * [ 17]
+
+</pre>
+</div>
+<p>다른 어노테이션을 사용하고 싶은 경우에는 <code>bin/rails notes:custom</code>라고 쓰고 <code>ANNOTATION</code> 환경 변수를 사용해서 어노테이션 이름을 지정합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails notes:custom ANNOTATION=BUG
+(in /home/foobar/commandsapp)
+app/models/article.rb:
+  * [ 23] Have to fix this one before pushing!
+
+</pre>
+</div>
+<div class="note"><p>특정 어노테이션만을 출력할 때나, 독자적인 어노테이션을 출력하는 경우에는 FIXME나 BUG같은 각 어노테이션의 이름은 출력되지 않습니다.</p></div><p>기본으로 <code>rails notes</code>는 <code>app</code>, <code>config</code>, <code>db</code>, <code>lib</code>, <code>test</code> 폴더를 확인합니다.
+다른 폴더들에 대해서도 탐색하고 싶다면 쉼표로 구분된 목록을
+<code>SOURCE_ANNOTATION_DIRECTORIES</code> 환경 변수에 넘겨주세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ export SOURCE_ANNOTATION_DIRECTORIES='spec,vendor'
+$ bin/rails notes
+(in /home/foobar/commandsapp)
+app/models/user.rb:
+  * [ 35] [FIXME] User should have a subscription at this point
+spec/models/user_spec.rb:
+  * [122] [TODO] Verify the user that has a subscription works
+
+</pre>
+</div>
+<h4 id="routes"><a class="anchorlink" href="#routes">2.5 <code>routes</code></a></h4><p><code>rails routes</code>를 사용하면 정의되어있는 모든 라우팅을 출력할 수 있습니다. 이것은 라우팅에서 생긴 문제를 해결해야하거나, 애플리케이션의 라우팅 전체를 이해해야 할 때에 도움이 됩니다.</p><h4 id="test"><a class="anchorlink" href="#test">2.6 <code>test</code></a></h4><div class="info"><p>Rails에서의 유닛 테스트에 대해서는 <a href="testing.html">Rails 애플리케이션 테스트하기</a>를 참조해주세요.</p></div><p>Rails에는 Minitest라고 불리는 테스트 라이브러리가 포함되어 있습니다. Rails에서는 테스트를 작성하여 안정적인 애플리케이션을 개발합니다. <code>test:</code>라는 네임스페이스에 정의되어 있는 태스크는 앞으로 작성할 다양한 테스트를 실행할 때에 도움이 될 것입니다.</p><h4 id="tmp"><a class="anchorlink" href="#tmp">2.7 <code>tmp</code></a></h4><p><code>Rails.root/tmp</code> 폴더는 (*nix 계열에서 말하는 <code>/tmp</code> 폴더처럼) 프로세스ID 파일, 액션 캐시와 같은 임시 파일을 저장하기 위한 폴더입니다.</p><p><code>tmp:</code>라는 네임스페이스에는 <code>Rails.root/tmp</code> 폴더를 생성, 삭제하기 위한 태스크가 포함되어 있습니다.</p>
+<ul>
+<li>
+<code>rails tmp:cache:clear</code>로 <code>tmp/cache</code>를 비웁니다.</li>
+<li>
+<code>rails tmp:sockets:clear</code>로 <code>tmp/sockets</code>를 비웁니다.</li>
+<li>
+<code>rails tmp:clear</code>로 <code>cache, sessions, sockets</code>를 비웁니다.</li>
+<li>
+<code>rails tmp:create</code>로 캐시, 소켓, pid의 tmp 폴더를 생성합니다.</li>
+</ul>
+<h4 id="그-이외의-태스크"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%ED%83%9C%EC%8A%A4%ED%81%AC">2.8 그 이외의 태스크</a></h4>
+<ul>
+<li>
+<code>rails stats</code>는 코드에 대한 테스트 비율이나 KLOCs(코드의 라인 수) 등, 코드에 대한 총계를 표시합니다.</li>
+<li>
+<code>rails secret</code>는 세션 시크릿에 사용하는 의사난수를 생성합니다.</li>
+<li>
+<code>rails time:zones:all</code>는 Rails가 다룰 수 있는 모든 시간대를 표시합니다.</li>
+</ul>
+<h4 id="rake-태스크-만들기"><a class="anchorlink" href="#rake-%ED%83%9C%EC%8A%A4%ED%81%AC-%EB%A7%8C%EB%93%A4%EA%B8%B0">2.9 Rake 태스크 만들기</a></h4><p>Rake 태스크의 확장자는 <code>.rake</code>로 <code>Rails.root/lib/tasks</code>에 저장합니다.
+그리고 직접 태스크를 생성할 수 있는 <code>bin/rails generate task</code>라는 명령도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+desc "I am short, but comprehensive description for my cool task"
+task task_name: [:prerequisite_task, :another_task_we_depend_on] do
+  # All your magic here
+  # Any valid Ruby code is allowed
+end 
+
+</pre>
+</div>
+<p>태스크에 인수를 넘기려면 다음과 같이 작성합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+task :task_name, [:arg_1] =&gt; [:prerequisite_1, :prerequisite_2] do |task, args|
+  argument_1 = args.arg_1
+end
+
+</pre>
+</div>
+<p>네임스페이스에서 태스크를 정의하여 태스크를 그룹으로 묶을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+namespace :db do 
+  desc "This task does nothing"
+  task :nothing do
+    # Seriously, nothing
+  end 
+end 
+
+</pre>
+</div>
+<p>그리고 아래와 같이 태스크를 호출합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails task_name
+$ bin/rails "task_name[value 1]" # entire argument string should be quoted
+$ bin/rails db:nothing
+
+</pre>
+</div>
+<div class="note"><p>애플리케이션 내의 모델을 사용하거나, 데이터베이스에 대해서 쿼리를 던지고 싶은 경우에는 태스크에서 <code>environment</code> 태스크에 대한 의존성을 정의해야 합니다. <code>environment</code> 태스크는 애플리케이션의 코드를 읽어오는 태스크입니다.</p></div><h3 id="rails의-고급-커맨드-라인-명령"><a class="anchorlink" href="#rails%EC%9D%98-%EA%B3%A0%EA%B8%89-%EC%BB%A4%EB%A7%A8%EB%93%9C-%EB%9D%BC%EC%9D%B8-%EB%AA%85%EB%A0%B9">3 Rails의 고급 커맨드 라인 명령</a></h3><p>여기에서는 작업을 줄여주는 유용하고 편리한(또는 놀랄만한) 옵션을 찾아서 소개합니다.</p><h4 id="데이터베이스와-소스-관리-시스템과-rails"><a class="anchorlink" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4%EC%99%80-%EC%86%8C%EC%8A%A4-%EA%B4%80%EB%A6%AC-%EC%8B%9C%EC%8A%A4%ED%85%9C%EA%B3%BC-rails">3.1 데이터베이스와 소스 관리 시스템과 Rails</a></h4><p>새로운 Rails 애플리케이션을 생성할 때에 데이터베이스의 종류나 소스 관리 시스템의 종류를 지정할 수 있습니다. 이 옵션을 사용해서 타이핑에 걸리는 시간을 절약할 수 있습니다.</p><p>그러면 <code>--database=postgresql</code> 옵션과 <code>--git</code> 옵션이 어떻게 동작하는지 확인해봅시다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ mkdir gitapp
+$ cd gitapp
+$ git init
+Initialized empty Git repository in .git/
+$ rails new . --git --database=postgresql
+      exists
+      create  app/controllers
+      create  app/helpers
+...
+...
+      create  tmp/cache
+      create  tmp/pids
+      create  Rakefile
+add 'Rakefile'
+      create  README.md
+add 'README.md'
+      create  app/controllers/application_controller.rb
+add 'app/controllers/application_controller.rb'
+      create  app/helpers/application_helper.rb
+...
+      create  log/test.log
+add 'log/test.log'
+
+</pre>
+</div>
+<p>Rails가 git의 저장소에 파일을 생성하기 전에 <strong>gitapp</strong> 폴더를 생성하고 빈 git 저장소를 초기화 해둘 필요가 있습니다. Rails가 어떤 데이터베이스 설정을 생성했는지 확인해봅시다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ cat config/database.yml
+# PostgreSQL. Versions 9.1 and up are supported.
+#
+# Install the pg driver:
+#   gem install pg
+# On OS X with Homebrew:
+#   gem install pg -- --with-pg-config=/usr/local/bin/pg_config
+# On OS X with MacPorts:
+#   gem install pg -- --with-pg-config=/opt/local/lib/postgresql84/bin/pg_config
+# On Windows:
+#   gem install pg
+#       Choose the win32 build.
+#       Install PostgreSQL and put its /bin directory on your path.
+#
+# Configure Using Gemfile
+# gem 'pg'
+#
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: gitapp_development
+  pool: 5
+  username: gitapp
+  password:
+...
+...
+
+</pre>
+</div>
+<p>Rails는 선택한 데이터베이스(PostgreSQL)에 대응하도록 database.yml를 구성합니다.</p><div class="note"><p>소스 코드 관리 시스템에 대한 옵션을 사용할 때에는, 우선 애플리케이션의 폴더를 생성하고 소스 코드 관리 시스템을 초기화한 이후에 <code>rails new</code> 명령어를 실행해주세요.</p></div>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:19 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

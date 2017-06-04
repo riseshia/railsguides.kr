@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Ruby on Rails 4.2 릴리스 노트 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Ruby on Rails 4.2 릴리스 노트</h2><p>Rails 4.2 주요 변경점</p>
+<ul>
+<li>Active Job</li>
+<li>메일 비동기 처리</li>
+<li>Adequate Record</li>
+<li>Web Console</li>
+<li>외래키 지원</li>
+</ul>
+<p>이 릴리스 노트는 주요한 변경점만을 설명합니다. 자잘한 버그 수정이나 변경에 대해서는 CHANGELOG를 참고하거나, GitHub의 Rails 저장소에 있는 <a href="https://github.com/rails/rails/commits/master">커밋 목록</a>을 참조해주세요.</p>
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#rails-4-2%EB%A1%9C-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C">Rails 4.2로 업그레이드</a></li>
+<li>
+<a href="#%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a>
+
+<ul>
+<li><a href="#active-job">Active Job</a></li>
+<li><a href="#%EB%A9%94%EC%9D%BC%EC%9D%98-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC">메일의 비동기 처리</a></li>
+<li><a href="#adequate-record">Adequate Record</a></li>
+<li><a href="#web-console-gem">Web Console gem</a></li>
+<li><a href="#%EC%99%B8%EB%9E%98%ED%82%A4-%EC%A7%80%EC%9B%90">외래키 지원</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EB%B9%84%ED%98%B8%ED%99%98%EC%84%B1">비호환성</a>
+
+<ul>
+<li><a href="#render%EC%97%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%9D%B8%EC%88%98%EB%A5%BC-%EB%84%98%EA%B8%B0%EB%8A%94-%EA%B2%BD%EC%9A%B0%EC%9D%98-%EB%8F%99%EC%9E%91-%EB%B3%80%EA%B2%BD"><code>render</code>에 문자열 인수를 넘기는 경우의 동작 변경</a></li>
+<li><a href="#respond-with%EC%99%80-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%A0%88%EB%B2%A8%EC%9D%98-respond-to%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C"><code>respond_with</code>와 클래스 레벨의 <code>respond_to</code>에 대해서</a></li>
+<li><a href="#rails-server%EC%9D%98-%EA%B8%B0%EB%B3%B8-%ED%98%B8%EC%8A%A4%ED%8A%B8"><code>rails server</code>의 기본 호스트</a></li>
+<li><a href="#html-sanitizer">HTML Sanitizer</a></li>
+<li><a href="#assert-select"><code>assert_select</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#railties">Railties</a>
+
+<ul>
+<li><a href="#railties-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">삭제된 것들</a></li>
+<li><a href="#railties-deprecated">Deprecated</a></li>
+<li><a href="#railties-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-pack">Action Pack</a>
+
+<ul>
+<li><a href="#action-pack-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">삭제된 것들</a></li>
+<li><a href="#action-pack-deprecated">Deprecated</a></li>
+<li><a href="#action-pack-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-view">Action View</a>
+
+<ul>
+<li><a href="#action-view-deprecated">Deprecated</a></li>
+<li><a href="#action-view-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-mailer">Action Mailer</a>
+
+<ul>
+<li><a href="#action-mailer-deprecated">Deprecated</a></li>
+<li><a href="#action-mailer-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-record">Active Record</a>
+
+<ul>
+<li><a href="#active-record-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">삭제된 것들</a></li>
+<li><a href="#active-record-deprecated">Deprecated</a></li>
+<li><a href="#active-record-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-model">Active Model</a>
+
+<ul>
+<li><a href="#active-model-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">삭제된 것들</a></li>
+<li><a href="#active-model-deprecated">Deprecated</a></li>
+<li><a href="#active-model-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li>
+<a href="#active-support">Active Support</a>
+
+<ul>
+<li><a href="#%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">삭제된 것들</a></li>
+<li><a href="#deprecated">Deprecated</a></li>
+<li><a href="#active-support-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">주요 변경점</a></li>
+</ul>
+</li>
+<li><a href="#%ED%81%AC%EB%A0%88%EB%94%A7-%ED%91%9C%EA%B8%B0">크레딧 표기</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="rails-4-2로-업그레이드"><a class="anchorlink" href="#rails-4-2%EB%A1%9C-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C">1 Rails 4.2로 업그레이드</a></h3><p>기존 애플리케이션을 업그레이드한다면 그 전에 충분한 테스트 커버리지를 확보하는 것은 좋은 생각입니다. 애플리케이션이 Rails 4.0까지 업그레이드되지 않았을 경우에는 이부터 시작하고, 애플리케이션이 정상적으로 동작하는 것을 충분히 확인한 뒤에 Rails 4.1으로 업데이트 해주세요. 업그레이드의 주의점에 대해서는 <a href="upgrading_ruby_on_rails.html#rails-4-1%EC%97%90%EC%84%9C-Rails-4-2%EB%A1%9C-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C">Ruby on Rails 업그레이드 가이드</a>를 참고해주세요.</p><h3 id="주요-변경점"><a class="anchorlink" href="#%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">2 주요 변경점</a></h3><h4 id="active-job"><a class="anchorlink" href="#active-job">2.1 Active Job</a></h4><p>Active Job란 Rails 4.2에서 채용된 새로운 프레임워크입니다. Active Job이란 <a href="https://github.com/resque/resque">Resque</a>, <a href="https://github.com/collectiveidea/delayed_job">Delayed Job</a>, <a href="https://github.com/mperham/sidekiq">Sidekiq</a> 등 다양한 쿼리 시스템의 상단에 위치하는 것입니다.</p><p>Active Job API를 사용하여 작성된 잡은 Active Job이 지원하는 어떤 쿼리 시스템에서도 어뎁터를 통하여 실행할 수 있습니다. Active Job은 처음에 잡을 바로 실행하는 인라인 러너(inline runner)로 구성되어 있습니다.</p><p>잡의 인수에 Active Record 객체를 넘기고 싶을 수도 있습니다. Active Job에서는 객체 참조를 URI(uniform resource identifiers)로서 넘깁니다. 객체 자신을 마셜링하지는 않습니다. 이 URI는 Rails에 새롭게 도입된 <a href="https://github.com/rails/globalid">Global ID</a> 라이브러리로 생성되며 잡은 이를 통해서 원래의 객체를 참조합니다. Active Record 객체를 잡의 인수로 넘기게 되면 내부적으로는 단순히 Global ID가 넘겨집니다.</p><p>예를 들어, <code>trashable</code>이라는 Active Record 객체가 있다고 가정하면 다음과 같이 직렬화를 하지 않고 잡에게 넘길 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class TrashableCleanupJob &lt; ActiveJob::Base
+  def perform(trashable, depth)
+    trashable.cleanup(depth)
+  end
+end
+
+</pre>
+</div>
+<p>자세한 설명은 <a href="active_job_basics.html">Active Job</a>을 참고해주세요.</p><h4 id="메일의-비동기-처리"><a class="anchorlink" href="#%EB%A9%94%EC%9D%BC%EC%9D%98-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC">2.2 메일의 비동기 처리</a></h4><p>이번 릴리스로 Action Mailer는 Active Job의 위에 배치되었으며 <code>deliver_later</code> 메소드를 사용해서 잡 큐로부터 메일을 전송할 수 있게되었습니다. 이를 통해서 큐를 비동기(asynchronous)로 설정하면 컨트롤러나 모델의 동작이 큐에 의해서 블록되지 않게 됩니다(단, 기본으로 사용되는 인라인 큐에서는 컨트롤러나 모델의 동작이 블록됩니다).</p><p><code>deliver_now</code> 메소드를 사용하면 메일을 바로 전송할 수 있습니다.</p><h4 id="adequate-record"><a class="anchorlink" href="#adequate-record">2.3 Adequate Record</a></h4><p>Adequate Record란 Active Record의 성능을 향상시키기 위한 다양한 개량들의 총칭이며 이른바 <code>find</code>나 <code>find_by</code>의 호출, 그리고 일부 Association 관련 쿼리의 동작 속도를 최대 2배 향상시킵니다.</p><p>이 개선은 자주 사용되는 SQL 쿼리를 준비된 SQL문(prepared statement)으로서 캐싱하고 동일한 호출이 발생한 경우에 그것을 재활용합니다. 이를 통해 두번째 이후의 호출에서는 쿼리 생성작업시간을 대부분 생략할 수 있게 됩니다. 자세한 설명은 <a href="http://tenderlovemaking.com/2014/02/19/adequaterecord-pro-like-activerecord.html">Aaron Patterson의 글</a>을 참조해주세요.</p><p>Active Record는 지원되는 동작에 대해서 이 Adequate Record를 자동적으로 적용하므로, 개발자가 코드나 설정을 변경할 필요가 없습니다. Adequate Record에서 지원되는 동작의 예시를 아래에서 보입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Post.find(1)  # 최초의 호출에서 준비된 SQL문을 생성 및 캐시합니다
+Post.find(2)  # 캐시된 SQL문을 나중에 재활용합니다
+
+Post.find_by_title('first post')
+Post.find_by_title('second post')
+
+post.comments
+post.comments(true)
+
+</pre>
+</div>
+<p>이 예제에서 메소드 호출에 넘기는 값 자체는 준비된 SQL문의 캐시에 포함되지 않는다는 점에 주목하세요. 전체를 캐싱하는 것이 아닌, 캐싱된 SQL문이 값의 플레이스홀더가 되며 값만을 변경할 수 있다는 점이 중요합니다.</p><p>아래와 같은 경우에는 캐시가 적용되지 않습니다.</p>
+<ul>
+<li>모델에 기본 스코프가 설정되어있는 경우</li>
+<li>모델에 단일 테이블 상속(STI)가 사용되는 경우</li>
+<li>
+<code>find</code>에서 (단일 id가 아닌) id 목록을 탐색하는 경우</li>
+</ul>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+  # 캐싱되지 않습니다
+  Post.find(1, 2, 3)
+  Post.find([1,2])
+
+</pre>
+</div>
+
+<ul>
+<li>
+<code>find_by</code>에서 SQL 조각을 사용하고 있음</li>
+</ul>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+  Post.find_by('published_at &lt; ?', 2.weeks.ago)
+
+</pre>
+</div>
+<h4 id="web-console-gem"><a class="anchorlink" href="#web-console-gem">2.4 Web Console gem</a></h4><p>Rails 4.2에서 새로 생성한 애플리케이션에는 기본으로 <a href="https://github.com/rails/web-console">Web Console</a> gem이 포함됩니다. Web Console gem은 모두 에러 페이지에 인터랙티브하게 조작 가능한 Ruby 콘솔을 추가하며, <code>console</code> 뷰와 컨트롤러 헬퍼 메소드를 제공합니다.</p><p>에러 페이지에 대화형 콘솔을 사용할 수 있게 되ㅕㄴ서 에러가 발생한 컨텍스트에서 자유롭게 코드를 실행할 수 있게 되었습니다. <code>console</code> 헬퍼는 화면 출력이 완료된 최종적인 상태의 컨텍스트에서 대화형 콘솔을 실행합니다. 이 헬퍼는 어떤 뷰나 컨트롤러에서도 자유롭게 호출할 수 있습니다.</p><h4 id="외래키-지원"><a class="anchorlink" href="#%EC%99%B8%EB%9E%98%ED%82%A4-%EC%A7%80%EC%9B%90">2.5 외래키 지원</a></h4><p>마이그레이션용 DSL에서 외래키의 추가/삭제가 지원됩니다. 앞으로는 외래키도 <code>schema.rb</code>에 덤프됩니다. 현 시점에서는 외래키가 지원되는 것은 <code>mysql</code>, <code>mysql2</code>, 그리고 <code>postgresql</code> 어댑터입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# `authors.id`를 참조하는 `articles.author_id`에 대한 외래키를 추가합니다
+add_foreign_key :articles, :authors
+
+# `users.lng_id`를 참조하는 `articles.author_id`에 대한 외래키를 추가합니다
+add_foreign_key :articles, :users, column: :author_id, primary_key: "lng_id"
+
+# `accounts.branch_id`의 외래키를 삭제합니다
+remove_foreign_key :accounts, :branches
+
+# `accounts.owner_id`의 외래키를 삭제합니다
+remove_foreign_key :accounts, column: :owner_id
+
+</pre>
+</div>
+<p>완전한 설명은 API 문서의 <a href="http://api.rubyonrails.org/v4.2.0/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-add_foreign_key">add_foreign_key</a>와 <a href="http://api.rubyonrails.org/v4.2.0/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-remove_foreign_key">remove_foreign_key</a>를 참고해주세요.</p><h3 id="비호환성"><a class="anchorlink" href="#%EB%B9%84%ED%98%B8%ED%99%98%EC%84%B1">3 비호환성</a></h3><p>이전 버전에서 Deprecated되었던 기능이 삭제되었습니다. 이번 릴리스에서 새롭게 Deprecated된 기능에 대해서는 각 컴포넌트의 정보를 참고해주세요.</p><p>다음 변경에 대해서는 업그레이드 전에 대응을 해야합니다.</p><h4 id="render에-문자열-인수를-넘기는-경우의-동작-변경"><a class="anchorlink" href="#render%EC%97%90-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%9D%B8%EC%88%98%EB%A5%BC-%EB%84%98%EA%B8%B0%EB%8A%94-%EA%B2%BD%EC%9A%B0%EC%9D%98-%EB%8F%99%EC%9E%91-%EB%B3%80%EA%B2%BD">3.1 <code>render</code>에 문자열 인수를 넘기는 경우의 동작 변경</a></h4><p>이전에는 컨트롤러의 액션에서 <code>render "foo/bar"</code>를 호출한다는 것은 <code>render file: "foo/bar"</code>를 호출하는 것과 동드했습니다. 이 동작은 Rails 4.2에서 변경되어서 <code>render template: "foo/bar"</code>와 동등해졌습니다. 파일을 지정하고 싶은 경우에는 명시적으로 (<code>render file: "foo/bar"</code>)라고 작성해주세요.</p><h4 id="respond-with와-클래스-레벨의-respond-to에-대해서"><a class="anchorlink" href="#respond-with%EC%99%80-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%A0%88%EB%B2%A8%EC%9D%98-respond-to%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C">3.2 <code>respond_with</code>와 클래스 레벨의 <code>respond_to</code>에 대해서</a></h4><p><code>respond_with</code>와 여기에 대응하는 클래스 레벨의 <code>respond_to</code>는 <a href="https://github.com/plataformatec/responders">responders</a> gem으로 분리되었습니다. 이 기능을 사용하고 싶은 경우에는 Gemfile에 <code>gem 'responders', '~&gt; 2.0'</code>를 추가해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/controllers/users_controller.rb
+
+class UsersController &lt; ApplicationController
+  respond_to :html, :json
+
+  def show
+    @user = User.find(params[:id])
+    respond_with @user
+  end
+end
+
+</pre>
+</div>
+<p>인스턴스 레벨의 <code>respond_to</code>는 영향을 받지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/controllers/users_controller.rb
+
+class UsersController &lt; ApplicationController
+  def show
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @user }
+    end
+  end
+end
+
+</pre>
+</div>
+<h4 id="rails-server의-기본-호스트"><a class="anchorlink" href="#rails-server%EC%9D%98-%EA%B8%B0%EB%B3%B8-%ED%98%B8%EC%8A%A4%ED%8A%B8">3.3 <code>rails server</code>의 기본 호스트</a></h4><p><a href="https://github.com/rack/rack/commit/28b014484a8ac0bbb388e7eaeeef159598ec64fc">Rack의 변경</a>에 의해서 <code>rails server</code> 명령을 실행할 때에 기본 호스트가 <code>0.0.0.0</code>에서 <code>localhost</code>로 변경되었습니다. 이 변경은 표준적인 로컬에서의 개발 작업에 영향을 주지는 않습니다. <a href="http://127.0.0.1:3000">http://127.0.0.1:3000</a> 과 <a href="http://localhost:3000">http://localhost:3000</a> 의 동작은 어느 것이든 동일하기 때문입니다.</p><p>다만 이번 변경을 통해 다른 PC에서 Rails 서버에 접근할 수는 없게 되었습니다. 예를 들어 development 환경이 가상 머신 위에 있으며, 호스트 머신으로부터 development 환경에 접근하는 경우 등이 그렇습니다. 이러한 경우 서버를 켤 때에 <code>rails server -b 0.0.0.0</code>로 설정하여 이전과 동일한 동작을 재현할 수 있습니다.</p><p>이전의 동작으로 되돌리고 싶은 경우에는 반드시 방화벽을 적절하게 설정하고, 신뢰할 수 있는 PC만이 개발용 서버에 접근할 수 있도록 해주세요.</p><h4 id="html-sanitizer"><a class="anchorlink" href="#html-sanitizer">3.4 HTML Sanitizer</a></h4><p>HTML Sanitizer는 <a href="https://github.com/flavorjones/loofah">Loofah</a>와 <a href="https://github.com/sparklemotion/nokogiri">Nokogiri</a>를 기반으로 하는 새로운 구현으로 변경되었습니다. 새로운 Sanitizer는 보다 안전하며, 강력하고 유연합니다.</p><p>새로운 알고리즘이 채용되어서 몇몇 오염된 입력을 정제한 결과가 이전과 다를 경우가 있습니다.</p><p>이전의 Sanitizer와 완전히 동일한 결과를 얻고 싶은 경우에는 <a href="https://github.com/kaspth/rails-deprecated_sanitizer">rails-deprecated_sanitizer</a> gem을 <code>Gemfile</code>에 추가하면 됩니다. 이 gem은 옵트인이므로 Deprecated 경고는 출력되지 않습니다.</p><p><code>rails-deprecated_sanitizer</code>의 지원은 Rails 4.2까지만 된다는 점을 주의해주세요. Rails5.0에서는 지원하지 않을 예정입니다.</p><p>새로운 Sanitizer의 더 자세한 변경점에 대해서는 <a href="http://blog.plataformatec.com.br/2014/07/the-new-html-sanitizer-in-rails-4-2/">이 블로그의 글</a>을 참고해주세요.</p><h4 id="assert-select"><a class="anchorlink" href="#assert-select">3.5 <code>assert_select</code></a></h4><p><code>assert_select</code>는 <a href="https://github.com/sparklemotion/nokogiri">Nokogiri</a>를 기반으로 구현되었습니다.
+이로 인해, 이전에는 유효했던 셀렉터의 일부가 지원되지 않습니다. 애플리케이션에서 이를 사용하고 있는 경우에는, 애플리케이션을 변경해야합니다.</p>
+<ul>
+<li>
+<p>  속성 셀렉터의 값이 영문 이외의 문자가 포함되어 있는 경우에는 값을 인용부호로 감싸야 합니다.</p>
+<div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+# 이전의 동작
+a[href=/]
+a[href$=/]
+
+# 현재의 동작
+a[href="/"]
+a[href$="/"]
+
+</pre>
+</div>
+</li>
+<li>
+<p>  요소의 중첩이 올바르지 않은 HTML을 포함하는 HTML 소스로부터 생성된 DOM에서는 결과가 다를 수 있습니다.</p>
+<p>예시: </p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# content: &lt;div&gt;&lt;i&gt;&lt;p&gt;&lt;/i&gt;&lt;/div&gt;
+
+# 이전의 동작
+assert_select('div &gt; i')  # =&gt; true
+assert_select('div &gt; p')  # =&gt; false
+assert_select('i &gt; p')    # =&gt; true
+
+# 현재의 동작
+assert_select('div &gt; i')  # =&gt; true
+assert_select('div &gt; p')  # =&gt; true
+assert_select('i &gt; p')    # =&gt; false
+
+</pre>
+</div>
+</li>
+<li>
+<p>  선택한 데이터에 이스케이프를 해야하는 문자가 포함되어 있지 않은 경우, 비교를 위해 선택된 값은 이스케이프 된 문자(<code>AT&amp;amp;T</code> 등)입니다만, 현재는 실제 이스케이프 문자를 쓰지 않고 비교할 수 있게 되었습니다(<code>AT&amp;T</code> 등).</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# &lt;p&gt;AT&amp;amp;T&lt;/p&gt;의 내용의 차이
+
+# 이전의 동작
+assert_select('p', 'AT&amp;amp;T')  # =&gt; true
+assert_select('p', 'AT&amp;T')      # =&gt; false
+
+# 현재의 동작
+assert_select('p', 'AT&amp;T')      # =&gt; true
+assert_select('p', 'AT&amp;amp;T')  # =&gt; false
+
+</pre>
+</div>
+</li>
+</ul>
+<h3 id="railties"><a class="anchorlink" href="#railties">4 Railties</a></h3><p>자세한 변경사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/railties/CHANGELOG.md">Changelog</a>를 참조해주세요.</p><h4 id="railties-삭제된-것들"><a class="anchorlink" href="#railties-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">4.1 삭제된 것들</a></h4>
+<ul>
+<li><p>  애플리케이션의 제너레이터로부터 <code>--skip-action-view</code> 옵션이 삭제되었습니다.
+(<a href="https://github.com/rails/rails/pull/17042">Pull Request</a>)</p></li>
+<li><p>  <code>rails application</code> 명령은 삭제되었습니다. 다른 명령으로 대체되지 않습니다.
+(<a href="https://github.com/rails/rails/pull/11616">Pull Request</a>)</p></li>
+</ul>
+<h4 id="railties-deprecated"><a class="anchorlink" href="#railties-deprecated">4.2 Deprecated</a></h4>
+<ul>
+<li><p>  production 환경에서 <code>config.log_level</code>을 미설정한 상태로 두는 것이 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/pull/16622">Pull Request</a>)</p></li>
+<li><p>  <code>rake test:all</code>가 Deprecated되었습니다. 현재는 <code>rake test</code>가 추천됩니다(이를 통해 <code>test</code> 폴더에 있는 모든 테스트가 실행됩니다).
+(<a href="https://github.com/rails/rails/pull/17348">Pull Request</a>)</p></li>
+<li><p>  <code>rake test:all:db</code>가 Deprecated되었습니다. 현재는 <code>rake test:db</code>가 추천됩니다.
+(<a href="https://github.com/rails/rails/pull/17348">Pull Request</a>)</p></li>
+<li><p>  <code>Rails::Rack::LogTailer</code>가 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/commit/84a13e019e93efaa8994b3f8303d635a7702dbce">Commit</a>)</p></li>
+</ul>
+<h4 id="railties-주요-변경점"><a class="anchorlink" href="#railties-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">4.3 주요 변경점</a></h4>
+<ul>
+<li><p>  <code>web-console</code>이 기본으로 애플리케이션의 Gemfile에 도입되었습니다.
+(<a href="https://github.com/rails/rails/pull/11667">Pull Request</a>)</p></li>
+<li><p>  모델의 관계를 설정하기 위한 제너레이터에 <code>required</code> 옵션이 추가되었습니다.
+(<a href="https://github.com/rails/rails/pull/16062">Pull Request</a>)</p></li>
+<li>
+<p>  커스텀 설정 옵션을 정의할 때에 사용하는 <code>x</code> 네임스페이스가 도입되었습니다.</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/environments/production.rb
+config.x.payment_processing.schedule = :daily
+config.x.payment_processing.retries  = 3
+config.x.super_debugger              = true
+
+</pre>
+</div>
+<p>이러한 옵션은 다음과 같이 configuration 객체 전체에서 사용할 수 있습니다.</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Rails.configuration.x.payment_processing.schedule # =&gt; :daily
+Rails.configuration.x.payment_processing.retries  # =&gt; 3
+Rails.configuration.x.super_debugger              # =&gt; true
+
+</pre>
+</div>
+<p>(<a href="https://github.com/rails/rails/commit/611849772dd66c2e4d005dcfe153f7ce79a8a7db">Commit</a>)</p>
+</li>
+<li>
+<p>  현재의 환경설정을 로딩하기 위한 <code>Rails::Application.config_for</code>가 도입되었습니다.</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/exception_notification.yml:
+production:
+  url: http://127.0.0.1:8080
+  namespace: my_app_production
+development:
+  url: http://localhost:3001
+  namespace: my_app_development
+
+# config/environments/production.rb
+Rails.application.configure do
+  config.middleware.use ExceptionNotifier, config_for(:exception_notification)
+end
+
+</pre>
+</div>
+<p>(<a href="https://github.com/rails/rails/pull/16129">Pull Request</a>)</p>
+</li>
+<li><p>  애플리케이션의 제너레이터에 <code>--skip-turbolinks</code> 옵션이 도입되었습니다. 이것은 생성할 때에 Turbolinks를 사용하지 않기 위한 옵션입니다.
+(<a href="https://github.com/rails/rails/commit/bf17c8a531bc8059d50ad731398002a3e7162a7d">Commit</a>)</p></li>
+<li><p>  <code>bin/setup</code> 스크립트가 도입되었습니다. 이는 애플리케이션의 초기 설정시에 설정을 자동화하기 위한 코드를 작성하는 위치입니다.
+(<a href="https://github.com/rails/rails/pull/15189">Pull Request</a>)</p></li>
+<li><p>  development 환경에서 <code>config.assets.digest</code>의 기본값이 <code>true</code>으로 변경되었습니다.
+(<a href="https://github.com/rails/rails/pull/15155">Pull Request</a>)</p></li>
+<li><p>  <code>rake notes</code>에 새로운 확장자를 등록하기 위한 API가 도입되었습니다.
+(<a href="https://github.com/rails/rails/pull/14379">Pull Request</a>)</p></li>
+<li><p>  Rails 템플릿에서 사용하는 <code>after_bundle</code> 콜백이 도입되었습니다.
+(<a href="https://github.com/rails/rails/pull/16359">Pull Request</a>)</p></li>
+<li><p>  <code>Rails.gem_version</code> 메소드가 도입되었습니다. 이는 <code>Gem::Version.new(Rails.version)</code>을 간단히 가져오기 위해서 사용합니다.
+(<a href="https://github.com/rails/rails/pull/14101">Pull Request</a>)</p></li>
+</ul>
+<h3 id="action-pack"><a class="anchorlink" href="#action-pack">5 Action Pack</a></h3><p>자세한 변경사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/actionpack/CHANGELOG.md">Changelog</a>를 참고해주세요.</p><h4 id="action-pack-삭제된-것들"><a class="anchorlink" href="#action-pack-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">5.1 삭제된 것들</a></h4>
+<ul>
+<li><p>  <code>respond_with</code>와 클래스 레벨에서 <code>respond_to</code>가 Rails에서 분리되어 <code>responders</code> gem(version 2.0)으로 옮겨졌습니다. 이 기능을 계속 사용하고 싶다면 Gemfile에 <code>gem 'responders', '~&gt; 2.0'</code>를 추가해주세요.
+(<a href="https://github.com/rails/rails/pull/16526">Pull Request</a>, <a href="upgrading_ruby_on_rails.html#responders-gem">자세한 설명</a>)</p></li>
+<li><p>  Deprecated된 <code>AbstractController::Helpers::ClassMethods::MissingHelperError</code>가 삭제되었습니다. 앞으로는 <code>AbstractController::Helpers::MissingHelperError</code>를 사용해주세요.
+(<a href="https://github.com/rails/rails/commit/a1ddde15ae0d612ff2973de9cf768ed701b594e8">Commit</a>)</p></li>
+</ul>
+<h4 id="action-pack-deprecated"><a class="anchorlink" href="#action-pack-deprecated">5.2 Deprecated</a></h4>
+<ul>
+<li><p>  <code>*_path</code> 헬퍼에서 <code>only_path</code> 옵션이 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/commit/aa1fadd48fb40dd9396a383696134a259aa59db9">Commit</a>)</p></li>
+<li><p>  <code>assert_tag</code>, <code>assert_no_tag</code>, <code>find_tag</code>, <code>find_all_tag</code>가 Deprecated되었습니다. 앞으로는 <code>assert_select</code>를 사용해주세요.
+(<a href="https://github.com/rails/rails-dom-testing/commit/b12850bc5ff23ba4b599bf2770874dd4f11bf750">Commit</a>)</p></li>
+<li>
+<p>  라우팅의 <code>:to</code> 옵션에서, <code>#</code>와 같은 문자를 포함하지 않는 심볼이나 문자열의 지원이 Deprecated되었습니다.</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+get '/posts', to: MyRackApp    =&gt; (변경할 필요 없음)
+get '/posts', to: 'post#index' =&gt; (변경할 필요 없음)
+get '/posts', to: 'posts'      =&gt; get '/posts', controller: :posts
+get '/posts', to: :index       =&gt; get '/posts', action: :index
+
+</pre>
+</div>
+<p>(<a href="https://github.com/rails/rails/commit/cc26b6b7bccf0eea2e2c1a9ebdcc9d30ca7390d9">Commit</a>)</p>
+</li>
+<li>
+<p>  URL 헬퍼에서 해시의 키에 문자열을 사용하는 것이 Deprecated되었습니다.</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 좋지 않은 예시
+root_path('controller' =&gt; 'posts', 'action' =&gt; 'index')
+
+# 좋은 예시
+root_path(controller: 'posts', action: 'index')
+
+</pre>
+</div>
+<p>(<a href="https://github.com/rails/rails/pull/17743">Pull Request</a>)</p>
+</li>
+</ul>
+<h4 id="action-pack-주요-변경점"><a class="anchorlink" href="#action-pack-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">5.3 주요 변경점</a></h4>
+<ul>
+<li>
+<p>  <code>*_filter</code>에 관련된 메소드들을 문서에서 삭제했습니다. 이 메소드들을 사용하지 말아주세요. 앞으로는 <code>*_action</code>을 사용해주세요.</p>
+<div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+after_filter          =&gt; after_action
+append_after_filter   =&gt; append_after_action
+append_around_filter  =&gt; append_around_action
+append_before_filter  =&gt; append_before_action
+around_filter         =&gt; around_action
+before_filter         =&gt; before_action
+prepend_after_filter  =&gt; prepend_after_action
+prepend_around_filter =&gt; prepend_around_action
+prepend_before_filter =&gt; prepend_before_action
+skip_after_filter     =&gt; skip_after_action
+skip_around_filter    =&gt; skip_around_action
+skip_before_filter    =&gt; skip_before_action
+skip_filter           =&gt; skip_action_callback
+
+</pre>
+</div>
+<p>애플리케이션이 이러한 메소드에 의존하는 경우에는, <code>*_action</code>로 변경해주세요. 이 메소드들은 앞으로 Deprecated될 것이며, 최종적으로 Rails에서 제거될 예정입니다.</p>
+<p>(Commit <a href="https://github.com/rails/rails/commit/6c5f43bab8206747a8591435b2aa0ff7051ad3de">1</a>, 
+<a href="https://github.com/rails/rails/commit/489a8f2a44dc9cea09154ee1ee2557d1f037c7d4">2</a>)</p>
+</li>
+<li><p>  <code>render nothing: true</code>, 그리고 body를 <code>nil</code>로 랜더링하는 경우에 응답의 body에 포함되던 공백문자 하나가 삭제되었습니다.
+(<a href="https://github.com/rails/rails/pull/14883">Pull Request</a>)</p></li>
+<li><p>  템플릿의 다이제스트를 자동적으로 ETags에 포함하게 되었습니다.
+(<a href="https://github.com/rails/rails/pull/15819">Pull Request</a>)</p></li>
+<li><p>  URL 헬퍼에 넘겨지는 세그먼트가 자동적으로 이스케이프됩니다. (<a href="https://github.com/rails/rails/commit/5460591f0226a9d248b7b4f89186bd5553e7768f">Commit</a>)</p></li>
+<li><p>  전역으로 사용해도 좋은 파라미터를 지정하기 위한 <code>always_permitted_parameters</code>가 도입되었습니다. 이 설정의 기본값은 <code>['controller', 'action']</code>입니다.
+(<a href="https://github.com/rails/rails/pull/15933">Pull Request</a>)</p></li>
+<li><p>  <a href="https://tools.ietf.org/html/rfc4791">RFC 4791</a>에 기반하여 <code>MKCALENDAR</code>라는 HTTP 메소드가 추가되었습니다.
+(<a href="https://github.com/rails/rails/pull/15121">Pull Request</a>)</p></li>
+<li><p>  <code>*_fragment.action_controller</code> 통지에 페이로드 상의 컨트롤러 이름과 액션 이름이 포함됩니다.
+(<a href="https://github.com/rails/rails/pull/14137">Pull Request</a>)</p></li>
+<li><p>  라우팅 탐색이 애매하게 일치하는 경우 Routing Error 페이지가 개선되었습니다.
+(<a href="https://github.com/rails/rails/pull/14619">Pull Request</a>)</p></li>
+<li><p>  CSRF에 의한 실패 시 로그 출력을 무효화하는 옵션이 추가되었습니다.
+(<a href="https://github.com/rails/rails/pull/14280">Pull Request</a>)</p></li>
+<li><p>  Rails가 정적인 애셋을 전송하도록 설정되어있는 경우, 브라우저가 gzip 압축을 지원하고 gzip파일이 서버에 존재한다면 애셋의 gzip이 사용되게 됩니다. 애셋 파이프라인은 압축가능한 모든 애셋에서 <code>.gz</code> 파일을 기본으로 생성하게 됩니다. gzip 압축된 파일을 전송하여서 애셋에 대한 요청을 고속화할 수 있습니다. Rails가 production 환경에서 애셋을 제공하는 경우 반드시 <a href="http://guides.rubyonrails.org/asset_pipeline.html#cdns">CDN</a>을 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/16466">Pull Request</a>)</p></li>
+<li>
+<p>  통합 테스트 중에 <code>process</code> 헬퍼를 호출했을 때, 경로에 '/'를 요구하도록 변경되었습니다. 이전에는 생략할 수 있었습니다만, 이것은 내부 구현의 사이드 이펙트이며, 의도된 기능이 아닙니다.</p>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+test "list all posts" do
+  get "/posts"
+  assert_response :success
+end 
+
+</pre>
+</div>
+</li>
+</ul>
+<h3 id="action-view"><a class="anchorlink" href="#action-view">6 Action View</a></h3><p>자세한 변경사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/actionview/CHANGELOG.md">Changelog</a>를 참조해주세요.</p><h4 id="action-view-deprecated"><a class="anchorlink" href="#action-view-deprecated">6.1 Deprecated</a></h4>
+<ul>
+<li><p>  <code>AbstractController::Base.parent_prefixes</code>는 Deprecated되었습니다. 뷰의 검색 대상을 변경하고 싶은 경우에는 <code>AbstractController::Base.local_prefixes</code>를 재정의해주세요.
+(<a href="https://github.com/rails/rails/pull/15026">Pull Request</a>)</p></li>
+<li><p>  <code>ActionView::Digestor#digest(name, format, finder, options = {})</code>는 Deprecated되었습니다.
+앞으로 인수는 하나의 해시로 넘겨야 합니다.
+(<a href="https://github.com/rails/rails/pull/14243">Pull Request</a>)</p></li>
+</ul>
+<h4 id="action-view-주요-변경점"><a class="anchorlink" href="#action-view-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">6.2 주요 변경점</a></h4>
+<ul>
+<li><p>  <code>render "foo/bar"</code>가 확장되어, <code>render file: "foo/bar"</code>가 아닌, <code>render template: "foo/bar"</code>를 실행하도록 변경되었습니다.
+(<a href="https://github.com/rails/rails/pull/16888">Pull Request</a>)</p></li>
+<li><p>  폼 헬퍼가 변경되어 인라인 CSS를 가지는 숨겨진 필드를 감싸던 <code>&lt;div&gt;</code>요소가 생성되지 않습니다.
+(<a href="https://github.com/rails/rails/pull/14738">Pull Request</a>)</p></li>
+<li><p>  <code>#{partial_name}_iteration</code>라는 특수한 지역 변수가 도입되었습니다. 이 지역 변수는 컬렉션의 랜더링할 때에 파셜을 사용합니다. 이를 통해, <code>#index</code>나 <code>#size</code>, <code>#first?</code>나 <code>last?</code> 메소드를 사용해 현재의 반복 상태에 접근할 수 있습니다.
+(<a href="https://github.com/rails/rails/pull/7698">Pull Request</a>)</p></li>
+<li><p>  플레이스 홀더의 국제화(I18n)가 <code>label</code>의 국제화와 동일한 규칙을 따릅니다.
+(<a href="https://github.com/rails/rails/pull/16438">Pull Request</a>)</p></li>
+</ul>
+<h3 id="action-mailer"><a class="anchorlink" href="#action-mailer">7 Action Mailer</a></h3><p>자세한 변경사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/actionmailer/CHANGELOG.md">Changelog</a>를 참고해주세요.</p><h4 id="action-mailer-deprecated"><a class="anchorlink" href="#action-mailer-deprecated">7.1 Deprecated</a></h4>
+<ul>
+<li><p>  Action Mailer의 <code>*_path</code> 헬퍼가 Deprecated되었습니다. 앞으로는 반드시 <code>*_url</code> 헬퍼를 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/15840">Pull Request</a>)</p></li>
+<li><p>  <code>deliver</code>와 <code>deliver!</code>가 Deprecated되었습니다. 앞으로는 <code>deliver_now</code>나 <code>deliver_now!</code>를 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/16582">Pull Request</a>)</p></li>
+</ul>
+<h4 id="action-mailer-주요-변경점"><a class="anchorlink" href="#action-mailer-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">7.2 주요 변경점</a></h4>
+<ul>
+<li><p>  <code>link_to</code>나 <code>url_for</code>를 사용하여 절대경로 URL을 생성할 수 있으며, <code>only_path: false</code>를 넘길 필요가 없어졌습니다.
+(<a href="https://github.com/rails/rails/commit/9685080a7677abfa5d288a81c3e078368c6bb67c">Commit</a>)</p></li>
+<li><p>  <code>deliver_later</code>가 도입되었습니다. 이는 애플리케이션의 큐에 잡으로 넘겨주며, 메일을 비동기적으로 전송합니다.
+(<a href="https://github.com/rails/rails/pull/16485">Pull Request</a>)</p></li>
+<li><p>  <code>show_previews</code> 설정 옵션이 추가되었습니다. 이것은 development 환경의 바깥에서 메일러의 프리뷰를 보기 위해서 입니다.
+(<a href="https://github.com/rails/rails/pull/15970">Pull Request</a>)</p></li>
+</ul>
+<h3 id="active-record"><a class="anchorlink" href="#active-record">8 Active Record</a></h3><p>자세한 변경사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/activerecord/CHANGELOG.md">Changelog</a>를 참고해주세요.</p><h4 id="active-record-삭제된-것들"><a class="anchorlink" href="#active-record-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">8.1 삭제된 것들</a></h4>
+<ul>
+<li><p>  <code>cache_attributes</code>와 비슷한 메소드들이 제거되었습니다. 모든 속성은 앞으로 항상 캐싱됩니다.
+(<a href="https://github.com/rails/rails/pull/15429">Pull Request</a>)</p></li>
+<li><p>  Deprecated된 <code>ActiveRecord::Base.quoted_locking_column</code> 메소드가 삭제되었습니다.
+(<a href="https://github.com/rails/rails/pull/15612">Pull Request</a>)</p></li>
+<li><p>  Deprecated된 <code>ActiveRecord::Migrator.proper_table_name</code>가 삭제되었습니다. 앞으로는 <code>ActiveRecord::Migration</code>의 <code>proper_table_name</code> 인스턴스 메소드를 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/15512">Pull Request</a>)</p></li>
+<li><p>  사용되지 않는 <code>:timestamp</code> 타입이 삭제되었습니다. 아으로는 항상 투명하게 <code>:datetime</code>이 사용됩니다. 이를 통해 XML 직렬화등에서 컬럼의 종류가 Active Record의 외부에서 전송된 경우에 발생하던 부정합이 수정됩니다.
+(<a href="https://github.com/rails/rails/pull/15184">Pull Request</a>)</p></li>
+</ul>
+<h4 id="active-record-deprecated"><a class="anchorlink" href="#active-record-deprecated">8.2 Deprecated</a></h4>
+<ul>
+<li><p>  <code>after_commit</code>와 <code>after_rollback</code>에서 에러의 제어하는 것이 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/pull/16537">Pull Request</a>)</p></li>
+<li><p>  <code>has_many :through</code> Association에서 카운터 캐시 자동 검출이 Deprecated되었습니다(원래부터 정상적으로 동작하지 않았습니다). 앞으로는 <code>has_many</code>나 <code>belongs_to</code>를 통해서 레코드 전체를 수동으로 카운터 캐싱해야합니다.
+(<a href="https://github.com/rails/rails/pull/15754">Pull Request</a>)</p></li>
+<li><p>  <code>.find</code>나 <code>.exists?</code>에 Active Record 객체를 넘기는 것이 Deprecated되었습니다. 처음에 객체의 <code>id</code>를 호출해야합니다.
+(Commit <a href="https://github.com/rails/rails/commit/d92ae6ccca3bcfd73546d612efaea011270bd270">1</a>, <a href="https://github.com/rails/rails/commit/d35f0033c7dec2b8d8b52058fb8db495d49596f7">2</a>)</p></li>
+<li>
+<p>  PostgreSQL에서 시작값을 제외하는 범위값에 대한 (불충분한) 지원이 Deprecated되었습니다. 현재는 PostgreSQL의 Range를 Ruby의 Range 클래스에 사상됩니다. 단, Ruby의 Range 클래스에서는 시작값을 제외할 수 없으므로 이 방법은 완전하게는 실현할 수 없습니다.</p>
+<p>현 시점에서 시작값을 증분(increment)하는 해결방법은 올바르지 않으므로, Deprecated되었습니다. 증분의 방법이 명확하지 않은 서브타입(예: <code>#succ</code>는 증분 방법을 정의하지 않음)에 대해서는 시작값을 제외하는 범위 지정에 의해서 <code>ArgumentError</code>가 발생합니다.
+(<a href="https://github.com/rails/rails/commit/91949e48cf41af9f3e4ffba3e5eecf9b0a08bfc3">Commit</a>)</p>
+</li>
+<li><p>  접속이 이루어지지 않은 상태에서의 <code>DatabaseTasks.load_schema</code>의 호출이 Deprecated되었습니다. 앞으로는 <code>DatabaseTasks.load_schema_current</code>를 사용해주세요.
+(<a href="https://github.com/rails/rails/commit/f15cef67f75e4b52fd45655d7c6ab6b35623c608">Commit</a>)</p></li>
+<li><p>  Replacement를 사용하지 않고 <code>sanitize_sql_hash_for_conditions</code>를 사용하는 것이 Deprecated되었습니다. 쿼리를 전송하거나 갱신하는 경우에는 <code>Relation</code>를 사용하여주세요.
+(<a href="https://github.com/rails/rails/commit/d5902c9e">Commit</a>)</p></li>
+<li><p>  <code>:null</code>옵션을 건네지 않고 <code>add_timestamps</code>나 <code>t.timestamps</code>를 사용하는 것이 Deprecated되었습니다. 현재의 초기 값은 <code>null: true</code>입니다만,  Rails 5에서는 <code>null: false</code>로 변경될 예정입니다.
+(<a href="https://github.com/rails/rails/pull/16481">Pull Request</a>)</p></li>
+<li><p>  <code>Reflection#source_macro</code>가 Deprecated되었습니다. 앞으로는 Active Record에서 사용할 필요가 없어졌으므로, 대체안은 없습니다.
+(<a href="https://github.com/rails/rails/pull/16373">Pull Request</a>)</p></li>
+<li><p>  <code>serialized_attributes</code>는 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/pull/15704">Pull Request</a>)</p></li>
+<li><p>  컬럼이 없는 경우 <code>column_for_attribute</code>가 <code>nil</code>을 돌려주는 동작이 Deprecated되었습니다. Rails 5.0dptjsms null 객체를 반환할 예정입니다.
+(<a href="https://github.com/rails/rails/pull/15878">Pull Request</a>)</p></li>
+<li><p>  Replacement를 사용하지 않고 인스턴스의 상태에 의존하는 Association(예: 인수를 받는 스코프와 함께 정의되어있는 경우)에서 <code>.joins</code>나 <code>.preload</code>, <code>.eager_load</code>를 사용하는 것이 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/commit/ed56e596a0467390011bc9d56d462539776adac1">Commit</a>)</p></li>
+</ul>
+<h4 id="active-record-주요-변경점"><a class="anchorlink" href="#active-record-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">8.3 주요 변경점</a></h4>
+<ul>
+<li><p>  <code>create_table</code>가 실행될 때, <code>SchemaDumper</code>가 <code>force: :cascade</code>를 사용하게 됩니다. 이를 통해 외래키가 적절하다면 스키마가 다시 로딩할 수 있게 됩니다.</p></li>
+<li><p>  일대일 관계에서 <code>:required</code> 옵션이 추가되었습니다. 이는 관계에서의 존재 확인 검증(validation)을 정의합니다.
+(<a href="https://github.com/rails/rails/pull/16056">Pull Request</a>)</p></li>
+<li><p>  <code>ActiveRecord::Dirty</code>의 동작이 변경되어, 변경 가능한 값(mutable value)에 대하여 적절한 변경을 검출하게 되었습니다.
+아무것도 변경되지 않았을 경우에는 Active Record 모델에 직렬화된 요소가 저장되지 않습니다. 이러한 변경은 PostgreSQL의 string 컬럼이나 json 컬럼에서도 마찬가지로 동작합니다.
+(Pull Requests <a href="https://github.com/rails/rails/pull/15674">1</a>, <a href="https://github.com/rails/rails/pull/15786">2</a>, <a href="https://github.com/rails/rails/pull/15788">3</a>)</p></li>
+<li><p>  현재의 환경의 데이터베이스를 비우는 <code>db:purge</code>라는 Rake 태스크가 도입되었습니다.
+(<a href="https://github.com/rails/rails/commit/e2f232aba15937a4b9d14bd91e0392c6d55be58d">Commit</a>)</p></li>
+<li><p>  레코드가 올바르지 않은 경우에 <code>ActiveRecord::RecordInvalid</code>를 반환하는 <code>ActiveRecord::Base#validate!</code>가 도입되었습니다.
+(<a href="https://github.com/rails/rails/pull/8639">Pull Request</a>)</p></li>
+<li><p>  <code>valid?</code>의 별칭으로 <code>validate</code>가 도입되었습니다.
+(<a href="https://github.com/rails/rails/pull/14456">Pull Request</a>)</p></li>
+<li><p>  <code>touch</code>가 복수의 속성을 한번에 다룰 수 있게 되었습니다.
+(<a href="https://github.com/rails/rails/pull/14423">Pull Request</a>)</p></li>
+<li><p>  PostgreSQL 어댑터에 PostgreSQL 9.4+의 <code>jsonb</code> 데이터 형식이 지원됩니다.
+(<a href="https://github.com/rails/rails/pull/16220">Pull Request</a>)</p></li>
+<li><p>  PostgreSQL와 SQLite 어댑터에서 String 형의 기본 255 문자 제한이 사라졌습니다.
+(<a href="https://github.com/rails/rails/pull/14579">Pull Request</a>)</p></li>
+<li><p>  PostgreSQL 어댑터의 컬럼 형 <code>citext</code>이 지원됩니다.
+(<a href="https://github.com/rails/rails/pull/12523">Pull Request</a>)</p></li>
+<li><p>  PostgreSQL 어댑터의 사용자 정의 Range 형식이 지원됩니다.
+(<a href="https://github.com/rails/rails/commit/4cb47167e747e8f9dc12b0ddaf82bdb68c03e032">Commit</a>)</p></li>
+<li><p>  <code>sqlite3:///some/path</code>와 같은 경로는 앞으로 절대 시스템 경로로 처리되지 않습니다. 절대 경로가 필요한 경우에는 <code>sqlite3:some/path</code>와 같은 표기를 사용해주세요
+(이전의 <code>sqlite3:///some/path</code>는 <code>some/path</code>와 같은 상대 경로로 처리됩니다만 이는 Rails 4.1에서 Deprecated되었습니다).
+(<a href="https://github.com/rails/rails/pull/14569">Pull Request</a>)</p></li>
+<li><p>  MySQL 5.6 이상에서 소수점 이하의 초에 대한 지원이 추가되었습니다.
+(Pull Request <a href="https://github.com/rails/rails/pull/8240">1</a>, <a href="https://github.com/rails/rails/pull/14359">2</a>)</p></li>
+<li><p>  모델을 출력하는 <code>ActiveRecord::Base#pretty_print</code>가 추가되었습니다.
+(<a href="https://github.com/rails/rails/pull/15172">Pull Request</a>)</p></li>
+<li><p>  <code>ActiveRecord::Base#reload</code>의 동작이 <code>m = Model.find(m.id)</code>와 동일해졌습니다. 이는 커스터마이즈 된 <code>SELECT</code>에 포함된 여분의 속성이 앞으로는 유지되지 않는다는 의미입니다.
+(<a href="https://github.com/rails/rails/pull/15866">Pull Request</a>)</p></li>
+<li><p>  <code>ActiveRecord::Base#reflections</code>이 반환하는 해시의 키가 심볼에서 문자열로 변경되었습니다. (<a href="https://github.com/rails/rails/pull/17718">Pull Request</a>)</p></li>
+<li><p>  마이그레이션의 <code>references</code> 메소드에서 <code>type</code> 옵션이 지원됩니다. 외래키의 종류(<code>:uuid</code> 등)을 지정할 수 있습니다.
+(<a href="https://github.com/rails/rails/pull/16231">Pull Request</a>)</p></li>
+</ul>
+<h3 id="active-model"><a class="anchorlink" href="#active-model">9 Active Model</a></h3><p>자세한 변경 사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/activemodel/CHANGELOG.md">Changelog</a>을 참조해주세요.</p><h4 id="active-model-삭제된-것들"><a class="anchorlink" href="#active-model-%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">9.1 삭제된 것들</a></h4>
+<ul>
+<li>  Deprecated된 <code>Validator#setup</code>이 삭제되었습니다.
+(<a href="https://github.com/rails/rails/pull/10716">Pull Request</a>)</li>
+</ul>
+<h4 id="active-model-deprecated"><a class="anchorlink" href="#active-model-deprecated">9.2 Deprecated</a></h4>
+<ul>
+<li><p>  <code>reset_#{attribute}</code>가 Deprecated되었습니다. 앞으로는 <code>restore_#{attribute}</code>를 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/16180">Pull Request</a>)</p></li>
+<li><p>  <code>ActiveModel::Dirty#reset_changes</code>가 Deprecated되었습니다. 앞으로는 <code>clear_changes_information</code>을 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/16180">Pull Request</a>)</p></li>
+</ul>
+<h4 id="active-model-주요-변경점"><a class="anchorlink" href="#active-model-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">9.3 주요 변경점</a></h4>
+<ul>
+<li><p>  <code>valid?</code>의 별칭으로 <code>#validate</code>가 추가되었습니다.
+(<a href="https://github.com/rails/rails/pull/14456">Pull Request</a>)</p></li>
+<li><p>  <code>ActiveModel::Dirty</code>에 <code>restore_attributes</code> 메소드가 도입되었습니다. 이는 변경되었지만 저장되지 않은 (dirty) 속성을 이전의 값으로 되돌립니다.
+(Pull Request <a href="https://github.com/rails/rails/pull/14861">1</a>, <a href="https://github.com/rails/rails/pull/16180">2</a>)</p></li>
+<li><p>  <code>has_secure_password</code>이 기본으로 공백의 비밀번호를 허용합니다(예: 공백 문자로 구성된 비밀번호).
+(<a href="https://github.com/rails/rails/pull/16412">Pull Request</a>)</p></li>
+<li><p>  <code>has_secure_password</code>로 검증이 활성화된 경우에는 주어진 비밀번호가 72자보다 짧은지를 검증합니다.
+(<a href="https://github.com/rails/rails/pull/15708">Pull Request</a>)</p></li>
+</ul>
+<h3 id="active-support"><a class="anchorlink" href="#active-support">10 Active Support</a></h3><p>자세한 변경사항은 <a href="https://github.com/rails/rails/blob/4-2-stable/activesupport/CHANGELOG.md">Changelog</a>를 참고해주세요.</p><h4 id="삭제된-것들"><a class="anchorlink" href="#%EC%82%AD%EC%A0%9C%EB%90%9C-%EA%B2%83%EB%93%A4">10.1 삭제된 것들</a></h4>
+<ul>
+<li><p>  Deprecated된 <code>Numeric#ago</code>, <code>Numeric#until</code>, <code>Numeric#since</code>, <code>Numeric#from_now</code>가 삭제되었습니다.
+(<a href="https://github.com/rails/rails/commit/f1eddea1e3f6faf93581c43651348f48b2b7d8bb">Commit</a>)</p></li>
+<li><p>  Deprecated된 <code>ActiveSupport::Callbacks</code>에서 문자열 기반의 종단지정자(terminator)가 삭제되었습니다.
+(<a href="https://github.com/rails/rails/pull/15100">Pull Request</a>)</p></li>
+</ul>
+<h4 id="deprecated"><a class="anchorlink" href="#deprecated">10.2 Deprecated</a></h4>
+<ul>
+<li><p>  <code>Kernel#silence_stderr</code>, <code>Kernel#capture</code>, <code>Kernel#quietly</code>가 Deprecated되었습니다.
+(<a href="https://github.com/rails/rails/pull/13392">Pull Request</a>)</p></li>
+<li><p>  <code>Class#superclass_delegating_accessor</code>Deprecated되었습니다. 앞으로는 <code>Class#class_attribute</code>를 사용해주세요.
+(<a href="https://github.com/rails/rails/pull/14271">Pull Request</a>)</p></li>
+<li><p>  <code>ActiveSupport::SafeBuffer#prepend!</code>Deprecated되었습니다. 지금은 <code>ActiveSupport::SafeBuffer#prepend</code>와 동일한 동작을 합니다.
+(<a href="https://github.com/rails/rails/pull/14529">Pull Request</a>)</p></li>
+</ul>
+<h4 id="active-support-주요-변경점"><a class="anchorlink" href="#active-support-%EC%A3%BC%EC%9A%94-%EB%B3%80%EA%B2%BD%EC%A0%90">10.3 주요 변경점</a></h4>
+<ul>
+<li><p>  순서에 의존하는 테스트를 명기하기 위해서 <code>active_support.test_order</code> 옵션이 도입되었습니다. 현재, 이 옵션의 기본값은 <code>:sorted</code>입니다만, Rails 5.0에서는 <code>:random</code>으로 변경될 예정입니다.
+(<a href="https://github.com/rails/rails/commit/53e877f7d9291b2bf0b8c425f9e32ef35829f35b">Commit</a>)</p></li>
+<li><p>  블럭에서 명시적으로 리시버를 쓰지 않더라도 <code>Object#try</code>나 <code>Object#try!</code>를 사용할 수 있게 되었습니다.
+(<a href="https://github.com/rails/rails/commit/5e51bdda59c9ba8e5faf86294e3e431bd45f1830">Commit</a>, <a href="https://github.com/rails/rails/pull/17361">Pull Request</a>)</p></li>
+<li><p>  <code>travel_to</code> 테스트 헬퍼가 <code>usec</code> 컴포넌트를 0으로 만듭니다.
+(<a href="https://github.com/rails/rails/commit/9f6e82ee4783e491c20f5244a613fdeb4024beb5">Commit</a>)</p></li>
+<li><p>  객체 자신을 반환하는 항등 함수로서 <code>Object#itself</code>가 도입되었습니다.
+(Commit <a href="https://github.com/rails/rails/commit/702ad710b57bef45b081ebf42e6fa70820fdd810">1</a>, <a href="https://github.com/rails/rails/commit/64d91122222c11ad3918cc8e2e3ebc4b0a03448a">2</a>)</p></li>
+<li><p>  블럭에서 명시적으로 리시버를 쓰지 않더라도 <code>Object#with_options</code>를 사용할 수 있게 되었습니다.
+(<a href="https://github.com/rails/rails/pull/16339">Pull Request</a>)</p></li>
+<li><p>  단어수를 지정하여 문자열을 자르는 <code>String#truncate_words</code>가 도입되었습니다.
+(<a href="https://github.com/rails/rails/pull/16190">Pull Request</a>)</p></li>
+<li><p>  해시의 값을 변경할 때의 공통 패턴을 간결하게 만들기 위해서, <code>Hash#transform_values</code>와 <code>Hash#transform_values!</code>가 추가되었습니다. 단, 해시의 키는 변경되지 않습니다.
+(<a href="https://github.com/rails/rails/pull/15819">Pull Request</a>)</p></li>
+<li><p>  언더스코어를 포함하는 함수명을 영어 단어처럼 만드는 <code>humanize</code> 헬퍼 메소드가 앞부분의 언더스코어를 제거하게 되었습니다.
+(<a href="https://github.com/rails/rails/commit/daaa21bc7d20f2e4ff451637423a25ff2d5e75c7">Commit</a>)</p></li>
+<li><p>  <code>Concern#class_methods</code>가 도입되었습니다. <code>Kernel#concern</code>와 동일하게 <code>module ClassMethods</code>를 대신하는 것이며, <code>module Foo; extend ActiveSupport::Concern; end</code>와 같은 코드를 피하기 위한 것입니다.
+(<a href="https://github.com/rails/rails/commit/b16c36e688970df2f96f793a759365b248b582ad">Commit</a>)</p></li>
+<li><p>  자동 로딩이나 리로딩에 대한 <a href="constant_autoloading_and_reloading.html">새로운 가이드</a>가 추가되었습니다.</p></li>
+</ul>
+<h3 id="크레딧-표기"><a class="anchorlink" href="#%ED%81%AC%EB%A0%88%EB%94%A7-%ED%91%9C%EA%B8%B0">11 크레딧 표기</a></h3><p>Rails를 견고하고 안정적인 프레임워크로 만들기 위해 많은 시간을 사용해주신 많은 개발자들에 대해서는 <a href="http://contributors.rubyonrails.org/">Rails 기여자 목록</a>을 참고해주세요. 이 분들에게 경의를 표합니다.</p><div class="info"><p>이 가이드는 <a href="http://railsguides.jp">Rails Guilde 일본어판</a>으로부터 번역되었습니다.</p></div>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:00 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

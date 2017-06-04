@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>상수 자동 로딩과 리로딩 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>상수 자동 로딩과 리로딩</h2><p>여기에서는 Rails의 상수 자동 로딩과 리로딩의 구조에 대해서 설명합니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>Ruby에서 사용되는 상수의 특징</li>
+<li><code>autoload_paths</code>에 대해서</li>
+<li>상수가 자동으로 로딩되는 방식</li>
+<li><code>require_dependency</code>에 대해서</li>
+<li>상수가 리로딩되는 방식</li>
+<li>리로딩에서 자주 발생하는 문제의 해결 방법</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0">들어가며</a></li>
+<li>
+<a href="#%EC%83%81%EC%88%98-%EA%B0%B1%EC%8B%A0">상수 갱신</a>
+
+<ul>
+<li><a href="#%EC%A4%91%EC%B2%A9">중첩</a></li>
+<li><a href="#%ED%81%B4%EB%9E%98%EC%8A%A4%EB%82%98-%EB%AA%A8%EB%93%88%EC%9D%98-%EC%A0%95%EC%9D%98%EB%9E%80-%EC%83%81%EC%88%98-%EB%8C%80%EC%9E%85">클래스나 모듈의 정의란 상수 대입</a></li>
+<li><a href="#%EC%83%81%EC%88%98%EB%8A%94-%EB%AA%A8%EB%93%88%EC%97%90-%EC%A0%80%EC%9E%A5%EB%90%9C%EB%8B%A4">상수는 모듈에 저장된다</a></li>
+<li><a href="#%ED%95%B4%EA%B2%B0-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">해결 알고리즘</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%9A%A9%EC%96%B4-%EC%84%A4%EB%AA%85">용어 설명</a>
+
+<ul>
+<li><a href="#%EB%B6%80%EB%AA%A8%EC%9D%98-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4">부모의 네임스페이스</a></li>
+<li><a href="#%EB%A1%9C%EB%94%A9-%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98">로딩 메커니즘</a></li>
+</ul>
+</li>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EC%9D%B4-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%83%81%ED%99%A9">자동 로딩이 가능한 상황</a></li>
+<li><a href="#autoload-paths">autoload_paths</a></li>
+<li>
+<a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">자동 로딩 알고리즘</a>
+
+<ul>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%83%81%EB%8C%80%EC%B0%B8%EC%A1%B0">상대참조</a></li>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98-%EC%B0%B8%EC%A1%B0">검증된 상수 참조</a></li>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%AA%A8%EB%93%88">자동 모듈</a></li>
+<li><a href="#%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%88%9C%EC%84%9C">일반적인 순서</a></li>
+</ul>
+</li>
+<li><a href="#require-dependency">require_dependency</a></li>
+<li><a href="#%EC%83%81%EC%88%98-%EB%A6%AC%EB%A1%9C%EB%94%A9">상수 리로딩</a></li>
+<li><a href="#module-autoload%EA%B0%80-%EA%B4%80%EC%97%AC%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0">Module#autoload가 관여하지 않는 경우</a></li>
+<li>
+<a href="#%EC%9E%90%EC%A3%BC%ED%95%98%EB%8A%94-%EC%8B%A4%EC%88%98">자주하는 실수</a>
+
+<ul>
+<li><a href="#%EC%A4%91%EC%B2%A9%EA%B3%BC-%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98">중첩과 검증된 상수</a></li>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-sti">자동 로딩과 STI</a></li>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-require">자동 로딩과 <code>require</code></a></li>
+<li><a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-initializer">자동 로딩과 initializer</a></li>
+<li><a href="#require-dependency%EC%99%80-initializer"><code>require_dependency</code>와 initializer</a></li>
+<li><a href="#%EC%83%81%EC%88%98%EA%B0%80-%ED%8A%B8%EB%A6%AC%EA%B1%B0%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0">상수가 트리거되지 않는 경우</a></li>
+<li><a href="#%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90%EC%84%9C-%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%ED%95%98%EA%B8%B0">싱글톤 클래스에서 자동 로딩하기</a></li>
+<li><a href="#basicobject%EC%97%90%EC%84%9C-%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EC%9D%84-%ED%95%98%EA%B8%B0"><code>BasicObject</code>에서 자동 로딩을 하기</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="들어가며"><a class="anchorlink" href="#%EB%93%A4%EC%96%B4%EA%B0%80%EB%A9%B0">1 들어가며</a></h3><p>Ruby on Rails에서는 코드를 변경하면 개발자가 서버를 다시 시동하지 않더라도 이미 애플리케이션이 그 정보를 읽어들인 것처럼 동작합니다.</p><p>일반 Ruby 프로그램의 클래스라면 의존 관계가 있는 프로그램을 명시적으로 읽어올 필요가 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'application_controller'
+require 'post'
+
+class PostsController &lt; ApplicationController
+  def index
+    @posts = Post.all
+  end
+end
+
+</pre>
+</div>
+<p>Rubyist로서의 본능은 위의 코드를 본 순간 여기에는 불필요한 코드가 있다는 것을 금방 눈치챌 것입니다. 클래스가 그것이 저장되어 있는 파일명과 같은 이름으로 정의되어 있다면, 어떻게 자동으로 읽어올 수 는 없을까요? 의존하는 파일을 탐색해서 그 결과를 저장해두면 됩니다만, 이러한 의존 관계는 불안정합니다.</p><p>나아가 <code>Kernel#require</code>는 파일을 한번만 읽어옵니다만, 읽어온 뒤의 파일이 변경되었을 때에 서버를 재기동하지 않고 새로운 변경사항을 반영할 수 있다면, 개발이 편해질 것입니다. 개발 중에는 <code>Kernel#load</code>를 사용하고 실제 환경에서는 <code>Kernel#require</code>를 상황에 따라서 사용하는 식으로 만들 수 있다면 편리할 것입니다.</p><p>그리고 Ruby on Rails에서는 아래와 같이 작성하는 것으로 바로 이런 기능을 편하게 이용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PostsController &lt; ApplicationController
+  def index
+    @posts = Post.all
+  end
+end
+
+</pre>
+</div>
+<p>여기에서는 이 기능의 구조에 대해서 설명합니다.</p><h3 id="상수-갱신"><a class="anchorlink" href="#%EC%83%81%EC%88%98-%EA%B0%B1%EC%8B%A0">2 상수 갱신</a></h3><p>많은 프로그래밍 언어에 대해서는 상수는 그렇게 중요한 위치를 점하고 있지 않습니다만, Ruby에 있어서는 상수에 대한 화제가 무척 많습니다.</p><p>Ruby 언어에서의 상수를 설명하는 것은 이 가이드의 범주를 벗어나므로 자세하게는 설명하지 않습니다만, 상수의 몇몇 중요한 부분을 짚고 넘어가겠습니다. 이후의 설명을 잘 이해한다면, Rails에서의 상수 자동 로딩과 리로딩을 이해할 때에 좋은 무기가 될 것입니다.</p><h4 id="중첩"><a class="anchorlink" href="#%EC%A4%91%EC%B2%A9">2.1 중첩</a></h4><p>클래스 및 모듈의 정의를 중첩하는 것으로 네임스페이스를 생성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module XML
+  class SAXParser
+    # (1)
+  end
+end
+
+</pre>
+</div>
+<p>어떤 위치에서의 <em>중첩</em>은 중첩된 클래스와 모듈 객체를 중첩 안쪽에서부터 나열한 컬렉션이 됩니다. 이 예제에서의 위치 (1)의 중첩은 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[XML::SAXParser, XML]
+
+</pre>
+</div>
+<p>중첩은 클래스나 모듈의 '객체'로 구성되어 있다는 점을 이해하는 것이 중요합니다. 중첩은 거기에 접근하기 위한 상수와 아무런 관계도 없으며, 중첩된 이름과도 관계가 없습니다.</p><p>예를 들어, 다음의 정의는 위의 예제와 비슷합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class XML::SAXParser
+  # (2)
+end
+
+</pre>
+</div>
+<p>(2)에서 중첩을 확인한 결과는 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[XML::SAXParser]
+
+</pre>
+</div>
+<p><code>XML</code> 자체는 중첩에 포함되지 않습니다.</p><p>이 예제에서 확인할 수 있듯이, 어떤 특정 중첩에 속하는 클래스 명이나 모듈 명은 중첩의 위치에 따른 네임스페이스와 항상 연관이 있는 것은 아닙니다.</p><p>나아가 각각은 연관이 있는 것이 아니라, 완전히 독립적입니다. 다음의 예제를 생각해 봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module X::Y
+  module A::B
+    # (3)
+  end
+end
+
+</pre>
+</div>
+<p>위치 (3)의 중첩은 아래의 2개의 모듈 객체로 구성됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[A::B, X::Y]
+
+</pre>
+</div>
+<p>이 중첩은 <code>A</code>로 끝나는 것이 아니라(그 전에 이 <code>A</code>는 중첩 관계에 속해있지도 않습니다), 중첩에 <code>X::Y</code>도 포함되어 있습니다. 이 <code>X::Y</code>와 <code>A::B</code>는 서로 독립적입니다.</p><p>이 중첩은 Ruby 인터프리터에 의해서 유지되고 있는 내부 스택이며, 아래의 규칙에 따라서 변경됩니다.</p>
+<ul>
+<li><p><code>class</code> 키워드 뒤에 있는 클래스 객체는 그 내용이 실행되기 전에 스택에 들어가서, 실행 완료 후에 스택에서 방출됩니다.</p></li>
+<li><p><code>module</code> 키워드 뒤에 있는 모듈 객체는 그 내용이 실행되기 전에 스택에 들어가서, 실행 완료 후에 스택에서 방출됩니다.</p></li>
+<li><p>싱글톤 클래스는 <code>class &lt;&lt; object</code>로 정의 될 때 스택에 들어가며, 이후에 스택에서 방출됩니다.</p></li>
+<li><p><code>*_eval</code>로 끝나는 메소드가 문자열을 하나 사용하여 호출되면, 그 리시버의 싱글톤 클래스는 eval된 코드의 중첩에 들어갑니다.</p></li>
+<li><p><code>Kernel#load</code>에 의해서 해석되는 코드의 최상위에 존재하는 네스트는 빈 공간이 됩니다. 단, <code>load</code> 호출이 두번째 인수로서 true를 받은 경우를 제외합니다. 이 값이 지정되면 익명 모듈이 새롭게 생성되어 Ruby에 의해 스택에 들어갑니다.</p></li>
+</ul>
+<p>여기서 흥미로운 점은 블럭이 스택에 아무런 영향을 주지 않는다는 점입니다. 특히 <code>Class.new</code>나 <code>Module.new</code>에 넘겨질 가능성이 있는 블럭은 <code>new</code> 메소드에 의해서 정의된 클래스나 모듈을 중첩에 집어넣지 않습니다. 이 부분이 블럭을 사용하지 않고 어떤 클래스나 모듈을 정의할 때와 다른 점 중 하나입니다.
+<code>Module.nesting</code>를 사용하여 임의의 위치에 있는 중첩을 조사(inspect)할 수 있습니다.</p><h4 id="클래스나-모듈의-정의란-상수-대입"><a class="anchorlink" href="#%ED%81%B4%EB%9E%98%EC%8A%A4%EB%82%98-%EB%AA%A8%EB%93%88%EC%9D%98-%EC%A0%95%EC%9D%98%EB%9E%80-%EC%83%81%EC%88%98-%EB%8C%80%EC%9E%85">2.2 클래스나 모듈의 정의란 상수 대입</a></h4><p>아래의 코드를 실행하면 클래스가(다시 열리는 것이 아니라) 새로 생성된다고 가정합시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C
+end
+
+</pre>
+</div>
+<p>Ruby는 <code>Object</code>에 <code>C</code>라는 상수를 생성하고, 그 상수에 클래스 객체를 저장합니다. 이 클래스 인스턴스의 이름은 "C"라는 문자열이 되며, 이는 상수의 이름으로부터 붙여진 이름입니다.</p><p>다시 말해,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Project &lt; ActiveRecord::Base
+end
+
+</pre>
+</div>
+<p>이 코드는 상수 대입(constant assignment)를 합니다. 이 코드는 다음과 동등합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Project = Class.new(ActiveRecord::Base)
+
+</pre>
+</div>
+<p>이 때, 클래스 이름은 아래와 같이 사이드 이펙트로서 설정됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Project.name # =&gt; "Project"
+
+</pre>
+</div>
+<p>이 동작을 구현하기 위해서 상수 대입에는 하나의 특수한 규칙이 정의되어 있습니다. 대입되는 객체가 익명 클래스 또는 모듈인 경우, Ruby는 그것들의 객체 이름을 그 상수의 이름을 인용하여 명명합니다.</p><div class="info"><p>익명 클래스나 익명 모듈에 이름이 부여된 이후에는 상소와 인스턴스에서 무슨 일이 진행되는가는 중요하지 않습니다. 예를 들어, 상수를 삭제할 수도 있으며, 클래스 객체를 다른 상수에 대입하거나 이를 저장하지 않을 수도 있습니다. 이름은 일단 설정되면 그 이후에는 변경되지 않게 됩니다.</p></div><p><code>module</code> 키워드를 지정하여 아래와 같이 모듈을 생성한 경우에도 클래스와 마찬가지로 동작합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Admin
+end
+
+</pre>
+</div>
+<p>이 코드는 상수 대입을 수행합니다. 이는 아래와 동등합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Admin = Module.new
+
+</pre>
+</div>
+<p>이 때, 아래와 같이 모듈의 이름은 사이드 이펙트로서 설정됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Admin.name # =&gt; "Admin"
+
+</pre>
+</div>
+<div class="warning"><p><code>Class.new</code>나 <code>Module.new</code>에 넘겨지는 블록의 실행 컨텍스트는 <code>class</code> 또는 <code>module</code> 키워드를 사용하는 시점의 실행 컨텍스트와 완전히 동등하지 않은 경우가 있습니다. 그러나, 상수 대입은 어떤 방식을 사용한 경우라도 동일하게 이루어집니다.</p></div><p>어디서인가 "<code>String</code> 클래스"라고 부른다면, 그 진짜 의미는 이렇습니다. "<code>String</code> 클래스"란 <code>Object</code>라는 상수가 있으며, 거기에 클래스 객체가 저장되어 있고, 나아가 그 중에 "String"이라는 상수가 있으며, 거기에 저장되어 있는 클래스 객체를 의미합니다. <code>String</code>은 Ruby에 많고 많은 하나의 상수에 불과하며, 해결 알고리즘이나 그에 관련된 모든 것들이 이 <code>String</code>이라는 상수에 적용되게 됩니다.</p><p>컨트롤러에 대해서도 같은 방식으로 생각할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PostsController &lt; ApplicationController
+  def index
+    @posts = Post.all
+  end
+end
+
+</pre>
+</div>
+<p>이 코드에서의 <code>Post</code>는 클래스를 위한 문법이 아닌, Ruby에 존재하는 하나의 상수입니다. 문제가 없다면 이 상수는 <code>all</code> 메소드를 가지는 객체일 것이라고 평가됩니다.</p><p>이것이 바로 <em>상수</em>의 자동 로딩에 대해서 이야기하는 이유입니다. Rails는 상수를 필요에 따라서 자동으로 읽어오는 기능을 가지고 있습니다.</p><h4 id="상수는-모듈에-저장된다"><a class="anchorlink" href="#%EC%83%81%EC%88%98%EB%8A%94-%EB%AA%A8%EB%93%88%EC%97%90-%EC%A0%80%EC%9E%A5%EB%90%9C%EB%8B%A4">2.3 상수는 모듈에 저장된다</a></h4><p>Ruby의 상수는 문자 그대로 '모듈에 저장되어 있습니다'. 클래스와 모듈에는 상수 테이블이 존재합니다. 이것은 해시 테이블과 비슷한 것이라고 상상해주세요.</p><p>이것이 어떤 것인지를 충분히 이해하기 위해서 하나의 예를 들어서 분석해봅시다. "이 <code>String</code> 클래스"와 같은 애매한 표현은 설명하는 쪽에서는 편리하지만, 여기에서는 이해하기 쉽도록 좀 더 엄밀하게 설명합니다.</p><p>다음과 같은 모듈 정의를 생각해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Colors
+  RED = '0xff0000'
+end
+
+</pre>
+</div>
+<p>처음 <code>module</code> 키워드를 처리하면 Ruby 인터프리터는 <code>Object</code> 상수에 저장된 클래스 객체의 상수 테이블에 새로운 값을 하나 추가합니다. 이 값은 "Colors"라는 이름과, 새롭게 생성된 모듈 객체를 연결합니다. 그리고 Ruby 인터프리터는 새로운 모듈 객체의 이름을 "Colors"라는 문자열로 설정합니다.</p><p>그리고 이 모듈 정의의 본체가 Ruby 인터프리터에 의해서 해석되면, <code>Colors</code> 상수에 저장된 모듈 객체의 상수 테이블에 새로운 값이 하나 추가됩니다. 이 값은 "RED"라는 이름을 "0xff0000"라는 문자열과 연결합니다.</p><p>특히 이 <code>Colors::RED</code>는 다른 클래스 객체나 모듈 객체에 존재할 지도 모르는 다른 <code>RED</code> 정소와는 아무런 관련이 없다는 점에 주목해주세요. 만약 다른 <code>RED</code> 상수가 우연히 존재한다고 한다면, 그것은 다른 상수 테이블에 또 다른 값으로 존재하고 있을 것입니다.</p><p>이 설명을 읽을 때에는 클래스 객체, 모듈 객체, 상수명, 상수 테이블에 연결되는 값 객체를 각각 혼동하지 않도록 주의해주세요.</p><h4 id="해결-알고리즘"><a class="anchorlink" href="#%ED%95%B4%EA%B2%B0-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">2.4 해결 알고리즘</a></h4><h5 id="상대-상수를-해결하는-알고리즘"><a class="anchorlink" href="#%EC%83%81%EB%8C%80-%EC%83%81%EC%88%98%EB%A5%BC-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">2.4.1 상대 상수를 해결하는 알고리즘</a></h5><p>중첩이 비어있지 않다면, 그 첫번째 요소, 비어있는 경우에는 <code>Object</code>를 코드의 임의의 장소에서 <em>cref</em>라고 합시다(역주: cref는 Ruby 내부에서의 클래스 참조(class reference)의 약어이며, Ruby의 상수가 가지는 암묵적인 컨텍스트 입니다).</p><p>여기서 자세한 설명은 하지 않습니다만, 상대적인 상수 참조를 해결하는 알고리즘은 아래와 같습니다.</p>
+<ol>
+<li><p>중첩이 존재하는 경우, 그 중첩의 요소를 순서대로 탐색합니다. 그 요소들의 부모들은 무시됩니다.</p></li>
+<li><p>발견되지 않는 경우에는 cref의 부모 체인(상속 체인)을 탐색합니다.</p></li>
+<li><p>발견되지 않는 경우에는 <code>Object</code>를 탐색합니다.</p></li>
+<li><p>발견되지 않는 경우에는 cref에 대해서 <code>const_missing</code>이 호출됩니다. <code>const_missing</code>의 기본 구현은 <code>NameError</code>를 던집니다만, 이는 재정의가 가능합니다.</p></li>
+</ol>
+<p>Rails의 자동 로딩은 <strong>이 알고리즘을 에뮬레이트하고 있지 않다는 점을 기억해주세요</strong>. 단 탐색의 시작 지점은 자동 로딩되는 상수의 이름과, cref 자신입니다. 자세한 설명은 <a href="#%EC%83%81%EB%8C%80%EC%B0%B8%EC%A1%B0">상대참조</a>를 확인해주세요.</p><h5 id="검증된-상수를-해결하는-알고리즘"><a class="anchorlink" href="#%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98%EB%A5%BC-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">2.4.2 검증된 상수를 해결하는 알고리즘</a></h5><p>검증된(qualified) 상수는 아래와 같은 것들입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Billing::Invoice
+
+</pre>
+</div>
+<p><code>Billing::Invoice</code>에는 두 개의 상수가 포함되어 있습니다. 처음의 <code>Billing</code>은 상대적인 상수이며, 위에서 설명했던 알고리즘에 의해서 해결됩니다.</p><div class="info"><p><code>::Billing::Invoice</code>처럼 앞에 콜론을 2개 두는 것으로 이 경로를 절대 경로로 변경할 수 있습니다. 이렇게 작성하면 <code>Billing</code>은 최상위 레벨의 상수로서 참조됩니다.</p></div><p>두번째의 <code>Invoice</code> 상수는 <code>Billing</code>으로 검증되어 있습니다. 이 상수를 해결하는 방법에 대해서는 나중에 설명합니다. 여기에서는 검증한 쪽의 클래스나 모듈 객체(여기에서는 <code>Billing</code>)을 <em>부모</em>로 정의합니다. 검증된 상수를 해결하는 알고리즘은 다음과 같습니다.</p>
+<ol>
+<li><p>이 상수는 그 부모와 조상들에서만 탐색됩니다.</p></li>
+<li><p>아무 것도 발견하지 못했을 경우, 부모의 <code>const_missing</code>가 호출됩니다. <code>const_missing</code>은 <code>NameError</code>를 던집니다만, 재정의할 수 있습니다.</p></li>
+</ol>
+<p>지금까지 보았던 대로, 이 탐색 알고리즘은 상대 상수일 경우보다도 간단합니다. 특히 중첩이 아무런 영향을 주지 않는다는 점에 주목해주세요. 그리고 모듈을 특별 취급하지도 않으며, 모듈 자신 또는 모듈의 부모 어느쪽에도 상수가 없는 경우에는 <code>Object</code>를 탐색하지 않는다는 점도 다릅니다.</p><p>Rails의 자동 로딩은 <strong>이 알고리즘을 에뮬레이트하지 않는다</strong>는 점에 주의해주세요. 단 탐색 시작 지점은 자동 로딩이 되는 상수의 이름과 그 부모입니다. 자세한 설명은 <a href="#%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98-%EC%B0%B8%EC%A1%B0">검증된 상수 참조</a>를 참고해주세요.</p><h3 id="용어-설명"><a class="anchorlink" href="#%EC%9A%A9%EC%96%B4-%EC%84%A4%EB%AA%85">3 용어 설명</a></h3><h4 id="부모의-네임스페이스"><a class="anchorlink" href="#%EB%B6%80%EB%AA%A8%EC%9D%98-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4">3.1 부모의 네임스페이스</a></h4><p>상수 경로로 주어진 문자열을 사용해서 <strong>부모의 네임스페이스</strong>가 정의됩니다. 부모의 네임스페이스는 상수 경로로부터 오른쪽 부분을 제거한 문자열이 됩니다.</p><p>예를 들어서, "A::B::C"라는 문자열의 부모 네임스페이스는 "A::B"라는 문자열이 되며, "A::B"라는 문자열의 부모 네임스페이스는 "A", "A"의 부모 네임스페이스는 ""가 됩니다.</p><p>하지만 클래스나 모듈에 대해서 고찰하는 경우, 부모의 네임스페이스의 해석에는 특이한 부분이 있으므로 주의해야할 필요가 있습니다. 예를 들어 "A::B"라는 이름을 가지는 모듈 M에 대해서 생각해봅시다.</p>
+<ul>
+<li><p>부모의 네임스페이스 "A"는 주어진 위치에서의 네스트를 반영하고 있지 않을 수 있다.</p></li>
+<li><p><code>A</code>라는 상수는 이미 존재하지 않을 가능성이 있다. 이 상수는 어떠한 코드에 의해서 <code>Object</code>로부터 삭제되었을 수도 있다.</p></li>
+<li><p>만약 <code>A</code>라는 상수가 존재한다고 하더라도 이전에 <code>A</code>라는 이름을 가진 클래스 또는 모듈이 이제 존재하지 않을 가능성도 있다. 예를 들어, 상수가 하나 삭제된 후에 다른 상수에 대입되었다면, 일반적으로 그것은 다른 객체를 가리키고 있을 것이라고 생각해야한다.</p></li>
+<li><p>그러한 상황에서 <code>A</code>라는 같은 이름을 가지는 상수에 다시 대입하게 되면, 그 <code>A</code>는 같은 "A"라는 이름을 가지는 새로운 클래스 또는 모듈일 가능성도 있다.</p></li>
+<li><p>위의 상황이 발생한 경우 <code>A::B</code>라는 이름으로 M이라는 모듈을 참조할 수 없게 되지만, M이라는 모듈 객체 자신은 "A::B"라는 이름을 가지고 삭제되지도 않은 채 어딘가에 살아있을 가능성이 있다.</p></li>
+</ul>
+<p>이 '부모 네임스페이스'는 자동 로딩 알고리즘의 핵심이 되는 아이디어이며, 알고리즘 개발 중의 의도를 즉흥적으로 설명할 때에 도움이 됩니다만, 이 메타포만으로는 설명할 수 없는 부분이 많습니다. 실제 상황에서 어떤 일이 발생하는지 정확히 이해하기 위해서 여기에서 설명한 '부모 네임스페이스'라는 개념과 그 의미를 잘 이해한 뒤에, 이를 의식하면서 뒷부분을 읽어주세요.</p><h4 id="로딩-메커니즘"><a class="anchorlink" href="#%EB%A1%9C%EB%94%A9-%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98">3.2 로딩 메커니즘</a></h4><p><code>config.cache_classes</code>가 false일 경우 <code>Kernel#load</code>를 사용해서 로딩이 이루어집니다. 이것은 development 환경에서의 기본값입니다. 반면 <code>Kernel#require</code>를 사용한 로딩은 production 환경일 때의 기본값입니다.</p><p><a href="#%EC%83%81%EC%88%98-%EB%A6%AC%EB%A1%9C%EB%94%A9">상수 리로딩</a>이 활성화되어 있는 경우 <code>Kernel#load</code>가 사용되며, 파일을 반복해서 다시 읽어오게 됩니다.</p><p>여기에서는 '로딩'이라는 말을 지정된 파일이 Rails에 의해서 해석된다는 의미로 사용하고 있습니다만, 실제의 메카니즘에서는 플래그에 따라서 <code>Kernel#load</code>나 <code>Kernel#require</code>가 사용됩니다.</p><h3 id="자동-로딩이-가능한-상황"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EC%9D%B4-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%83%81%ED%99%A9">4 자동 로딩이 가능한 상황</a></h3><p>Rails는 적당한 환경이 준비되어 있으면 언제나 자동 로딩을 사용합니다. 예를 들어 다음의 <code>runner</code> 명령을 실행하면 자동 로딩을 사용합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails runner 'p User.column_names'
+["id", "email", "created_at", "updated_at"]
+
+</pre>
+</div>
+<p>이 경우 콘솔, 테스트 세트, 애플리케이션의 모든 것들을 자동으로 로딩합니다.</p><p>production 환경에서 실행된 경우에는 기본으로 파일들을 한번에 읽어오기(eager loading) 때문에, development 환경처럼 자동 로딩이 거의 발생하지 않습니다. 단, 한번에 읽어오는 상황에서도 자동 로딩이 발생할 수 있습니다.</p><p>다음의 상황을 봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class BeachHouse &lt; House
+end
+
+</pre>
+</div>
+<p><code>app/models/beach_house.rb</code>는 미리 읽어왔음에도 불구하고 <code>House</code>가 발견되지 않은 경우, Rails는 이 클래스를 자동 로딩합니다.</p><h3 id="autoload-paths"><a class="anchorlink" href="#autoload-paths">5 autoload_paths</a></h3><p>여기에 대해서는 알고 계시는 분들이 많을 것입니다. 다음과 같이 <code>require</code>로 상대 경로를 지정했다고 합시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'erb'
+
+</pre>
+</div>
+<p>이 때, Ruby는 <code>$LOAD_PATH</code>로 지정되어 있는 폴더에서 이 파일을 탐색합니다. 구체적으로 Ruby는 지정된 모든 폴더에 대해서 재귀적으로 "erb.rb"나 "erb.so", "erb.dll" 등의 이름을 가지는 파일이 있는지를 확인합니다. 이에 해당하는 파일을 발견하면 Ruby 인터프리터에 파일을 읽어오고 탐색을 거기에서 종료합니다. 발견하지 못한 경우에는 목록에 있는 다른 폴더에 대해서 같은 탐색 작업을 수행합니다. 목록을 전부 탐색한 뒤에도 발견하지 못한 경우에는 <code>LoadError</code>가 발생합니다.</p><p>여기부터는 상수의 자동 로딩을 자세하게 설명합니다만, 그 핵심에 있는 아이디어는 다음과 같습니다. 예를 들어 <code>Post</code>와 같은 상수가 코드에 출현한 시점에서는 아직 정의되지 않은 상태라고 가정합니다. 이 때 <code>app/models</code> 폴더에 <code>post.rb</code>라는 파일이 있다면, Rails는 이 상수를 탐색, 평가하고 그 결과 <code>Post</code>라는 상수를 '사이드 이펙트'로서 정의합니다.</p><p>그런데, Rails에는 <code>post.rb</code>와 같은 파일을 탐색하는 <code>$LOAD_PATH</code>와 비슷한 폴더 목록이 있습니다. 이 목록은 <code>autoload_paths</code>이라고 불리고 있으며 기본으로는 다음과 같은 것들이 포함되어 있습니다.</p>
+<ul>
+<li><p>실행 시점에 존재하는 애플리케이션과 엔진의 <code>app</code> 폴더 하의 모든 폴더들. <code>app/controllers</code> 등이 대상. <code>app</code> 밑에 있는 <code>app/workers</code> 등의 폴더들도 모두 <code>autoload_paths</code>에 자동적으로 포함되므로, 기본 폴더로 지정할 필요는 없습니다.</p></li>
+<li><p>애플리케이션과 엔진의 모든 <code>app/*/concerns</code> 제2의 하위 폴더.</p></li>
+<li><p><code>test/mailers/previews</code> 폴더</p></li>
+</ul>
+<p>이 목록은 <code>config.autoload_paths</code>에서 변경할 수 있습니다. 예를 들어, <code>lib</code> 폴더는 이전에는 목록에 포함되어 있었습니다만, 현재는 포함되지 않습니다. 필요하다면 <code>config/application.rb</code>에 다음의 코드를 추가하여 <code>lib</code> 폴더를 autoload_paths에 추가할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.autoload_paths += "#{Rails.root}/lib"
+
+</pre>
+</div>
+<p><code>autoload_paths</code>의 값을 직접 확인해볼 수도 있습니다. 방금 생성한 Rails 애플리케이션에서는 다음과 같은 느낌입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails r 'puts ActiveSupport::Dependencies.autoload_paths'
+.../app/assets
+.../app/controllers
+.../app/helpers
+.../app/mailers
+.../app/models
+.../app/controllers/concerns
+.../app/models/concerns
+.../test/mailers/previews
+
+</pre>
+</div>
+<div class="info"><p><code>autoload_paths</code>는 초기화 중에 계산되어 캐싱됩니다. 폴더의 구조가 조금이라도 변경된 경우, 이 변경을 반영하기 위해서는 애플리케이션을 다시 기동해야합니다.</p></div><h3 id="자동-로딩-알고리즘"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">6 자동 로딩 알고리즘</a></h3><h4 id="자동-로딩-알고리즘-상대참조"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EC%83%81%EB%8C%80%EC%B0%B8%EC%A1%B0">6.1 상대참조</a></h4><p>상수의 상대참조는 다음과 같이 다양한 곳에서 이루어집니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PostsController &lt; ApplicationController
+  def index
+    @posts = Post.all
+  end
+end
+
+</pre>
+</div>
+<p>이 코드에서 사용되고 있는 3개의 상수는 모두 상대참조를 사용하고 있습니다.</p><h5 id="class-그리고-module-키워드-뒤에-있는-상수"><a class="anchorlink" href="#class-%EA%B7%B8%EB%A6%AC%EA%B3%A0-module-%ED%82%A4%EC%9B%8C%EB%93%9C-%EB%92%A4%EC%97%90-%EC%9E%88%EB%8A%94-%EC%83%81%EC%88%98">6.1.1 <code>class</code>, 그리고 <code>module</code> 키워드 뒤에 있는 상수</a></h5><p>Ruby는 <code>class</code>나 <code>module</code> 키워드의 뒤에 오는 상수를 탐색합니다. 그러한 클래스나 모듈이 그 장소에서 처음 생성된 것인지, 재정의하는 것인지를 확인하기 위해서입니다.</p><p>그 시점에서 상수가 정의되어 있지 않은 경우, Ruby는 상수가 발견되지 않았으므로, 자동 로딩을 하지 않습니다.</p><p>직전의 예제로 설명하자면, 파일이 Ruby 인터프리터에 의해서 해석되는 시점에서 <code>PostsController</code>가 정의되어 있지 않은 경우, Rails의 자동 로딩이 실행되지 않고, Ruby는 단순히 컨트롤러를 새로 정의합니다.</p><h5 id="최상위-상수"><a class="anchorlink" href="#%EC%B5%9C%EC%83%81%EC%9C%84-%EC%83%81%EC%88%98">6.1.2 최상위 상수</a></h5><p>반대로 <code>ApplicationController</code>가 지금까지 출현한 적이 없었던 경우, 이 상수는 '발견되지 않았음'으로 간주되어 Rails에 의해서 자동 로딩이 실행됩니다.</p><p>Rails는 <code>ApplicationController</code>를 로딩하기 위해서 <code>autoload_paths</code>에 존재하는 경로들을 순서대로 탐색합니다. 처음에 <code>app/assets/application_controller.rb</code>가 존재하는지를 확인합니다. 발견하지 못한 경우(이것이 정상입니다), 다음 경로로 <code>app/controllers/application_controller.rb</code>를 탐색합니다.</p><p>발견한 파일에서 <code>ApplicationController</code>가 정의되어 있으면 OK입니다. 정의되지 않은 경우에는 <code>LoadError</code>를 발생시킵니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+unable to autoload constant ApplicationController, expected &lt;application_controller.rb의 전체 경로&gt; to define it (LoadError)
+
+</pre>
+</div>
+<div class="info"><p>Rails에서는 자동 로딩된 상수의 값이 클래스 객체이거나 모듈 객체일 필요는 없습니다. 예를 들어 <code>app/models/max_clients.rb</code>라는 파일에서 <code>MAX_CLIENTS = 100</code>라고 정의되어 있는 경우 <code>MAX_CLIENTS</code>의 자동 로딩은 문제없이 이루어집니다.</p></div><h5 id="네임스페이스"><a class="anchorlink" href="#%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4">6.1.3 네임스페이스</a></h5><p><code>ApplicationController</code>의 자동 로딩은 발생하는 시점에서의 네스트가 비어있기 때문에 <code>autoload_paths</code>의 폴더 목록에서 직접 이루어지는 것처럼 보입니다. <code>Post</code>의 경우는 이와 조금 다릅니다. 그 시점에서의 네스트는 <code>[PostsController]</code>이므로, 네임스페이스의 영향을 받기 때문입니다.</p><p>기본적인 발상은 아래에서 설명합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Admin
+  class BaseController &lt; ApplicationController
+    @@all_roles = Role.all
+  end
+end
+
+</pre>
+</div>
+<p><code>Role</code>을 자동 로딩하려면 부모의 네임스페이스나, 자기 자신에게서 <code>Role</code>이 정의가 되어있는지 아닌지를 체크합니다. 다시 말해서, 개념 상으로는 자동 로딩을 다음 순서대로 시도하게 됩니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+Admin::BaseController::Role
+Admin::Role
+Role
+
+</pre>
+</div>
+<p>여기가 중요합니다. 이를 실행하기 위해서 Rails는 <code>autoload_paths</code>의 경로를 파일명 순서대로 다음과 같이 탐색합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+admin/base_controller/role.rb
+admin/role.rb
+role.rb
+
+</pre>
+</div>
+<p>탐색 대상이 되는 그 이외의 표준적인 폴더에 대해서는 뒤에서 설명합니다.</p><div class="info"><p><code>'Constant::Name'.underscore</code>는 <code>Constant::Name</code>이 정의되어 있을 것이라고 기대되는 파일의 상대 경로를 돌려줍니다. 이 파일명에는 확장자를 포함하지 않습니다.</p></div><p>Rails가 <code>Post</code> 상수를 어떤식으로 다루어서 <code>PostsController</code>에서 자동으로 읽어오는지 자세히 살펴봅시다. 이 애플리케이션에서는 <code>app/models/post.rb</code>에 <code>Post</code> 모델이 있다고 가정합니다.</p><p>처음에 <code>autoload_paths</code>의 경로 중에서 <code>posts_controller/post.rb</code>가 있는지를 확인합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+app/assets/posts_controller/post.rb
+app/controllers/posts_controller/post.rb
+app/helpers/posts_controller/post.rb
+...
+test/mailers/previews/posts_controller/post.rb
+
+</pre>
+</div>
+<p>이 탐색은 실패하므로, 다음에는 폴더의 유무를 확인합니다. 그 이유에 대해서는 <a href="#%EC%9E%90%EB%8F%99-%EB%AA%A8%EB%93%88">다음 절</a>에서 설명합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+app/assets/posts_controller/post
+app/controllers/posts_controller/post
+app/helpers/posts_controller/post
+...
+test/mailers/previews/posts_controller/post
+
+</pre>
+</div>
+<p>이 탐색이 모두 실패하면, Rails는 부모의 네임스페이스에서 탐색을 진행합니다. 이 예제의 경우, 부모는 최상위뿐입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+app/assets/post.rb
+app/controllers/post.rb
+app/helpers/post.rb
+app/mailers/post.rb
+app/models/post.rb
+
+</pre>
+</div>
+<p>드디어 매칭되는 파일 <code>app/models/post.rb</code>를 찾았습니다. 탐색은 여기서 종료하고, 파일을 읽어옵니다. <code>Post</code>가 이 파일에 실제로 정의되어 있다면 OK입니다. 정의되어 있지 않다면 <code>LoadError</code>를 발생시킵니다.</p><h4 id="자동-로딩-알고리즘-검증된-상수-참조"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98-%EC%B0%B8%EC%A1%B0">6.2 검증된 상수 참조</a></h4><p>검증된(qualified) 상수를 찾을 수 없는 경우, 이 상수는 부모의 네임스페이스에서 탐색하지 않습니다. 단, 여기에서는 주의해야할 점이 있습니다. 상수가 발견되지 않는 경우, Rails는 그 트리거가 상대 참조인지, 검증된 상수 참조인지 알 수 없게 됩니다.</p><p>다음의 예제를 봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Admin
+  User
+end
+
+</pre>
+</div>
+<p>그리고 다음의 코드가 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Admin::User
+
+</pre>
+</div>
+<p><code>User</code>가 발견되지 않는다면 어느 쪽이든 Rails는 "User"라는 상수가 "Admin"이라는 모듈에는 없다는 것을 이해합니다.</p><p>이 <code>User</code>가 최상위에 있다고 가정하면, 첫번째의 예제는 Ruby에 의해서 해결됩니다만, 두번째의 예제는 그렇지 않습니다. Rails는 Ruby의 상수 해결 알고리즘을 모방하지 않으므로, 이러한 경우에는 다음의 휴리스틱을 이용해서 해결을 시도합니다.</p>
+<blockquote>
+<p>발견되지 않는 상수가 그 클래스, 또는 모듈의 부모 네임스페이스에도 없는 경우, Rails는 그 상수를 상대참조라고 가정한다. 그렇지 않은 경우에는 검증된 상수 참조라고 가정한다.</p>
+</blockquote>
+<p>예를 들자면, 다음의 코드가 자동 로딩을 하고,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Admin::User
+
+</pre>
+</div>
+<p><code>User</code> 상수가 <code>Object</code>에 이미 존재하는 경우, 다음의 코드에서는 같은 상황이 발생하지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Admin
+  User
+end
+
+</pre>
+</div>
+<p>그렇지 않다면 Ruby는 <code>User</code>를 해결할 수 있으며, 애초에 처음 위치에서 자동로딩이 발생하지 않을 것입니다. 이러한 경우 Rails는 이 상수가 검증된 상수라고 가정하고, <code>admin/user.rb</code> 파일과 <code>admin/user</code> 폴더만이 올바른 선택지라고 생각합니다.</p><p>이 중첩이 모든 부모 네임스페이스에 각각 매칭하고, 그 규칙을 적용시킨 상수의 존재가 그 시점에서 Ruby에게 인식되어 있다면 이 방법은 실질적으로 문제없이 동작합니다.</p><p>하지만 자동 로딩은 요구에 따라서 발생하는 것입니다. 그 시점에서 운나쁘게 최상위에 <code>User</code>가 로딩되어 있지 않다면, Rails는 이 휴리스틱에 따라서 상수를 상대참조일 것이라고 가정하게 됩니다.</p><p>이러한 이름의 경합은 실제로는 거의 발생하지 않습니다만, 만약 이로 인한 문제가 발생한 경우는 <code>require_dependency</code>를 사용해서 이 휴리스틱을 발생시키는 상수를 정의해야합니다.</p><h4 id="자동-모듈"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%AA%A8%EB%93%88">6.3 자동 모듈</a></h4><p>모듈이 하나의 네임스페이스처럼 동작하는 경우, Rails 애플리케이션에서 그 모듈을 위한 파일을 정의할 필요가 없습니다. 그 네임스페이스에 매칭하는 폴더를 만들기만 하면 됩니다.</p><p>어떤 Rails 애플리케이션에 관리 기능이 있어, 이를 위한 컨트롤러가 <code>app/controllers/admin</code>에 저장한다고 해봅시다. 이 <code>Admin</code> 모듈이 로딩되지 않은 상태에서 <code>Admin::UsersController</code>에 대한 접근이 발생한 경우, Rails는 우선 <code>Admin</code>이라는 상수를 자동 로딩해야합니다.</p><p><code>admin.rb</code>라는 파일이 <code>autoload_paths</code>의 경로에 포함되어 있는 경우에는 Rails가 자동으로 불러옵니다. 하지만 그런 파일이 발견되지 않고 <code>admin</code>라는 폴더가 발견 된 경우, Rails는 빈 모듈을 하나 만들고 <code>Admin</code> 상수를 거기에 대입합니다.</p><h4 id="일반적인-순서"><a class="anchorlink" href="#%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%88%9C%EC%84%9C">6.4 일반적인 순서</a></h4><p>상대참조는 발견된 cref에는 발견되지 않았다고 보고됩니다. 검증된 상수 참조는 그 부모로부터 발견되지 않았다고 보고됩니다(<em>cref</em>의 정의에 대해서는 <a href="#%EC%83%81%EB%8C%80-%EC%83%81%EC%88%98%EB%A5%BC-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%95%8C%EA%B3%A0%EB%A6%AC">상대 상수를 해결하는 알고리즘</a>를, <em>부모</em>의 정의에 대해서는 <a href="#%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98%EB%A5%BC-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">검증된 상수를 해결하는 알고리즘</a>를 참조해주세요).</p><p>임의의 상황에서 상수<code>C</code>를 자동 로딩하는 순서를 과정은 다음과 같이 표현할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+if 상수 C가 발견되지 않은 클래스 또는 모듈 객체
+  let ns = ''
+else
+  let M = 상수C가 발견되지 않은 클래스 또는 모듈
+
+  if M이 익명임
+    let ns = ''
+  else
+    let ns = M.name
+  end
+end
+
+loop do
+  # 일반 파일들을 탐색
+  for dir in autoload_paths
+    if "#{dir}/#{ns.underscore}/c.rb" 파일이 존재
+      load/require "#{dir}/#{ns.underscore}/c.rb"
+
+      if 상수C가 정의되어 있음
+        return
+      else
+        raise LoadError
+      end
+    end
+  end
+
+  # 자동 모듈을 탐색
+  for dir in autoload_paths
+    if "#{dir}/#{ns.underscore}/c" 폴더가 존재
+      if ns가 공백문자임
+        let C = Module.new in Object and return
+      else
+        let C = Module.new in ns.constantize and return
+      end
+    end
+  end
+
+  if ns이 비었음
+    # 상수가 발견되지 않은 채 최상위 네임스페이스에 도착
+    raise NameError
+  else
+    if C가 부모 네임스페이스 어딘가에 존재
+      # 검증된 상수의 휴리스틱
+      raise NameError
+    else
+      # 부모의 네임스페이스에서 탐색을 재시도
+      let ns = the parent namespace of ns and retry
+    end
+  end
+end
+
+</pre>
+</div>
+<h3 id="require-dependency"><a class="anchorlink" href="#require-dependency">7 require_dependency</a></h3><p>상수의 자동 로딩은 필요에 따라서 자동적으로 이루어지므로, 사용할 때에는 정의가 되어 있는 상수도 있고, 자동 로딩을 발생시키는 상수도 있어 동작이 일정하지 않습니다. 자동 로딩은 실행 경로에 의존합니다만, 실행 경로는 애플리케이션이 실행하는 도중에 변경될 수 있으므로, 이 역시 일정하지 않습니다.</p><p>하지만 이러한 상수의 동작을 확실히 만들고 싶은 경우가 가끔 있습니다. 특정 코드를 실행할 때에 거기에 있는 상수가 존재하고 있는 것처럼 만들어서 자동 로딩이 발생하지 않도록 할수는 없을까요? 이러한 경우에는 <code>require_dependency</code>를 사용합니다. 이것은 그 시점에서 <a href="#%EB%A1%9C%EB%94%A9-%EB%A9%94%EC%BB%A4%EB%8B%88%EC%A6%98">로딩 메커니즘</a>을 사용해서 파일을 읽어올 수 있으며, 필요에 따라서 그 파일에 정의되어 있는 상수를 이미 읽어둔 것처럼 추적할 수도 있습니다.</p><p><code>require_dependency</code>가 필요할 경우는 흔하지 않습니다만, <a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-STI">자동 로딩과 STI</a>나 <a href="#%EC%83%81%EC%88%98%EA%B0%80-%ED%8A%B8%EB%A6%AC%EA%B1%B0%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0">상수가 트리거되지 않는 경우</a>에서 몇가지 실제 예시를 참고해주세요.</p><div class="warning"><p><code>require_dependency</code>는 자동 로딩과는 다르며, 그 파일에서 특정 상수가 정의되어 있을 것을 전제하지 않습니다. 이 동작에 의존하는 것은 좋지 않습니다만, 파일과 상수의 경로를 일치시켜둘 필요가 있습니다.</p></div><h3 id="상수-리로딩"><a class="anchorlink" href="#%EC%83%81%EC%88%98-%EB%A6%AC%EB%A1%9C%EB%94%A9">8 상수 리로딩</a></h3><p><code>config.cache_classes</code>가 false인 경우, Rails는 자동 로딩된 상수를 다시 불러오게 됩니다.</p><p>예를 들어 Rails의 콘솔 세션을 열어둔 상태에서, 몇몇 파일이 갱신된 경우, <code>reload!</code> 명령을 사용해서 상수들을 다시 읽어올 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+&gt; reload!
+
+</pre>
+</div>
+<p>애플리케이션을 실행하는 도중에 로직을 변경되면, 리로딩이 발생합니다. 이를 실현하기 위해서 Rails는 아래의 다양한 파일들을 감시하고 있습니다.</p>
+<ul>
+<li><p><code>config/routes.rb</code></p></li>
+<li><p>로케일</p></li>
+<li><p><code>autoload_paths</code>의 경로에 존재하는 Ruby 파일</p></li>
+<li><p><code>db/schema.rb</code>와 <code>db/structure.sql</code> 파일</p></li>
+</ul>
+<p>이 중에 어떤 파일이 변경되면, 미들웨어가 변경사항을 확인한 코드를 다시 읽어오게 됩니다.</p><p>자동 로딩된 상수는 자동 로딩 인프라에 의해서 감시받습니다. 리로딩의 구체적인 구현은 <code>Module#remove_const</code> 메소드를 호출하여 관련된 클래스와 모듈을 전부 삭제하는 식입니다. 이를 통해서 그 코드가 실행되면 상수가 다시 알 수 없는 상수가 되므로, 필요에 따라서 파일을 다시 불러오게 됩니다.</p><div class="info"><p>이 동작은 'all-or-nothing'입니다. Rails의 클래스나 모듈 간에는 무척 미묘한 의존관계가 있기 때문에, 변경이 발생한 클래스나 모듈만이 부분적으로 리로딩되는 것이 아닙니다. 대신, 클래스나 모듈은 변경이 발생될 때마다 모두 삭제됩니다.</p></div><h3 id="module-autoload가-관여하지-않는-경우"><a class="anchorlink" href="#module-autoload%EA%B0%80-%EA%B4%80%EC%97%AC%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0">9 Module#autoload가 관여하지 않는 경우</a></h3><p><code>Module#autoload</code>는 상수를 지연 로딩하는 기능을 제공합니다. 이 기능은 Ruby의 상수 탐색 알고리즘이나 동적 상수 API등과 완전히 통합되어 있습니다. 이 동작은 굉장히 투명합니다.</p><p>Rails 내부에서는 기동 프로세스 이후의 작업을 가능한 지연시키기 위해서 이 기능을 폭넓게 사용하고 있습니다. 단, Rails의 상수 자동 로딩에서는 <code>Module#autoload</code>를 사용해서 <strong>구현하지 않았습니다</strong>.</p><p>구현에서 <code>Module#autoload</code>를 사용하는 한가지 방법은 예를 들어 애플리케이션의 트리를 전부 스캔하여 기존의 파일명과 기존의 상수명을 연결하기 위해서 <code>autoload</code>를 호출하는 것입니다.</p><p>하지만 Rails에서 이러한 구현을 하지 않는 데에는 몇가지 이유가 있습니다.</p><p>예를 들어, <code>Module#autoload</code>는 <code>require</code>를 사용하는 파일만을 로딩할 수 있기 때문에, 리로딩에서는 사용할 수 없습니다. 심지어, 이 모듈 내부에서는 <code>Kernel#require</code>와는 다른 <code>require</code>가 사용되고 있습니다.</p><p>이 때문에 이 모듈에서는 파일이 삭제된 경우에도 그 선언을 삭제할 방법을 제공하지 않습니다. 상수를<code>Module#remove_const</code>로 삭제하면 나중에 <code>autoload</code>를 사용할 수 없게 됩니다. 또한 이 모듈에서는 검증된 상수명을 지원하지 않습니다. 애플리케이션의 트리를 탐색하여 각각의 <code>autoload</code> 호출을 설치할 때 네임스페이스를 해석해야 합니다만, 그러한 파일의 상수 참조가 그 시점에서는 아직 구성이 되어있지 않을 가능성이 있습니다.</p><p><code>Module#autoload</code>를 사용해서 자동 로딩을 구현했으면 좋았습니다만, 위에서 설명한 이유로 현 시점에서는 어렵습니다. Rails의 상수 자동 로딩은 현재 <code>Module#const_missing</code>를 사용해서 구현되어 있습니다. 이러한 방법을 사용한 것은 위에서 설명한 이유 때문입니다.</p><h3 id="자주하는-실수"><a class="anchorlink" href="#%EC%9E%90%EC%A3%BC%ED%95%98%EB%8A%94-%EC%8B%A4%EC%88%98">10 자주하는 실수</a></h3><h4 id="중첩과-검증된-상수"><a class="anchorlink" href="#%EC%A4%91%EC%B2%A9%EA%B3%BC-%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98">10.1 중첩과 검증된 상수</a></h4><p>아래의 두 가지에 대해서 생각해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Admin
+  class UsersController &lt; ApplicationController
+    def index
+      @users = User.all
+    end
+  end
+end
+
+</pre>
+</div>
+<p>그리고,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Admin::UsersController &lt; ApplicationController
+  def index
+    @users = User.all
+  end
+end
+
+</pre>
+</div>
+<p>Ruby는 <code>User</code>를 해결하기 위해서 첫번째 예제에서는 <code>Admin</code>을 확인합니다만, 두번째의 예시에서는 중첩에 속해있지 않으므로 <code>Admin</code>을 확인하지 않습니다(<a href="#%EC%A4%91%EC%B2%A9">중첩</a>, <a href="#%ED%95%B4%EA%B2%B0%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">해결 알고리즘</a>을 참고).</p><p>아쉽게도 Rails의 자동 로딩은 이 상수가 발견되지 않는 상황에서 중첩이 발생했는지 아닌지를 인식하지 못하므로, 일반적인 Ruby와 마찬가지로 동작하지 않습니다. 특히 <code>Admin::User</code>는 어느 경우에도 자동 로딩이 발생합니다.</p><p>몇몇 상황에서 <code>class</code> 키워드나 <code>module</code> 키워드의 검증된 상수는 자동 로딩이 동작하기는 하지만, 검증된 상수보다는 상대 상수를 사용하기를 권장합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Admin
+  class UsersController &lt; ApplicationController
+    def index
+      @users = User.all
+    end
+  end
+end
+
+</pre>
+</div>
+<h4 id="자동-로딩과-sti"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-sti">10.2 자동 로딩과 STI</a></h4><p>단일 테이블 상속(STI: Single Table Inheritance)는 Active Record의 기능 중 하나로, 모델의 계층구조를 하나의 테이블로 저장할 수 있습니다. 이러한 모델의 API는 계층 구조를 인식하고 자주 사용되는 요소가 거기에 캡슐화됩니다. 예를 들자면, 다음과 같은 클래스가 있다고 합시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/polygon.rb
+class Polygon &lt; ActiveRecord::Base
+end
+
+# app/models/triangle.rb
+class Triangle &lt; Polygon
+end
+
+# app/models/rectangle.rb
+class Rectangle &lt; Polygon
+end
+
+</pre>
+</div>
+<p><code>Triangle.create</code>는 삼각형을 나타내는 레코드를 하나 생성하고 <code>Rectangle.create</code>는 사각형을 나타내는 레코드를 하나 만듭니다. <code>id</code>는 기존의 레코드의 ID라면 <code>Polygon.find(id)</code>로 올바른 종류의 객체를 가져올 수 있습니다.</p><p>컬렉션에 대해서 실행되는 메소드는 계층구조도 인식합니다. 예를 들어, 삼각혀오가 사각형, 둘다 다각형(polygon)에 포함되므로 <code>Polygon.all</code>은 테이블의 모든 레코드를 가져옵니다. Active Record가ㅏ 반환한 결과에서는 결과마다 거기에 맞는 클래스 객체를 반환하도록 되어 있습니다.</p><p>종류는 필요에 따라서 자동 로딩됩니다. 예를 들어 <code>Polygon.first</code>의 결과가 사각형(rectangle)이고, <code>Rectangle</code>가 그 시점에 로딩되지 않았다면 Active Record에 의해서 <code>Rectangle</code>가 로딩되어 그 레코드는 올바르게 인스턴스로 변환됩니다.</p><p>여기까지는 아무런 문제도 없습니다. 하지만 최상위 클래스에서의 쿼리가 아닌, 어떤 하위 클래스를 사용해야만 하는 상황의 경우에는 사정이 다릅니다.</p><p><code>Polygon</code>을 조작하려면 테이블 내의 모든 값은 polygon으로 정의되어 있으므로, 어떤 자식에 대해서도 따로 고려할 필요는 없습니다, 단 <code>Polygon</code>의 하위 클래스에서 조작을 하는 경우, Active Record가 탐색하려는 것들을 그 하위 클래스에서 사용가능하게 만들어야 합니다. 다음의 예시를 봅시다.</p><p>아래와 같이, 쿼리에 가져오고 싶은 종류 제한을 추가하면 <code>Rectangle.all</code>은 rectangle만을 가져옵니다.</p><div class="code_container">
+<pre class="brush: sql; gutter: false; toolbar: false">
+SELECT "polygons".* FROM "polygons"
+WHERE "polygons"."type" IN ("Rectangle")
+
+</pre>
+</div>
+<p>이번에는 <code>Rectangle</code>의 하위 클래스를 만들어봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/square.rb
+class Square &lt; Rectangle
+end
+
+</pre>
+</div>
+<p><code>Rectangle.all</code>는 사각형과 정사각형을 <strong>모두</strong> 돌려줍니다.</p><div class="code_container">
+<pre class="brush: sql; gutter: false; toolbar: false">
+SELECT "polygons".* FROM "polygons"
+WHERE "polygons"."type" IN ("Rectangle", "Square")
+
+</pre>
+</div>
+<p>단 여기에서는 주의가 필요합니다. Active Record는 <code>Square</code> 클래스의 존재를 어떤식으로 이해하고 있는 것일까요?</p><p><code>app/models/square.rb</code>라는 파일이 존재해서 <code>Square</code>가 정의되어 있다고 하더라도, 클래스 내의 코드가 그 시점까지 사용된 적이 없었다면 <code>Rectangle.all</code>에 의해서 다음의 쿼리가 생성됩니다.</p><div class="code_container">
+<pre class="brush: sql; gutter: false; toolbar: false">
+SELECT "polygons".* FROM "polygons"
+WHERE "polygons"."type" IN ("Rectangle")
+
+</pre>
+</div>
+<p>이것은 버그가 아닙니다. <code>Rectangle</code> 클래스의 그 시점에서 <em>알려진</em> 자식이 쿼리에 모두 포함되어 있습니다.</p><p>코드의 실행순서에 관계없이 항상 기대한 대로 동작하게 만드는 수단으로서, 최상위 클래스가 정의되어 있는 파일에 그 자식 클래스를 명시적으로 로딩하는 방법이 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/polygon.rb
+class Polygon &lt; ActiveRecord::Base
+end
+require_dependency ‘square’
+
+</pre>
+</div>
+<p>이 방법으로 명시적으로 읽어와야 하는 것은 <strong>최하위에 있는</strong> 클래스들로 충분합니다. 직계 사직에 대해서는 미리 불러올 필요가 없습니다. 만약 계층 구조가 더 복잡하더라도, 가장 하위에 있는 클래스를 지정해두면 그 중간에 포함되어 있는 클래스들은 재귀적으로 자동 로딩됩니다.</p><h4 id="자동-로딩과-require"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-require">10.3 자동 로딩과 <code>require</code></a></h4><p>자동 로딩되는 상수를 정의한 파일은 <code>require</code>를 해서는 안됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'user' # 실행하지 말 것
+
+class UsersController &lt; ApplicationController
+  ...
+end
+
+</pre>
+</div>
+<p>이는 development 환경에서 다음의 두가지 문제를 야기할 가능성이 있습니다.</p>
+<ol>
+<li><p>이 <code>require</code>가 실행되기 전에 <code>User</code>가 자동 로딩되면 <code>$LOADED_FEATURES</code>가 <code>load</code>에 의해서 갱신되지 않으므로, <code>app/models/user.rb</code>가 다시 실행되고 맙니다.</p></li>
+<li><p>이 <code>require</code>가 처음에 실행되면 Rails는 <code>User</code>를 자동 로딩 상수라고 인식하지 않기 때문에 <code>app/models/user.rb</code>의 변경사항을 반영하지 못하게 됩니다.</p></li>
+</ol>
+<p>흐름에 따라서 '항상' 상수의 자동 로딩을 사용해주세요. 자동 로딩과 <code>require</code>는 절대로 함께 사용해서는 안됩니다. 어쩔 수 없는 사정으로 파일에서 특정 파일을 읽어오고 싶은 경우에는 마지막 수단으로 <code>require_dependency</code>를 사용해서 상수를 자동 로딩과 함께 사용할 수 있도록 해주세요. 다만, 이 옵션이 실제로 필요한 경우는 거의 없을 것입니다.</p><p>물론 일반적인 플러그인 라이브러리들은 자동 로딩될 파일 내에서도 <code>require</code>로 불러오더라도 문제 없습니다. Rails는 플러그인 라이브러리의 상수를 구별하고 있으므로, 이들을 자동 로딩 대상으로 인식하지 않기 때문입니다.</p><h4 id="자동-로딩과-initializer"><a class="anchorlink" href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-initializer">10.4 자동 로딩과 initializer</a></h4><p><code>config/initializers/set_auth_service.rb</code>에서 아래의 대입을 쓰는 상황에 대해서 생각해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+AUTH_SERVICE = if Rails.env.production?
+  RealAuthService
+else
+  MockedAuthService
+end
+
+</pre>
+</div>
+<p>이 설정의 목적은 <code>AUTH_SERVICE</code>에서 각 환경에 대응한 클래스를 Rails 애플리케이션에서 사용하기 위함입니다. development 환경에서는 initializer를 실행할 때에 <code>MockedAuthService</code>가 자동 로딩 됩니다. 여기서 애플리케이션에 몇몇 요청을 처리한 뒤, 구현을 변경하고, 다시 애플리케이션에 접근했다고 합시다. 놀랍게도, 변경해둔 코드가 반영되지 않습니다. 이것은 왜일까요?</p><p><a href="#%EC%83%81%EC%88%98-%EB%A6%AC%EB%A1%9C%EB%94%A9">위에서도</a> 언급했듯, 자동 로딩된 상수는 Rails에 의해서 삭제됩니다만, <code>AUTH_SERVICE</code>에는 원래의 클래스가 저장되어 있습니다. 이 객체는 최신의 상태가 아니므로, 원래의 상수를 사용해서 접근 할 수 없게 되었습니다만, 완전히 동작합니다.</p><p>다음은 이 상황을 정리한 것입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C
+  def quack
+    'quack!'
+  end
+end
+
+X = C
+Object.instance_eval { remove_const(:C) }
+X.new.quack # =&gt; quack!
+X.name      # =&gt; C
+C           # =&gt; uninitialized constant C (NameError)
+
+</pre>
+</div>
+<p>이러한 이유로, Rails 애플리케이션의 초기화 시에 상수를 자동 로딩하는 것은 좋은 아이디어라고 말할 수 없습니다.</p><p>이러한 경우에는 다음과 같이 동적인 접근 포인트를 구현하고,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/auth_service.rb
+class AuthService
+  if Rails.env.production?
+    def self.instance
+      RealAuthService
+    end
+  else
+    def self.instance
+      MockedAuthService
+    end
+  end
+end
+
+</pre>
+</div>
+<p>나아가 애플리케이션에서 <code>AuthService.instance</code>를 이용하는 방법이 있습니다. <code>AuthService</code>는 필요에 따라서 로딩되고, 자동 로딩과 잘 동작합니다.</p><h4 id="require-dependency와-initializer"><a class="anchorlink" href="#require-dependency%EC%99%80-initializer">10.5 <code>require_dependency</code>와 initializer</a></h4><p>이미 언급했듯, <code>require_dependency</code>는 자동 로딩과 잘 동작하도록 파일을 불러옵니다. 하지만, 이러한 호출은 initializer에서는 의미가 없는 경우가 대부분입니다.</p><p>initializer 내에서 <a href="#require-dependency"><code>require_dependency</code></a>를 호출하여, 예를 들자면 <a href="#%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EA%B3%BC-STI">자동 로딩과 STI</a>의 문제를 해결하려고 했던 것처럼 특정 상수를 확실히 불러올 수 있습니다.</p><p>이 방법의 문제는 development 환경에서는 관련한 변경이 파일 시스템 상에서 발생하지 않은 경우에 <a href="#%EC%83%81%EC%88%98-%EB%A6%AC%EB%A1%9C%EB%94%A9">자동 로딩된 상수가 완전히 삭제된다는</a> 점입니다. initializer에서의 이러한 상수의 완전 상제는 가급적 피하고 싶은 부분입니다.</p><p>자동 로딩이 발생하는 위치에서 <code>require_dependency</code>를 사용하는 경우에는 충분히 사용법을 고민해야 합니다.</p><h4 id="상수가-트리거되지-않는-경우"><a class="anchorlink" href="#%EC%83%81%EC%88%98%EA%B0%80-%ED%8A%B8%EB%A6%AC%EA%B1%B0%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0">10.6 상수가 트리거되지 않는 경우</a></h4><h5 id="상수가-트리거되지-않는-경우-상대참조"><a class="anchorlink" href="#%EC%83%81%EC%88%98%EA%B0%80-%ED%8A%B8%EB%A6%AC%EA%B1%B0%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0-%EC%83%81%EB%8C%80%EC%B0%B8%EC%A1%B0">10.6.1 상대참조</a></h5><p>비행 시뮬레이터에 대해 생각해봅시다. 이 애플리케이션에는 다음의 기본 비행 모델이 하나 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/flight_model.rb
+class FlightModel
+end
+
+</pre>
+</div>
+<p>이것은 다음과 같이 각각 비행기에 덮어 씌울 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/bell_x1/flight_model.rb
+module BellX1
+  class FlightModel &lt; FlightModel
+  end
+end
+
+# app/models/bell_x1/aircraft.rb
+module BellX1
+  class Aircraft
+    def initialize
+      @flight_model = FlightModel.new
+    end
+  end
+end
+
+</pre>
+</div>
+<p>initializer는 <code>BellX1::FlightModel</code>을 하나 생성하려고 시도하고, 중첩에는 <code>BellX1</code>가 있습니다. 얼핏 보기에는 문제가 없어보입니다. 하지만 여기서 기본 비행 모델이 로딩되고, Bell-X1의 비행 모델이 로딩되지 않았다고 해봅시다. 이때, Ruby 인터프리터는 최상위의 <code>FlightModel</code>를 해결할 수 있으므로 <code>BellX1::FlightModel</code>의 자동 로딩이 실행되지 않습니다.</p><p>이 코드의 동작은 실행 경로의 내용에 의존합니다.</p><p>이러한 애매한 해결에는 다음과 같은 검증된 상수가 도움이 되는 경우가 가끔 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module BellX1
+  class Plane
+    def flight_model
+      @flight_model ||= BellX1::FlightModel.new
+    end
+  end
+end
+
+</pre>
+</div>
+<p>다음고 같이 <code>require_dependency</code>를 사용해서 해결할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require_dependency 'bell_x1/flight_model'
+
+module BellX1
+  class Plane
+    def flight_model
+      @flight_model ||= FlightModel.new
+    end
+  end
+end
+
+</pre>
+</div>
+<h5 id="상수가-트리거되지-않는-경우-검증된-상수-참조"><a class="anchorlink" href="#%EC%83%81%EC%88%98%EA%B0%80-%ED%8A%B8%EB%A6%AC%EA%B1%B0%EB%90%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EA%B2%BD%EC%9A%B0-%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98-%EC%B0%B8%EC%A1%B0">10.6.2 검증된 상수 참조</a></h5><p>다음의 예제에 대해서 생각해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/hotel.rb
+class Hotel
+end
+
+# app/models/image.rb
+class Image
+end
+
+# app/models/hotel/image.rb
+class Hotel
+  class Image &lt; Image
+  end
+end
+
+</pre>
+</div>
+<p><code>Hotel::Image</code>는 실행 경로에 의존하므로, 이 선언에는 불명확함이 있습니다.</p><p><a href="#%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98%EB%A5%BC-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">위에서 언급했듯</a>, Ruby는 <code>Hotel</code>과 그 부모 상수를 탐색합니다. <code>app/models/image.rb</code>가 로딩되어 있지만 <code>app/models/hotel/image.rb</code>가 로딩되어 있지 않은 경우, Ruby는 <code>Image</code>를 <code>Hotel</code> 내에서가 아니라 <code>Object</code>에서 찾습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails r 'Image; p Hotel::Image' 2&gt;/dev/null
+Image # Hotel::Image이 아님
+
+</pre>
+</div>
+<p><code>Hotel::Image</code>를 평가하는 코드는(아마도 <code>require_dependency</code>를 사용해서) <code>app/models/hotel/image.rb</code>를 사전에 읽어둘 필요가 있습니다.</p><p>단, 이 방법을 사용하는 경우, Ruby 인터프리터는 다음과 같은 경고를 출력합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+warning: toplevel constant Image referenced by Hotel::Image
+
+</pre>
+</div>
+<p>이런 놀라운 상수 해결 방법은 사실 어떤 클래스의 검증할 때에도 볼 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+2.1.5 :001 &gt; String::Array
+(irb):1: warning: toplevel constant Array referenced by String::Array
+=&gt; Array
+
+</pre>
+</div>
+<div class="warning"><p>이 문제를 실제로 발견하려면, 네임스페이스의 수식부가 클래스일 필요가 있습니다. <code>Object</code>는 모듈의 상위 클래스가 아니기 때문입니다.</p></div><h4 id="싱글톤-클래스에서-자동-로딩하기"><a class="anchorlink" href="#%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90%EC%84%9C-%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%ED%95%98%EA%B8%B0">10.7 싱글톤 클래스에서 자동 로딩하기</a></h4><p>다음의 클래스 정의를 생각해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/models/hotel/services.rb
+module Hotel
+  class Services
+  end
+end
+
+# app/models/hotel/geo_location.rb
+module Hotel
+  class GeoLocation
+    class &lt;&lt; self
+      Services
+    end
+  end
+end
+
+</pre>
+</div>
+<p><code>app/models/hotel/geo_location.rb</code>가 로딩되기 전에 <code>Hotel::Services</code>가 인식되어 있다면, <code>Services</code>는 Ruby에 의해서 해결됩니다. 이것은 <code>Hotel::GeoLocation</code>의 싱글톤 클래스가 열려 있을 때 <code>Hotel</code>이 중첩에 포함되어 있기 때문입니다.</p><p>하지만 <code>Hotel::Services</code>가 그 시점에서 인식되어 있지 않다면, Rails는 <code>Hotel::Services</code>를 자동 로딩하지 못하고 <code>NameError</code>를 던집니다.</p><p>그 이유는 자동 로딩은 싱글톤 클래스를 위해서 발생하기 때문입니다. 싱글톤 클래스는 익명이며, Rails는 <a href="#%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9D%B8-%EC%88%9C%EC%84%9C">위에서 설명</a>한대로 극단적인 상황에서는 최상위 도메인만 확인하기 때문입니다.</p><p>이 경고를 해결하는 간단한 방법으로는, 상수를 검증된 상수로 바꾸는 법이 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module Hotel
+  class GeoLocation
+    class &lt;&lt; self
+      Hotel::Services
+    end
+  end
+end
+
+</pre>
+</div>
+<h4 id="basicobject에서-자동-로딩을-하기"><a class="anchorlink" href="#basicobject%EC%97%90%EC%84%9C-%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9%EC%9D%84-%ED%95%98%EA%B8%B0">10.8 <code>BasicObject</code>에서 자동 로딩을 하기</a></h4><p><code>BasicObject</code>의 직계 자손에 대해서는 그 조상에 <code>Object</code>가 존재하지 않기 때문에 최상위 레벨의 상수를 해결할 수 없습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C &lt; BasicObject
+  String # NameError: uninitialized constant C::String
+end
+
+</pre>
+</div>
+<p>여기에서 자동 로딩이 포함되면 상황이 복잡해집니다. 다음을 생각해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C &lt; BasicObject
+  def user
+    User # 실수
+  end
+end
+
+</pre>
+</div>
+<p>Rails는 최상위 레벨의 네임스페이스를 확인하므로, 자동 로딩된 <code>User</code>는 <code>user</code> 메소드가 '처음' 호출될 때에는 문제 없이 동작합니다. 그러나 <code>User</code> 상수를 알고 있는 경우, 특히 <code>user</code>를 <em>2번째로</em> 호출한 경우에는 예외가 발생합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+c = C.new
+c.user # 놀랍게도 문제가 없음
+c.user # NameError: uninitialized constant C::User
+
+</pre>
+</div>
+<p>이것은 부모 네임스페이스에 이미 상수가 존재하기 때문입니다(<a href="#%EA%B2%80%EC%A6%9D%EB%90%9C-%EC%83%81%EC%88%98-%EC%B0%B8%EC%A1%B0">검증된 상수 참조</a>를 참고).</p><p>순수한 Ruby와 마찬가지로 <code>BasicObject</code>의 직계 자손 객체에는 언제나 절대 상수 경로를 사용해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C &lt; BasicObject
+  ::String # 올바름
+
+  def user
+    ::User # 올바름
+  end
+end
+
+</pre>
+</div>
+<div class="info"><p>이 가이드는 <a href="http://railsguides.jp">Rails Guilde 일본어판</a>으로부터 번역되었습니다.</p></div>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:18 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

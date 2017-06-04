@@ -1,0 +1,3329 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Active Support 코어 확장 기능 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Active Support 코어 확장 기능</h2><p>Active Support는 Ruby on Rails의 구성 요소중 하나로, Ruby의 확장 기능,
+유틸리티, 그 외의 작업 등을 담당하고 있습니다.</p><p>Active Support는 언어 레벨에서 다양한 기능을 추가해주며, Rails 애플리케이션의
+개발과 Ruby on Rails 자체의 개발을 지원하기 위한 목적으로 만들어졌습니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>코어의 확장 기능에 대해서</li>
+<li>모든 확장 기능을 불러오는 방법</li>
+<li>필요한 확장 기능만을 사용하는 방법</li>
+<li>Active Support가 제공하는 확장 기능 목록</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li>
+<a href="#%EC%BD%94%EC%96%B4-%ED%99%95%EC%9E%A5-%EA%B8%B0%EB%8A%A5%EC%9D%84-%EB%B6%88%EB%9F%AC%EC%98%A4%EB%8A%94-%EB%B0%A9%EB%B2%95">코어 확장 기능을 불러오는 방법</a>
+
+<ul>
+<li><a href="#%EB%8F%85%EB%A6%BD%EC%A0%81%EC%9D%B8-active-support">독립적인 Active Support</a></li>
+<li><a href="#ruby-on-rails-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%97%90%EC%84%9C-active-support%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">Ruby on Rails 애플리케이션에서 Active Support를 사용하기</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EB%AA%A8%EB%93%A0-%EA%B0%9D%EC%B2%B4%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%ED%99%95%EC%9E%A5-%EA%B8%B0%EB%8A%A5">모든 객체에서 사용할 수 있는 확장 기능</a>
+
+<ul>
+<li><a href="#blank-questionmark%EC%99%80-present-questionmark"><code>blank?</code>와 <code>present?</code></a></li>
+<li><a href="#presence"><code>presence</code></a></li>
+<li><a href="#duplicable-questionmark"><code>duplicable?</code></a></li>
+<li><a href="#deep-dup"><code>deep_dup</code></a></li>
+<li><a href="#try"><code>try</code></a></li>
+<li><a href="#class-eval-args-block"><code>class_eval(*args, &amp;block)</code></a></li>
+<li><a href="#acts-like-questionmark-duck"><code>acts_like?(duck)</code></a></li>
+<li><a href="#to-param"><code>to_param</code></a></li>
+<li><a href="#to-query"><code>to_query</code></a></li>
+<li><a href="#with-options"><code>with_options</code></a></li>
+<li><a href="#json-support">JSON support</a></li>
+<li><a href="#%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%B3%80%EC%88%98">인스턴스 변수</a></li>
+<li><a href="#%EA%B2%BD%EA%B3%A0-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%98%88%EC%99%B8-%EB%AC%B4%EC%8B%9C%ED%95%98%EA%B8%B0">경고, 스트림, 예외 무시하기</a></li>
+<li><a href="#in-questionmark"><code>in?</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#module-%ED%99%95%EC%9E%A5"><code>Module</code> 확장</a>
+
+<ul>
+<li><a href="#alias-method-chain"><code>alias_method_chain</code></a></li>
+<li><a href="#%EC%86%8D%EC%84%B1">속성</a></li>
+<li><a href="#%EB%B6%80%EB%AA%A8">부모</a></li>
+<li><a href="#%EB%8F%84%EB%8B%AC-%EA%B0%80%EB%8A%A5">도달 가능</a></li>
+<li><a href="#%EC%9D%B5%EB%AA%85-%EB%AA%A8%EB%93%88">익명 모듈</a></li>
+<li><a href="#%EB%A9%94%EC%86%8C%EB%93%9C-%EC%9C%84%EC%9E%84">메소드 위임</a></li>
+<li><a href="#%EB%A7%A4%EC%86%8C%EB%93%9C-%EC%9E%AC%EC%A0%95%EC%9D%98">매소드 재정의</a></li>
+</ul>
+</li>
+<li>
+<a href="#class%EC%9D%98-%ED%99%95%EC%9E%A5"><code>Class</code>의 확장</a>
+
+<ul>
+<li><a href="#class-%EC%86%8D%EC%84%B1">Class 속성</a></li>
+<li><a href="#subclasses-descendants">Subclasses &amp; Descendants</a></li>
+</ul>
+</li>
+<li>
+<a href="#string%EC%9D%98-%ED%99%95%EC%9E%A5-%EB%A9%94%EC%86%8C%EB%93%9C"><code>String</code>의 확장 메소드</a>
+
+<ul>
+<li><a href="#%EC%95%88%EC%A0%84%ED%95%9C-%EC%B6%9C%EB%A0%A5">안전한 출력</a></li>
+<li><a href="#remove"><code>remove</code></a></li>
+<li><a href="#squish"><code>squish</code></a></li>
+<li><a href="#truncate"><code>truncate</code></a></li>
+<li><a href="#truncate-words"><code>truncate_words</code></a></li>
+<li><a href="#inquiry"><code>inquiry</code></a></li>
+<li><a href="#starts-with-questionmark%EC%99%80-ends-with-questionmark"><code>starts_with?</code>와 <code>ends_with?</code></a></li>
+<li><a href="#strip-heredoc"><code>strip_heredoc</code></a></li>
+<li><a href="#indent"><code>indent</code></a></li>
+<li><a href="#access">Access</a></li>
+<li><a href="#%ED%99%9C%EC%9A%A9%ED%98%95">활용형</a></li>
+<li><a href="#string%EC%9D%98-%ED%99%95%EC%9E%A5-%EB%A9%94%EC%86%8C%EB%93%9C-conversions">Conversions</a></li>
+</ul>
+</li>
+<li>
+<a href="#numeric-%ED%99%95%EC%9E%A5"><code>Numeric</code> 확장</a>
+
+<ul>
+<li><a href="#%EB%B0%94%EC%9D%B4%ED%8A%B8">바이트</a></li>
+<li><a href="#time">Time</a></li>
+<li><a href="#%ED%98%95%EC%8B%9D-%EB%B3%80%ED%99%98">형식 변환</a></li>
+</ul>
+</li>
+<li>
+<a href="#integer-%ED%99%95%EC%9E%A5"><code>Integer</code> 확장</a>
+
+<ul>
+<li><a href="#multiple-of-questionmark"><code>multiple_of?</code></a></li>
+<li><a href="#ordinal"><code>ordinal</code></a></li>
+<li><a href="#ordinalize"><code>ordinalize</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#bigdecimal-%ED%99%95%EC%9E%A5"><code>BigDecimal</code> 확장</a>
+
+<ul>
+<li><a href="#bigdecimal-%ED%99%95%EC%9E%A5-to-s"><code>to_s</code></a></li>
+<li><a href="#bigdecimal-%ED%99%95%EC%9E%A5-to-formatted-s"><code>to_formatted_s</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#enumerable-%ED%99%95%EC%9E%A5"><code>Enumerable</code> 확장</a>
+
+<ul>
+<li><a href="#sum"><code>sum</code></a></li>
+<li><a href="#index-by"><code>index_by</code></a></li>
+<li><a href="#many-questionmark"><code>many?</code></a></li>
+<li><a href="#exclude-questionmark"><code>exclude?</code></a></li>
+<li><a href="#without"><code>without</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#array-%ED%99%95%EC%9E%A5"><code>Array</code> 확장</a>
+
+<ul>
+<li><a href="#accessing">Accessing</a></li>
+<li><a href="#%EC%9A%94%EC%86%8C%EB%A5%BC-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">요소를 추가하기</a></li>
+<li><a href="#%EC%98%B5%EC%85%98%EC%9D%84-%EC%A0%84%EA%B0%9C%ED%95%98%EA%B8%B0">옵션을 전개하기</a></li>
+<li><a href="#array-%ED%99%95%EC%9E%A5-conversions">Conversions</a></li>
+<li><a href="#wrapping">Wrapping</a></li>
+<li><a href="#%EB%B3%B5%EC%A0%9C">복제</a></li>
+<li><a href="#%EA%B7%B8%EB%A3%B9%ED%99%94">그룹화</a></li>
+</ul>
+</li>
+<li>
+<a href="#hash-%ED%99%95%EC%9E%A5"><code>Hash</code> 확장</a>
+
+<ul>
+<li><a href="#hash-%ED%99%95%EC%9E%A5-conversions">Conversions</a></li>
+<li><a href="#%EB%B3%91%ED%95%A9">병합</a></li>
+<li><a href="#deep-duplicate">Deep Duplicate</a></li>
+<li><a href="#%ED%95%B4%EC%8B%9C-%ED%82%A4-%EC%A1%B0%EC%9E%91%ED%95%98%EA%B8%B0">해시 키 조작하기</a></li>
+<li><a href="#%EA%B0%92%EC%9D%84-%EC%A1%B0%EC%9E%91%ED%95%98%EA%B8%B0">값을 조작하기</a></li>
+<li><a href="#%EC%9E%90%EB%A5%B4%EA%B8%B0">자르기</a></li>
+<li><a href="#%EC%B6%94%EC%B6%9C">추출</a></li>
+<li><a href="#%ED%95%B4%EC%8B%9C-%ED%82%A4%EA%B0%80-%EC%8B%AC%EB%B3%BC%EC%9D%B4%EB%93%A0-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B4%EB%93%A0-%EB%8F%99%EC%9D%BC%ED%95%98%EA%B8%B0-%EB%8B%A4%EB%A3%A8%EA%B8%B0-indifferent-access">해시 키가 심볼이든 문자열이든 동일하기 다루기(indifferent access)</a></li>
+<li><a href="#compacting">Compacting</a></li>
+</ul>
+</li>
+<li>
+<a href="#regexp-%ED%99%95%EC%9E%A5"><code>Regexp</code> 확장</a>
+
+<ul>
+<li><a href="#multiline-questionmark"><code>multiline?</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#range-%ED%99%95%EC%9E%A5"><code>Range</code> 확장</a>
+
+<ul>
+<li><a href="#range-%ED%99%95%EC%9E%A5-to-s"><code>to_s</code></a></li>
+<li><a href="#include-questionmark"><code>include?</code></a></li>
+<li><a href="#overlaps-questionmark"><code>overlaps?</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#date-%ED%99%95%EC%9E%A5"><code>Date</code> 확장</a>
+
+<ul>
+<li><a href="#date-%ED%99%95%EC%9E%A5-%EA%B3%84%EC%82%B0">계산</a></li>
+<li><a href="#date-%ED%99%95%EC%9E%A5-conversions">Conversions</a></li>
+</ul>
+</li>
+<li>
+<a href="#datetime-%ED%99%95%EC%9E%A5"><code>DateTime</code> 확장</a>
+
+<ul>
+<li><a href="#datetime-%ED%99%95%EC%9E%A5-%EA%B3%84%EC%82%B0">계산</a></li>
+</ul>
+</li>
+<li>
+<a href="#time-%ED%99%95%EC%9E%A5"><code>Time</code> 확장</a>
+
+<ul>
+<li><a href="#%EA%B3%84%EC%82%B0">계산</a></li>
+<li><a href="#time-%EC%83%9D%EC%84%B1%EC%9E%90">Time 생성자</a></li>
+</ul>
+</li>
+<li>
+<a href="#file-%ED%99%95%EC%9E%A5"><code>File</code> 확장</a>
+
+<ul>
+<li><a href="#atomic-write"><code>atomic_write</code></a></li>
+</ul>
+</li>
+<li>
+<a href="#marshal-%ED%99%95%EC%9E%A5"><code>Marshal</code> 확장</a>
+
+<ul>
+<li><a href="#load"><code>load</code></a></li>
+</ul>
+</li>
+<li><a href="#nameerror-%ED%99%95%EC%9E%A5"><code>NameError</code> 확장</a></li>
+<li><a href="#loaderror-%ED%99%95%EC%9E%A5"><code>LoadError</code> 확장</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="코어-확장-기능을-불러오는-방법"><a class="anchorlink" href="#%EC%BD%94%EC%96%B4-%ED%99%95%EC%9E%A5-%EA%B8%B0%EB%8A%A5%EC%9D%84-%EB%B6%88%EB%9F%AC%EC%98%A4%EB%8A%94-%EB%B0%A9%EB%B2%95">1 코어 확장 기능을 불러오는 방법</a></h3><h4 id="독립적인-active-support"><a class="anchorlink" href="#%EB%8F%85%EB%A6%BD%EC%A0%81%EC%9D%B8-active-support">1.1 독립적인 Active Support</a></h4><p>흔적을 최대한 남기지 않기 위해서, Active Support는 기본적으로 아무것도
+읽어들이지 않습니다. Active Support는 자잘하게 분할되어 필요한 확장 기능만
+불러올 수 있도록 되어 있습니다. 또한 연관되어 있는 확장기능(상황에 따라서는
+모든 확장 기능)도 동시에 불러올 때에 사용할 수 있는 엔트리 포인트도 포함하고
+있습니다.</p><p>따라서 아래와 같은 require문을 실행하더라도,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'active_support'
+
+</pre>
+</div>
+<p>객체는 <code>blank?</code>에 응답하지 않습니다. 이 정의가 어떤 식으로 로드되는지 확인해봅시다.</p><h5 id="필요한-정의만을-선택"><a class="anchorlink" href="#%ED%95%84%EC%9A%94%ED%95%9C-%EC%A0%95%EC%9D%98%EB%A7%8C%EC%9D%84-%EC%84%A0%ED%83%9D">1.1.1 필요한 정의만을 선택</a></h5><p><code>blank?</code> 메소드를 사용하는 가장 '가벼운' 방법은 그 메소드가 정의되어 있는
+파일만을 선택해서 불러오는 것입니다.</p><p>이 가이드에서는 코어 확장 기능으로 정의되어있는 모든 메소드에 대해서 그 정의
+파일이 어디에 위치해 있는지를 적어두었습니다. 예를 들어 <code>blank?</code>의 경우,
+아래와 같은 메모가 되어 있습니다.</p><div class="note"><p><code>active_support/core_ext/object/blank.rb</code>에 정의되어 있습니다.</p></div><p>다시 말해 아래와 같이 핀포인트로 require를 실행할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'active_support'
+require 'active_support/core_ext/object/blank'
+
+</pre>
+</div>
+<p>Active Support는 무척 조심스러워서, 어떤 파일을 선택했을 경우 정말로 필요한
+파일들만을 동시에 불러옵니다(의존 관계가 있는 경우).</p><h5 id="코어-확장-기능을-그룹화하여-불러오기"><a class="anchorlink" href="#%EC%BD%94%EC%96%B4-%ED%99%95%EC%9E%A5-%EA%B8%B0%EB%8A%A5%EC%9D%84-%EA%B7%B8%EB%A3%B9%ED%99%94%ED%95%98%EC%97%AC-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0">1.1.2 코어 확장 기능을 그룹화하여 불러오기</a></h5><p>다음 단계로 <code>Object</code>에 대한 모든 확장 기능을 불러와봅시다. 경험적으로
+<code>SomeClass</code>라는 클래스가 있다면 <code>active_support/core_ext/some_class</code>라는
+경로를 지정하면 한번에 읽어올 수 있습니다.</p><p>따라서, (<code>blank?</code>를 포함하여)<code>Object</code>에 대한 모든 확장기능을 불러오기 위해서는
+다음과 같이 작성하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'active_support'
+require 'active_support/core_ext/object'
+
+</pre>
+</div>
+<h5 id="모든-확장-기능을-불러오기"><a class="anchorlink" href="#%EB%AA%A8%EB%93%A0-%ED%99%95%EC%9E%A5-%EA%B8%B0%EB%8A%A5%EC%9D%84-%EB%B6%88%EB%9F%AC%EC%98%A4%EA%B8%B0">1.1.3 모든 확장 기능을 불러오기</a></h5><p>모든 코어 확장 기능을 불러오고 싶다면 아래와 같이 require하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'active_support'
+require 'active_support/core_ext'
+
+</pre>
+</div>
+<h5 id="모든-active-support를-읽어오기"><a class="anchorlink" href="#%EB%AA%A8%EB%93%A0-active-support%EB%A5%BC-%EC%9D%BD%EC%96%B4%EC%98%A4%EA%B8%B0">1.1.4 모든 Active Support를 읽어오기</a></h5><p>마지막으로 사용가능한 Active Support를 모두 불러오고 싶다면 이렇게 할 수
+있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+require 'active_support/all'
+
+</pre>
+</div>
+<p>단, 이 코드를 실행하더라도 Active Support 전체가 메모리 상에 로드되는 것은
+아닙니다. 일부는 <code>autoload</code>로 설정되어서, 실제로 사용하기 전까지는 로드되지
+않습니다.</p><h4 id="ruby-on-rails-애플리케이션에서-active-support를-사용하기"><a class="anchorlink" href="#ruby-on-rails-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%97%90%EC%84%9C-active-support%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">1.2 Ruby on Rails 애플리케이션에서 Active Support를 사용하기</a></h4><p>Ruby on Rails 애플리케이션에서는 기본적으로 모든 Active Support를 불러옵니다.
+<code>active_support.bare</code>를 true로 설정했을 때는 예외입니다. 이 옵션을 true로
+설정하면 프레임워크 자체가 필요로 할 때까지 애플리케이션은 확장 기능을
+불러오지 않습니다. 또한 불러올 확장 기능은 위에서 이야기했듯이 각 부분별로
+그때그때 선택됩니다.</p><h3 id="모든-객체에서-사용할-수-있는-확장-기능"><a class="anchorlink" href="#%EB%AA%A8%EB%93%A0-%EA%B0%9D%EC%B2%B4%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-%ED%99%95%EC%9E%A5-%EA%B8%B0%EB%8A%A5">2 모든 객체에서 사용할 수 있는 확장 기능</a></h3><h4 id="blank-questionmark와-present-questionmark"><a class="anchorlink" href="#blank-questionmark%EC%99%80-present-questionmark">2.1 <code>blank?</code>와 <code>present?</code></a></h4><p>Rails 애플리케이션은 아래의 값을 공백(blank)라고 판단합니다.</p>
+<ul>
+<li><p><code>nil</code>과 <code>false</code></p></li>
+<li><p>공백문자(whitespace)만으로 구성되어있는 문자열 (아래의 설명 참조)</p></li>
+<li><p>비어있는 배열과 해시</p></li>
+<li><p>그 외, <code>empty?</code> 메소드에 true를 돌려주는 모든 객체를 비어있다고 생각합니다.</p></li>
+</ul>
+<div class="info"><p>문자열을 판정하기위해, Unicode에 대응하는 문자 클래스인 <code>[:space:]</code>를
+사용합니다. 그러므로 예를 들어 U+2029(단락 구분자)역시 공백 문자로 판정됩니다.</p></div><div class="warning"><p>숫자에 대해서는 공백인지 아닌지 판단할 수 없습니다. 특히 0이나 0.0은
+<strong>공백이 아니므로</strong> 주의해주세요.</p></div><p>예를 들어 <code>ActionController::HttpAuthentication::Token::ControllerMethods</code>에
+있는 아래의 메소드에서는 <code>blank?</code>를 사용해서 토큰이 존재하고 있는지를
+확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def authenticate(controller, &amp;login_procedure)
+  token, options = token_and_options(controller.request)
+  unless token.blank?
+    login_procedure.call(token, options)
+  end
+end
+
+</pre>
+</div>
+<p><code>present?</code> 메소드는 <code>!blank?</code> 메소드와 동등합니다. 아래의 예시는
+<code>ActionDispatch::Http::Cache::Response</code>에서 인용했습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def set_conditional_cache_control!
+  return if self["Cache-Control"].present?
+  ...
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/blank.rb</code>에 정의되어 있습니다.</p></div><h4 id="presence"><a class="anchorlink" href="#presence">2.2 <code>presence</code></a></h4><p><code>presence</code> 메소드는 <code>present?</code>가 true인 경우에는 자기 자신의 리시버를 반환하고,
+false인 경우에는 <code>nil</code>을 반환합니다. 이 메소드는 아래와 같은 경우에 편리합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+host = config[:host].presence || 'localhost'
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/blank.rb</code>에 정의되어 있습니다.</p></div><h4 id="duplicable-questionmark"><a class="anchorlink" href="#duplicable-questionmark">2.3 <code>duplicable?</code></a></h4><p>루비 2.4의 메소드나 특정 숫자들을 제외한 대부분의 객체들은 <code>dup</code>나 <code>clone</code>로
+복사할 수 있습니다. 반면 루비 2.2와 2.3은 <code>nil</code>, <code>false</code>, <code>true</code>, 심볼과
+<code>Float</code>, <code>Fixnum</code>, <code>Bignum</code> 객체를 복사할 수 없습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"foo".dup           # =&gt; "foo"
+"".dup              # =&gt; ""
+1.method(:+).dup    # =&gt; TypeError: allocator undefined for Method
+Complex(0).dup      # =&gt; TypeError: can't copy Complex
+
+</pre>
+</div>
+<p>Active Support는 이 정보를 확인하기 위해서 <code>duplicable?</code>를 제공합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"foo".duplicable?           # =&gt; true
+"".duplicable?              # =&gt; true
+Rational(1).duplicable?     # =&gt; false
+Complex(1).duplicable?      # =&gt; false
+1.method(:+).duplicable?    # =&gt; false
+
+</pre>
+</div>
+<p><code>duplicable?</code>는 루비의 버전에 따라서 동작이 변합니다.
+그러므로 2.4에서는 다음과 같이 동작합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+nil.dup                 # =&gt; nil
+:my_symbol.dup          # =&gt; :my_symbol
+1.dup                   # =&gt; 1
+
+nil.duplicable?         # =&gt; true
+:my_symbol.duplicable?  # =&gt; true
+1.duplicable?           # =&gt; true
+
+</pre>
+</div>
+<p>반면, 2.2와 2.3에서는 다음과 같이 동작합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+nil.dup                 # =&gt; TypeError: can't dup NilClass
+:my_symbol.dup          # =&gt; TypeError: can't dup Symbol
+1.dup                   # =&gt; TypeError: can't dup Fixnum
+
+nil.duplicable?         # =&gt; false
+:my_symbol.duplicable?  # =&gt; false
+1.duplicable?           # =&gt; false
+
+</pre>
+</div>
+<div class="warning"><p>어떤 클래스라도 <code>dup</code> 메소드와 <code>clone</code> 메소드를 삭제하여 이 메소드들을 사용할 수 없게 만들 수 있습니다. 이때 이 메소드들을 실행하면 예외가 발생합니다. 이런 경우에는 어떤 객체에서든 그 객체가 복사 가능한지 아닌지를 확인하기 위해 <code>rescue</code>를 사용해야하는 상황이 생깁니다. <code>duplicable?</code> 메소드는 위처럼 고정된 목록에 의존합니다만, 그 대신 <code>rescue</code>보다 빠르게 동작합니다. 실제로 사용하는 경우에 저 목록으로 충분하다고 판단되는 경우에는 <code>duplicable?</code>를 사용해주세요.</p></div><div class="note"><p><code>active_support/core_ext/object/duplicable.rb</code>에 정의되어 있습니다.</p></div><h4 id="deep-dup"><a class="anchorlink" href="#deep-dup">2.4 <code>deep_dup</code></a></h4><p><code>deep_dup</code> 메소드는 주어진 객체의 '깊은 복사'를 돌려줍니다. 루비는 일반적으로 다른 객체를 포함하는 객체를 <code>dup</code>하더라도 내부에 있는 다른 객체들을 복사하지 않습니다. 이러한 사본은 '앝은 복사(shallow copy)'라고 불립니다. 예를 들자면, 아래와 같은 문자열을 포함하는 배열이 있다고 가정합시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+array     = ['string']
+duplicate = array.dup
+
+duplicate.push 'another-string'
+
+# 이 객체는 복사되었으므로, 복사 된쪽에만 객체가 추가됨
+array     # =&gt; ['string']
+duplicate # =&gt; ['string', 'another-string']
+
+duplicate.first.gsub!('string', 'foo')
+
+# 첫번째 요소는 복사되지 않았으므로 한쪽을 변경하면, 양쪽 배열에 모두 변경사항이 반영됨
+array     # =&gt; ['foo']
+duplicate # =&gt; ['foo', 'another-string']
+
+</pre>
+</div>
+<p>위에서 보듯, <code>Array</code> 인스턴스를 복사하여 다른 객체가 생성되었으므로, 한쪽을 변경하더라도 다른쪽은 변경되지 않게 되었습니다. 단, 배열은 복사되었습니다만, 배열 내의 요소들은 그렇지 않습니다. <code>dup</code> 메소드는 깊은 복사를 해주지 않으므로, 배열의 내부에 있는 문자열은 복사 후에도 같은 객체입니다.</p><p>객체를 깊은 복사해야할 필요가 있는 경우에는 <code>deep_dup</code>를 사용해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+array     = ['string']
+duplicate = array.deep_dup
+
+duplicate.first.gsub!('string', 'foo')
+
+array     # =&gt; ['string']
+duplicate # =&gt; ['foo']
+
+</pre>
+</div>
+<p>객체가 복사 불가능한 경우, <code>deep_dup</code>는 그 객체를 그대로 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+number = 1
+duplicate = number.deep_dup
+number.object_id == duplicate.object_id   # =&gt; true
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/deep_dup.rb</code>에 정의되어 있습니다.</p></div><h4 id="try"><a class="anchorlink" href="#try">2.5 <code>try</code></a></h4><p><code>nil</code>이 아닌 경우에만 객체의 메소드를 호출하고 싶은 경우, 가장 단순한 방법은 조건문을 추가하는 것입니다만, 아무래도 코드가 장황해지게 됩니다. 이러한 상황에서 <code>try</code>를 사용할 수 있습니다. <code>try</code>는 <code>Object#send</code>와 닮아있습니다만, <code>nil</code>에 호출되는 경우에는 <code>nil</code>을 돌려준다는 부분이 다릅니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# try 메소드를 사용하지 않은 경우
+unless @number.nil?
+  @number.next
+end
+
+# try 메소드를 사용한 경우
+@number.try(:next)
+
+</pre>
+</div>
+<p><code>ActiveRecord::ConnectionAdapters::AbstractAdapter</code>에 있는 다른 예시를
+소개합니다. 여기에서는 <code>@logger</code>가 <code>nil</code>일 경우가 있습니다. 이 코드에서는
+<code>try</code>를 사용하는 것으로 불필요한 체크를 하는 수고를 덜 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def log_info(sql, name, ms)
+  if @logger.try(:debug?)
+    name = '%s (%.1fms)' % [name || 'SQL', ms]
+    @logger.debug(format_log_entry(name, sql.squeeze(' ')))
+  end
+end
+
+</pre>
+</div>
+<p><code>try</code> 메소드는 인수 대신 블록과 함께 호출할 수도 있습니다. 이 경우 객체가
+<code>nil</code>이 아닌 경우에만 블록이 실행됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+@person.try { |p| "#{p.first_name} #{p.last_name}" }
+
+</pre>
+</div>
+<p><code>try</code>는 얕은 에러를 사용하므로 nil을 반환합니다. 만약 작성 미스에 따른 문제를
+피하고 싶다면 <code>try!</code>를 사용하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+@number.try(:nest)  # =&gt; nil
+@number.try!(:nest) # NoMethodError: undefined method `nest' for 1:Integer
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/try.rb</code>에 정의되어 있습니다.</p></div><h4 id="class-eval-args-block"><a class="anchorlink" href="#class-eval-args-block">2.6 <code>class_eval(*args, &amp;block)</code></a></h4><p><code>class_eval</code> 메소드를 사용하여 다양한 객체의 singleton 클래스의 컨텍스트에서 코드를 실행(eval)할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Proc
+  def bind(object)
+    block, time = self, Time.current
+    object.class_eval do
+      method_name = "__bind_#{time.to_i}_#{time.usec}"
+      define_method(method_name, &amp;block)
+      method = instance_method(method_name)
+      remove_method(method_name)
+      method
+    end.bind(object)
+  end
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/kernel/singleton_class.rb</code>에 정의되어 있습니다.</p></div><h4 id="acts-like-questionmark-duck"><a class="anchorlink" href="#acts-like-questionmark-duck">2.7 <code>acts_like?(duck)</code></a></h4><p><code>acts_like?</code> 메소드는, 일부 클래스가 다른 클래스와 같은 방식으로 동작하는
+지에 대해서 어떤 관례에 따라서 확인합니다. <code>String</code> 클래스와 동일한
+인터페이스를 제공하는 클래스가 있고, 그 중에서 아래의 메소드를 정의했다고
+가정해 봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def acts_like_string?
+end
+
+</pre>
+</div>
+<p>이 메소드는 단순한 지표이며, 메소드 자체가 돌려주는 값과 관련은 없습니다.
+이에 의해서 클라이언트 코드에서는 이래와 같은 덕 타이핑(duck typing) 체크를
+할 수 있게 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+some_klass.acts_like?(:string)
+
+</pre>
+</div>
+<p>Rails에서는 <code>Date</code> 클래스나 <code>Time</code> 클래스와 비슷하게 행동하는 클래스가 존재하며, 이 방식을 사용하고 있습니다.</p><div class="note"><p><code>active_support/core_ext/object/acts_like.rb</code>에 정의되어 있습니다.</p></div><h4 id="to-param"><a class="anchorlink" href="#to-param">2.8 <code>to_param</code></a></h4><p>Rails의 모든 객체들에 <code>to_param</code> 메소드를 사용할 수 있습니다. 이것은 객체를
+값으로 표현한 것을 반환한다는 의미입니다. 반환된 값은 쿼리 문자열이나 URL의
+일부로 사용할 수 있습니다.</p><p>기본으로 <code>to_param</code> 메소드는 <code>to_s</code> 메소드를 호출하게 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+7.to_param # =&gt; "7"
+
+</pre>
+</div>
+<p><code>to_param</code>에 의해서 반환된 값을 <strong>이스케이프 해서는 안됩니다</strong>. 취약점이 발생할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Tom &amp; Jerry".to_param # =&gt; "Tom &amp; Jerry"
+
+</pre>
+</div>
+<p>이 메소드는 Rails의 많은 클래스에서 재정의됩니다.</p><p>예를 들어 <code>nil</code>, <code>true</code>, <code>false</code>의 경우는 자기 자신을 반환합니다.
+<code>Array#to_param</code>를 실행하면 <code>to_param</code>이 배열 내의 각 요소에 대해서 실행되며,
+결과가 "/"로 join됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[0, true, String].to_param # =&gt; "0/true/String"
+
+</pre>
+</div>
+<p>특히 Rails의 라우팅 시스템은 모델에 대해서 <code>to_param</code> 메소드를 실행해서 <code>:id</code> 플레이스홀더의 값을 얻어옵니다. <code>ActiveRecord::Base#to_param</code>은 모델의 <code>id</code>를 반환합니다만 이 메소드를 모델 내에서 재정의할 수도 있습니다. 다음처럼,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+end
+
+</pre>
+</div>
+<p>이래의 결과를 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+user_path(@user) # =&gt; "/users/357-john-smith"
+
+</pre>
+</div>
+<div class="warning"><p>컨트롤러에서는 <code>to_param</code> 메소드가 모델쪽에서 재정의 되어있을 가능성을 항상 주의해야할 필요가 있습니다. 위와 같은 요청을 수신했을 경우, <code>params[:id]</code>의 값이 "357-john-smith"가 되기 때문입니다.</p></div><div class="note"><p><code>active_support/core_ext/object/to_param.rb</code>에 정의되어 있습니다.</p></div><h4 id="to-query"><a class="anchorlink" href="#to-query">2.9 <code>to_query</code></a></h4><p>이 메소드는 이스케이프 되지 않은 <code>key</code>를 받으면, 그 키를 <code>to_param</code>이 돌려주는
+값을 대응시키는 쿼리 문자열의 일부를 생성합니다. 단 해시는 예외입니다(뒤에서
+설명). 예를 들자면 다음과 같은 경우,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
+end
+
+</pre>
+</div>
+<p>아래와 같은 결과를 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+current_user.to_query('user') # =&gt; "user=357-john-smith"
+
+</pre>
+</div>
+<p>이 메소드는 키와 값, 어느쪽이든 필요한 부분을 모두 이스케이프 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+account.to_query('company[name]')
+# =&gt; "company%5Bname%5D=Johnson+%26+Johnson"
+
+</pre>
+</div>
+<p>따라서 이 결과값은 그대로 쿼리 문자열로 사용할 수 있습니다.</p><p>배열에 <code>to_query</code> 메소드를 사용한 경우 <code>to_query</code>를 배열의 각 요소에 호출하여
+<code>_key[]</code>를 키로 추가하고, 그 값들을 "&amp;"로 연결한 결과를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[3.4, -45.6].to_query('sample')
+# =&gt; "sample%5B%5D=3.4&amp;sample%5B%5D=-45.6"
+
+</pre>
+</div>
+<p>해시도 <code>to_query</code>를 사용할 수 있습니다만, 다른 방식으로 호출됩니다. 메소드에 인수가 넘겨지지 않았을 경우, 메소드는 해시의 키/값 쌍을 정렬된 순서로 생성하고, 각각의 값에 대해서 <code>to_query(key)</code>를 호출합니다. 이어서 각 결과들을 "&amp;"로 연결합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{c: 3, b: 2, a: 1}.to_query # =&gt; "a=1&amp;b=2&amp;c=3"
+
+</pre>
+</div>
+<p><code>Hash#to_query</code> 메소드는 각 키에 대해서 네임스페이스를 옵션으로 줄 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{id: 89, name: "John Smith"}.to_query('user')
+# =&gt; "user%5Bid%5D=89&amp;user%5Bname%5D=John+Smith"
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/to_query.rb</code>에 정의되어 있습니다.</p></div><h4 id="with-options"><a class="anchorlink" href="#with-options">2.10 <code>with_options</code></a></h4><p><code>with_options</code> 메소드는 순차적으로 사용되는 여러 메소드에 대해서 공통으로 주어지는 옵션을 바깥으로 꺼내기 위한 수단을 제공합니다.</p><p>기본으로 옵션 해시가 주어지면, <code>with_options</code>은 블록에 대해서 프록시 객체를 생성합니다. 그 블록 내에서는 프록시에 대해서 호출된 메소드에 옵션을 추가한 뒤, 그 메소드를 리시버에게 보냅니다. 예를 들자면, 아래와 같은 옵션을 반복하지 않아도 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Account &lt; ActiveRecord::Base
+  has_many :customers, dependent: :destroy
+  has_many :products,  dependent: :destroy
+  has_many :invoices,  dependent: :destroy
+  has_many :expenses,  dependent: :destroy
+end
+
+</pre>
+</div>
+<p>이는 아래와 같이 재작성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Account &lt; ActiveRecord::Base
+  with_options dependent: :destroy do |assoc|
+    assoc.has_many :customers
+    assoc.has_many :products
+    assoc.has_many :invoices
+    assoc.has_many :expenses
+  end
+end
+
+</pre>
+</div>
+<p>예를 들어,  이 방법을 사용하면 뉴스레터의 독자를 언어별로 <em>그룹화</em>할 수 있습니다. 독자가 원하는 언어에 따라서 다른 뉴스레터를 보내고 싶다고 해봅시다. 메일 전송용 코드의 어딘가에 아래와 같은 언어에 의존하는 부분을 그룹화 할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+I18n.with_options locale: user.locale, scope: "newsletter" do |i18n|
+  subject i18n.t :subject
+  body    i18n.t :body, user_name: user.name
+end
+
+</pre>
+</div>
+<div class="info"><p><code>with_options</code>은 메소드를 리시버에게 전송하므로 호출을 중첩할 수도 있습니다. 각 중첩 레벨에서는 자신의 호출에 대해서 물려받은 기본 호출값을 병합합니다.</p></div><div class="note"><p><code>active_support/core_ext/object/with_options.rb</code>에 정의되어 있습니다.</p></div><h4 id="json-support"><a class="anchorlink" href="#json-support">2.11 JSON support</a></h4><p>Active Support가 제공하는 <code>to_json</code> 메소드의 구현은 일반적으로 <code>json</code> gem이 Ruby 객체에 제공하는 <code>to_json</code>보다도 뛰어납니다. 그 이유는 <code>Hash</code>나 <code>OrderedHash</code>, <code>Process::Status</code> 등의 클래스에서는 올바른 JSON 표현을 제공하기 위해서 특별한 처리가 필요하기 때문입니다.</p><div class="note"><p><code>active_support/core_ext/object/json.rb</code>에 정의되어 있습니다.</p></div><h4 id="인스턴스-변수"><a class="anchorlink" href="#%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%B3%80%EC%88%98">2.12 인스턴스 변수</a></h4><p>Active Support는 인스턴스 변수에 간단히 접근하기 위한 메소드를 제공합니다.</p><h5 id="instance-values"><a class="anchorlink" href="#instance-values">2.12.1 <code>instance_values</code></a></h5><p><code>instance_values</code> 메소드는 해시를 반환합니다. 인스턴스 변수명으로부터 "@"를 제외한 부분이 해시의 키로, 인스턴스 변수의 값이 해시의 값으로 매핑됩니다. 키는 문자열입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C
+  def initialize(x, y)
+    @x, @y = x, y
+  end
+end
+
+C.new(0, 1).instance_values # =&gt; {"x" =&gt; 0, "y" =&gt; 1}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/instance_variables.rb</code>에 정의되어 있습니다.</p></div><h5 id="instance-variable-names"><a class="anchorlink" href="#instance-variable-names">2.12.2 <code>instance_variable_names</code></a></h5><p><code>instance_variable_names</code> 메소드는 배열을 반환합니다. 배열의 인스턴스명에는 "@" 기호가 포함됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C
+  def initialize(x, y)
+    @x, @y = x, y
+  end
+end
+
+C.new(0, 1).instance_variable_names # =&gt; ["@x", "@y"]
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/instance_variables.rb</code>에 정의되어 있습니다.</p></div><h4 id="경고-스트림-예외-무시하기"><a class="anchorlink" href="#%EA%B2%BD%EA%B3%A0-%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%98%88%EC%99%B8-%EB%AC%B4%EC%8B%9C%ED%95%98%EA%B8%B0">2.13 경고, 스트림, 예외 무시하기</a></h4><p><code>silence_warnings</code> 메소드와 <code>enable_warnings</code> 메소드는 블록이 살아있는 동안 <code>$VERBOSE</code>을 변경하고, 그 후 초기화합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+silence_warnings { Object.const_set "RAILS_DEFAULT_LOGGER", logger }
+
+</pre>
+</div>
+<p>마찬가지로 <code>silence_stream</code>을 통해서 특정 스트림에 대한 출력을 무시할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+silence_stream(STDOUT) do
+  # STDOUT is silent here
+end
+
+</pre>
+</div>
+<p><code>quietly</code> 메소드는 STDOUT과 STDERR에 대한 출력을 무시하길 원하는 경우에 사용할수 있는 일반적인 방법입니다. 이는 서브 프로세스에서도 유효합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+quietly { system 'bundle install' }
+
+</pre>
+</div>
+<p>예를 들어, railities 테스트 중 몇몇에서는 테스트 진행 상태를 알려주는 메시지를 방해하지 않도록 내부 출력을 무시합니다.</p><p><code>suppress</code> 메소드를 사용하면 예외의 발생을 막을 수도 있습니다. 이 메소드는 예외 클래스를 가리키는 임의의 숫자를 받습니다. <code>suppress</code>는 블록을 실행할 때에 예외가 발생하고, 그 예외가 (<code>kind_of?</code>에 의한 판정을 통해) 넘겨받은 인수와 일치하는 경우, 그것을 잡아서 예외를 발생시키지 않고 돌려보냅니다. 일치하지 않는 경우에는 예외를 처리하지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+#  잠긴 사용자의 경우, 증분은 발생하지 않지만, 이 손실이 중요하지 않을 때
+suppress(ActiveRecord::StaleObjectError) do
+  current_user.increment! :visits
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/kernel/reporting.rb</code>에 정의되어 있습니다.</p></div><h4 id="in-questionmark"><a class="anchorlink" href="#in-questionmark">2.14 <code>in?</code></a></h4><p>메소드 <code>in?</code>는 어떤 객체가 다른 객체에 포함되어있는지를 테스트합니다. 넘겨받은 인수에 <code>include?</code>를 호출할 수 없는 경우에는 <code>ArgumentError</code> 예외를 발생시킵니다.</p><p><code>in?</code>의 예시를 보시죠.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+1.in?([1,2])        # =&gt; true
+"lo".in?("hello")   # =&gt; true
+25.in?(30..50)      # =&gt; false
+1.in?(1)            # =&gt; ArgumentError
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/inclusion.rb</code>에 정의되어 있습니다.</p></div><h3 id="module-확장"><a class="anchorlink" href="#module-%ED%99%95%EC%9E%A5">3 <code>Module</code> 확장</a></h3><h4 id="alias-method-chain"><a class="anchorlink" href="#alias-method-chain">3.1 <code>alias_method_chain</code></a></h4><p>확장되지 않은 순수한 Ruby를 사용하여 메소드를 다른 메소드로 감쌀 수 있습니다만, 이는 <em>alias chaining</em>이라고 불립니다.</p><p>예를 들자면, 기능 테스트를 할 때에 파라미터가(실제 요청과 마찬가지로) 문자열이길 기대한다고 합시다. 그러나 필요하다면 정수 등의 다른 타입의 값을 가질 수 있도록 하고 싶습니다. 이를 실현하기 위해서는 <code>ActionController::TestCase#process</code>를 아래와 같이 <code>test/test_helper.rb</code>에서 감쌉니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+ActionController::TestCase.class_eval do
+  # 본래의 프로세스 메소드의 참조를 저장
+  alias_method :original_process, :process
+
+  # 프로세스를 재정의 하여 original_process에 위임
+  def process(action, params=nil, session=nil, flash=nil, http_method='GET')
+    params = Hash[*params.map {|k, v| [k, v.to_s]}.flatten]
+    original_process(action, params, session, flash, http_method)
+  end
+end
+
+</pre>
+</div>
+<p>이는 <code>get</code>, <code>post</code> 메소드 등이 작업을 위임할 때에 사용되는 방식입니다.</p><p>이 방법에는 <code>:original_process</code>가 의도치 않은 방식으로 사용될 위험이 있습니다. alias chain을 사용할 때에 명명으로 인한 사용자들의 혼란을 피하기 위해서는 다음과 같이 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+ActionController::TestCase.class_eval do
+  def process_with_stringified_params(...)
+    params = Hash[*params.map {|k, v| [k, v.to_s]}.flatten]
+    process_without_stringified_params(action, params, session, flash, http_method)
+  end
+  alias_method :process_without_stringified_params, :process
+  alias_method :process, :process_with_stringified_params
+end
+
+</pre>
+</div>
+<p><code>alias_method_chain</code> 메소드를 사용하면 이와 같은 패턴을 더 간단하게 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+ActionController::TestCase.class_eval do
+  def process_with_stringified_params(...)
+    params = Hash[*params.map {|k, v| [k, v.to_s]}.flatten]
+    process_without_stringified_params(action, params, session, flash, http_method)
+  end
+  alias_method_chain :process, :stringified_params
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/module/aliasing.rb</code>에 정의되어 있습니다.</p></div><h4 id="속성"><a class="anchorlink" href="#%EC%86%8D%EC%84%B1">3.2 속성</a></h4><h5 id="alias-attribute"><a class="anchorlink" href="#alias-attribute">3.2.1 <code>alias_attribute</code></a></h5><p>모델의 속성에는 읽기 접근자(reader), 쓰기 접근자(writer), 술어(predicate)가 있습니다. 이에 대응하는 3개의 메소드를 가지는 모델의 속성의 별명(alias)를 한번에 작성할 수 있습니다. 다른 별명 생성용 메소드와 마찬가지로 첫번째 인수로 새 이름, 두번째로 원래의 이름을 지정합니다(변수에 대입할 때와 같은 순서라고 기억해두는 방법도 있습니다).</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  # email 컬럼을 "login"이라는 이름으로 참조하고 싶음
+  # 이것으로 인증 코드의 가독성을 올릴 수 있음
+  alias_attribute :login, :email
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/module/aliasing.rb</code>에 정의되어 있습니다.</p></div><h5 id="내부-속성"><a class="anchorlink" href="#%EB%82%B4%EB%B6%80-%EC%86%8D%EC%84%B1">3.2.2 내부 속성</a></h5><p>어떤 클래스에서 속성을 정의하면, 나중에 그 클래스의 서브 클래스를 선언할 때 이름이 충돌할 수 있는 위험성이 발생합니다. 이는 라이브러리에 있어서 가장 중요한 문제입니다.</p><p>Active Support에서는 <code>attr_internal_reader</code>, <code>attr_internal_writer</code>, <code>attr_internal_accessor</code>라는 매크로가 정의되어 있습니다. 이 매크로는 Ruby에 내장되어있는 <code>attr_*</code>와 동일한 동작을 수행합니다만, 내부의 인스턴스 변수의 이름이 충돌하기 어렵도록 고려되어 있다는 점이 다릅니다.</p><p><code>attr_internal</code> 매크로는 <code>attr_internal_accessor</code>와 동일합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 라이브러리
+class ThirdPartyLibrary::Crawler
+  attr_internal :log_level
+end
+
+# 클라이언트 코드
+class MyCrawler &lt; ThirdPartyLibrary::Crawler
+  attr_accessor :log_level
+end
+
+</pre>
+</div>
+<p>이 예시에서는 <code>:log_level</code>은 라이브러리의 퍼블릭 인터페이스에 속해있지 않고 개발용으로만 사용됩니다. 클라이언트의 코드에서는 충돌의 가능성을 고려하지 않고 독자적인 <code>:log_level</code>을 자식 클래스에 정의하고 있습니다. 라이브러리에서 <code>attr_internal</code>을 사용하고 있는 덕분에 충돌이 발생하는 것을 회피할 수 있습니다.</p><p>이 때, 내부 인스턴스 변수의 이름에는 기본으로 언더스코어가 추가됩니다. 위의 예제에서라면 <code>@_log_level</code>이 됩니다. 이 동작은 <code>Module.attr_internal_naming_format</code>을 사용해서 변경할 수도 있습니다. <code>sprintf</code>와 마찬가지로 포맷 문자열을 넘기고, 첫부분에 <code>@</code>를 두고, 나머지 부분을 위치시킬 장소에 <code>%s</code>를 추가합니다. 기본 값은 <code>"@_%s"</code>입니다.</p><p>Rails에서는 이 내부 속성을 몇몇 코드에서 사용하고 있습니다. 예를 들자면 뷰에서는 다음처럼 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module ActionView
+  class Base
+    attr_internal :captures
+    attr_internal :request, :layout
+    attr_internal :controller, :template
+  end
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/module/attr_internal.rb</code>에 정의되어 있습니다.</p></div><h5 id="모듈-속성"><a class="anchorlink" href="#%EB%AA%A8%EB%93%88-%EC%86%8D%EC%84%B1">3.2.3 모듈 속성</a></h5><p><code>mattr_reader</code>, <code>mattr_writer</code>, <code>mattr_accessor</code>라는 3개의 매크로는 클래스 용으로 정의되어 있는 <code>cattr_*</code> 매크로돠 동일한 동작을 수행합니다. 실제로 <code>cattr_*</code> 매크로의 별칭으로 <code>mattr_*</code>를 사용하고 있을 뿐입니다. <a href="#class%EC%86%8D%EC%84%B1">클래스 속성</a>을 참고해주세요.</p><p>예를 들자면, 이 매크로는 아래의 Dependencies 모듈에서 사용하고 있습니다.
+たとえば、これらのマクロは以下のDependenciesモジュールで使用されています。</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module ActiveSupport
+  module Dependencies
+    mattr_accessor :warnings_on_first_load
+    mattr_accessor :history
+    mattr_accessor :loaded
+    mattr_accessor :mechanism
+    mattr_accessor :load_paths
+    mattr_accessor :load_once_paths
+    mattr_accessor :autoloaded_constants
+    mattr_accessor :explicitly_unloadable_constants
+    mattr_accessor :constant_watch_stack
+    mattr_accessor :constant_watch_stack_mutex
+  end
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/module/attribute_accessors.rb</code>에 정의되어 있습니다.</p></div><h4 id="부모"><a class="anchorlink" href="#%EB%B6%80%EB%AA%A8">3.3 부모</a></h4><h5 id="parent"><a class="anchorlink" href="#parent">3.3.1 <code>parent</code></a></h5><p><code>parent</code> 메소드는 이름을 가지는 중첩된 모듈에 대해서 실행할 수 있으며, 대응하는 상수를 가지는 모듈을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module X
+  module Y
+    module Z
+    end
+  end
+end
+M = X::Y::Z
+
+X::Y::Z.parent # =&gt; X::Y
+M.parent       # =&gt; X::Y
+
+</pre>
+</div>
+<p>모듈에 이름이 없거나, 최상위인 경우, <code>parent</code>는 <code>Object</code>를 반환합니다.</p><div class="warning"><p><code>parent_name</code>는 그 경우 <code>nil</code>을 돌려줍니다.</p></div><div class="note"><p><code>active_support/core_ext/module/introspection.rb</code>에 정의되어 있습니다.</p></div><h5 id="parent-name"><a class="anchorlink" href="#parent-name">3.3.2 <code>parent_name</code></a></h5><p><code>parent_name</code> 메소드는 이름을 가지는 모듈들이 중첩되어 있는 경우에 실행할 수 있으며, 대응하는 상수를 가지는 모듈의 이름을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module X
+  module Y
+    module Z
+    end
+  end
+end
+M = X::Y::Z
+
+X::Y::Z.parent_name # =&gt; "X::Y"
+M.parent_name       # =&gt; "X::Y"
+
+</pre>
+</div>
+<p>모듈의 이름이 없거나, 최상위인 경우, <code>parent_name</code>은 <code>nil</code>을 반환합니다.</p><div class="warning"><p><code>parent</code>는 그 경우에 <code>Object</code>를 돌려줍니다.</p></div><div class="note"><p>`active_support/core_ext/module/introspection.r에 정의되어 있습니다.</p></div><h5 id="parents"><a class="anchorlink" href="#parents">3.3.3 <code>parents</code></a></h5><p><code>parents</code> 메소드는 리시버에 대해서 <code>parent</code>를 호출하며, <code>Object</code>에 도달할때까지의 경로를 거슬로 올라갑니다. 연쇄적인 모듈은 하위부터 상위의 순서로 배열에 저장되어 반환됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module X
+  module Y
+    module Z
+    end
+  end
+end
+M = X::Y::Z
+
+X::Y::Z.parents # =&gt; [X::Y, X, Object]
+M.parents       # =&gt; [X::Y, X, Object]
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/module/introspection.rb</code>에 정의되어 있습니다.</p></div><h5 id="상대-경로를-포함하는-상수명"><a class="anchorlink" href="#%EC%83%81%EB%8C%80-%EA%B2%BD%EB%A1%9C%EB%A5%BC-%ED%8F%AC%ED%95%A8%ED%95%98%EB%8A%94-%EC%83%81%EC%88%98%EB%AA%85">3.3.4 상대 경로를 포함하는 상수명</a></h5><p>표준 메소드인 <code>const_defined?</code>, <code>const_get</code>, <code>const_set</code>는 순수한 상수 이름을
+사용합니다. Active Support는 이 API들이 상대 경로를 포함하는 상수명을 사용할
+수 있도록 해줍니다.</p><p>이 함수들의 이름은 <code>qualified_const_defined?</code>, <code>qualified_const_get</code>,
+<code>qualified_const_set</code>입니다. 각각의 인수들은 수신자를 기준으로 하는 상대 경로를
+포함한 상수 이름이라고 가정합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Object.qualified_const_defined?("Math::PI")       # =&gt; true
+Object.qualified_const_get("Math::PI")            # =&gt; 3.141592653589793
+Object.qualified_const_set("Math::Phi", 1.618034) # =&gt; 1.618034
+
+</pre>
+</div>
+<p>인수들은 순수한 상수명을 사용할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Math.qualified_const_get("E") # =&gt; 2.718281828459045
+
+</pre>
+</div>
+<p>이 메소드들은 내장된 원래의 메소드들과 비슷한 동작을 수행합니다. 특히,
+<code>qualified_constant_defined?</code>는 조건부로 부모를 탐색할지 여부를 지정하는
+두번째 인수를 넘길 수 있습니다. 이 플래그는 표현식 내부의 각 상수의 내부를
+탐색할지 여부를 결정합니다.</p><p>예를 들어, 다음과 같은 코드를 보세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module M
+  X = 1
+end
+
+module N
+  class C
+    include M
+  end
+end
+
+</pre>
+</div>
+<p><code>qualified_const_defined?</code>는 이와 같이 동작합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+N.qualified_const_defined?("C::X", false) # =&gt; false
+N.qualified_const_defined?("C::X", true)  # =&gt; true
+N.qualified_const_defined?("C::X")        # =&gt; true
+
+</pre>
+</div>
+<p>마지막 예제는 <code>const_defined?</code>의 두번째 인수의 기본값이 true라는 것을 암시하고
+있습니다.</p><p>내장 메소드들과의 조화를 위하여 상대 경로만을 받도록 되어있습니다.
+절대 경로를 사용하는 <code>::Math::PI</code>와 같은 상수명은 <code>NameError</code>를 던집니다.</p><div class="note"><p><code>active_support/core_ext/module/qualified_const.rb</code>에 정의되어 있습니다.</p></div><h4 id="도달-가능"><a class="anchorlink" href="#%EB%8F%84%EB%8B%AC-%EA%B0%80%EB%8A%A5">3.4 도달 가능</a></h4><p>이름을 가지는 모듈이 대응하는 상수에 저장되어 있는 경우에 도달 가능(reachable)이라고 표현합니다. 이것은 상수를 사용하여 모듈 객체에 접근할 수 있다는 의미입니다.</p><p>"M"이라는 모듈이 있을 경우, <code>M</code>이라는 상수가 존재하고, 거기에 모듈이 저장됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module M
+end
+
+M.reachable? # =&gt; true
+
+</pre>
+</div>
+<p>그러나 상수와 모듈이 분리되면, 그 모듈 객체는 도달 불가능(unreachable)하게 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module M
+end
+
+orphan = Object.send(:remove_const, :M)
+
+# 이 모듈은 고립되어 있지만 이름을 가지고 있음
+orphan.name # =&gt; "M"
+
+# 상수 M은 존재하지 않으므로 상수 M을 통하여 사용할 수 없음
+orphan.reachable? # =&gt; false
+
+# "M"이라는 이름을 모듈에 재정의
+module M
+end
+
+# 상수 M은 다시 존재하므로 모듈 객체 "M"을 저장하고 있지만
+# 원래와는 다른 인스턴스임
+orphan.reachable? # =&gt; false
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/module/reachable.rb</code>에 정의되어 있습니다.</p></div><h4 id="익명-모듈"><a class="anchorlink" href="#%EC%9D%B5%EB%AA%85-%EB%AA%A8%EB%93%88">3.5 익명 모듈</a></h4><p>모듈에 이름을 지정하지 않을 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module M
+end
+M.name # =&gt; "M"
+
+N = Module.new
+N.name # =&gt; "N"
+
+Module.new.name # =&gt; nil
+
+</pre>
+</div>
+<p><code>anonymous?</code>를 사용해서 모듈에 이름이 있는지 없는지 확인할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module M
+end
+M.anonymous? # =&gt; false
+
+Module.new.anonymous? # =&gt; true
+
+</pre>
+</div>
+<p>도달 불가능(unreachable)하더라도 반드시 익명(anonymous)이라고 볼 수는 없습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module M
+end
+
+m = Object.send(:remove_const, :M)
+
+m.reachable? # =&gt; false
+m.anonymous? # =&gt; false
+
+</pre>
+</div>
+<p>반대로 익명 모듈은, 정의 구조상 반드시 도달 불가능합니다.</p><div class="note"><p><code>active_support/core_ext/module/anonymous.rb</code>에 정의되어 있습니다.</p></div><h4 id="메소드-위임"><a class="anchorlink" href="#%EB%A9%94%EC%86%8C%EB%93%9C-%EC%9C%84%EC%9E%84">3.6 메소드 위임</a></h4><p><code>delegate</code> 매크로를 사용하면 메소드를 간단하게 위임할 수 있습니다.</p><p>어떤 애플리케이션의 <code>User</code> 모델에 로그인 정보가 있고, 거기에 연관된 이름 등의 정보가 <code>Profile</code> 모델에 있다고 가정해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  has_one :profile
+end
+
+</pre>
+</div>
+<p>이 구성에서는 <code>user.profile.name</code> 처럼 프로파일을 통해 사용자의 이름을 얻어올 수 있습니다. 이러한 속성에 직접 접근할 수 있다면 좀 더 편리할 것입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  has_one :profile
+
+  def name
+    profile.name
+  end
+end
+
+</pre>
+</div>
+<p><code>delegate</code>는 이를 가능하게 해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  has_one :profile
+
+  delegate :name, to: :profile
+end
+
+</pre>
+</div>
+<p>이 방법을 사용하면 선언이 좀 더 짧아지고, 의미도 확실해집니다.</p><p>단, 사용할 메소드가 대상 클래스에서 공개되어있어야 합니다.</p><p><code>delegate</code> 매크로에는 복수의 메소드를 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+delegate :name, :age, :address, :twitter, to: :profile
+
+</pre>
+</div>
+<p><code>:to</code> 옵션에 문자열을 넘겨주게 되면, 메소드를 위임할 상대 객체를 평가하는 식이 됩니다. 일반적으로는 문자열 또는 심볼을 사용합니다. 그러한 식은 리시버의 컨텍스트에서 실행됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# Rails의 상수에 위임한다
+delegate :logger, to: :Rails
+
+# 리시버의 클래스에 위임한다.
+delegate :table_name, to: :class
+
+</pre>
+</div>
+<div class="warning"><p><code>:prefix</code> 옵션이 <code>true</code>인 경우는 일반적이지 않습니다(아래에서 설명).</p></div><p>위임할 때에 <code>NoMethodError</code>가 발생한 경우에 대상이 <code>nil</code>인 경우, 예외가 넘겨집니다. <code>:allow_nil</code> 옵션을 사용하면 예외 대신에 <code>nil</code>을 돌려받을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+delegate :name, to: :profile, allow_nil: true
+
+</pre>
+</div>
+<p><code>:allow_nil</code>을 사용하면 사용자의 프로파일이 없는 경우 <code>user.name</code>를 호출하면 <code>nil</code>을 돌려줍니다.</p><p><code>:prefix</code> 옵션은 생성된 메소드의 이름에 접두어를 추가합니다. 이것은 가독성을 높이고 싶을 때에 편리합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+delegate :street, to: :address, prefix: true
+
+</pre>
+</div>
+<p>이 예제에서는 <code>street</code>가 아닌 <code>address_street</code>가 발생합니다.</p><div class="warning"><p>이 경우, 생성된 메소드의 이름에서는 대상의 객체명과 메소드명이 사용됩니다. <code>:to</code> 옵션으로 넘기는 것은 메소드명이어야 합니다.</p></div><p>접두어를 변경할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+delegate :size, to: :attachment, prefix: :avatar
+
+</pre>
+</div>
+<p>여기에서는 매크로를 사용해 <code>size</code> 대신에 <code>avatar_size</code>가 생성됩니다.</p><div class="note"><p><code>active_support/core_ext/module/delegation.rb</code>에 정의되어 있습니다.</p></div><h4 id="매소드-재정의"><a class="anchorlink" href="#%EB%A7%A4%EC%86%8C%EB%93%9C-%EC%9E%AC%EC%A0%95%EC%9D%98">3.7 매소드 재정의</a></h4><p><code>define_method</code>를 사용해서 메소드를 제정의할 필요가 있지만, 그 이름이 이미 사용되고 있는지 아닌지 알 수 없는 경우가 있습니다. 유효한 이름이 이미 존재한다면 경고를 보여줍니다. 동작에 큰 문제는 없지만 깔끔하지 못한 방식입니다.</p><p><code>redefine_method</code> 메소드를 사용하면 필요에 따라서 기존의 메소드를 삭제하므로 이러한 경고 메시지를 제어할 수 있습니다.</p><div class="note"><p><code>active_support/core_ext/module/remove_method.rb</code>에 정의되어 있습니다.</p></div><h3 id="class의-확장"><a class="anchorlink" href="#class%EC%9D%98-%ED%99%95%EC%9E%A5">4 <code>Class</code>의 확장</a></h3><h4 id="class-속성"><a class="anchorlink" href="#class-%EC%86%8D%EC%84%B1">4.1 Class 속성</a></h4><h5 id="class-attribute"><a class="anchorlink" href="#class-attribute">4.1.1 <code>class_attribute</code></a></h5><p><code>class_attribute</code> 메소드는 1개 이상의 상속 가능한 클래스의 속성을 선언합니다. 그 클래스 속성은 자식 클래스에서 재정의할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class A
+  class_attribute :x
+end
+
+class B &lt; A; end
+
+class C &lt; B; end
+
+A.x = :a
+B.x # =&gt; :a
+C.x # =&gt; :a
+
+B.x = :b
+A.x # =&gt; :a
+C.x # =&gt; :b
+
+C.x = :c
+A.x # =&gt; :a
+B.x # =&gt; :b
+
+</pre>
+</div>
+<p>예를 들자면, <code>ActionMailer::Base</code>에 아래의 정의가 있다고 해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class_attribute :default_params
+self.default_params = {
+  mime_version: "1.0",
+  charset: "UTF-8",
+  content_type: "text/plain",
+  parts_order: [ "text/plain", "text/enriched", "text/html" ]
+}.freeze
+
+</pre>
+</div>
+<p>이 속성들은 인스턴스 레벨에서 접근 또는 재정의할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+A.x = 1
+
+a1 = A.new
+a2 = A.new
+a2.x = 2
+
+a1.x # =&gt; 1 (A의 값이 사용된다)
+a2.x # =&gt; 2 (a2에서 재정의된 값)
+
+</pre>
+</div>
+<p><code>:instance_writer</code>를 <code>false</code>로 주면 writer 인스턴스 메소드가 생성되지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module ActiveRecord
+  class Base
+    class_attribute :table_name_prefix, instance_writer: false
+    self.table_name_prefix = ""
+  end
+end
+
+</pre>
+</div>
+<p>위 옵션은 모델의 속성 설정시에 일괄 저장(Mass Assignment)을 막을 때 유용합니다.</p><p><code>:instance_reader</code>를 <code>false</code>로 주면 reader 인스턴스 메소드가 생성되지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class A
+  class_attribute :x, instance_reader: false
+end
+
+A.new.x = 1 # NoMethodError
+
+</pre>
+</div>
+<p>편의를 위해서 <code>class_attribute</code>는 인스턴스의 reader가 돌려주는 값을 '이중부정'하는 인스턴스 존재 확인 메소드도 정의합니다. 위의 예제로 설명하자면, <code>x?</code>가 바로 그것입니다.</p><p><code>:instance_reader</code>가 <code>false</code>인 경우, 이는 reader 메소드와 마찬가지로 <code>NoMethodError</code>를 돌려줍니다.</p><p>인스턴스 존재 확인 메소드가 필요 없는 경우, <code>instance_predicate: false</code>를 사용하면 됩니다.</p><div class="note"><p><code>active_support/core_ext/class/attribute.rb</code>에 정의되어 있습니다.</p></div><h5 id="cattr-reader-cattr-writer-cattr-accessor"><a class="anchorlink" href="#cattr-reader-cattr-writer-cattr-accessor">4.1.2 <code>cattr_reader</code>, <code>cattr_writer</code>, <code>cattr_accessor</code></a></h5><p><code>cattr_reader</code>, <code>cattr_writer</code>, <code>cattr_accessor</code> 매크로는 <code>attr_*</code>와 유사합니다만 클래스용으로 사용한다는 점이 다릅니다. 이 메소드에서는 클래스 변수를 <code>nil</code>로 설정(클래스 변수가 이미 존재하는 경우를 제외)하고, 대응하는 클래스 메소드를 생성하여 사용할 수 있도록 만들어줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class MysqlAdapter &lt; AbstractAdapter
+  # @@emulate_booleans에 접근 가능한 클래스 메소드를 생성함
+  cattr_accessor :emulate_booleans
+  self.emulate_booleans = true
+end
+
+</pre>
+</div>
+<p>사용성을 위해서, 이 때 인스턴스 메소드도 생성됩니다만, 이것들은 실제로는 클래스 속성의 프록시입니다. 따라서 인스턴스로부터 클래스 속성을 변경할 수 있습니다만, <code>class_attribute</code>에서처럼 재정의할 수는 없습니다(위를 참조). 예를 들자면,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module ActionView
+  class Base
+    cattr_accessor :field_error_proc
+    @@field_error_proc = Proc.new{ ... }
+  end
+end
+
+</pre>
+</div>
+<p>뷰에서 <code>field_error_proc</code>에 접근할 수 있습니다.</p><p>마찬가지로 <code>cattr_*</code>에 블록을 넘겨서 속성의 기본값을 줄 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class MysqlAdapter &lt; AbstractAdapter
+  # @@emulate_booleans의 기본값을 true로 만들고, 이에 접근하기 위한 클래스 메소드를 생성
+  cattr_accessor(:emulate_booleans) { true }
+end
+
+</pre>
+</div>
+<p><code>:instance_reader</code>를 <code>false</code>로 주면, reader 인스턴스 메소드가 생성되지 않습니다. 마찬가지로 <code>:instance_writer</code>를 <code>false</code>로 주면, writer 인스턴스 메소드가 생성되지 않습니다. <code>:instance_accessor</code>를 <code>false</code>로 주면 두 인스턴스 메소드가 모두 생성되지 않습니다. 어느 경우에도 사용 가능한 값은 <code>false</code> 뿐입니다. 'nil' 등의 다른 값을 사용할 수는 없습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module A
+  class B
+    # first_name 인스턴스 reader는 생성되지 않음
+    cattr_accessor :first_name, instance_reader: false
+    # last_name= 인스턴스 writer는 생성되지 않음
+    cattr_accessor :last_name, instance_writer: false
+    # surname 인스턴스 reader도 surname= 인스턴스 writer도 생성되지 않음
+    cattr_accessor :surname, instance_accessor: false
+  end
+end
+
+</pre>
+</div>
+<p><code>:instance_accessor</code>를 <code>false</code>로 주면 모델의 속성 설정시에 일괄 저장(Mass Assignment) 를 막을 수 있어 유용합니다.</p><div class="note"><p><code>active_support/core_ext/module/attribute_accessors.rb</code>에 정의되어 있습니다.</p></div><h4 id="subclasses-descendants"><a class="anchorlink" href="#subclasses-descendants">4.2 Subclasses &amp; Descendants</a></h4><h5 id="subclasses"><a class="anchorlink" href="#subclasses">4.2.1 <code>subclasses</code></a></h5><p><code>subclasses</code> 메소드는 리시버의 자식 클래스를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C; end
+C.subclasses # =&gt; []
+
+class B &lt; C; end
+C.subclasses # =&gt; [B]
+
+class A &lt; B; end
+C.subclasses # =&gt; [B]
+
+class D &lt; C; end
+C.subclasses # =&gt; [B, D]
+
+</pre>
+</div>
+<p>돌려받는 순서는 명시되지 않습니다.</p><div class="note"><p><code>active_support/core_ext/class/subclasses.rb</code>에 정의되어 있습니다.</p></div><h5 id="descendants"><a class="anchorlink" href="#descendants">4.2.2 <code>descendants</code></a></h5><p><code>descendants</code> 메소드는 그 리시버를 상속받은 모든 클래스를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class C; end
+C.descendants # =&gt; []
+
+class B &lt; C; end
+C.descendants # =&gt; [B]
+
+class A &lt; B; end
+C.descendants # =&gt; [B, A]
+
+class D &lt; C; end
+C.descendants # =&gt; [B, A, D]
+
+</pre>
+</div>
+<p>돌려받는 순서는 명시되지 않습니다.</p><div class="note"><p><code>active_support/core_ext/class/subclasses.rb</code>에 정의되어 있습니다.</p></div><h3 id="string의-확장-메소드"><a class="anchorlink" href="#string%EC%9D%98-%ED%99%95%EC%9E%A5-%EB%A9%94%EC%86%8C%EB%93%9C">5 <code>String</code>의 확장 메소드</a></h3><h4 id="안전한-출력"><a class="anchorlink" href="#%EC%95%88%EC%A0%84%ED%95%9C-%EC%B6%9C%EB%A0%A5">5.1 안전한 출력</a></h4><h5 id="구현-동기"><a class="anchorlink" href="#%EA%B5%AC%ED%98%84-%EB%8F%99%EA%B8%B0">5.1.1 구현 동기</a></h5><p>HTML 템플릿에 데이터를 삽입하는 방법은 무척 신중하게 구현해야 합니다. 예를 들어, <code>@review.title</code>를 아무런 조치도 취하지 않고 그대로 HTML에 내보내서는 안됩니다. 만약 이 리뷰의 제목이 "Flanagan &amp; Matz rules!"이었다면, 올바른 HTML이라고 할 수 없습니다. 이를 올바르게 만들려면 "&amp;amp;"처럼 이스케이프를 해야 합니다. 나아가 사용자가 리뷰의 타이틀에 악의있는 HTML을 포함시켜 저장하게 되면, 엄청난 보안문제를 야기할 수 있습니다. 이 위험성에 대해서는 <a href="security.html#%ED%81%AC%EB%A1%9C%EC%8A%A4-%EC%82%AC%EC%9D%B4%ED%8A%B8-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8C%85-xss">보안 가이드</a>의 크로스 사이트 스크립팅을 참조해주세요.</p><h5 id="안전한-문자열"><a class="anchorlink" href="#%EC%95%88%EC%A0%84%ED%95%9C-%EB%AC%B8%EC%9E%90%EC%97%B4">5.1.2 안전한 문자열</a></h5><p>Active Support에는 '(html 기준으로)안전한 문자열'이라는 개념이 존재합니다. 안전한 문자열이란 HTML으로 그대로 출력하더라도 문제가 없다는 표시가 되어 있는 문자열을 말합니다. 이 표시가 되어 있다면, '실제로 이스케이프 되어있는지, 아닌지에 관계 없이' 그 문자열을 신뢰합니다.</p><p>문자열은 기본으로 <em>unsafe</em>로 표시되어있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"".html_safe? # =&gt; false
+
+</pre>
+</div>
+<p>주어진 문자열에 <code>html_safe</code>메소드를 사용하면 안전한 문자열을 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+s = "".html_safe
+s.html_safe? # =&gt; true
+
+</pre>
+</div>
+<p>여기서 주의해야하는 부분은 <code>html_safe</code> 메소드 자체는 어떤 이스케이프 작업도 수행하지 않는다는 점입니다. 그저 안전하다는 표시를 해줄 뿐입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+s = "&lt;script&gt;...&lt;/script&gt;".html_safe
+s.html_safe? # =&gt; true
+s            # =&gt; "&lt;script&gt;...&lt;/script&gt;"
+
+</pre>
+</div>
+<p>따라서 특정 문자열에 대해서 <code>html_safe</code> 메소드를 호출할 때에는 그 문자열이 정말로 안전한지 확인할 의무가 있습니다.</p><p>안전하다고 판단된 문자열에 대해서 안전하지 않은 문자열을 <code>concat</code>/<code>&lt;&lt;</code> 또는 <code>+</code> 같은 파괴적인 메소드를 통해 추가를 하게 되면, 결과는 여전히 안전한 문자열입니다. 안전하지 않은 인수는 추가될 때에 이스케이프 처리됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"".html_safe + "&lt;" # =&gt; "&amp;lt;"
+
+</pre>
+</div>
+<p>안전한 인수라면 이스케이프 작업 없이 직접 추가됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"".html_safe + "&lt;".html_safe # =&gt; "&lt;"
+
+</pre>
+</div>
+<p>기본적으로 이 메소드는 일반적인 뷰에서는 사용하지 말아주세요. 현재 Rails의 뷰에서는 안전하지 않은 값은 자동적으로 이스케이프되기 때문입니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= @review.title %&gt; &lt;%# 필요에 따라 이스케이프되므로 문제 없음 %&gt;
+
+</pre>
+</div>
+<p>특별한 이유가 있어서, 이스케이프되지 않은 문자열을 사용하고 싶은 경우에는 <code>html_safe</code> 대신 <code>raw</code> 헬퍼를 사용해주세요.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= raw @cms.current_template %&gt; &lt;%# @cms.current_template를 그대로 사용 %&gt;
+
+</pre>
+</div>
+<p>또는 <code>raw</code>와 동일한 동작을 하는 <code>&lt;%==</code>를 사용하세요.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%== @cms.current_template %&gt; &lt;%# @cms.current_template를 그대로 사용 %&gt;
+
+</pre>
+</div>
+<p><code>raw</code> 헬퍼는 내부에서 <code>html_safe</code>를 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def raw(stringish)
+  stringish.to_s.html_safe
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/output_safety.rb</code>에 정의되어 있습니다.</p></div><h5 id="각종-변환"><a class="anchorlink" href="#%EA%B0%81%EC%A2%85-%EB%B3%80%ED%99%98">5.1.3 각종 변환</a></h5><p>보통 위에서 설명한 문자열 연결(concatenation) 작업을 제외하고 어떤 메소드라도 잠재적으로 문자열을 안전하지 않은 것으로 변환할 가능성이 있다는 점을 주의해야 합니다. <code>downcase</code>, <code>gsub</code>, <code>strip</code>, <code>chomp</code>, <code>underscore</code> 등이 그렇습니다.</p><p><code>gsub!</code> 같은 파괴적인 변환을 하는 메소드를 사용하면 리시버 자체가 안전하지 않게 됩니다.</p><div class="info"><p>이런 메소드를 사용하면, 실제로 변환이 발생했는가, 아닌가에 관계없이 안전함을 알려주던 표시가 무효화됩니다.</p></div><h5 id="변환과-강제"><a class="anchorlink" href="#%EB%B3%80%ED%99%98%EA%B3%BC-%EA%B0%95%EC%A0%9C">5.1.4 변환과 강제</a></h5><p>안전한 문자열에 대해서 <code>to_s</code>를 실행한 경우에는 안전한 문자열이 반환됩니다. 그러나 <code>to_str</code>에 의한 강제적인 변환을 실행한 경우에는 안전하지 않은 문자열이 반환됩니다.</p><h5 id="복사"><a class="anchorlink" href="#%EB%B3%B5%EC%82%AC">5.1.5 복사</a></h5><p>안전한 문자열에 대해서 <code>dup</code> 또는 <code>clone</code>를 실행한 경우에는 안전한 문자열이 생성됩니다.</p><h4 id="remove"><a class="anchorlink" href="#remove">5.2 <code>remove</code></a></h4><p><code>remove</code> 메소드를 실행하면, 해당하는 모든 패턴이 삭제됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Hello World".remove(/Hello /) # =&gt; "World"
+
+</pre>
+</div>
+<p>이 메소드에는 파괴적인 버전(<code>String#remove!</code>)이 존재합니다.</p><div class="note"><p><code>active_support/core_ext/string/filters.rb</code>에 정의되어 있습니다.</p></div><h4 id="squish"><a class="anchorlink" href="#squish">5.3 <code>squish</code></a></h4><p><code>squish</code> 메소드는 어두와 어미의 공백 문자를 제거하고, 연속된 공백을 하나로 줄여줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+" \n  foo\n\r \t bar \n".squish # =&gt; "foo bar"
+
+</pre>
+</div>
+<p>이 메소드도 파괴적인 버전(<code>String#squish!</code>)이 존재합니다.</p><p>이 메소드는 ASCII와 Unicode의 공백문자를 처리합니다.</p><div class="note"><p><code>active_support/core_ext/string/filters.rb</code>에 정의되어 있습니다.</p></div><h4 id="truncate"><a class="anchorlink" href="#truncate">5.4 <code>truncate</code></a></h4><p><code>truncate</code> 메소드는 문자열 처음부터 지정된 <code>length</code>만큼 복사하여 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate(20)
+# =&gt; "Oh dear! Oh dear!..."
+
+</pre>
+</div>
+<p><code>:omission</code>를 통해 생략문자열(...)를 변경할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate(20, omission: '&amp;hellip;')
+# =&gt; "Oh dear! Oh &amp;hellip;"
+
+</pre>
+</div>
+<p>문자열을 자를 때에는 생략문자열의 길이도 포함된다는 점에 주의해주세요.</p><p><code>:separator</code>를 사용하면 자연스럽게 보이는 위치에서 문자열을 자를 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate(18)
+# =&gt; "Oh dear! Oh dea..."
+"Oh dear! Oh dear! I shall be late!".truncate(18, separator: ' ')
+# =&gt; "Oh dear! Oh..."
+
+</pre>
+</div>
+<p><code>:separator</code>에는 정규표현을 사용할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate(18, separator: /\s/)
+# =&gt; "Oh dear! Oh..."
+
+</pre>
+</div>
+<p>이 예제에서는 <code>:separator</code>를 통해 "dear"라는 단어가 잘리지 않도록 하고 있습니다.</p><div class="note"><p><code>active_support/core_ext/string/filters.rb</code>에 정의되어 있습니다.</p></div><h4 id="truncate-words"><a class="anchorlink" href="#truncate-words">5.5 <code>truncate_words</code></a></h4><p><code>truncate_words</code> 메소드는 지정된 단어 수 뒤에 나오는 문자열을 잘라낸 사본을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate_words(4)
+# =&gt; "Oh dear! Oh dear!..."
+
+</pre>
+</div>
+<p><code>:omission</code>를 통해 생략문자열(...)를 변경할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate_words(4, omission: '&amp;hellip;')
+# =&gt; "Oh dear! Oh dear!&amp;hellip;"
+
+</pre>
+</div>
+<p><code>:separator</code>를 사용하면 자연스럽게 보이는 위치에서 문자열을 자를 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate_words(3, separator: '!')
+# =&gt; "Oh dear! Oh dear! I shall be late..."
+
+</pre>
+</div>
+<p><code>:separator</code>에는 정규표현을 사용할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Oh dear! Oh dear! I shall be late!".truncate_words(4, separator: /\s/)
+# =&gt; "Oh dear! Oh dear!..."
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/filters.rb</code>에 정의되어 있습니다.</p></div><h4 id="inquiry"><a class="anchorlink" href="#inquiry">5.6 <code>inquiry</code></a></h4><p><code>inquiry</code>는 문자열을 <code>StringInquirer</code> 객체로 변환합니다. 이 객체를 사용하면 동일 여부를 좀 더 보기 좋게 비교할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"production".inquiry.production? # =&gt; true
+"active".inquiry.inactive?       # =&gt; false
+
+</pre>
+</div>
+<h4 id="starts-with-questionmark와-ends-with-questionmark"><a class="anchorlink" href="#starts-with-questionmark%EC%99%80-ends-with-questionmark">5.7 <code>starts_with?</code>와 <code>ends_with?</code></a></h4><p>Active Support에서는 <code>String#start_with?</code>와 <code>String#end_with?</code>를 영어 기준으로 3인칭일때 사용하는 형태(starts、ends)로 만든 별칭 메소드를 정의해두고 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"foo".starts_with?("f") # =&gt; true
+"foo".ends_with?("o")   # =&gt; true
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/starts_ends_with.rb</code>에 정의되어 있습니다.</p></div><h4 id="strip-heredoc"><a class="anchorlink" href="#strip-heredoc">5.8 <code>strip_heredoc</code></a></h4><p><code>strip_heredoc</code> 메소드는 히어독(Heredoc)의 들여쓰기를 제거합니다.</p><p>다음은 예시입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+if options[:usage]
+  puts &lt;&lt;-USAGE.strip_heredoc
+    This command does such and such.
+
+    Supported options are:
+      -h         This message
+      ...
+  USAGE
+end
+
+</pre>
+</div>
+<p>이 USAGE 메시지는 좌측에 정렬되어 표시됩니다.</p><p>기술적으로는 들여쓰기가 가장 적게 되어있는 행을 찾아, 그만큼만 전체 행의 앞 부분에서 제거합니다.</p><div class="note"><p><code>active_support/core_ext/string/strip.rb</code>에 정의되어 있습니다.</p></div><h4 id="indent"><a class="anchorlink" href="#indent">5.9 <code>indent</code></a></h4><p>이 메소드는 리시버의 각 행에 들여쓰기를 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+&lt;&lt;EOS.indent(2)
+def some_method
+  some_code
+end
+EOS
+# =&gt;
+  def some_method
+    some_code
+  end
+
+</pre>
+</div>
+<p>두번째 인수 <code>indent_string</code>는 들여쓰기에 사용될 문자열을 넘겨받습니다. 기본은 <code>nil</code>이며 이 경우에는 첫번째 들여쓰기가 발생한 행을 찾아서 그 때 사용된 문자를 참조하여 사용할 문자를 결정합니다. 들여쓰기가 전혀 없는 경우에는 띄어쓰기 1개를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"  foo".indent(2)        # =&gt; "    foo"
+"foo\n\t\tbar".indent(2) # =&gt; "\t\tfoo\n\t\t\t\tbar"
+"foo".indent(2, "\t")    # =&gt; "\t\tfoo"
+
+</pre>
+</div>
+<p><code>indent_string</code>에는 1문자의 띄어쓰기 또는 탭문자를 사용하는 것이 일반적입니다만, 다른 문자도 사용할 수 있습니다.</p><p>3번째 인수인 <code>indent_empty_lines</code>는 빈 줄도 들여쓰기를 할지 말지를 결정하는 플래그입니다. 기본은 false입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"foo\n\nbar".indent(2)            # =&gt; "  foo\n\n  bar"
+"foo\n\nbar".indent(2, nil, true) # =&gt; "  foo\n  \n  bar"
+
+</pre>
+</div>
+<p><code>indent!</code> 메소드는 들여쓰기를 파괴적으로 수행합니다.</p><div class="note"><p><code>active_support/core_ext/string/indent.rb</code>에 정의되어 있습니다.</p></div><h4 id="access"><a class="anchorlink" href="#access">5.10 Access</a></h4><h5 id="at-position"><a class="anchorlink" href="#at-position">5.10.1 <code>at(position)</code></a></h5><p>대상이 되는 문자열에서 <code>position</code>으로 넘겨받은 위치에 있는 문자를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"hello".at(0)  # =&gt; "h"
+"hello".at(4)  # =&gt; "o"
+"hello".at(-1) # =&gt; "o"
+"hello".at(10) # =&gt; nil
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/access.rb</code>에 정의되어 있습니다.</p></div><h5 id="from-position"><a class="anchorlink" href="#from-position">5.10.2 <code>from(position)</code></a></h5><p>문자열에서 <code>position</code>으로 넘겨받은 위치로부터 시작되는 부분 문자열을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"hello".from(0)  # =&gt; "hello"
+"hello".from(2)  # =&gt; "llo"
+"hello".from(-2) # =&gt; "lo"
+"hello".from(10) # =&gt; nil
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/access.rb</code>에 정의되어 있습니다.</p></div><h5 id="to-position"><a class="anchorlink" href="#to-position">5.10.3 <code>to(position)</code></a></h5><p>문자열에서 <code>position</code>으로 넘겨받은 위치를 마지막으로 하는 부분 문자열을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"hello".to(0)  # =&gt; "h"
+"hello".to(2)  # =&gt; "hel"
+"hello".to(-2) # =&gt; "hell"
+"hello".to(10) # =&gt; "hello"
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/access.rb</code>에 정의되어 있습니다.</p></div><h5 id="first-limit-1"><a class="anchorlink" href="#first-limit-1">5.10.4 <code>first(limit = 1)</code></a></h5><p><code>str.first(n)</code>은 <code>n</code> &gt; 0일 때 <code>str.to(n-1)</code>와 동등합니다. <code>n</code> == 0인 경우에는 빈 문자열을 반환합니다.</p><div class="note"><p><code>active_support/core_ext/string/access.rb</code>에 정의되어 있습니다.</p></div><h5 id="last-limit-1"><a class="anchorlink" href="#last-limit-1">5.10.5 <code>last(limit = 1)</code></a></h5><p><code>str.last(n)</code>은 <code>n</code> &gt; 0일때 <code>str.from(-n)</code>와 동등합니다. <code>n</code> == 0인 경우에는 빈 문자열을 반환합니다.</p><div class="note"><p><code>active_support/core_ext/string/access.rb</code>에 정의되어 있습니다.</p></div><h4 id="활용형"><a class="anchorlink" href="#%ED%99%9C%EC%9A%A9%ED%98%95">5.11 활용형</a></h4><h5 id="pluralize"><a class="anchorlink" href="#pluralize">5.11.1 <code>pluralize</code></a></h5><p><code>pluralize</code> 메소드는 리시버의 복수형을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"table".pluralize     # =&gt; "tables"
+"ruby".pluralize      # =&gt; "rubies"
+"equipment".pluralize # =&gt; "equipment"
+
+</pre>
+</div>
+<p>이 예제에서도 볼 수 있듯, Active Support는 불규칙 복수형이나 불가산명사에 대해서도 어느 정도 이해하고 있습니다. <code>config/initializers/inflections.rb</code>에 존재하는 내장 규칙을 확장할 수 있습니다. 이 파일은 <code>rails</code> 명령으로 확장 가능하며, 방법은 주석에서 확인할 수 있습니다.</p><p><code>pluralize</code> 메소드에서는 <code>count</code> 파라미터를 사용할 수 있습니다. 만약 <code>count == 1</code>이라면 단수형이 반환됩니다. <code>count</code>가 그 이외의 값일 경우에는 복수형을 반환합니다(역주: 영어에서는 갯수가 0이거나 소수인 경우도 복수형을 사용합니다).</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"dude".pluralize(0) # =&gt; "dudes"
+"dude".pluralize(1) # =&gt; "dude"
+"dude".pluralize(2) # =&gt; "dudes"
+
+</pre>
+</div>
+<p>Active Record에서는 모델 이름과 대응하는 테이블의 이름을 추측할 때 이 메소드를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# active_record/model_schema.rb
+def undecorated_table_name(class_name = base_class.name)
+  table_name = class_name.to_s.demodulize.underscore
+  pluralize_table_names ? table_name.pluralize : table_name
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="singularize"><a class="anchorlink" href="#singularize">5.11.2 <code>singularize</code></a></h5><p><code>pluralize</code>와 반대의 동작을 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"tables".singularize    # =&gt; "table"
+"rubies".singularize    # =&gt; "ruby"
+"equipment".singularize # =&gt; "equipment"
+
+</pre>
+</div>
+<p>Rails의 Association에서 관계가 정의된 클래스에 대응하는 이름을 구할 때 이 메소드를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# active_record/reflection.rb
+def derive_class_name
+  class_name = name.to_s.camelize
+  class_name = class_name.singularize if collection?
+  class_name
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="camelize"><a class="anchorlink" href="#camelize">5.11.3 <code>camelize</code></a></h5><p><code>camelize</code> 메소드는 리시버의 낙타 표기법(각 단어 첫번째 글자를 대문자로 만들고 띄어쓰기를 제거하는 것)으로 변환해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"product".camelize    # =&gt; "Product"
+"admin_user".camelize # =&gt; "AdminUser"
+
+</pre>
+</div>
+<p>이 메소드는 경로를 Ruby의 클래스로 변환할 때 자주 사용됩니다. '/'로 구분되어있는 경로는 '::'로 구분됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"backoffice/session".camelize # =&gt; "Backoffice::Session"
+
+</pre>
+</div>
+<p>예를 들어, Action Pack은 특정 세션 스토어를 제공하는 클래스를 읽어올 때에 이 메소드를 사용하고 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# action_controller/metal/session_management.rb
+def session_store=(store)
+  @@session_store = store.is_a?(Symbol) ?
+    ActionDispatch::Session.const_get(store.to_s.camelize) :
+    store
+end
+
+</pre>
+</div>
+<p><code>camelize</code> 메소드는 옵션으로 하나의 값을 받습니다. 사용 가능한 것은 <code>:upper</code>(기본값)나, <code>:lower</code>입니다. 후자를 사용하면 문자열의 첫번째 글자를 소문자로 처리합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"visual_effect".camelize(:lower) # =&gt; "visualEffect"
+
+</pre>
+</div>
+<p>이 메소드는 그러한 작명법(카멜 표기법)을 따르는 언어(JavaScript 등)에서 사용하는 이름을 얻어올 때 유용합니다.</p><div class="info"><p><code>camerize</code> 메소드의 동작은 <code>underscore</code> 메소드와 반대의 동작을 한다고 생각하면 알기 쉽습니다. 단 완전히 반대의 동작을 하는 것은 아닙니다. 예를 들어 <code>"SSLError".underscore.camelize</code>를 실행한 결과는 <code>"SslError"</code>이 되어 원래대로 되돌릴 수 없습니다. 이러한 경우를 위해서 Active Support는 <code>config/initializers/inflections.rb</code>에서 접두어를 지정할 수 있게 해줍니다.</p></div><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.acronym 'SSL'
+end
+
+"SSLError".underscore.camelize # =&gt; "SSLError"
+
+</pre>
+</div>
+<p><code>camelize</code>는 <code>camelcase</code>의 다른 이름입니다.</p><div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="underscore"><a class="anchorlink" href="#underscore">5.11.4 <code>underscore</code></a></h5><p><code>underscore</code> 메소드는 위와 반대로 카멜 표기법을 경로로 변환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Product".underscore   # =&gt; "product"
+"AdminUser".underscore # =&gt; "admin_user"
+
+</pre>
+</div>
+<p>"::"도 "/"로 역변환됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Backoffice::Session".underscore # =&gt; "backoffice/session"
+
+</pre>
+</div>
+<p>소문자로 시작하는 문자열도 변환 가능합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"visualEffect".underscore # =&gt; "visual_effect"
+
+</pre>
+</div>
+<p>단, <code>underscore</code>는 인수를 받지 않습니다.</p><p>Rails에서 자동적으로 읽어들이는 클래스와 모듈은 <code>underscore</code> 메소드를 사용하여 파일의 확장자를 제외한 상대 경로를 추측하고, 해당하는 경로에 존재하지 않는 경우에 새로 정의합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# active_support/dependencies.rb
+def load_missing_constant(from_mod, const_name)
+  ...
+  qualified_name = qualified_name_for from_mod, const_name
+  path_suffix = qualified_name.underscore
+  ...
+end
+
+</pre>
+</div>
+<div class="info"><p><code>underscore</code> 메소드의 동작은 <code>camelize</code> 메소드와 반대의 동작을 한다고 생각하면 이해하기 쉽습니다. 단 완전히 반대의 동작을 수행하는 것은 아닙니다. 예를 들어 <code>"SSLError".underscore.camelize</code>를 실행한 결과는 <code>"SslError"</code>가 됩니다.</p></div><div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="titleize"><a class="anchorlink" href="#titleize">5.11.5 <code>titleize</code></a></h5><p><code>titleize</code> 메소드는 리시버에 존재하는 단어들의 첫번째 글자를 대문자로 만듭니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"alice in wonderland".titleize # =&gt; "Alice In Wonderland"
+"fermat's enigma".titleize     # =&gt; "Fermat's Enigma"
+
+</pre>
+</div>
+<p><code>titleize</code> 메소드는 <code>titlecase</code>의 다른 이름입니다.</p><div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="dasherize"><a class="anchorlink" href="#dasherize">5.11.6 <code>dasherize</code></a></h5><p><code>dasherize</code> 메소드는 리시버의 언더스코어 문자를 '-'로 변환합니다(역주: 여기서 말하는 '-'는 유니코드로 'U+002D'입니다).</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"name".dasherize         # =&gt; "name"
+"contact_data".dasherize # =&gt; "contact-data"
+
+</pre>
+</div>
+<p>모델의 XML 시리얼라이저에서는 이 메소드를 사용하여 노드명을 변환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# active_model/serializers/xml.rb
+def reformat_name(name)
+  name = name.camelize if camelize?
+  dasherize? ? name.dasherize : name
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="demodulize"><a class="anchorlink" href="#demodulize">5.11.7 <code>demodulize</code></a></h5><p><code>demodulize</code> 메소드는 전체 경로명을 받아 경로 부분을 제외하고 마지막 실제 상수 이름만을 남겨줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Product".demodulize                        # =&gt; "Product"
+"Backoffice::UsersController".demodulize    # =&gt; "UsersController"
+"Admin::Hotel::ReservationUtils".demodulize # =&gt; "ReservationUtils"
+"::Inflections".demodulize                  # =&gt; "Inflections"
+"".demodulize                               # =&gt; ""
+
+
+</pre>
+</div>
+<p>다음 Active Record의 예제에서는 이 메소드를 사용해서 counter_cache용 컬럼의 이름을 가져옵니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# active_record/reflection.rb
+def counter_cache_column
+  if options[:counter_cache] == true
+    "#{active_record.name.demodulize.underscore.pluralize}_count"
+  elsif options[:counter_cache]
+    options[:counter_cache]
+  end
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="deconstantize"><a class="anchorlink" href="#deconstantize">5.11.8 <code>deconstantize</code></a></h5><p><code>deconstantize</code> 메소드는 전체 경로명을 받아, 실제 상수의 이름을 제거합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Product".deconstantize                        # =&gt; ""
+"Backoffice::UsersController".deconstantize    # =&gt; "Backoffice"
+"Admin::Hotel::ReservationUtils".deconstantize # =&gt; "Admin::Hotel"
+
+</pre>
+</div>
+<p>예를 들어, Active Support는 이 메소드를 <code>Module#qualified_const_set</code>에서
+사용하고 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def qualified_const_set(path, value)
+  QualifiedConstUtils.raise_if_absolute(path)
+
+  const_name = path.demodulize
+  mod_name = path.deconstantize
+  mod = mod_name.empty? ? self : qualified_const_get(mod_name)
+  mod.const_set(const_name, value)
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="parameterize"><a class="anchorlink" href="#parameterize">5.11.9 <code>parameterize</code></a></h5><p><code>parameterize</code> 메소드는 리시버를 URL에서 사용가능한 형태로 정규화합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"John Smith".parameterize # =&gt; "john-smith"
+"Kurt Gödel".parameterize # =&gt; "kurt-godel"
+
+</pre>
+</div>
+<p>실제로 얻는 문자열은 <code>ActiveSupport::Multibyte::Chars</code>의 인스턴스로 래핑되어있습니다.</p><div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="tableize"><a class="anchorlink" href="#tableize">5.11.10 <code>tableize</code></a></h5><p><code>tableize</code>메소드는 <code>underscore</code>를 실행한 뒤, <code>pluralize</code>를 실행한 것과 동일합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Person".tableize      # =&gt; "people"
+"Invoice".tableize     # =&gt; "invoices"
+"InvoiceLine".tableize # =&gt; "invoice_lines"
+
+</pre>
+</div>
+<p>보통은 모델명에 <code>tableize</code>를 사용하면 그 모델을 위한 테이블 이름을 얻을 수 있습니다. 실제 Active Record는 클래스 이름에 <code>demodulize</code>를 호출하고, 변환된 문자열에 영향을 줄 수 있는 가능성이 있는 옵션을 몇가지 더 확인하기 때문에, 실제로는 <code>tableize</code>를 호출하는 것 뿐만 아니라 그 이외의 작업들도 처리합니다.</p><div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="classify"><a class="anchorlink" href="#classify">5.11.11 <code>classify</code></a></h5><p><code>classify</code> 메소드는 <code>tableize</code>와 반대의 동작을 합니다. 주어진 테이블 이름에 대응하는 클래스 이름을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"people".classify        # =&gt; "Person"
+"invoices".classify      # =&gt; "Invoice"
+"invoice_lines".classify # =&gt; "InvoiceLine"
+
+</pre>
+</div>
+<p>이 메소드는 컨텍스트가 적용된 테이블 이름도 처리 가능합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"highrise_production.companies".classify # =&gt; "Company"
+
+</pre>
+</div>
+<p><code>classify</code>가 돌려주는 클래스 이름은 문자열입니다. 얻은 문자열에 대해서
+<code>constantize</code>를 호출하는 것으로 실제 클래스 객체를 얻을 수 있습니다.</p><div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="constantize"><a class="anchorlink" href="#constantize">5.11.12 <code>constantize</code></a></h5><p><code>constantize</code> 메소드는 리시버의 값을 참조하여 실제 객체를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"Integer".constantize # =&gt; Integer
+
+module M
+  X = 1
+end
+"M::X".constantize # =&gt; 1
+
+</pre>
+</div>
+<p>주어진 문자열을 <code>constantize</code> 메소드로 평가하더라도 기존의 상수와 매치되지 않는, 또는 지정된 상수명이 올바르지 않은 경우에는 <code>NameError</code>가 발생합니다.</p><p><code>constantize</code> 메소드에 의한 상수 이름 평가는 항상 최상위의 <code>Object</code>로부터 시작됩니다. 이것은 상수 이름이 절대경로("::"로 시작)가 아닐 경우에도 동일합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+X = :in_Object
+module M
+  X = :in_M
+
+  X                 # =&gt; :in_M
+  "::X".constantize # =&gt; :in_Object
+  "X".constantize   # =&gt; :in_Object (!)
+end
+
+</pre>
+</div>
+<p>따라서 이 메소드는 같은 위치에서 Ruby가 상수를 평가할 때의 값과 항상 동일하다고 말할 수 없습니다.</p><p>메일러(mailer)의 테스트 케이스에서는 테스트할 클래스의 이름으로부터 태스트 대상 메일러를 얻어오기 위해서 <code>constantize</code> 메소드를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# action_mailer/test_case.rb
+def determine_default_mailer(name)
+  name.sub(/Test$/, '').constantize
+rescue NameError =&gt; e
+  raise NonInferrableMailerError.new(name)
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="humanize"><a class="anchorlink" href="#humanize">5.11.13 <code>humanize</code></a></h5><p><code>humanize</code> 메소드는 속성명을 (영어 기준으로) 읽기 쉽게 변환해줍니다.</p><p>구체적으로는 다음과 같은 작업을 수행합니다.</p>
+<ul>
+<li>인수에 (영어의) 활용 규칙을 적용합니다(inflection).</li>
+<li>말머리에 언더스코어가 있는 경우 제거합니다.</li>
+<li>어미에 "_id"가 있는 경우에 제거합니다.</li>
+<li>그 이외의 언더스코어는 띄어쓰기로 치환합니다.</li>
+<li>약어를 제외하고 모든 단어를 소문자로 변환합니다(downcase).</li>
+<li>첫 단어만 첫글자를 대문자로 변환합니다(capitalize).</li>
+</ul>
+<p><code>capitalize</code> 옵션을 false로 지정하면 첫단어의 첫글자를 대문자로 변환하지 않습니다(기본값은 true).</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"name".humanize                         # =&gt; "Name"
+"author_id".humanize                    # =&gt; "Author"
+"author_id".humanize(capitalize: false) # =&gt; "author"
+"comments_count".humanize               # =&gt; "Comments count"
+"_id".humanize                          # =&gt; "Id"
+
+</pre>
+</div>
+<p>"SSL"이 접두어로 정의되어 있는 경우에는 아래와 같이 변환됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+'ssl_error'.humanize # =&gt; "SSL error"
+
+</pre>
+</div>
+<p>헬퍼 메소드 <code>full_messages</code>에서는 속성명을 메시지에 포함할 때 <code>humanize</code>를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def full_messages
+  map { |attribute, message| full_message(attribute, message) }
+end
+
+def full_message
+  ...
+  attr_name = attribute.to_s.tr('.', '_').humanize
+  attr_name = @base.class.human_attribute_name(attribute, default: attr_name)
+  ...
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h5 id="foreign-key"><a class="anchorlink" href="#foreign-key">5.11.14 <code>foreign_key</code></a></h5><p><code>foreign_key</code> 메소드는 클래스의 이름으로부터 외래키의 이름을 구할 때 사용합니다. 구체적으로는 <code>demodulize</code>, <code>underscore</code>를 실행하고 어미에 "_id"를 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"User".foreign_key           # =&gt; "user_id"
+"InvoiceLine".foreign_key    # =&gt; "invoice_line_id"
+"Admin::Session".foreign_key # =&gt; "session_id"
+
+</pre>
+</div>
+<p>어미에 "_id"의 언더스코어가 불필요한 경우에는 인수를 통해 <code>false</code>를 넘겨주면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"User".foreign_key(false) # =&gt; "userid"
+
+</pre>
+</div>
+<p>Association에서 외래키의 이름을 추측할 때 이 메소드를 사용합니다. 예를 들어 <code>has_one</code>과 <code>has_many</code>에서는 다음과 같은 처리를 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# active_record/associations.rb
+foreign_key = options[:foreign_key] || reflection.active_record.name.foreign_key
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/string/inflections.rb</code>에 정의되어 있습니다.</p></div><h4 id="string의-확장-메소드-conversions"><a class="anchorlink" href="#string%EC%9D%98-%ED%99%95%EC%9E%A5-%EB%A9%94%EC%86%8C%EB%93%9C-conversions">5.12 Conversions</a></h4><h5 id="to-date-to-time-to-datetime"><a class="anchorlink" href="#to-date-to-time-to-datetime">5.12.1 <code>to_date</code>, <code>to_time</code>, <code>to_datetime</code></a></h5><p><code>to_date</code>, <code>to_time</code>, <code>to_datetime</code> 메소드는 <code>Date._parse</code>를 래핑하여 사용하기 편하게 해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"2010-07-27".to_date              # =&gt; Tue, 27 Jul 2010
+"2010-07-27 23:37:00".to_time     # =&gt; Tue Jul 27 23:37:00 UTC 2010
+"2010-07-27 23:37:00".to_datetime # =&gt; Tue, 27 Jul 2010 23:37:00 +0000
+
+</pre>
+</div>
+<p><code>to_time</code>은 옵션으로 <code>:utc</code>나 <code>:local</code>을 인수로 받아 시간대를 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+"2010-07-27 23:42:00".to_time(:utc)   # =&gt; Tue Jul 27 23:42:00 UTC 2010
+"2010-07-27 23:42:00".to_time(:local) # =&gt; Tue Jul 27 23:42:00 +0200 2010
+
+</pre>
+</div>
+<p>기본값은 <code>:utc</code>입니다.</p><p>더 자세한 내용은 <code>Date._parse</code>의 문서를 참조해주세요.</p><div class="info"><p>3개의 메소드는 어느 것이든 리시버가 blank인 경우에는 <code>nil</code>을 반환합니다.</p></div><div class="note"><p><code>active_support/core_ext/string/conversions.rb</code>에 정의되어 있습니다.</p></div><h3 id="numeric-확장"><a class="anchorlink" href="#numeric-%ED%99%95%EC%9E%A5">6 <code>Numeric</code> 확장</a></h3><h4 id="바이트"><a class="anchorlink" href="#%EB%B0%94%EC%9D%B4%ED%8A%B8">6.1 바이트</a></h4><p>모든 숫자에 다음 메소드를 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+bytes
+kilobytes
+megabytes
+gigabytes
+terabytes
+petabytes
+exabytes
+
+</pre>
+</div>
+<p>이 메소드는 대응하는 바이트 수를 돌려줄 때에 1024를 곱해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+2.kilobytes   # =&gt; 2048
+3.megabytes   # =&gt; 3145728
+3.5.gigabytes # =&gt; 3758096384
+-4.exabytes   # =&gt; -4611686018427387904
+
+</pre>
+</div>
+<p>단수형으로도 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+1.megabyte # =&gt; 1048576
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/numeric/bytes.rb</code>에 정의되어 있습니다.</p></div><h4 id="time"><a class="anchorlink" href="#time">6.2 Time</a></h4><p>예를 들어 <code>45.minutes + 2.hours + 4.years</code>와 같이 시간을 계산하고 싶을 때가 있습니다.</p><p>이런 메소드에서는 from_now나 ago등을 사용하거나, 또는 Time 객체로부터 얻은 결과를 더하거나 뺄 때에 Time#advance를 사용하여 정확한 날짜 계산을 수행합니다. 아래는 예제입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# Time.current.advance(months: 1)와 동등
+1.month.from_now
+
+# Time.current.advance(years: 2)와 동등
+2.years.from_now
+
+# Time.current.advance(months: 4, years: 5)와 동등
+(4.months + 5.years).from_now
+
+</pre>
+</div>
+<h4 id="형식-변환"><a class="anchorlink" href="#%ED%98%95%EC%8B%9D-%EB%B3%80%ED%99%98">6.3 형식 변환</a></h4><p>숫자는 다양한 방법으로 나타낼 수 있습니다.</p><p>숫자를 전화번호 형식의 문자열로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+5551234.to_s(:phone)
+# =&gt; 555-1234
+1235551234.to_s(:phone)
+# =&gt; 123-555-1234
+1235551234.to_s(:phone, area_code: true)
+# =&gt; (123) 555-1234
+1235551234.to_s(:phone, delimiter: " ")
+# =&gt; 123 555 1234
+1235551234.to_s(:phone, area_code: true, extension: 555)
+# =&gt; (123) 555-1234 x 555
+1235551234.to_s(:phone, country_code: 1)
+# =&gt; +1-123-555-1234
+
+</pre>
+</div>
+<p>통화 형식으로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+1234567890.50.to_s(:currency)                 # =&gt; $1,234,567,890.50
+1234567890.506.to_s(:currency)                # =&gt; $1,234,567,890.51
+1234567890.506.to_s(:currency, precision: 3)  # =&gt; $1,234,567,890.506
+
+</pre>
+</div>
+<p>백분율로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+100.to_s(:percentage)
+# =&gt; 100.000%
+100.to_s(:percentage, precision: 0)
+# =&gt; 100%
+1000.to_s(:percentage, delimiter: '.', separator: ',')
+# =&gt; 1.000,000%
+302.24398923423.to_s(:percentage, precision: 5)
+# =&gt; 302.24399%
+
+</pre>
+</div>
+<p>구분자를 추가하여 문자열로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+12345678.to_s(:delimited)                     # =&gt; 12,345,678
+12345678.05.to_s(:delimited)                  # =&gt; 12,345,678.05
+12345678.to_s(:delimited, delimiter: ".")     # =&gt; 12.345.678
+12345678.to_s(:delimited, delimiter: ",")     # =&gt; 12,345,678
+12345678.05.to_s(:delimited, separator: " ")  # =&gt; 12,345,678 05
+
+</pre>
+</div>
+<p>특정 자리수를 가지는 문자열로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+111.2345.to_s(:rounded)                     # =&gt; 111.235
+111.2345.to_s(:rounded, precision: 2)       # =&gt; 111.23
+13.to_s(:rounded, precision: 5)             # =&gt; 13.00000
+389.32314.to_s(:rounded, precision: 0)      # =&gt; 389
+111.2345.to_s(:rounded, significant: true)  # =&gt; 111
+
+</pre>
+</div>
+<p>사람에게 가독성이 좋은 바이트 형식으로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+123.to_s(:human_size)                  # =&gt; 123 Bytes
+1234.to_s(:human_size)                 # =&gt; 1.21 KB
+12345.to_s(:human_size)                # =&gt; 12.1 KB
+1234567.to_s(:human_size)              # =&gt; 1.18 MB
+1234567890.to_s(:human_size)           # =&gt; 1.15 GB
+1234567890123.to_s(:human_size)        # =&gt; 1.12 TB
+1234567890123456.to_s(:human_size)     # =&gt; 1.1 PB
+1234567890123456789.to_s(:human_size)  # =&gt; 1.07 EB
+
+</pre>
+</div>
+<p>사람에게 가독성이 좋은 숫자 단위를 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+123.to_s(:human)               # =&gt; "123"
+1234.to_s(:human)              # =&gt; "1.23 Thousand"
+12345.to_s(:human)             # =&gt; "12.3 Thousand"
+1234567.to_s(:human)           # =&gt; "1.23 Million"
+1234567890.to_s(:human)        # =&gt; "1.23 Billion"
+1234567890123.to_s(:human)     # =&gt; "1.23 Trillion"
+1234567890123456.to_s(:human)  # =&gt; "1.23 Quadrillion"
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/numeric/conversions.rb</code>에 정의되어 있습니다.</p></div><h3 id="integer-확장"><a class="anchorlink" href="#integer-%ED%99%95%EC%9E%A5">7 <code>Integer</code> 확장</a></h3><h4 id="multiple-of-questionmark"><a class="anchorlink" href="#multiple-of-questionmark">7.1 <code>multiple_of?</code></a></h4><p><code>multiple_of?</code> 메소드는 리시버의 정수가 인자로 넘긴 숫자의 배수인지 테스트합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+2.multiple_of?(1) # =&gt; true
+1.multiple_of?(2) # =&gt; false
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/integer/multiple.rb</code>에 정의되어 있습니다.</p></div><h4 id="ordinal"><a class="anchorlink" href="#ordinal">7.2 <code>ordinal</code></a></h4><p><code>ordinal</code> 메소드는 리시버의 정수에 대응하는 서수 어미를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+1.ordinal    # =&gt; "st"
+2.ordinal    # =&gt; "nd"
+53.ordinal   # =&gt; "rd"
+2009.ordinal # =&gt; "th"
+-21.ordinal  # =&gt; "st"
+-134.ordinal # =&gt; "th"
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/integer/inflections.rb</code>에 정의되어 있습니다.</p></div><h4 id="ordinalize"><a class="anchorlink" href="#ordinalize">7.3 <code>ordinalize</code></a></h4><p><code>ordinalize</code> 메소드는 리시버의 정수에 대응하는 서수 문자열을 추가한 것을 반환합니다. 직전에 소개한 <code>ordinal</code>은 서수 문자열<strong>만을</strong> 반환한다는 점이 다릅니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+1.ordinalize    # =&gt; "1st"
+2.ordinalize    # =&gt; "2nd"
+53.ordinalize   # =&gt; "53rd"
+2009.ordinalize # =&gt; "2009th"
+-21.ordinalize  # =&gt; "-21st"
+-134.ordinalize # =&gt; "-134th"
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/integer/inflections.rb</code>에 정의되어 있습니다.</p></div><h3 id="bigdecimal-확장"><a class="anchorlink" href="#bigdecimal-%ED%99%95%EC%9E%A5">8 <code>BigDecimal</code> 확장</a></h3><h4 id="bigdecimal-확장-to-s"><a class="anchorlink" href="#bigdecimal-%ED%99%95%EC%9E%A5-to-s">8.1 <code>to_s</code></a></h4><p>이 <code>to_s</code> 메소드는 <code>to_formatted_s</code>의 별명입니다. 이 메소드는 부동소수점 표기법의 BigDecimal값을 간단하게 표시할 때 유용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+BigDecimal.new(5.00, 6).to_s  # =&gt; "5.0"
+
+</pre>
+</div>
+<h4 id="bigdecimal-확장-to-formatted-s"><a class="anchorlink" href="#bigdecimal-%ED%99%95%EC%9E%A5-to-formatted-s">8.2 <code>to_formatted_s</code></a></h4><p>이 <code>to_formatted_s</code> 메소드는 기본 수식자(specifier) "F"를 사용합니다. 다시말해 <code>to_formatted_s</code> 또는 <code>to_s</code>를 호출하면 엔지니어링 표기법(ex: '0.5E1')이 아닌 부동소수점 표현을 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+BigDecimal.new(5.00, 6).to_formatted_s  # =&gt; "5.0"
+
+</pre>
+</div>
+<p>또한 심볼을 사용하여 지정할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+BigDecimal.new(5.00, 6).to_formatted_s(:db)  # =&gt; "5.0"
+
+</pre>
+</div>
+<p>엔지니어링 표기법도 지원합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+BigDecimal.new(5.00, 6).to_formatted_s("e")  # =&gt; "0.5E1"
+
+</pre>
+</div>
+<h3 id="enumerable-확장"><a class="anchorlink" href="#enumerable-%ED%99%95%EC%9E%A5">9 <code>Enumerable</code> 확장</a></h3><h4 id="sum"><a class="anchorlink" href="#sum">9.1 <code>sum</code></a></h4><p><code>sum</code> 메소드는 enumerable에 있는 요소의 합을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[1, 2, 3].sum # =&gt; 6
+(1..100).sum  # =&gt; 5050
+
+</pre>
+</div>
+<p><code>+</code>에 응답하는 요소만이 덧셈의 대상이 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[[1, 2], [2, 3], [3, 4]].sum    # =&gt; [1, 2, 2, 3, 3, 4]
+%w(foo bar baz).sum             # =&gt; "foobarbaz"
+{a: 1, b: 2, c: 3}.sum          # =&gt; [:b, 2, :c, 3, :a, 1]
+
+</pre>
+</div>
+<p>빈 컬렉션은 기본으로 0을 반환합니다만, 이 동작은 바꿀 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[].sum    # =&gt; 0
+[].sum(1) # =&gt; 1
+
+</pre>
+</div>
+<p>블럭을 넘긴 경우 <code>sum</code>은 이터레이터가 되어서 컬렉션의 요소를 yield하며, 거기서 돌려받은 값의 합을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+(1..5).sum {|n| n * 2 } # =&gt; 30
+[2, 4, 6, 8, 10].sum    # =&gt; 30
+
+</pre>
+</div>
+<p>블럭을 주는 경우에도 리시버가 비어있을 때의 기본값을 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[].sum(1) {|n| n**3} # =&gt; 1
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/enumerable.rb</code>에 정의되어 있습니다.</p></div><h4 id="index-by"><a class="anchorlink" href="#index-by">9.2 <code>index_by</code></a></h4><p><code>index_by</code> 메소드는 어떤 키에 의해서 인덱싱된 enumerable의 요소를 가지는 해시를 생성합니다.</p><p>이 메소드는 컬렉션을 돌며 각 요소를 블럭에 넘겨줍니다. 이 요소는 블럭으로부터 반환된 값에 의해서 인덱싱됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+invoices.index_by(&amp;:number)
+# =&gt; {'2009-032' =&gt; &lt;Invoice ...&gt;, '2009-008' =&gt; &lt;Invoice ...&gt;, ...}
+
+</pre>
+</div>
+<div class="warning"><p>키는 유일해야합니다. 다른 요소로부터 같은 값이 반환되면 가장 마지막 항목만이 저장됩니다.</p></div><div class="note"><p>`active_support/core_ext/enumerable.rb에 정의되어 있습니다.</p></div><h4 id="many-questionmark"><a class="anchorlink" href="#many-questionmark">9.3 <code>many?</code></a></h4><p><code>many?</code> 메소드는 <code>collection.size &gt; 1</code>의 축약형입니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;% if pages.many? %&gt;
+  &lt;%= pagination_links %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p><code>many?</code>는 블럭을 넘길 수 있는데 이 블럭에서 true를 반환하는 것들만 세서 판정합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+@see_more = videos.many? {|video| video.category == params[:category]}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/enumerable.rb</code>에 정의되어 있습니다.</p></div><h4 id="exclude-questionmark"><a class="anchorlink" href="#exclude-questionmark">9.4 <code>exclude?</code></a></h4><p><code>exclude?</code>는 주어진 객체가 그 컬렉션에 속해 있지 <strong>않은지</strong> 테스트합니다. 다시 말해, <code>include?</code>의 반대 동작입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+to_visit &lt;&lt; node if visited.exclude?(node)
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/enumerable.rb</code>에 정의되어 있습니다.</p></div><h4 id="without"><a class="anchorlink" href="#without">9.5 <code>without</code></a></h4><p><code>without</code> 메소드는 지정한 요소를 제외한 enumerable의 사본을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+["David", "Rafael", "Aaron", "Todd"].without("Aaron", "Todd") # =&gt; ["David", "Rafael"]
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/enumerable.rb</code>에 정의되어 있습니다.</p></div><h3 id="array-확장"><a class="anchorlink" href="#array-%ED%99%95%EC%9E%A5">10 <code>Array</code> 확장</a></h3><h4 id="accessing"><a class="anchorlink" href="#accessing">10.1 Accessing</a></h4><p>Active Support에는 배열에 여러가지 API를 추가하며, 이는 배열을 편리하게 사용할 수 있도록 해줍니다. 예를 들어 <code>to</code> 메소드는 배열의 첫번째 요소부터 넘겨받은 인덱스가 가리키는 요소까지의 범위를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(a b c d).to(2) # =&gt; %w(a b c)
+[].to(7)          # =&gt; []
+
+</pre>
+</div>
+<p>마찬가지로 <code>from</code> 메소드는 배열에서 인덱스가 가리키는 요소로부터 마지막 요소까지를 반환합니다. 넘겨받은 인덱스가 배열의 길이보다 길 경우에는 빈 배열을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(a b c d).from(2)  # =&gt; %w(c d)
+%w(a b c d).from(10) # =&gt; []
+[].from(0)           # =&gt; []
+
+</pre>
+</div>
+<p><code>second</code>, <code>third</code>, <code>fourth</code>, <code>fifth</code>, <code>second_to_last</code>, <code>third_to_last</code>는
+ 대응하는 요소를 반환합니다(<code>first</code>, <code>last</code>는 원래 내장되어 있는 메소드입니다).
+재미를 위해 지금은 <code>forty_two</code>도 사용할 수 있습니다(역주: <a href="https://github.com/rails/rails/commit/9d8cc60ec3845fa3e6f9292a65b119fe4f619f7e">Rails 2.2 이후</a>로 사용 가능합니다. '42'에 대해서는 Wikipedia의 <a href="https://ko.wikipedia.org/wiki/%EC%9D%80%ED%95%98%EC%88%98%EB%A5%BC_%EC%97%AC%ED%96%89%ED%95%98%EB%8A%94_%ED%9E%88%EC%B9%98%ED%95%98%EC%9D%B4%EC%BB%A4%EB%A5%BC_%EC%9C%84%ED%95%9C_%EC%95%88%EB%82%B4%EC%84%9C_(%EC%86%8C%EC%84%A4)">이 문서</a>의 줄거리를 참조해주세요.).</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(a b c d).third # =&gt; c
+%w(a b c d).fifth # =&gt; nil
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/array/access.rb</code>에 정의되어 있습니다.</p></div><h4 id="요소를-추가하기"><a class="anchorlink" href="#%EC%9A%94%EC%86%8C%EB%A5%BC-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">10.2 요소를 추가하기</a></h4><h5 id="prepend"><a class="anchorlink" href="#prepend">10.2.1 <code>prepend</code></a></h5><p>이 메소드는 <code>Array#unshift</code>의 별명입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(a b c d).prepend('e')  # =&gt; %w(e a b c d)
+[].prepend(10)            # =&gt; [10]
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/array/prepend_and_append.rb</code>에 정의되어 있습니다.</p></div><h5 id="append"><a class="anchorlink" href="#append">10.2.2 <code>append</code></a></h5><p>이 메소드는 <code>Array#&lt;&lt;</code>의 별명입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(a b c d).append('e')  # =&gt; %w(a b c d e)
+[].append([1,2])         # =&gt; [[1,2]]
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/array/prepend_and_append.rb</code>에 정의되어 있습니다.</p></div><h4 id="옵션을-전개하기"><a class="anchorlink" href="#%EC%98%B5%EC%85%98%EC%9D%84-%EC%A0%84%EA%B0%9C%ED%95%98%EA%B8%B0">10.3 옵션을 전개하기</a></h4><p>Ruby에서는 메소드에 주어진 마지막 인수가 해시인 경우, 그것이 <code>&amp;block</code> 인수인 경우를 제외하고 해시의 중괄호를 생략할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+User.exists?(email: params[:email])
+
+</pre>
+</div>
+<p>이러한 편의 문법(Syntax sugar)은 인수들이 순서에 의존하지 않도록 만들고, 이름을 가지는 파라미터를 에뮬레이트하는 인터페이스를 제공하기 위해 Rails에서 빈번하게 사용되고 있습니다. 특히 말미에 옵션의 해시를 두는 것은 무척 일반적입니다.</p><p>그러나 어떤 메소드가 받는 인수의 숫자는 고정적이지 않으며, 메소드 선언에서 <code>*</code>가 사용될 경우 중괄호가 생략된 옵션 해시는 인수 배열의 마지막 원소가 되어버려서 해시로 처리되지 않습니다.</p><p>이런한 경우, <code>extract_options!</code>를 사용해서 배열 마지막 요소의 타입을 체크하고, 그것이 해시인 경우 그 해시를 꺼내 반환합니다. 해시가 아닌 경우에는 빈 해시를 돌려줍니다.</p><p><code>caches_action</code> 컨트롤러 매크로에서 사용된 예시를 확인해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def caches_action(*actions)
+  return unless cache_configured?
+  options = actions.extract_options!
+  ...
+end
+
+</pre>
+</div>
+<p>이 메소드는 여러개의 액션명을 인수로 받을 수 있으며, 인수의 마지막 항목에 옵션 해시를 사용할 수 있습니다. <code>extract_options!</code> 메소드를 사용하면 그 옵션 해시를 꺼내고, <code>actions</code>로부터는 제거하는 작업까지 간단하고 명시적으로 처리할 수 있습니다.</p><div class="note"><p><code>active_support/core_ext/array/extract_options.rb</code>에 정의되어 있습니다.</p></div><h4 id="array-확장-conversions"><a class="anchorlink" href="#array-%ED%99%95%EC%9E%A5-conversions">10.4 Conversions</a></h4><h5 id="to-sentence"><a class="anchorlink" href="#to-sentence">10.4.1 <code>to_sentence</code></a></h5><p><code>to_sentence</code> 메소드는 배열을 변환하여 각 요소를 열거하는 영어 문장으로 변환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w().to_sentence                # =&gt; ""
+%w(Earth).to_sentence           # =&gt; "Earth"
+%w(Earth Wind).to_sentence      # =&gt; "Earth and Wind"
+%w(Earth Wind Fire).to_sentence # =&gt; "Earth, Wind, and Fire"
+
+</pre>
+</div>
+<p>이 메소드는 3개의 옵션을 사용할 수 있습니다.</p>
+<ul>
+<li>
+<code>:two_words_connector</code>: 항목이 2개일 경우의 접속사를 지정합니다. 기본값은 " and "입니다.</li>
+<li>
+<code>:words_connector</code>: 3개 이상의 요소가 존재하는 경우 마지막 2개를 제외한 나머지에서 사용될 접속사를 지정합니다. 기본값은 ", "입니다.</li>
+<li>
+<code>:last_word_connector</code>: 3개 이상의 요소가 존재하는 경우 마지막 2개의 요소를 연결할 때 사용할 접속사를 지정합니다. 기본값은 ", and "입니다.</li>
+</ul>
+<p>이러한 값들은 국제화를 쉽게 할 수 있습니다. 사용되는 키는 다음과 같습니다.</p>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>I18n 키</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:two_words_connector</code></td>
+<td><code>support.array.two_words_connector</code></td>
+</tr>
+<tr>
+<td><code>:words_connector</code></td>
+<td><code>support.array.words_connector</code></td>
+</tr>
+<tr>
+<td><code>:last_word_connector</code></td>
+<td><code>support.array.last_word_connector</code></td>
+</tr>
+</tbody>
+</table>
+<div class="note"><p><code>active_support/core_ext/array/conversions.rb</code>에 정의되어 있습니다.</p></div><h5 id="array-확장-conversions-to-formatted-s"><a class="anchorlink" href="#array-%ED%99%95%EC%9E%A5-conversions-to-formatted-s">10.4.2 <code>to_formatted_s</code></a></h5><p><code>to_formatted_s</code> 메소드는 기본으로 <code>to_s</code>와 동일한 동작을 합니다.</p><p>그러나 배열 내부에 <code>id</code>에 응답하는 항목이 존재하는 경우 <code>:db</code>라는 심볼을 넘길 수 있습니다. 이 방법은 Active Record 객체의 컬렉션을 다룰때 자주 사용됩니다. 반환되는 문자열은 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[].to_formatted_s(:db)            # =&gt; "null"
+[user].to_formatted_s(:db)        # =&gt; "8456"
+invoice.lines.to_formatted_s(:db) # =&gt; "23,567,556,12"
+
+</pre>
+</div>
+<p>이 예제에서의 값은 <code>id</code>를 호출하여 받아온 값입니다.</p><div class="note"><p><code>active_support/core_ext/array/conversions.rb</code>에 정의되어 있습니다.</p></div><h5 id="array-확장-conversions-to-xml"><a class="anchorlink" href="#array-%ED%99%95%EC%9E%A5-conversions-to-xml">10.4.3 <code>to_xml</code></a></h5><p><code>to_xml</code> 메소드는 리시버를 XML 표현으로 변환한 결과를 문자열로 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Contributor.limit(2).order(:rank).to_xml
+# =&gt;
+# &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+# &lt;contributors type="array"&gt;
+#   &lt;contributor&gt;
+#     &lt;id type="integer"&gt;4356&lt;/id&gt;
+#     &lt;name&gt;Jeremy Kemper&lt;/name&gt;
+#     &lt;rank type="integer"&gt;1&lt;/rank&gt;
+#     &lt;url-id&gt;jeremy-kemper&lt;/url-id&gt;
+#   &lt;/contributor&gt;
+#   &lt;contributor&gt;
+#     &lt;id type="integer"&gt;4404&lt;/id&gt;
+#     &lt;name&gt;David Heinemeier Hansson&lt;/name&gt;
+#     &lt;rank type="integer"&gt;2&lt;/rank&gt;
+#     &lt;url-id&gt;david-heinemeier-hansson&lt;/url-id&gt;
+#   &lt;/contributor&gt;
+# &lt;/contributors&gt;
+
+</pre>
+</div>
+<p>실제로는 <code>to_xml</code>를 모든 요소에게 호출하고, 결과를 루트 노드에 모읍니다. 이 메소드는 모든 요소가 <code>to_xml</code>에 응답해야할 필요가 있으며, 그렇지 않은 경우 예외를 발생시킵니다.</p><p>기본적으로 루트 요소의 이름은 첫번째 요소의 클래스 이름을 언더스코어화(underscorize), 대시화(dasherize), 마지막으로 복수형으로 변환(pluralize)합니다. 나머지 요소들이 첫번째 요소와 같은 타입(<code>is_a?</code>로 테스트됩니다)이고, 해시가 아닐것이 전제 조건입니다. 이 예제에서는 "contributors"입니다.</p><p>첫번째 요소와 같은 타입을 가지지 않는 요소가 하나라도 있을 경우, 루트 노드에는 <code>objects</code>가 사용됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[Contributor.first, Commit.first].to_xml
+# =&gt;
+# &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+# &lt;objects type="array"&gt;
+#   &lt;object&gt;
+#     &lt;id type="integer"&gt;4583&lt;/id&gt;
+#     &lt;name&gt;Aaron Batalion&lt;/name&gt;
+#     &lt;rank type="integer"&gt;53&lt;/rank&gt;
+#     &lt;url-id&gt;aaron-batalion&lt;/url-id&gt;
+#   &lt;/object&gt;
+#   &lt;object&gt;
+#     &lt;author&gt;Joshua Peek&lt;/author&gt;
+#     &lt;authored-timestamp type="datetime"&gt;2009-09-02T16:44:36Z&lt;/authored-timestamp&gt;
+#     &lt;branch&gt;origin/master&lt;/branch&gt;
+#     &lt;committed-timestamp type="datetime"&gt;2009-09-02T16:44:36Z&lt;/committed-timestamp&gt;
+#     &lt;committer&gt;Joshua Peek&lt;/committer&gt;
+#     &lt;git-show nil="true"&gt;&lt;/git-show&gt;
+#     &lt;id type="integer"&gt;190316&lt;/id&gt;
+#     &lt;imported-from-svn type="boolean"&gt;false&lt;/imported-from-svn&gt;
+#     &lt;message&gt;Kill AMo observing wrap_with_notifications since ARes was only using it&lt;/message&gt;
+#     &lt;sha1&gt;723a47bfb3708f968821bc969a9a3fc873a3ed58&lt;/sha1&gt;
+#   &lt;/object&gt;
+# &lt;/objects&gt;
+
+</pre>
+</div>
+<p>리시버가 해시의 배열인경우, 루트 요소는 기본적으로 <code>objects</code>가 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[{a: 1, b: 2}, {c: 3}].to_xml
+# =&gt;
+# &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+# &lt;objects type="array"&gt;
+#   &lt;object&gt;
+#     &lt;b type="integer"&gt;2&lt;/b&gt;
+#     &lt;a type="integer"&gt;1&lt;/a&gt;
+#   &lt;/object&gt;
+#   &lt;object&gt;
+#     &lt;c type="integer"&gt;3&lt;/c&gt;
+#   &lt;/object&gt;
+# &lt;/objects&gt;
+
+</pre>
+</div>
+<div class="warning"><p>컬렉션이 비어있는 경우, 루트 요소는 기본으로 "nil-classes"가 됩니다. 여기에서도 알 수 있듯, 예를 들어 위의 예제에서 contributors 목록의 루트 요소는 컬렉션이 만약 비어 있다면 "contributors"가 아닌 "nil-classes"가 됩니다. <code>:root</code> 옵션을 통해 일관성 있는 루트 요소를 사용할 수도 있습니다.</p></div><p>자식 노드의 이름은 기본으로는 루트 요소의 단수형이 사용됩니다. 위 예제라면 "contributor"나 "object"입니다. <code>:children</code> 옵션을 사용하면, 다른 노드명을 지정할 수 있습니다.</p><p>기본 XML 빌더는 <code>Builder::XmlMarkup</code>으로부터 직접 생성된 인스턴스입니다. 옵션 <code>:builder</code>를 사용해서 독자적인 빌더를 구성할 수도 있습니다. 이 메소드에서는 <code>:dasherize</code>와 다른 옵션들을 마찬가지로 사용할 수 있으며 자동으로 빌더에 전송됩니다. </p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Contributor.limit(2).order(:rank).to_xml(skip_types: true)
+# =&gt;
+# &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+# &lt;contributors&gt;
+#   &lt;contributor&gt;
+#     &lt;id&gt;4356&lt;/id&gt;
+#     &lt;name&gt;Jeremy Kemper&lt;/name&gt;
+#     &lt;rank&gt;1&lt;/rank&gt;
+#     &lt;url-id&gt;jeremy-kemper&lt;/url-id&gt;
+#   &lt;/contributor&gt;
+#   &lt;contributor&gt;
+#     &lt;id&gt;4404&lt;/id&gt;
+#     &lt;name&gt;David Heinemeier Hansson&lt;/name&gt;
+#     &lt;rank&gt;2&lt;/rank&gt;
+#     &lt;url-id&gt;david-heinemeier-hansson&lt;/url-id&gt;
+#   &lt;/contributor&gt;
+# &lt;/contributors&gt;
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/array/conversions.rb</code>에 정의되어 있습니다.</p></div><h4 id="wrapping"><a class="anchorlink" href="#wrapping">10.5 Wrapping</a></h4><p><code>Array.wrap</code> 메소드는 배열에 어떤 인수가 배열(또는 배열 같은)이 아닌 경우, 이를 배열로 감싸줍니다.</p><p>특징:</p>
+<ul>
+<li>인수가 <code>nil</code>인 경우에 빈 배열을 반환합니다.</li>
+<li>위를 제외한 상황에서 인수에 <code>to_ary</code>를 호출할 수 있는 경우 <code>to_ary</code>가 호출되며, <code>to_ary</code>의 값이 <code>nil</code>이 아닌 경우에 그 값을 사용합니다.</li>
+<li>그 이외의 경우 인수를 가지는 배열(요소가 1개인 배열)이 반환됩니다.</li>
+</ul>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Array.wrap(nil)       # =&gt; []
+Array.wrap([1, 2, 3]) # =&gt; [1, 2, 3]
+Array.wrap(0)         # =&gt; [0]
+
+</pre>
+</div>
+<p>이 메소드의 목적은 <code>Kernel#Array</code>와 비슷합니다만, 몇가지 다른 점이 있습니다.</p>
+<ul>
+<li>인수에서 <code>to_ary</code>를 호출할 수 있는 경우, 그 메소드를 호출합니다. <code>nil</code>이 반환된 경우 <code>Kernel#Array</code>는 <code>to_a</code>를 시도합니다만 <code>Array.wrap</code>는 그러지 않고 곧바로 단일 요소를 가지는 배열을 만들어 반환합니다.</li>
+<li>
+<code>to_ary</code>로부터 반환된 값이 <code>nil</code>이 아니고, <code>Array</code> 객체도 아닌 경우 <code>Kernel#Array</code>는 예외를 발생시킵니다만, <code>Array.wrap</code>은 예외를 발생시키지 않고 그 값을 그대로 반환합니다.</li>
+<li>빈 배열을 반환하는 nil을 제외하고, 인수에 대해서 <code>to_a</code>를 호출하지 않습니다.</li>
+</ul>
+<p>마지막 점은 열거형끼리 비교하는 경우에 유용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Array.wrap(foo: :bar) # =&gt; [{:foo=&gt;:bar}]
+Array(foo: :bar)      # =&gt; [[:foo, :bar]]
+
+</pre>
+</div>
+<p>이 동작은 splat 연산자를 사용하는 기법과도 관련이 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[*object]
+
+</pre>
+</div>
+<p>이는 Ruby 1.8일 경우 <code>nil</code>에 대해서 <code>[nil]</code>을 반환하며, 그 이외의 경우에는 <code>Array(object)</code>를 호출합니다(역주: Ruby 1.9 이후로는 빈 배열을 반환합니다).</p><p>따라서 이 경우 <code>nil</code>에 대한 동작만이 다르며, 위에서 설명된 <code>Kernel#Array</code>에 대해서도 이 다른 동작이 나머지 <code>object</code>에도 적용됩니다.</p><div class="note"><p><code>active_support/core_ext/array/wrap.rb</code>에 정의되어 있습니다.</p></div><h4 id="복제"><a class="anchorlink" href="#%EB%B3%B5%EC%A0%9C">10.6 복제</a></h4><p><code>Array.deep_dup</code> 메소드는 자기 자신을 복사함과 동시에 그 내부에 있는 모든 객체를 Active Support의 <code>Object#deep_dup</code> 메소드를 사용하여 재귀적으로 복사합니다. 이 동작은 <code>Array#map</code>을 사용하여 <code>deep_dup</code> 메소드를 내부의 각 객체에 대해서 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+array = [1, [2, 3]]
+dup = array.deep_dup
+dup[1][2] = 4
+array[1][2] == nil   # =&gt; true
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/deep_dup.rb</code>에 정의되어 있습니다.</p></div><h4 id="그룹화"><a class="anchorlink" href="#%EA%B7%B8%EB%A3%B9%ED%99%94">10.7 그룹화</a></h4><h5 id="in-groups-of-number-fill-with-nil"><a class="anchorlink" href="#in-groups-of-number-fill-with-nil">10.7.1 <code>in_groups_of(number, fill_with = nil)</code></a></h5><p><code>in_groups_of</code> 메소드는 지정한 크기에서 배열을 연속되는 그룹으로 분할합니다. 분할된 그룹을 내포하는 배열을 하나 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[1, 2, 3].in_groups_of(2) # =&gt; [[1, 2], [3, nil]]
+
+</pre>
+</div>
+<p>블럭을 넘긴 경우에는 yield를 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;% sample.in_groups_of(3) do |a, b, c| %&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;%= a %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= b %&gt;&lt;/td&gt;
+    &lt;td&gt;&lt;%= c %&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p>첫번째 예제에서는 <code>in_groups_of</code> 메소드는 마지막 그룹을 가급적 <code>nil</code> 요소로 채워서 요구받은 크기를 맞추려고 합니다. 이 빈 길이 만큼을 채울때 사용하는 요소를 인수로 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[1, 2, 3].in_groups_of(2, 0) # =&gt; [[1, 2], [3, 0]]
+
+</pre>
+</div>
+<p>두번째 옵션의 인수로 <code>false</code>를 넘겨주면 마지막 요소의 남는 길이를 채우지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[1, 2, 3].in_groups_of(2, false) # =&gt; [[1, 2], [3]]
+
+</pre>
+</div>
+<p>따라서 <code>false</code>는 빈 공간을 채우는 값으로 사용할 수 없습니다.</p><div class="note"><p><code>active_support/core_ext/array/grouping.rb</code>에 정의되어 있습니다.</p></div><h5 id="in-groups-number-fill-with-nil"><a class="anchorlink" href="#in-groups-number-fill-with-nil">10.7.2 <code>in_groups(number, fill_with = nil)</code></a></h5><p><code>in_groups</code>은 배열을 지정한 갯수로 나누고, 분할된 그룹들을 가지고 있는 배열을 하나 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(1 2 3 4 5 6 7).in_groups(3)
+# =&gt; [["1", "2", "3"], ["4", "5", nil], ["6", "7", nil]]
+
+</pre>
+</div>
+<p>블럭을 넘겼을 경우에는 yield를 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(1 2 3 4 5 6 7).in_groups(3) {|group| p group}
+["1", "2", "3"]
+["4", "5", nil]
+["6", "7", nil]
+
+</pre>
+</div>
+<p>이 예제에서는 <code>in_groups</code>는 일부 그룹들의 뒤에 필요에 따라서 <code>nil</code> 요소로 채우고 있습니다. 하나의 그룹에는 이러한 여분의 요소가 각 그룹의 마지막에 필요한 만큼 최대 하나가 추가될 수 있습니다. 그러한 값을 가지는 그룹은 항상 전체에서 마지막에 존재하게 됩니다.</p><p>공백을 채우는 값은 두번째 옵션 인수로 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(1 2 3 4 5 6 7).in_groups(3, "0")
+# =&gt; [["1", "2", "3"], ["4", "5", "0"], ["6", "7", "0"]]
+
+</pre>
+</div>
+<p>만약 <code>false</code>를 넘기면 요소의 갯수가 부족한 경우에도 채우지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%w(1 2 3 4 5 6 7).in_groups(3, false)
+# =&gt; [["1", "2", "3"], ["4", "5"], ["6", "7"]]
+
+</pre>
+</div>
+<p>따라서 <code>false</code>는 빈 공간을 채우는 값으로 사용할 수 없습니다.</p><div class="note"><p><code>active_support/core_ext/array/grouping.rb</code>에 정의되어 있습니다.</p></div><h5 id="split-value-nil"><a class="anchorlink" href="#split-value-nil">10.7.3 <code>split(value = nil)</code></a></h5><p><code>split</code> 메소드는 지정된 구분자로 배열을 나누고, 분할된 결과를 반환합니다.</p><p>블럭을 넘긴 경우에는 배열의 요소중 블록이 true를 돌려주는 요소가 구분자로 사용됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+(-5..5).to_a.split { |i| i.multiple_of?(4) }
+# =&gt; [[-5], [-3, -2, -1], [1, 2, 3], [5]]
+
+</pre>
+</div>
+<p>블록을 넘기지 않은 경우, 인수로 받은 값을 구분자로 사용합니다. 기본 구분자는 <code>nil</code>입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[0, 1, -5, 1, 1, "foo", "bar"].split(1)
+# =&gt; [[0], [-5], [], ["foo", "bar"]]
+
+</pre>
+</div>
+<div class="info"><p>이 예제에서 알 수 있듯, 구분자가 연속되면 빈 배열이 발생합니다.</p></div><div class="note"><p><code>active_support/core_ext/array/grouping.rb</code>에 정의되어 있습니다.</p></div><h3 id="hash-확장"><a class="anchorlink" href="#hash-%ED%99%95%EC%9E%A5">11 <code>Hash</code> 확장</a></h3><h4 id="hash-확장-conversions"><a class="anchorlink" href="#hash-%ED%99%95%EC%9E%A5-conversions">11.1 Conversions</a></h4><h5 id="conversions-to-xml"><a class="anchorlink" href="#conversions-to-xml">11.1.1 <code>to_xml</code></a></h5><p><code>to_xml</code> 메소드는 리시버를 XML 표현으로 변환한 결과를 문자열로 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{"foo" =&gt; 1, "bar" =&gt; 2}.to_xml
+# =&gt;
+# &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+# &lt;hash&gt;
+#   &lt;foo type="integer"&gt;1&lt;/foo&gt;
+#   &lt;bar type="integer"&gt;2&lt;/bar&gt;
+# &lt;/hash&gt;
+
+</pre>
+</div>
+<p>구체적으로는 이 메소드에 주어진 것들로부터 <em>값</em>에 대응하는 노드를 생성합니다. 키와 값을 사용해서 다음과 같은 동작을 수행합니다.</p>
+<ul>
+<li><p>값이 해시일 때 키를 <code>:root</code>로 하여 재귀적으로 호출됩니다.</p></li>
+<li><p>값이 배열일 때 키를 <code>:root</code>로 키를 단수형으로(singularize)만든 것을 <code>:children</code>에 지정해서 재귀적으로 호출됩니다.</p></li>
+<li><p>값이 호출 가능한(callable) 객체인 경우, 인수가 하나 또는 두 개 필요합니다. 인수의 갯수에 따라서(arity 메소드로 확인) 객체를 옵션 해시와 함께 호출합니다. 옵션 해시의 첫번째 인수에는 <code>:root</code>에 사용되는 값이며, 두번째 인수에는 키를 단수형으로 만든 값이 사용됩니다. 반환값은 새 노드가 됩니다.</p></li>
+<li><p><code>value</code>이 <code>to_xml</code> 메소드를 호출 가능한 경우 <code>:root</code>에 키를 사용합니다.</p></li>
+<li><p>그 이외의 경우 <code>key</code>를 태그로 사용해서 <code>value</code>를 문자열 형식으로 변환한 텍스트 노드가 생성됩니다. <code>value</code>가 <code>nil</code>인 경우, "nil" 속성이 "true"로 설정된 노드가 추가됩니다. <code>:skip_types</code> 옵션이 true가 아닌 경우(또는 <code>:skip_types</code> 옵션이 없는 경우) 아래와 같은 맵핑을 통해서 "type" 속성이 추가됩니다.</p></li>
+</ul>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+XML_TYPE_NAMES = {
+  "Symbol"     =&gt; "symbol",
+  "Integer"     =&gt; "integer",
+  "BigDecimal" =&gt; "decimal",
+  "Float"      =&gt; "float",
+  "TrueClass"  =&gt; "boolean",
+  "FalseClass" =&gt; "boolean",
+  "Date"       =&gt; "date",
+  "DateTime"   =&gt; "datetime",
+  "Time"       =&gt; "datetime"
+}
+
+</pre>
+</div>
+<p>기본으로 루트 노드는 "hash"가 됩니다만, <code>:root</code> 옵션을 통해 변경할 수 있습니다.</p><p>기본 XML 빌더는 <code>Builder::XmlMarkup</code>로부터 직접 생성된 인스턴스입니다. <code>:builder</code> 옵션으로 직접 구성한 빌더를 사용할 수 있으며, 이 메소드에서는 <code>:dasherize</code>와 그 동족들, 그리고 다른 옵션들도 사용할 수 있습니다. 이 옵션들은 자동으로 빌더에 넘겨집니다.</p><div class="note"><p><code>active_support/core_ext/hash/conversions.rb</code>에 정의되어 있습니다.</p></div><h4 id="병합"><a class="anchorlink" href="#%EB%B3%91%ED%95%A9">11.2 병합</a></h4><p>Ruby에는 2개의 해시를 병합하는 내장 메소드 <code>Hash#merge</code>가 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1, b: 1}.merge(a: 0, c: 2)
+# =&gt; {:a=&gt;0, :b=&gt;1, :c=&gt;2}
+
+</pre>
+</div>
+<p>Active Support에서는 이외에도 편리하게 해시를 병합할 수 있는 몇가지 방법을 제공합니다.</p><h5 id="reverse-mergeとreverse-merge-bang"><a class="anchorlink" href="#reverse-merge%E3%81%A8reverse-merge-bang">11.2.1 <code>reverse_merge</code>と<code>reverse_merge!</code></a></h5><p><code>merge</code>에서는 키가 충돌하는 경우, 인수로 받은 해시의 키가 우선됩니다. 다음과 같은 방법을 사용하는 것으로 기본값을 가지는 옵션 해시를 간단하게 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+options = {length: 30, omission: "..."}.merge(options)
+
+</pre>
+</div>
+<p>Active Support에서는 다른 방법을 사용하는 경우를 위해 <code>reverse_merge</code>도 정의하고 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+options = options.reverse_merge(length: 30, omission: "...")
+
+</pre>
+</div>
+<p>병합을 리시버에서 직접 수행하는 파괴적인 메소드 <code>reverse_merge!</code>도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+options.reverse_merge!(length: 30, omission: "...")
+
+</pre>
+</div>
+<div class="warning"><p><code>reverse_merge!</code>는 호출한 쪽의 해시값을 변경할 수 있다는 점을 주의해주세요. 그것이 의도된 동작이든 아니든, 조심해야 합니다.</p></div><div class="note"><p><code>active_support/core_ext/hash/reverse_merge.rb</code>에 정의되어 있습니다.</p></div><h5 id="reverse-update"><a class="anchorlink" href="#reverse-update">11.2.2 <code>reverse_update</code></a></h5><p><code>reverse_update</code> 메소드는 위에서 설명한 <code>reverse_merge!</code>의 별명입니다.</p><div class="warning"><p><code>reverse_update</code>에는 파괴적인 버전이 존재하지 않습니다.</p></div><div class="note"><p><code>active_support/core_ext/hash/reverse_merge.rb</code>에 정의되어 있습니다.</p></div><h5 id="deep-merge와-deep-merge-bang"><a class="anchorlink" href="#deep-merge%EC%99%80-deep-merge-bang">11.2.3 <code>deep_merge</code>와 <code>deep_merge!</code></a></h5><p>위의 예제에서 설명했듯이, 키가 리시버와 인수 양쪽에서 중복되어 있을 경우, 인수의 값이 우선됩니다.</p><p>Active Support 에서는 <code>Hash#deep_merge</code>가 정의되어 있습니다. <code>deep_merge</code>에서는 양쪽에 같은 키가 존재하고, 나아가 둘 다 해시를 값으로 가지고 있는 경우에, 그 하위의 해시를 <em>병합</em>한 것을 최종적인 값으로 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: {b: 1}}.deep_merge(a: {c: 2})
+# =&gt; {:a=&gt;{:b=&gt;1, :c=&gt;2}}
+
+</pre>
+</div>
+<p><code>deep_merge!</code> 메소드는 같은 동작을 파괴적으로 수행합니다.</p><div class="note"><p><code>active_support/core_ext/hash/deep_merge.rb</code>에 정의되어 있습니다.</p></div><h4 id="deep-duplicate"><a class="anchorlink" href="#deep-duplicate">11.3 Deep Duplicate</a></h4><p><code>Hash.deep_dup</code> 메소드는 자기 자신을 복사하고, 나아가 그 내부의 모든 키와 값을 재귀적으로 복사합니다. 복사를 할 때에는 Active Support의 <code>Object#deep_dup</code> 메소드를 사용합니다. 이 동작은 <code>Enumerator#each_with_object</code>를 사용하여 내부에 존재하는 모든 객체에 대해서 <code>deep_dup</code>를 보내는 것과 유사합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+hash = { a: 1, b: { c: 2, d: [3, 4] } }
+
+dup = hash.deep_dup
+dup[:b][:e] = 5
+dup[:b][:d] &lt;&lt; 5
+
+hash[:b][:e] == nil      # =&gt; true
+hash[:b][:d] == [3, 4]   # =&gt; true
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/object/deep_dup.rb</code>에 정의되어 있습니다.</p></div><h4 id="해시-키-조작하기"><a class="anchorlink" href="#%ED%95%B4%EC%8B%9C-%ED%82%A4-%EC%A1%B0%EC%9E%91%ED%95%98%EA%B8%B0">11.4 해시 키 조작하기</a></h4><h5 id="except와-except-bang"><a class="anchorlink" href="#except%EC%99%80-except-bang">11.4.1 <code>except</code>와 <code>except!</code></a></h5><p><code>except</code> 메소드는 인수로 지정된 키가 존재한다면 리시버의 해시에서 그 키를 제거합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1, b: 2}.except(:a) # =&gt; {:b=&gt;2}
+
+</pre>
+</div>
+<p>리시버에서 <code>convert_key</code>가 호출 가능한 경우, 그 메소드는 모든 인수에 대해서 호출 됩니다. 그 덕분에 <code>except</code> 메소드가 예를 들어 <em>with_indifferent_access</em>와도 잘 동작합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1}.with_indifferent_access.except(:a)  # =&gt; {}
+{a: 1}.with_indifferent_access.except("a") # =&gt; {}
+
+</pre>
+</div>
+<p>리시버로부터 키를 제거하는 파괴적인 <code>except!</code>도 있습니다</p><div class="note"><p><code>active_support/core_ext/hash/except.rb</code>에 정의되어 있습니다.</p></div><h5 id="transform-keys와-transform-keys-bang"><a class="anchorlink" href="#transform-keys%EC%99%80-transform-keys-bang">11.4.2 <code>transform_keys</code>와 <code>transform_keys!</code></a></h5><p><code>transform_keys</code> 메소드는 블럭을 하나 받고, 해시를 하나 반환합니다. 반환되는 해시는 리시버의 각각의 키에 대해서 블럭으로 넘겨진 작업을 적용한 결과를 포함합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{nil =&gt; nil, 1 =&gt; 1, a: :a}.transform_keys { |key| key.to_s.upcase }
+# =&gt; {"" =&gt; nil, "A" =&gt; :a, "1" =&gt; 1}
+
+</pre>
+</div>
+<p>키가 중복되는 경우에는 그중 하나의 값이 우선됩니다. 우선되는 값은 같은 해시가 주어진 경우라도 같은 결과를 준다고 보장하지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{"a" =&gt; 1, a: 2}.transform_keys { |key| key.to_s.upcase }
+# 어떻게 될지는 알 수 없음
+# =&gt; {"A"=&gt;2}
+# 또는
+# =&gt; {"A"=&gt;1}
+
+</pre>
+</div>
+<p>이 메소드는 특수한 변환을 하고 싶을 때에 편리합니다. 예를 들어 <code>stringify_keys</code>와 <code>symbolize_keys</code>에서는 키를 변환할 때에 <code>transform_keys</code>를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def stringify_keys
+  transform_keys { |key| key.to_s }
+end
+...
+def symbolize_keys
+  transform_keys { |key| key.to_sym rescue key }
+end
+
+</pre>
+</div>
+<p>리시버 자체의 키에 대해서 파괴적인 작업을 하는 <code>transform_keys!</code> 메소드도 있습니다.</p><p>또한 <code>deep_transform_keys</code>나 <code>deep_transform_keys!</code>를 사용해서 주어진 해시의 모든 키와 그 내부에 중첩되어있는 모든 해시에 대해서 블럭의 작업을 수행할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{nil =&gt; nil, 1 =&gt; 1, nested: {a: 3, 5 =&gt; 5}}.deep_transform_keys { |key| key.to_s.upcase }
+# =&gt; {""=&gt;nil, "1"=&gt;1, "NESTED"=&gt;{"A"=&gt;3, "5"=&gt;5}}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/keys.rb</code>에 정의되어 있습니다.</p></div><h5 id="stringify-keys와-stringify-keys-bang"><a class="anchorlink" href="#stringify-keys%EC%99%80-stringify-keys-bang">11.4.3 <code>stringify_keys</code>와 <code>stringify_keys!</code></a></h5><p><code>stringify_keys</code> 메소드는 리시버의 해시 키를 문자열로 변환한 해시를 돌려줍니다. 구체적으로는 리시버의 해시 키에 대해서 <code>to_s</code>를 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{nil =&gt; nil, 1 =&gt; 1, a: :a}.stringify_keys
+# =&gt; {"" =&gt; nil, "a" =&gt; :a, "1" =&gt; 1}
+
+</pre>
+</div>
+<p>키가 중복되는 경우, 한 쪽의 값이 우선됩니다. 우선되는 값은 같은 해시가 주어진 경우에도 항상 같다고 보장하지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{"a" =&gt; 1, a: 2}.stringify_keys
+# 어떤 값이 돌아올지 알 수 없음
+# =&gt; {"a"=&gt;2}
+# 또는
+# =&gt; {"a"=&gt;1}
+
+</pre>
+</div>
+<p>이 메소드는 심볼과 문자열이 모두 포함되어 있는 해시를 옵션으로 받을 때에 유용합니다. 예를 들어 <code>ActionView::Helpers::FormHelper</code>에는 아래와 같은 메소드가 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def to_check_box_tag(options = {}, checked_value = "1", unchecked_value = "0")
+  options = options.stringify_keys
+  options["type"] = "checkbox"
+  ...
+end
+
+</pre>
+</div>
+<p>stringify_keys 메소드 덕분에 두번째 줄에서 키 "type"를 안전하게 사용할 수 있습니다. 그러므로 메소드의 사용자는 <code>:type</code>과 같은 심볼과 "type"같은 문자열을 취향대로 사용할 수 있습니다.</p><p>리시버의 키를 직접 문자열로 바꾸는 <code>stringify_keys!</code>도 있습니다.</p><p>또한 <code>deep_stringify_keys</code>나 <code>deep_stringify_keys!</code>를 사용해서 주어진 해시의 모든 키를 모두 문자열로 변환하고, 그 내부에 중첩되어 있는 모든 해시의 키 역시 문자열로 변환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{nil =&gt; nil, 1 =&gt; 1, nested: {a: 3, 5 =&gt; 5}}.deep_stringify_keys
+# =&gt; {""=&gt;nil, "1"=&gt;1, "nested"=&gt;{"a"=&gt;3, "5"=&gt;5}}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/keys.rb</code>에 정의되어 있습니다.</p></div><h5 id="symbolize-keys와-symbolize-keys-bang"><a class="anchorlink" href="#symbolize-keys%EC%99%80-symbolize-keys-bang">11.4.4 <code>symbolize_keys</code>와 <code>symbolize_keys!</code></a></h5><p><code>symbolize_keys</code> 메소드는 리시버의 해시 키를 심볼로 변환하여 돌려줍니다. 구체적으로는 리시버의 해시 키에 대해서 <code>to_sym</code>를 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{nil =&gt; nil, 1 =&gt; 1, "a" =&gt; "a"}.symbolize_keys
+# =&gt; {1=&gt;1, nil=&gt;nil, :a=&gt;"a"}
+
+</pre>
+</div>
+<div class="warning"><p>이 예제에서는 3개의 키중 마지막 하나만 심볼로 변환되지 않았다는 점에 주목하세요. 숫자와 nil은 심볼로 변환할 수 없습니다.</p></div><p>키가 중복되는 경우, 한 쪽의 값이 우선됩니다. 우선되는 값은 같은 해시가 주어진 경우에도 항상 같다고 보장하지 않습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{"a" =&gt; 1, a: 2}.symbolize_keys
+# 어떤 값이 돌아올지 알 수 없음
+# =&gt; {:a=&gt;2}
+# 또는
+# =&gt; {:a=&gt;1}
+
+</pre>
+</div>
+<p>이 메소드는 심볼과 문자열이 모두 포함되어 있는 해시를 옵션으로 받을 때에 유용합니다. 예를 들어 <code>ActionController::UrlRewriter</code>에는 아래와 같은 메소드가 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def rewrite_path(options)
+  options = options.symbolize_keys
+  options.update(options[:params].symbolize_keys) if options[:params]
+  ...
+end
+
+</pre>
+</div>
+<p>symbolize_keys 메소드 덕분에 두번째 줄에서 <code>:params</code> 키에 안전하게 접근할 수 있습니다. 메소드를 사용하는 사람은 <code>:params</code>와 같은 심볼과 "params" 같은 문자열 중에서 취향껏 고를 수 있습니다.</p><p>리시버의 키를 직접 심볼로 변환하는 파괴적인 <code>symbolize_keys!</code>도 있습니다.</p><p>나아가 <code>deep_symbolize_keys</code>나 <code>deep_symbolize_keys!</code>를 사용해서 주어진 해시의 모든 키와 그 안에 중첩되어있는 모든 해시의 키를 심볼로 변환할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{nil =&gt; nil, 1 =&gt; 1, "nested" =&gt; {"a" =&gt; 3, 5 =&gt; 5}}.deep_symbolize_keys
+# =&gt; {nil=&gt;nil, 1=&gt;1, nested:{a:3, 5=&gt;5}}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/keys.rb</code>에 정의되어 있습니다.</p></div><h5 id="to-options와-to-options-bang"><a class="anchorlink" href="#to-options%EC%99%80-to-options-bang">11.4.5 <code>to_options</code>와 <code>to_options!</code></a></h5><p><code>to_options</code> 메소드와 <code>to_options!</code> 메소드는 각각 <code>symbolize_keys</code> 메소드와 <code>symbolize_keys!</code> 메소드의 별명입니다.</p><div class="note"><p><code>active_support/core_ext/hash/keys.rb</code>에 정의되어 있습니다.</p></div><h5 id="assert-valid-keys"><a class="anchorlink" href="#assert-valid-keys">11.4.6 <code>assert_valid_keys</code></a></h5><p><code>assert_valid_keys</code> 메소드는 임의의 갯수의 인수를 받을 수 있으며, 화이트리스트에 포함되어 있지 않은 키가 리시버에 존재하는지 테스트합니다. 그러한 키가 발견되었을 경우 <code>ArgumentError</code>를 발생시킵니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1}.assert_valid_keys(:a)  # 넘어간다
+{a: 1}.assert_valid_keys("a") # ArgumentError 발생
+
+</pre>
+</div>
+<p>Active Record는 예를 들어 Association을 만들 때 잘 모르는 옵션들을 받지 않습니다. 이는 <code>assert_valid_keys</code>를 사용하여 구현되고 있습니다.</p><div class="note"><p><code>active_support/core_ext/hash/keys.rb</code>에 정의되어 있습니다.</p></div><h4 id="값을-조작하기"><a class="anchorlink" href="#%EA%B0%92%EC%9D%84-%EC%A1%B0%EC%9E%91%ED%95%98%EA%B8%B0">11.5 값을 조작하기</a></h4><h5 id="transform-values와-transform-values-bang"><a class="anchorlink" href="#transform-values%EC%99%80-transform-values-bang">11.5.1 <code>transform_values</code>와 <code>transform_values!</code></a></h5><p><code>transform_values</code> 메소드는 블럭을 하나 받고 해시를 하나 반환합니다. 반환되는 해시에는 리시버의 각각의 값에 대해서 블럭의 작업을 수행한 결과가 포함됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{ nil =&gt; nil, 1 =&gt; 1, :x =&gt; :a }.transform_values { |value| value.to_s.upcase }
+# =&gt; {nil=&gt;"", 1=&gt;"1", :x=&gt;"A"}
+
+</pre>
+</div>
+<p>리시버 자체의 키에 대해서 파괴적으로 동작하는 <code>transform_values!</code> 메소드도 있습니다.</p><div class="note"><p><code>active_support/core_ext/hash/transform_values.rb</code>에 정의되어 있습니다.</p></div><h4 id="자르기"><a class="anchorlink" href="#%EC%9E%90%EB%A5%B4%EA%B8%B0">11.6 자르기</a></h4><p>Ruby에는 문자열이나 배열을 나누어 일부를 꺼내는 내장 메소드가 있습니다. Active Support는 이 동작을 해시에서도 동작하도록 확장합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1, b: 2, c: 3}.slice(:a, :c)
+# =&gt; {:c=&gt;3, :a=&gt;1}
+
+{a: 1, b: 2, c: 3}.slice(:b, :X)
+# =&gt; {:b=&gt;2} # 존재하지 않는 키는 무시
+
+</pre>
+</div>
+<p>리시버에서 <code>convert_key</code>가 호출 가능한 경우 키를 정규화합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1, b: 2}.with_indifferent_access.slice("a")
+# =&gt; {:a=&gt;1}
+
+</pre>
+</div>
+<div class="note"><p>나누는 작업은 키의 화이트리스트를 사용하여 옵션 해시를 깨끗하게 만들때 유용합니다.</p></div><p>파괴적인 나누기 작업을 하는 <code>slice!</code> 메소드도 있습니다. 이 메소드의 반환값은 삭제된 요소입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+hash = {a: 1, b: 2}
+rest = hash.slice!(:a) # =&gt; {:b=&gt;2}
+hash                   # =&gt; {:a=&gt;1}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/slice.rb</code>에 정의되어 있습니다.</p></div><h4 id="추출"><a class="anchorlink" href="#%EC%B6%94%EC%B6%9C">11.7 추출</a></h4><p><code>extract!</code> 메소드는 주어진 키와 일치하는 키/값 쌍을 추출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+hash = {a: 1, b: 2}
+rest = hash.extract!(:a) # =&gt; {:a=&gt;1}
+hash                     # =&gt; {:b=&gt;2}
+
+</pre>
+</div>
+<p><code>extract!</code> 메소드는 리시버의 해시의 자식 클래스와 동일한 클래스로 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+hash = {a: 1, b: 2}.with_indifferent_access
+rest = hash.extract!(:a).class
+# =&gt; ActiveSupport::HashWithIndifferentAccess
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/slice.rb</code>에 정의되어 있습니다.</p></div><h4 id="해시-키가-심볼이든-문자열이든-동일하기-다루기-indifferent-access"><a class="anchorlink" href="#%ED%95%B4%EC%8B%9C-%ED%82%A4%EA%B0%80-%EC%8B%AC%EB%B3%BC%EC%9D%B4%EB%93%A0-%EB%AC%B8%EC%9E%90%EC%97%B4%EC%9D%B4%EB%93%A0-%EB%8F%99%EC%9D%BC%ED%95%98%EA%B8%B0-%EB%8B%A4%EB%A3%A8%EA%B8%B0-indifferent-access">11.8 해시 키가 심볼이든 문자열이든 동일하기 다루기(indifferent access)</a></h4><p><code>with_indifferent_access</code> 메소드는 리시버에 대해서 <code>ActiveSupport::HashWithIndifferentAccess</code>를 실행한 결과를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1}.with_indifferent_access["a"] # =&gt; 1
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/indifferent_access.rb</code>에 정의되어 있습니다.</p></div><h4 id="compacting"><a class="anchorlink" href="#compacting">11.9 Compacting</a></h4><p><code>compact</code> 메소드와 <code>compact!</code> 메소드는 해시로부터 <code>nil</code> 값을 제거한 뒤 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{a: 1, b: 2, c: nil}.compact # =&gt; {a: 1, b: 2}
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/hash/compact.rb</code>에 정의되어 있습니다.</p></div><h3 id="regexp-확장"><a class="anchorlink" href="#regexp-%ED%99%95%EC%9E%A5">12 <code>Regexp</code> 확장</a></h3><h4 id="multiline-questionmark"><a class="anchorlink" href="#multiline-questionmark">12.1 <code>multiline?</code></a></h4><p><code>multiline?</code> 메소드는 정규표현에 <code>/m</code> 플래그가 설정되어 있는지를 확인합니다. 이 플래그가 설정되어 있으면 마침표(.)를 개행으로 인식하고, 여러줄을 처리할 수 있게 해줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+%r{.}.multiline? # =&gt; false
+%r{.}m.multiline? # =&gt; true
+
+Regexp.new('.').multiline?                    # =&gt; false
+Regexp.new('.', Regexp::MULTILINE).multiline? # =&gt; true
+
+</pre>
+</div>
+<p>Rails는 이 메소드를 라우팅에서 사용하고 있습니다. 라우팅에서는 정규표현에서 여러줄을 다루는 것을 용납하지 않기 때문에 이러한 플래그를 통해서 제한을 추가하고 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def assign_route_options(segments, defaults, requirements)
+  ...
+  if requirement.multiline?
+    raise ArgumentError, "Regexp multiline option not allowed in routing requirements: #{requirement.inspect}"
+  end
+  ...
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/regexp.rb</code>에 정의되어 있습니다.</p></div><h3 id="range-확장"><a class="anchorlink" href="#range-%ED%99%95%EC%9E%A5">13 <code>Range</code> 확장</a></h3><h4 id="range-확장-to-s"><a class="anchorlink" href="#range-%ED%99%95%EC%9E%A5-to-s">13.1 <code>to_s</code></a></h4><p>Active Support는 <code>Range#to_s</code> 메소드를 확장해서 포맷 인수를 옵션으로 받을 수 있습니다. 이 가이드를 작성하는 시점에서는 기본이 아닌 포맷으로서 지원되고 있는 것은 <code>:db</code> 뿐입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+(Date.today..Date.tomorrow).to_s
+# =&gt; "2009-10-25..2009-10-26"
+
+(Date.today..Date.tomorrow).to_s(:db)
+# =&gt; "BETWEEN '2009-10-25' AND '2009-10-26'"
+
+</pre>
+</div>
+<p>이 예제에서도 알 수 있듯이, 포맷에 <code>:db</code>를 지정하면 SQL의 <code>BETWEEN</code> 절이 생성됩니다. 이 포맷은 Active Record에서 조건의 값의 Range를 처리하기 위해서 사용됩니다.</p><div class="note"><p><code>active_support/core_ext/range/conversions.rb</code>에 정의되어 있습니다.</p></div><h4 id="include-questionmark"><a class="anchorlink" href="#include-questionmark">13.2 <code>include?</code></a></h4><p><code>Range#include?</code> 메소드와 <code>Range#===</code> 메소드는 주어진 인스턴스의 Range에 값이 포함되는 지를 확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+(2..3).include?(Math::E) # =&gt; true
+
+</pre>
+</div>
+<p>Active Support에서는 이러한 메소드를 확장하여 Range 객체를 인수로 받을 수 있게끔 만들었습니다. 이 경우 인수의 범위가 리시버의 범위에 포함되는 지를 확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+(1..10).include?(3..7)  # =&gt; true
+(1..10).include?(0..7)  # =&gt; false
+(1..10).include?(3..11) # =&gt; false
+(1...9).include?(3..9)  # =&gt; false
+
+(1..10) === (3..7)  # =&gt; true
+(1..10) === (0..7)  # =&gt; false
+(1..10) === (3..11) # =&gt; false
+(1...9) === (3..9)  # =&gt; false
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/range/include_range.rb</code>에 정의되어 있습니다.</p></div><h4 id="overlaps-questionmark"><a class="anchorlink" href="#overlaps-questionmark">13.3 <code>overlaps?</code></a></h4><p><code>Range#overlaps?</code> 메소드는 주어진 2개의 (비어있지 않은) 범위가 겹치는지를 확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+(1..10).overlaps?(7..11)  # =&gt; true
+(1..10).overlaps?(0..7)   # =&gt; true
+(1..10).overlaps?(11..27) # =&gt; false
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/range/overlaps.rb</code>에 정의되어 있습니다.</p></div><h3 id="date-확장"><a class="anchorlink" href="#date-%ED%99%95%EC%9E%A5">14 <code>Date</code> 확장</a></h3><h4 id="date-확장-계산"><a class="anchorlink" href="#date-%ED%99%95%EC%9E%A5-%EA%B3%84%EC%82%B0">14.1 계산</a></h4><div class="note"><p>다음 메소드들은 모두 같은 파일 <code>active_support/core_ext/date/calculations.rb</code>에 위치하고 있습니다.</p></div><div class="info"><p>다음 계산 방법들 중의 일부에서는 1582년 10월을 극단적인 예외로서
+사용하고 있습니다. 이 달에는 율리우스 력으로부터 그레고리 력으로 변경이
+이루어져서 10월 5일부터 10월 14일까지가 존재하지 않습니다. 이 가이드에서는
+이 특수한 달에 대해서 길게 이야기하지 않습니다만, 메소드가 이 달에서도
+기대대로 동작한다는 점을 설명해두고 싶습니다. 구체적인 예시로는
+<code>Date.new(1582, 10, 4).tomorrow</code>를 실행하면 <code>Date.new(1582, 10, 15)</code>가
+반환됩니다. 기대대로 동작한다는 것은 Active Support의
+<code>test/core_ext/date_ext_test.rb</code>용의 테스트 코드에서 확인하실 수 있습니다.</p></div><h5 id="date-current"><a class="anchorlink" href="#date-current">14.1.1 <code>Date.current</code></a></h5><p>Active Support에서는 <code>Date.current</code>를 정의하고 현재의 시간대에 맞는 '오늘'을
+돌려줍니다. 이 메소드는 <code>Date.today</code>와 유사합니다만, 사용자가 정의한 시간대에
+있는 경우에 그것을 고려한다는 점이 다릅니다. Active Support에서는
+<code>Date.yesterday</code> 메소드와 <code>Date.tomorrow</code>도 정의하고 있습니다. 인스턴스에서는
+<code>past?</code>, <code>today?</code>, <code>future?</code>, <code>on_weekday?</code>, <code>on_weekend?</code>를 사용할 수 있으며,
+이들은 모두 <code>Date.current</code>를 기준으로 계산됩니다.</p><p>사용자가 정의한 시간대를 사용하는 메소드를 통해 날짜를 비교하고 싶은 경우
+<code>Date.today</code> 대신 <code>Date.current</code>를 반드시 사용해주세요. 이후에 사용자가 정의한
+시간대와 시스템의 시간대를 비교해야하는 상황이 있을 수도 있습니다. 시스템의
+시간대에서는 <code>Date.today</code>가 사용됩니다. 다시 말해서 <code>Date.today</code>가
+<code>Date.yesterday</code>와 같은 상황도 존재할 수 있습니다.</p><h5 id="이름이-있는-날짜"><a class="anchorlink" href="#%EC%9D%B4%EB%A6%84%EC%9D%B4-%EC%9E%88%EB%8A%94-%EB%82%A0%EC%A7%9C">14.1.2 이름이 있는 날짜</a></h5><h6 id="prev-year-next-year"><a class="anchorlink" href="#prev-year-next-year">14.1.2.1 <code>prev_year</code>, <code>next_year</code></a></h6><p>Ruby 1.9의 <code>prev_year</code> 메소드와 <code>next_year</code> 메소드는 각각 작년과 올해를 동일한 일자와 월로 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 8) # =&gt; Sat, 08 May 2010
+d.prev_year              # =&gt; Fri, 08 May 2009
+d.next_year              # =&gt; Sun, 08 May 2011
+
+</pre>
+</div>
+<p>윤년의 2월 29일인 경우, 작년과 올해의 날짜는 모두 2월 28일로 변경됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2000, 2, 29) # =&gt; Tue, 29 Feb 2000
+d.prev_year               # =&gt; Sun, 28 Feb 1999
+d.next_year               # =&gt; Wed, 28 Feb 2001
+
+</pre>
+</div>
+<p><code>prev_year</code>는 <code>last_year</code>의 별명입니다.</p><h6 id="prev-month-next-month"><a class="anchorlink" href="#prev-month-next-month">14.1.2.2 <code>prev_month</code>, <code>next_month</code></a></h6><p>Ruby 1.9의 <code>prev_month</code> 메소드와 <code>next_month</code> 메소드는 각각 전월과 다음 달의 같은 일자를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 8) # =&gt; Sat, 08 May 2010
+d.prev_month             # =&gt; Thu, 08 Apr 2010
+d.next_month             # =&gt; Tue, 08 Jun 2010
+
+</pre>
+</div>
+<p>같은 일자가 존재하지 않는 경우, 그 달의 마지막 날짜를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2000, 5, 31).prev_month # =&gt; Sun, 30 Apr 2000
+Date.new(2000, 3, 31).prev_month # =&gt; Tue, 29 Feb 2000
+Date.new(2000, 5, 31).next_month # =&gt; Fri, 30 Jun 2000
+Date.new(2000, 1, 31).next_month # =&gt; Tue, 29 Feb 2000
+
+</pre>
+</div>
+<p><code>prev_month</code>는 <code>last_month</code>의 별명입니다.</p><h6 id="prev-quarter-next-quarter"><a class="anchorlink" href="#prev-quarter-next-quarter">14.1.2.3 <code>prev_quarter</code>, <code>next_quarter</code></a></h6><p><code>prev_month</code>와 <code>next_month</code>는 기본적으로 같은 방식으로 동작합니다. 전 분기, 또는 후 분기의 같은 일자를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+t = Time.local(2010, 5, 8) # =&gt; Sat, 08 May 2010
+t.prev_quarter             # =&gt; Mon, 08 Feb 2010
+t.next_quarter             # =&gt; Sun, 08 Aug 2010
+
+</pre>
+</div>
+<p>같은 일자가 존재하지 않는 경우, 그 경우에는 그 달의 마지막 일자를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Time.local(2000, 7, 31).prev_quarter  # =&gt; Sun, 30 Apr 2000
+Time.local(2000, 5, 31).prev_quarter  # =&gt; Tue, 29 Feb 2000
+Time.local(2000, 10, 31).prev_quarter # =&gt; Mon, 30 Oct 2000
+Time.local(2000, 11, 31).next_quarter # =&gt; Wed, 28 Feb 2001
+
+</pre>
+</div>
+<p><code>prev_quarter</code>는 <code>last_quarter</code>의 별명입니다.</p><h6 id="beginning-of-week-end-of-week"><a class="anchorlink" href="#beginning-of-week-end-of-week">14.1.2.4 <code>beginning_of_week</code>, <code>end_of_week</code></a></h6><p><code>beginning_of_week</code> 메소드와 <code>end_of_week</code> 메소드는 각각 해당 주간의 첫번째 날짜와 마지막 날짜를 반환합니다. 주의 시작은 기본적으로 월요일입니다만, 인수를 통해 변경할 수 있습니다. 그때에 스레드의 로컬에 <code>Date.beginning_of_week</code> 또는 <code>config.beginning_of_week</code>을 설정합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 8)     # =&gt; Sat, 08 May 2010
+d.beginning_of_week          # =&gt; Mon, 03 May 2010
+d.beginning_of_week(:sunday) # =&gt; Sun, 02 May 2010
+d.end_of_week                # =&gt; Sun, 09 May 2010
+d.end_of_week(:sunday)       # =&gt; Sat, 08 May 2010
+
+</pre>
+</div>
+<p><code>beginning_of_week</code>는 <code>at_beginning_of_week</code>의 별명, <code>end_of_week</code>는 <code>at_end_of_week</code>의 별명입니다.</p><h6 id="monday-sunday"><a class="anchorlink" href="#monday-sunday">14.1.2.5 <code>monday</code>, <code>sunday</code></a></h6><p><code>monday</code> 메소드와 <code>sunday</code> 메소드는 각각 직전의 월요일, 직후의 일요일을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 8)     # =&gt; Sat, 08 May 2010
+d.monday                     # =&gt; Mon, 03 May 2010
+d.sunday                     # =&gt; Sun, 09 May 2010
+
+d = Date.new(2012, 9, 10)    # =&gt; Mon, 10 Sep 2012
+d.monday                     # =&gt; Mon, 10 Sep 2012
+
+d = Date.new(2012, 9, 16)    # =&gt; Sun, 16 Sep 2012
+d.sunday                     # =&gt; Sun, 16 Sep 2012
+
+</pre>
+</div>
+<h6 id="prev-week-next-week"><a class="anchorlink" href="#prev-week-next-week">14.1.2.6 <code>prev_week</code>, <code>next_week</code></a></h6><p><code>next_week</code> 메소드는 영어표기(기본으로 스레드 로컬의 <code>Date.beginning_of_week</code> 또는 <code>config.beginning_of_week</code> 또는 <code>:monday</code>)의 날짜를 심볼로 받아서 거기에 대응하는 날짜를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 9) # =&gt; Sun, 09 May 2010
+d.next_week              # =&gt; Mon, 10 May 2010
+d.next_week(:saturday)   # =&gt; Sat, 15 May 2010
+
+</pre>
+</div>
+<p><code>prev_week</code>도 마찬가지입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d.prev_week              # =&gt; Mon, 26 Apr 2010
+d.prev_week(:saturday)   # =&gt; Sat, 01 May 2010
+d.prev_week(:friday)     # =&gt; Fri, 30 Apr 2010
+
+</pre>
+</div>
+<p><code>prev_week</code>는 <code>last_week</code>의 별명입니다.</p><p><code>Date.beginning_of_week</code> 또는 <code>config.beginning_of_week</code>가 설정되어 있다면, <code>next_week</code>와 <code>prev_week</code>는 어느쪽도 기대한대로 동작합니다.</p><h6 id="beginning-of-month-end-of-month"><a class="anchorlink" href="#beginning-of-month-end-of-month">14.1.2.7 <code>beginning_of_month</code>, <code>end_of_month</code></a></h6><p><code>beginning_of_month</code> 메소드와 <code>end_of_month</code> 메소드는 각각 해당하는 달의 첫번째 날짜와 마지막 날짜를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 9) # =&gt; Sun, 09 May 2010
+d.beginning_of_month     # =&gt; Sat, 01 May 2010
+d.end_of_month           # =&gt; Mon, 31 May 2010
+
+</pre>
+</div>
+<p><code>beginning_of_month</code>는 <code>at_beginning_of_month</code>의 별명, <code>end_of_month</code>는 <code>at_end_of_month</code>의 별명입니다.</p><h6 id="beginning-of-quarter-end-of-quarter"><a class="anchorlink" href="#beginning-of-quarter-end-of-quarter">14.1.2.8 <code>beginning_of_quarter</code>, <code>end_of_quarter</code></a></h6><p><code>beginning_of_quarter</code> 메소드와 <code>end_of_quarter</code> 메소드는 리시버의 달력의 연도를 기준으로 각 분기의 첫번째 날, 마지막 날을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 9) # =&gt; Sun, 09 May 2010
+d.beginning_of_quarter   # =&gt; Thu, 01 Apr 2010
+d.end_of_quarter         # =&gt; Wed, 30 Jun 2010
+
+</pre>
+</div>
+<p><code>beginning_of_quarter</code>는 <code>at_beginning_of_quarter</code>의 별명, <code>end_of_quarter</code>는 <code>at_end_of_quarter</code>의 별명입니다.</p><h6 id="beginning-of-year-end-of-year"><a class="anchorlink" href="#beginning-of-year-end-of-year">14.1.2.9 <code>beginning_of_year</code>, <code>end_of_year</code></a></h6><p><code>beginning_of_year</code> 메소드와 <code>end_of_year</code> 메소드는 해당 년도의 첫번째 날과 마지막 날을 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.new(2010, 5, 9) # =&gt; Sun, 09 May 2010
+d.beginning_of_year      # =&gt; Fri, 01 Jan 2010
+d.end_of_year            # =&gt; Fri, 31 Dec 2010
+
+</pre>
+</div>
+<p><code>beginning_of_year</code>는 <code>at_beginning_of_year</code>의 별명, <code>end_of_year</code>는 <code>at_end_of_year</code>의 별명입니다.</p><h5 id="그-이외의-날짜-계산-메소드"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%EB%82%A0%EC%A7%9C-%EA%B3%84%EC%82%B0-%EB%A9%94%EC%86%8C%EB%93%9C">14.1.3 그 이외의 날짜 계산 메소드</a></h5><h6 id="years-ago-years-since"><a class="anchorlink" href="#years-ago-years-since">14.1.3.1 <code>years_ago</code>, <code>years_since</code></a></h6><p><code>years_ago</code> 메소드는 년수를 받아 그 년만큼 이전의 같은 월, 일의 날짜를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.new(2010, 6, 7)
+date.years_ago(10) # =&gt; Wed, 07 Jun 2000
+
+</pre>
+</div>
+<p><code>years_since</code>도 마찬가지의 방법으로 그 만큼 이후의 동일한 날짜를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.new(2010, 6, 7)
+date.years_since(10) # =&gt; Sun, 07 Jun 2020
+
+</pre>
+</div>
+<p>같은 날짜가 존재하지 않는 경우에는 그 달의 마지막 날짜를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2012, 2, 29).years_ago(3)     # =&gt; Sat, 28 Feb 2009
+Date.new(2012, 2, 29).years_since(3)   # =&gt; Sat, 28 Feb 2015
+
+</pre>
+</div>
+<h6 id="months-ago-months-since"><a class="anchorlink" href="#months-ago-months-since">14.1.3.2 <code>months_ago</code>, <code>months_since</code></a></h6><p><code>months_ago</code> 메소드와 <code>months_since</code> 메소드는 위와 같은 방법을 달에 대해서 수행합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 4, 30).months_ago(2)   # =&gt; Sun, 28 Feb 2010
+Date.new(2010, 4, 30).months_since(2) # =&gt; Wed, 30 Jun 2010
+
+</pre>
+</div>
+<p>같은 날이 존재하지 않는 경우에는 그 달의 마지막 날짜를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 4, 30).months_ago(2)    # =&gt; Sun, 28 Feb 2010
+Date.new(2009, 12, 31).months_since(2) # =&gt; Sun, 28 Feb 2010
+
+</pre>
+</div>
+<h6 id="weeks-ago"><a class="anchorlink" href="#weeks-ago">14.1.3.3 <code>weeks_ago</code></a></h6><p><code>weeks_ago</code> 메소드는 위와 같은 방법을 주간에 대해서 적용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 5, 24).weeks_ago(1)    # =&gt; Mon, 17 May 2010
+Date.new(2010, 5, 24).weeks_ago(2)    # =&gt; Mon, 10 May 2010
+
+</pre>
+</div>
+<h6 id="그-이외의-날짜-계산-메소드-advance"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%EB%82%A0%EC%A7%9C-%EA%B3%84%EC%82%B0-%EB%A9%94%EC%86%8C%EB%93%9C-advance">14.1.3.4 <code>advance</code></a></h6><p>날짜를 계싼하는 가장 일반적인 방법은 <code>advance</code> 메소드를 사용하는 것입니다. 이 메소드는 <code>:years</code>, <code>:months</code>, <code>:weeks</code>, <code>:days</code>를 키로 가지는 해시를 받으며, 날짜를 가능한 상세한 형식으로, 현재의 키에서 요구하는대로 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.new(2010, 6, 6)
+date.advance(years: 1, weeks: 2)  # =&gt; Mon, 20 Jun 2011
+date.advance(months: 2, days: -2) # =&gt; Wed, 04 Aug 2010
+
+</pre>
+</div>
+<p>예제에서 볼 수 있듯, 값으로는 음수도 사용할 수 있습니다.</p><p>계산의 순서는 우선 연도를 계산하고, 다음에 월, 마지막으로 일을 계산합니다. 이 순서로 계산한다는 점은 특히 월을 계산할 때에 중요합니다. 예를 들어 현재가 2010년 2월 마지막 날로, 거기에서 1개월과 1일 뒤로 가고 싶다고 합시다.</p><p><code>advance</code> 메소드는 우선 한달을 더하고, 하루를 더합니다. 결과로 다음을 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 2, 28).advance(months: 1, days: 1)
+# =&gt; Sun, 29 Mar 2010
+
+</pre>
+</div>
+<p>계산의 순서가 다를 경우, 같은 결과를 얻을수 없을 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 2, 28).advance(days: 1).advance(months: 1)
+# =&gt; Thu, 01 Apr 2010
+
+</pre>
+</div>
+<h5 id="change"><a class="anchorlink" href="#change">14.1.4 change</a></h5><p><code>change</code> 메소드는 주어진 년, 월, 일에 대해서 리시버의 날짜를 변경하고, 주어지지 않은 부분을 그대로 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 12, 23).change(year: 2011, month: 11)
+# =&gt; Wed, 23 Nov 2011
+
+</pre>
+</div>
+<p>존재하지 않는 날짜를 지정하면 <code>ArgumentError</code>를 발생시킵니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(2010, 1, 31).change(month: 2)
+# =&gt; ArgumentError: invalid date
+
+</pre>
+</div>
+<h5 id="date-확장-계산-기간"><a class="anchorlink" href="#date-%ED%99%95%EC%9E%A5-%EA%B3%84%EC%82%B0-%EA%B8%B0%EA%B0%84">14.1.5 기간</a></h5><p>날짜에 대해서 기간을 계산할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = Date.current
+# =&gt; Mon, 09 Aug 2010
+d + 1.year
+# =&gt; Tue, 09 Aug 2011
+d - 3.hours
+# =&gt; Sun, 08 Aug 2010 21:00:00 UTC +00:00
+
+</pre>
+</div>
+<p>이러한 계산은 내부에서 <code>since</code> 메소드나 <code>advance</code> 메소드를 통해서 처리됩니다. 예를 들어, 달력이 변경되는 때에도 올바르게 계산됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Date.new(1582, 10, 4) + 1.day
+# =&gt; Fri, 15 Oct 1582
+
+</pre>
+</div>
+<h5 id="타임스탬프"><a class="anchorlink" href="#%ED%83%80%EC%9E%84%EC%8A%A4%ED%83%AC%ED%94%84">14.1.6 타임스탬프</a></h5><div class="info"><p>다음 메소드들은 가능하다면 <code>Time</code> 객체를 반환하고, 그 이외의 경우에는 <code>DateTime</code>을 반환합니다. 시간대를 설정해 놓으면 이를 반영합니다.</p></div><h6 id="beginning-of-day-end-of-day"><a class="anchorlink" href="#beginning-of-day-end-of-day">14.1.6.1 <code>beginning_of_day</code>, <code>end_of_day</code></a></h6><p><code>beginning_of_day</code> 메소드는 그 날의 시작 시점(00:00:00)의 타임스탬프를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.new(2010, 6, 7)
+date.beginning_of_day # =&gt; Mon Jun 07 00:00:00 +0200 2010
+
+</pre>
+</div>
+<p><code>end_of_day</code> 메소드는 그 날의 마지막 시각(23:59:59)의 타임스탬프를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.new(2010, 6, 7)
+date.end_of_day # =&gt; Mon Jun 07 23:59:59 +0200 2010
+
+</pre>
+</div>
+<p><code>beginning_of_day</code>는 <code>at_beginning_of_day</code>, <code>midnight</code>, <code>at_midnight</code>와 같습니다.</p><h6 id="beginning-of-hour-end-of-hour"><a class="anchorlink" href="#beginning-of-hour-end-of-hour">14.1.6.2 <code>beginning_of_hour</code>, <code>end_of_hour</code></a></h6><p><code>beginning_of_hour</code> 메소드는 그 시각의 시작 지점(hh:00:00)의 타임스탬프를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = DateTime.new(2010, 6, 7, 19, 55, 25)
+date.beginning_of_hour # =&gt; Mon Jun 07 19:00:00 +0200 2010
+
+</pre>
+</div>
+<p><code>end_of_hour</code> 메소드는 그 시각의 마지막 지점(hh:59:59)의 타임스탬프를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = DateTime.new(2010, 6, 7, 19, 55, 25)
+date.end_of_hour # =&gt; Mon Jun 07 19:59:59 +0200 2010
+
+</pre>
+</div>
+<p><code>beginning_of_hour</code>는 <code>at_beginning_of_hour</code>의 별명입니다.</p><h6 id="beginning-of-minute-end-of-minute"><a class="anchorlink" href="#beginning-of-minute-end-of-minute">14.1.6.3 <code>beginning_of_minute</code>, <code>end_of_minute</code></a></h6><p><code>beginning_of_minute</code>는 해당 분의 시작 지점(hh:mm:00)의 타임스탬프를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = DateTime.new(2010, 6, 7, 19, 55, 25)
+date.beginning_of_minute # =&gt; Mon Jun 07 19:55:00 +0200 2010
+
+</pre>
+</div>
+<p><code>end_of_minute</code>는 해당 분의 마지막 지점(hh:mm:59)의 타임스탬프를 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = DateTime.new(2010, 6, 7, 19, 55, 25)
+date.end_of_minute # =&gt; Mon Jun 07 19:55:59 +0200 2010
+
+</pre>
+</div>
+<p><code>beginning_of_minute</code>는 <code>at_beginning_of_minute</code>의 별명입니다.</p><div class="info"><p><code>beginning_of_hour</code>, <code>end_of_hour</code>, <code>beginning_of_minute</code>, <code>end_of_minute</code>는 <code>Time</code> 또는 <code>DateTime</code>를 위한 구현입니다. <code>Date</code> 인스턴스에서는 시간이나 분, 초를 물어본다는 것이 의미가 없기 때문입니다.</p></div><h6 id="ago-since"><a class="anchorlink" href="#ago-since">14.1.6.4 <code>ago</code>, <code>since</code></a></h6><p><code>ago</code> 메소드는 초를 인수로 받아, 0시를 기준으로 그 초만큼을 뺀 타임스탬프를 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.current # =&gt; Fri, 11 Jun 2010
+date.ago(1)         # =&gt; Thu, 10 Jun 2010 23:59:59 EDT -04:00
+
+</pre>
+</div>
+<p><code>since</code> 메소드는 마찬가지로 초를 받아 그만큼을 더합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+date = Date.current # =&gt; Fri, 11 Jun 2010
+date.since(1)       # =&gt; Fri, 11 Jun 2010 00:00:01 EDT -04:00
+
+</pre>
+</div>
+<h5 id="그-이외의-시간-계산"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%EC%8B%9C%EA%B0%84-%EA%B3%84%EC%82%B0">14.1.7 그 이외의 시간 계산</a></h5><h4 id="date-확장-conversions"><a class="anchorlink" href="#date-%ED%99%95%EC%9E%A5-conversions">14.2 Conversions</a></h4><h3 id="datetime-확장"><a class="anchorlink" href="#datetime-%ED%99%95%EC%9E%A5">15 <code>DateTime</code> 확장</a></h3><div class="warning"><p><code>DateTime</code>는 섬머타임(DST)에 대해서 모릅니다. DST에 의한 시간대 변경이 이루어 졌을 경우, 메소드의 일부는 생각한대로 동작하지 않을 수 있습니다. 예를 들어 <code>seconds_since_midnight</code> 메소드가 반환하는 초수가 실제의 값과 다를 수 있습니다.</p></div><h4 id="datetime-확장-계산"><a class="anchorlink" href="#datetime-%ED%99%95%EC%9E%A5-%EA%B3%84%EC%82%B0">15.1 계산</a></h4><div class="note"><p>이것들은 모두 <code>active_support/core_ext/date_time/calculations.rb</code>에 있습니다.</p></div><p><code>DateTime</code> 클래스는 <code>Date</code>의 자식클래스이며 <code>active_support/core_ext/date/calculations.rb</code>를 읽는 것으로 이러한 메소드를 별도로 상속할 수 있습니다. 단 이들이 항상 datetime을 반환하게 된다는 점을 주의하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+yesterday
+tomorrow
+beginning_of_week (at_beginning_of_week)
+end_of_week (at_end_of_week)
+monday
+sunday
+weeks_ago
+prev_week (last_week)
+next_week
+months_ago
+months_since
+beginning_of_month (at_beginning_of_month)
+end_of_month (at_end_of_month)
+prev_month (last_month)
+next_month
+beginning_of_quarter (at_beginning_of_quarter)
+end_of_quarter (at_end_of_quarter)
+beginning_of_year (at_beginning_of_year)
+end_of_year (at_end_of_year)
+years_ago
+years_since
+prev_year (last_year)
+next_year
+on_weekday?
+on_weekend?
+
+</pre>
+</div>
+<p>이하의 메소드는 모두 재정의되기 때문에 이들을 사용하기 위해서 <code>active_support/core_ext/date/calculations.rb</code>를 불러올 필요는 <strong>없습니다</strong>.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+beginning_of_day (midnight, at_midnight, at_beginning_of_day)
+end_of_day
+ago
+since (in)
+
+</pre>
+</div>
+<p>반면 <code>advance</code>와 <code>change</code>도 정의됩니다만, 좀 더 많은 옵션을 사용할 수 있게 됩니다. 이에 대해서는 나중에 다시 설명하겠습니다.</p><p>다음 메소드는 <code>active_support/core_ext/date_time/calculations.rb</code>에서만 구현되어 있습니다. 이들은 <code>DateTime</code> 인스턴스가 아니면 의미가 없기 때문입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+beginning_of_hour (at_beginning_of_hour)
+end_of_hour
+
+</pre>
+</div>
+<h5 id="이름을-가지는-datetime"><a class="anchorlink" href="#%EC%9D%B4%EB%A6%84%EC%9D%84-%EA%B0%80%EC%A7%80%EB%8A%94-datetime">15.1.1 이름을 가지는 Datetime</a></h5><h6 id="datetime-current"><a class="anchorlink" href="#datetime-current">15.1.1.1 <code>DateTime.current</code></a></h6><p>Active Support에서는 <code>DateTime.current</code>를 <code>Time.now.to_datetime</code>과 같은 방식으로 정의하고 있습니다. 단 <code>DateTime.current</code>는 사용자의 시간대가 정의되어 있을 경우를 처리해준다는 점이 다릅니다. Active Support에서는 <code>Date.yesterday</code>와 <code>Date.tomorrow</code>도 정의되어 있습니다. 인스턴스에서는 <code>past?</code>와 <code>future?</code>도 사용할 수 있습니다.</p><h5 id="그-이외의-확장"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%ED%99%95%EC%9E%A5">15.1.2 그 이외의 확장</a></h5><h6 id="seconds-since-midnight"><a class="anchorlink" href="#seconds-since-midnight">15.1.2.1 <code>seconds_since_midnight</code></a></h6><p><code>seconds_since_midnight</code> 메소드는 자정을 기준으로 몇초가 경과했는지를 알려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = DateTime.current     # =&gt; Mon, 07 Jun 2010 20:26:36 +0000
+now.seconds_since_midnight # =&gt; 73596
+
+</pre>
+</div>
+<h6 id="utc"><a class="anchorlink" href="#utc">15.1.2.2 <code>utc</code></a></h6><p><code>utc</code> 메소드는 리시버의 날짜를 UTC로 변환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = DateTime.current # =&gt; Mon, 07 Jun 2010 19:27:52 -0400
+now.utc                # =&gt; Mon, 07 Jun 2010 23:27:52 +0000
+
+</pre>
+</div>
+<p><code>getutc</code>는 이 메소드의 별명입니다.</p><h6 id="utc-questionmark"><a class="anchorlink" href="#utc-questionmark">15.1.2.3 <code>utc?</code></a></h6><p><code>utc?</code>는 리시버가 UTC시간을 가지고 있는지를 확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = DateTime.now # =&gt; Mon, 07 Jun 2010 19:30:47 -0400
+now.utc?          # =&gt; false
+now.utc.utc?      # =&gt; true
+
+</pre>
+</div>
+<h6 id="그-이외의-확장-advance"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%ED%99%95%EC%9E%A5-advance">15.1.2.4 <code>advance</code></a></h6><p>날자를 바꾸는 가장 일반적인 방법은 <code>advance</code> 메소드를 사용하는 것입니다. 이 메소드는 <code>:years</code>,<code>:months</code>, <code>:weeks</code>, <code>:days</code>, <code>:hours</code>, <code>:minutes</code> 그리고 <code>:seconds</code>를 키로 가지는 해시를 받아서 날짜를 가능한 자세한 형태로 옵션이 지정하는대로 변환하여 반환합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = DateTime.current
+# =&gt; Thu, 05 Aug 2010 11:33:31 +0000
+d.advance(years: 1, months: 1, days: 1, hours: 1, minutes: 1, seconds: 1)
+# =&gt; Tue, 06 Sep 2011 12:34:32 +0000
+
+</pre>
+</div>
+<p>이 메소드는 우선 위에서 설명되어 있는 <code>Date#advance</code>에 대응하는 년수(<code>:years</code>), 달수(<code>:months</code>), 주수(<code>:weeks</code>), 일수(<code>days</code>)로 변경할 날짜를 계산합니다. 이어서 그 날짜에 <code>since</code> 메소드를 사용해서 변경된 초를 보정합니다. 이 실행 순서에는 의미가 있습니다. 극단적인 상황으로 순서가 달라지면 계산 결과가 달라지는 경우가 있기 때문입니다. 이것은 위에서의 <code>Date#advance</code>에서 보여준 예제와 동일합니다. 상대적인 시간 계산에서도 계산 순서는 중요합니다.</p><p>만약 일자 부분을 먼저 계산하고 이어서 시간 부분을 계산하게 되면 아래와 같은 계산 결과를 얻을 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d = DateTime.new(2010, 2, 28, 23, 59, 59)
+# =&gt; Sun, 28 Feb 2010 23:59:59 +0000
+d.advance(months: 1, seconds: 1)
+# =&gt; Mon, 29 Mar 2010 00:00:00 +0000
+
+</pre>
+</div>
+<p>계산 순서를 바꾸어보면, 결과가 달라집니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+d.advance(seconds: 1).advance(months: 1)
+# =&gt; Thu, 01 Apr 2010 00:00:00 +0000
+
+</pre>
+</div>
+<div class="warning"><p><code>DateTime</code>는 섬머 타임(DST)을 고려하지 않습니다. 계산된 시간이 최종적으로 존재하지 않는 시간이 되더라도 경고나 에러는 발생하지 않습니다.</p></div><h5 id="요소-변경하기"><a class="anchorlink" href="#%EC%9A%94%EC%86%8C-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0">15.1.3 요소 변경하기</a></h5><p><code>change</code> 메소드를 사용해서 리시버의 날짜/시각의 일부를 변경하여 새로운 날짜를 만들 수 있습니다. 변경 가능한 요소는 <code>:year</code>, <code>:month</code>, <code>:day</code>, <code>:hour</code>, <code>:min</code>, <code>:sec</code>, <code>:offset</code>, <code>:start</code> 등으로 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = DateTime.current
+# =&gt; Tue, 08 Jun 2010 01:56:22 +0000
+now.change(year: 2011, offset: Rational(-6, 24))
+# =&gt; Wed, 08 Jun 2011 01:56:22 -0600
+
+</pre>
+</div>
+<p>시각(hour)이 0인 경우 분과 초가 지정되어 있지 않으면 함께 0이 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now.change(hour: 0)
+# =&gt; Tue, 08 Jun 2010 00:00:00 +0000
+
+</pre>
+</div>
+<p>마찬가지로 분이 0인 경우, 초가 지정되지 않으면 함께 0이 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now.change(min: 0)
+# =&gt; Tue, 08 Jun 2010 01:00:00 +0000
+
+</pre>
+</div>
+<p>존재하지 않는 날짜를 지정하면 <code>ArgumentError</code>가 발생합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+DateTime.current.change(month: 2, day: 30)
+# =&gt; ArgumentError: invalid date
+
+</pre>
+</div>
+<h5 id="datetime-확장-계산-기간"><a class="anchorlink" href="#datetime-%ED%99%95%EC%9E%A5-%EA%B3%84%EC%82%B0-%EA%B8%B0%EA%B0%84">15.1.4 기간</a></h5><p>날짜에 대해 기간을 계산할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = DateTime.current
+# =&gt; Mon, 09 Aug 2010 23:15:17 +0000
+now + 1.year
+# =&gt; Tue, 09 Aug 2011 23:15:17 +0000
+now - 1.week
+# =&gt; Mon, 02 Aug 2010 23:15:17 +0000
+
+</pre>
+</div>
+<p>이러한 계산은 내부적으로 <code>since</code> 메소드나 <code>advance</code> 메소드를 사용합니다. 그러므로 달력이 변경되는 시점에서도 올바르게 계산 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+DateTime.new(1582, 10, 4, 23) + 1.hour
+# =&gt; Fri, 15 Oct 1582 00:00:00 +0000
+
+</pre>
+</div>
+<h3 id="time-확장"><a class="anchorlink" href="#time-%ED%99%95%EC%9E%A5">16 <code>Time</code> 확장</a></h3><h4 id="계산"><a class="anchorlink" href="#%EA%B3%84%EC%82%B0">16.1 계산</a></h4><div class="note"><p>이들은 모두 <code>active_support/core_ext/time/calculations.rb</code>에 정의되어 있습니다.</p></div><p>Active Support는 <code>DateTime</code>에서 사용할 수 있는 메소드의 다수를 <code>Time</code>에 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+past?
+today?
+future?
+yesterday
+tomorrow
+seconds_since_midnight
+change
+advance
+ago
+since (in)
+beginning_of_day (midnight, at_midnight, at_beginning_of_day)
+end_of_day
+beginning_of_hour (at_beginning_of_hour)
+end_of_hour
+beginning_of_week (at_beginning_of_week)
+end_of_week (at_end_of_week)
+monday
+sunday
+weeks_ago
+prev_week (last_week)
+next_week
+months_ago
+months_since
+beginning_of_month (at_beginning_of_month)
+end_of_month (at_end_of_month)
+prev_month (last_month)
+next_month
+beginning_of_quarter (at_beginning_of_quarter)
+end_of_quarter (at_end_of_quarter)
+beginning_of_year (at_beginning_of_year)
+end_of_year (at_end_of_year)
+years_ago
+years_since
+prev_year (last_year)
+next_year
+on_weekday?
+on_weekend?
+
+</pre>
+</div>
+<p>이들은 동일하게 동작하며, 관련된 문서를 참조하시고, 다음과 같은 차이점에
+대해서도 기억해주세요.</p>
+<ul>
+<li>
+<code>change</code> 메소드에 추가로 <code>:usec</code> 옵션을 사용할 수 있습니다.</li>
+<li>
+<code>Time</code>은 섬머타임(DST)을 이해합니다. 아래와 같은 DST처리도 올바르게 됩니다.</li>
+</ul>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Time.zone_default
+# =&gt; #&lt;ActiveSupport::TimeZone:0x7f73654d4f38 @utc_offset=nil, @name="Madrid", ...&gt;
+
+# 바르셀로나에서는 DST에 의해서 2010/03/28 02:00 +0100이 2010/03/28 03:00 +0200가 됨
+t = Time.local(2010, 3, 28, 1, 59, 59)
+# =&gt; Sun Mar 28 01:59:59 +0100 2010
+t.advance(seconds: 1)
+# =&gt; Sun Mar 28 03:00:00 +0200 2010
+
+</pre>
+</div>
+
+<ul>
+<li>
+<code>since</code>나 <code>ago</code>로 계산 결과의 시간을 <code>Time</code>으로 표현할 수 없는 경우 <code>DateTime</code> 객체가 반환됩니다.</li>
+</ul>
+<h5 id="time-current"><a class="anchorlink" href="#time-current">16.1.1 <code>Time.current</code></a></h5><p>Active Support 에서는 <code>Time.current</code>를 정의해서 현재의 시간대에 맞는 '오늘'을 반환합니다. 이 메소드는 <code>Time.now</code>와도 비슷합니다만, 사용자의 시간대를 고려한다는 점이 다릅니다. Active Support에서는 <code>past?</code>, <code>today?</code>, <code>future?</code>라는 메소드가 정의되어 있으며, 이것들은 내부적으로 <code>Time.current</code>를 사용합니다.</p><p>사용자의 시간대를 고려하는 메소드를 사용해서 날짜를 비교하고 싶은 경우 <code>Time.now</code>가 아닌 <code>Time.current</code>를 반드시 사용해주세요. 이후 사용자 시간대와 시스템의 시간대를 비교해야 하는 경우가 존재할 수 있습니다. 시스템의 타임존에서는 기본으로 <code>Time#now</code>이 사용됩니다. 다시 말해, <code>Time.now</code>이 <code>Time.currentyesterday</code>와 같은 상황이 있을 수 있습니다.</p><h5 id="all-day-all-week-all-month-all-quarter-all-year"><a class="anchorlink" href="#all-day-all-week-all-month-all-quarter-all-year">16.1.2 <code>all_day</code>, <code>all_week</code>, <code>all_month</code>, <code>all_quarter</code>, <code>all_year</code></a></h5><p><code>all_day</code> 메소드는 현재 시각을 포함하는 하루를 Range 객체로 돌려줍니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = Time.current
+# =&gt; Mon, 09 Aug 2010 23:20:05 UTC +00:00
+now.all_day
+# =&gt; Mon, 09 Aug 2010 00:00:00 UTC +00:00..Mon, 09 Aug 2010 23:59:59 UTC +00:00
+
+</pre>
+</div>
+<p>마찬가지로 <code>all_week</code>, <code>all_month</code>, <code>all_quarter</code>, <code>all_year</code>도 기간의 Range 객체를 생성합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = Time.current
+# =&gt; Mon, 09 Aug 2010 23:20:05 UTC +00:00
+now.all_week
+# =&gt; Mon, 09 Aug 2010 00:00:00 UTC +00:00..Sun, 15 Aug 2010 23:59:59 UTC +00:00
+now.all_week(:sunday)
+# =&gt; Sun, 16 Sep 2012 00:00:00 UTC +00:00..Sat, 22 Sep 2012 23:59:59 UTC +00:00
+now.all_month
+# =&gt; Sat, 01 Aug 2010 00:00:00 UTC +00:00..Tue, 31 Aug 2010 23:59:59 UTC +00:00
+now.all_quarter
+# =&gt; Thu, 01 Jul 2010 00:00:00 UTC +00:00..Thu, 30 Sep 2010 23:59:59 UTC +00:00
+now.all_year
+# =&gt; Fri, 01 Jan 2010 00:00:00 UTC +00:00..Fri, 31 Dec 2010 23:59:59 UTC +00:00
+
+</pre>
+</div>
+<h4 id="time-생성자"><a class="anchorlink" href="#time-%EC%83%9D%EC%84%B1%EC%9E%90">16.2 Time 생성자</a></h4><p>사용자의 시간대가 정의되어 있는 경우, Active Support가 정의하는 <code>Time.current</code>의 값은 <code>Time.zone.now</code>와 동일합니다. 시간대가 정의되어 있지 않은 경우에는 <code>Time.now</code>와 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Time.zone_default
+# =&gt; #&lt;ActiveSupport::TimeZone:0x7f73654d4f38 @utc_offset=nil, @name="Madrid", ...&gt;
+Time.current
+# =&gt; Fri, 06 Aug 2010 17:11:58 CEST +02:00
+
+</pre>
+</div>
+<p><code>DateTime</code>와 마찬가지로 <code>past?</code>와 <code>future?</code>는 <code>Time.current</code>를 사용합니다.</p><p>구성된 시간이 실행 플랫폼의 <code>Time</code>에서 지원되는 범위를 넘어서는 경우에는 usec이 파기되고 <code>DateTime</code> 객체가 대신 반환됩니다.</p><h5 id="기간"><a class="anchorlink" href="#%EA%B8%B0%EA%B0%84">16.2.1 기간</a></h5><p>Time 객체에 대해서 기간으로 계산할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+now = Time.current
+# =&gt; Mon, 09 Aug 2010 23:20:05 UTC +00:00
+now + 1.year
+#  =&gt; Tue, 09 Aug 2011 23:21:11 UTC +00:00
+now - 1.week
+# =&gt; Mon, 02 Aug 2010 23:21:11 UTC +00:00
+
+</pre>
+</div>
+<p>이런 계산은 내부에서 <code>since</code> 메소드나 <code>advance</code> 메소드로 구현됩니다. 그러므로 달력 변경 시점에서도 올바르게 처리됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Time.utc(1582, 10, 3) + 5.days
+# =&gt; Mon Oct 18 00:00:00 UTC 1582
+
+</pre>
+</div>
+<h3 id="file-확장"><a class="anchorlink" href="#file-%ED%99%95%EC%9E%A5">17 <code>File</code> 확장</a></h3><h4 id="atomic-write"><a class="anchorlink" href="#atomic-write">17.1 <code>atomic_write</code></a></h4><p><code>File.atomic_write</code> 클래스 메소드를 사용하면, 작성중인 내용을 동시에 읽지 못하게 하며 파일에 저장할 수 있습니다.</p><p>이 메소드에 파일명을 인수로 넘기면, 쓰기용으로 생성된 파일 핸들이 생성됩니다. 블럭의 작업이 완료되면 <code>atomic_write</code>는 파일 핸들을 닫고 처리를 완료합니다.</p><p>Action Pack은 이 메소드를 사용해서 <code>all.css</code>등의 캐시파일 등을 처리합니다. </p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+File.atomic_write(joined_asset_path) do |cache|
+  cache.write(join_asset_file_contents(asset_paths))
+end
+
+</pre>
+</div>
+<p><code>atomic_write</code>는 코드를 실행하며 임시 파일을 생성합니다. 블럭 내의 코드가 실제로 쓰기를 수행하는 것은 이 파일입니다. 처리가 완려되면 이 임시 파일의 이름이 변경됩니다. 이름 변경은 POSIX 시스템의 아토믹 조작에 의해서 이루어집니다. 쓰기 파일이 이미 존재하는 경우 <code>atomic_write</code>는 그것을 덮어쓰고 소유자와 권한을 유지합니다. 단 <code>atomic_write</code> 메소드가 파일의 소유권과 권한을 변경할 수 없는 경우가 드물게 있습니다. 이런 에러는 무시되고 사용자의 파일 시스템을 신뢰하는 것으로 그 파일이 그것을 필요로 하는 프로세스로부터 접근할 수 있도록 합니다.</p><div class="note"><p><code>atomic_write</code>가 실행하는 chmod 조작이 원인으로, 쓰기 대상 파일이 ACL 셋을 가지고 있을 경우에 그 ACL이 재계산/변경됩니다.
+WARNING: <code>atomic_write</code>는 내용을 추가(append)할 수 없습니다.</p></div><p>임시 파일은 시스템 표준의 임시 파일용 폴더에 생성됩니다만, 두번째의 인수로 생성될 폴더를 지정할 수도 있습니다.</p><div class="note"><p><code>active_support/core_ext/file/atomic.rb</code>에 정의되어 있습니다.</p></div><h3 id="marshal-확장"><a class="anchorlink" href="#marshal-%ED%99%95%EC%9E%A5">18 <code>Marshal</code> 확장</a></h3><h4 id="load"><a class="anchorlink" href="#load">18.1 <code>load</code></a></h4><p>Active Support는 <code>load</code>에 자동 읽기 기능을 추가합니다.</p><p>예를 들어 파일 캐시 저장소에서는 아래와 같은 역직렬화(deserialize)를 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+File.open(file_name) { |f| Marshal.load(f) }
+
+</pre>
+</div>
+<p>캐시 데이터가 알수 없는 상수를 참조하고 있는 경우, 자동 읽기 기능이 호출됩니다. 읽기가 성공한 경우에는 역직렬화를 명백하게 재실행합니다.</p><div class="warning"><p>인수가 <code>IO</code>인 경우 재실행을 위해서 <code>rewind</code>에 응답해야할 필요가 있습니다. 일반적인 파일은 <code>rewind</code>을 호출할 수 있습니다.</p></div><div class="note"><p><code>active_support/core_ext/marshal.rb</code>에 정의되어 있습니다.</p></div><h3 id="nameerror-확장"><a class="anchorlink" href="#nameerror-%ED%99%95%EC%9E%A5">19 <code>NameError</code> 확장</a></h3><p>Active Support는 <code>NameError</code>에 <code>missing_name?</code> 메소드를 추가합니다. 이 메소드는 인수로 넘긴 이름 때문에 예외가 발생하는지를 테스트합니다.</p><p>넘긴 이름은 심볼 또는 문자열일 것입니다. 심볼을 넘긴 경우에는 단순히 상수명을 테스트하고, 문자열을 넘긴 경우에는 경로를 포함한 이름을 테스트합니다.</p><div class="info"><p>심볼은 <code>:"ActiveRecord::Base"</code>에서처럼 절대경로를 포하만 상수명으로 나타낼 수 있습니다. 심볼이 그렇게 동작하는 이유는 기술적인 이유가 아니라, 편의를 위해서 입니다.</p></div><p>예를 들어, <code>ArticlesController</code>의 액션이 호출되면 Rails는 그 이름으로부터 바로 추측할 수 있는 <code>ArticleHelper</code>를 사용하려고 합니다. 여기에서는 그 헬퍼 모듈이 존재하지 않아도 문제가 없기 때문에 그 상수명으로 예외가 발생하더라도 무시되어야 합니다. 하지만 실제로는 존재하지 않는 상수명 때문에 <code>articles_helper.rb</code>이 <code>NameError</code>를 발생시킬 수 있습니다. 그러한 경우에는 다시 예외를 던지지 않으면 안됩니다. <code>missing_name?</code> 메소드는 이러한 경우를 구분하기 위해서 사용됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def default_helper_module!
+  module_name = name.sub(/Controller$/, '')
+  module_path = module_name.underscore
+  helper module_path
+rescue LoadError =&gt; e
+  raise e unless e.is_missing? "helpers/#{module_path}_helper"
+rescue NameError =&gt; e
+  raise e unless e.missing_name? "#{module_name}Helper"
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/name_error.rb</code>에 정의되어 있습니다.</p></div><h3 id="loaderror-확장"><a class="anchorlink" href="#loaderror-%ED%99%95%EC%9E%A5">20 <code>LoadError</code> 확장</a></h3><p>Active Support는 <code>is_missing?</code>을 <code>LoadError</code>에 추가합니다.</p><p><code>is_missing?</code>은 경로명을 인수로 받아서, 특정 파일이 없어서 에러가 발생하는지를 테스트합니다(".rb" 확장자가 원인으로 보여지는 경우를 제외합니다).</p><p>예를 들어 <code>ArticlesController</code>의 액션이 호출되면 Rails는 <code>articles_helper.rb</code>를 읽으려고 시도합니다만, 이 파일이 존재하지 않는 경우가 있습니다. 헬퍼 모듈은 필수가 아니므로 Rails는 읽기 에러를 예외로 처리하지 않고 무시합니다. 그러나 헬퍼 모듈이 존재하지 않기 때문에 다른 라이브러리가 필요한 경우가 있는데, 그 라이브러리를 찾을 수 없는 경우도 존재합니다. Rails는 그런 경우에는 예외를 던지지 않을 수 없습니다. <code>is_missing?</code>은 이 두가지 경우를 구분하기 위해서 사용됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def default_helper_module!
+  module_name = name.sub(/Controller$/, '')
+  module_path = module_name.underscore
+  helper module_path
+rescue LoadError =&gt; e
+  raise e unless e.is_missing? "helpers/#{module_path}_helper"
+rescue NameError =&gt; e
+  raise e unless e.missing_name? "#{module_name}Helper"
+end
+
+</pre>
+</div>
+<div class="note"><p><code>active_support/core_ext/load_error.rb</code>에 정의되어 있습니다.</p></div><div class="info"><p>이 가이드는 <a href="http://railsguides.jp">Rails Guilde 일본어판</a>으로부터 번역되었습니다.</p></div>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:07 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

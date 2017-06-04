@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>레일스 캐시 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>레일스 캐시</h2><p>여기에서는 캐시를 도입하여 레일스 애플리케이션을 빠르게 만드는 방법을 소개합니다.</p><p>캐싱이란 요청과 응답 주기에서 생성된 내용을 저장해두고 다음에 같은 요청이 발생하였을 때 응답에서
+그 내용을 재활용하는 방법을 가리킵니다.</p><p>대부분의 경우 캐시는 애플리케이션의 성능을 효과적으로 높이는 데에 좋은 방법입니다. 캐시를 도입하면
+단일 서버, 단일 데이터베이스를 사용하는 웹사이트에서도 수천 명의 동시접속에도 견딜 수 있습니다.</p><p>레일스에서는 귀찮은 설정 없이도 곧바로 사용할 수 있는 캐싱 기능이 준비되어 있습니다. 이 가이드에서는
+각각의 기능의 목적과 범위에 관해서 설명합니다. 레일스의 캐시 기능을 사용하면 응답 속도의 저하나 값비싼
+서버 비용을 걱정하지 않고 레일스 애플리케이션으로 수백만 접속을 처리할 수 있게 됩니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>조각(Fragment) 캐싱과 러시아 인형 캐싱</li>
+<li>캐시의 의존성 관리</li>
+<li>캐시 저장소</li>
+<li>조건부 GET 지원</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li>
+<a href="#%EC%BA%90%EC%8B%B1-%EA%B8%B0%EB%B3%B8">캐싱 기본</a>
+
+<ul>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%BA%90%EC%8B%B1">페이지 캐싱</a></li>
+<li><a href="#%EC%95%A1%EC%85%98-%EC%BA%90%EC%8B%B1">액션 캐싱</a></li>
+<li><a href="#%EC%A1%B0%EA%B0%81-%EC%BA%90%EC%8B%B1">조각 캐싱</a></li>
+<li><a href="#%EB%9F%AC%EC%8B%9C%EC%95%84-%EC%9D%B8%ED%98%95-%EC%BA%90%EC%8B%B1">러시아 인형 캐싱</a></li>
+<li><a href="#%EC%9D%98%EC%A1%B4%EC%84%B1-%EA%B4%80%EB%A6%AC">의존성 관리</a></li>
+<li><a href="#%EC%A0%80%EB%A0%88%EB%B2%A8-%EC%BA%90%EC%8B%9C">저레벨 캐시</a></li>
+<li><a href="#sql-%EC%BA%90%EC%8B%B1">SQL 캐싱</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%BA%90%EC%8B%9C-%EC%A0%80%EC%9E%A5%EC%86%8C">캐시 저장소</a>
+
+<ul>
+<li><a href="#%EC%84%A4%EC%A0%95">설정</a></li>
+<li><a href="#activesupport-cache-store">ActiveSupport::Cache::Store</a></li>
+<li><a href="#activesupport-cache-memorystore">ActiveSupport::Cache::MemoryStore</a></li>
+<li><a href="#activesupport-cache-filestore">ActiveSupport::Cache::FileStore</a></li>
+<li><a href="#activesupport-cache-memcachestore">ActiveSupport::Cache::MemCacheStore</a></li>
+<li><a href="#activesupport-cache-nullstore">ActiveSupport::Cache::NullStore</a></li>
+</ul>
+</li>
+<li><a href="#%EC%BA%90%EC%8B%9C%EC%9D%98-%ED%82%A4">캐시의 키</a></li>
+<li>
+<a href="#%EC%A1%B0%EA%B1%B4%EB%B6%80-get-%EC%A7%80%EC%9B%90">조건부 GET 지원</a>
+
+<ul>
+<li><a href="#%EA%B0%95%ED%95%9C-etag%EC%99%80-%EC%95%BD%ED%95%9C-etag">강한 ETag와 약한 ETag</a></li>
+</ul>
+</li>
+<li><a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="캐싱-기본"><a class="anchorlink" href="#%EC%BA%90%EC%8B%B1-%EA%B8%B0%EB%B3%B8">1 캐싱 기본</a></h3><p>여기에서는 페이지 캐싱, 액션 캐싱, 조각 캐싱을 소개합니다. 레일스의 조각 캐싱은 프레임워크에
+포함되어 있으므로 곧장 사용할 수 있습니다.
+페이지 캐싱이나 액션 캐싱을 사용하려면 Gemfile에 <code>actionpack-page_caching</code> 잼이나
+<code>actionpack-action_caching</code> 잼을 추가해야 합니다.</p><p>캐시는 기본으로 Production 환경에서만 활성화됩니다. 다른 환경에서 캐시를 사용하고 싶은 경우에는
+그 환경에 맞는 <code>config/environments/*.rb</code>파일에 <code>config.action_controller.perform_caching</code>을
+<code>true</code>로 설정합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.action_controller.perform_caching = true
+
+</pre>
+</div>
+<div class="note"><p><code>config.action_controller.perform_caching</code> 값은 액션 컨트롤러의 컴포넌트에서 제공하는 캐시에만 적용됩니다. 다시 말해 뒤에서 설명할 <a href="#%EC%A0%80%EB%A0%88%EB%B2%A8-%EC%BA%90%EC%8B%9C">저레벨 캐시</a>에는 영향을 주지 않습니다.</p></div><h4 id="페이지-캐싱"><a class="anchorlink" href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%BA%90%EC%8B%B1">1.1 페이지 캐싱</a></h4><p>레일스의 페이지 캐싱은 Apache나 NGINX와 같은 웹 서버에서 생성되는 페이지 요청을 (레일스 스택 전체를
+거치지 않고) 캐싱하는 방식입니다. 페이지 캐싱은 무척 빠릅니다만, 항상 유용하다고는 말할 수 없습니다.
+예를 들어, 인증에서는 페이지 캐싱을 사용할 수 없습니다. 그리고 웹 서버는 파일 시스템에서 직접 파일을
+읽어오기 때문에 캐시의 유효기간을 설정할 필요가 있습니다.</p><div class="info"><p>페이지 캐싱은 레일스 4에서 프레임워크로부터 분리되어 잼으로 추출되었습니다. <a href="https://github.com/rails/actionpack-page_caching">actionpack-page_caching 잼</a>을 확인해주세요.</p></div><h4 id="액션-캐싱"><a class="anchorlink" href="#%EC%95%A1%EC%85%98-%EC%BA%90%EC%8B%B1">1.2 액션 캐싱</a></h4><p>페이지 캐싱은 before_filter를 사용하는 액션(인증을 필요로 하는 페이지 등)에는 사용할 수 없습니다.
+이럴 때에 액션 캐싱을 사용합니다. 액션 캐시의 동작은 페이지 캐시와 닮아있습니다만, 웹 서버의 요청이
+레일스 스택에 도착할 때마다, before_filter를 실행한 뒤에 캐시를 반환한다는 점이 다릅니다.
+이에 따라, 인증 등의 제한을 사용하면서 캐시의 장점을 살릴 수 있습니다.</p><div class="info"><p>액션 캐싱은 레일스 4에서 프레임워크로부터 분리되어 잼으로 추출되었습니다. <a href="https://github.com/rails/actionpack-action_caching">actionpack-action_caching 잼</a>을 확인해주세요. 권장되는 새 메소드에 대해서는 <a href="https://signalvnoise.com/posts/3113-how-key-based-cache-expiration-works">DHH의 키 기반 캐시의 만료는 어떻게 동작하는가?</a>를 읽어주세요.</p></div><h4 id="조각-캐싱"><a class="anchorlink" href="#%EC%A1%B0%EA%B0%81-%EC%BA%90%EC%8B%B1">1.3 조각 캐싱</a></h4><p>일반적으로 동적인 웹 애플리케이션에서의 페이지는 서로 다른 캐시 특성을 가지는 다양한 컴포넌트에 의해서
+구성됩니다. 페이지 내의 컴포넌트에 대해 캐싱이나 만료 기간을 개별로 설정하고 싶은 경우에 조각 캐싱을 사용합니다.</p><p>조각 캐싱에서는 뷰의 로직 부분을 캐싱 블록으로 감싸고, 다음 호출에서 그것을 캐시 저장소에서 가져와 전송합니다.</p><p>예를 들어, 페이지에서 표시할 제품을 각각 캐싱하고 싶은 경우 다음과 같이 작성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;% @products.each do |product| %&gt;
+  &lt;% cache product do %&gt;
+    &lt;%= render product %&gt;
+  &lt;% end %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p>애플리케이션이 처음 요청을 받을 때, 레일스는 유일한 식별자를 사용하여 새로운 캐시를 저장합니다.
+생성된 식별자는 다음과 같은 모양입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+views/products/1-201505056193031061005000/bea67108094918eeba42cd4a6e786901
+
+</pre>
+</div>
+<p>식별자 중간의 긴 문자열은 <code>product_id</code>와 product 레코드의 <code>updated_at</code> 속성의 타임스탬프입니다.
+타임스탬프는 오래된 데이터를 반환하지 않기 위해서 사용됩니다. <code>updated_at</code>이 갱신되면 새로운 식별자가
+생성되어 그 식별자로 새로운 캐시를 저장합니다. 이전의 식별자로 저장된 캐시는 더이상 사용하지 않게 됩니다.
+이 방법을 '키 기반 유효기간'이라고 부릅니다.</p><p>캐싱된 조각은 뷰의 조각이 변경된 경우(뷰의 HTML이 변경된 경우 등)에도 만료됩니다. 식별자 뒷부분의
+문자열은 '템플릿 트리 다이제스트'입니다. 이것은 캐싱된 뷰 조각의 내용으로부터 계산된 md5 해시값입니다.
+뷰 조각이 변경되면 md5 해시값도 변경되므로 기존의 캐시가 만료됩니다.</p><div class="info"><p>Memcached 등의 캐시 저장소에서는 오래된 캐시 파일을 자동으로 삭제합니다.</p></div><p>특정 조건을 만족할 때에만 조각을 캐싱하고 싶은 경우에는 <code>cache_if</code>나 <code>cache_unless</code>를 사용하세요.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;% cache_if admin?, product do %&gt;
+  &lt;%= render product %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<h5 id="컬렉션-캐싱"><a class="anchorlink" href="#%EC%BB%AC%EB%A0%89%EC%85%98-%EC%BA%90%EC%8B%B1">1.3.1 컬렉션 캐싱</a></h5><p><code>render</code> 헬퍼는 컬렉션의 개별 템플릿을 그릴 때도 캐싱을 사용할 수 있습니다.
+위의 예제에서 <code>each</code>를 사용한 코드에서 각각을 가져오는 대신 한 번에 모든 캐시
+템플릿을 가져올 수도 있습니다. 콜렉션을 랜더링 하는 경우에 <code>cached: true</code>를
+지정해주세요.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= render partial: 'products/product', collection: @products, cached: true %&gt;
+
+</pre>
+</div>
+<p>이 코드는 이전까지 사용되었던 모든 캐시 템플릿이 한 번에 가져오며, 극적으로
+속도가 향상됩니다. 나아가 지금까지 캐시되지 않았던 템플릿도 캐시에 추가되어
+다음 랜더링 시에 한 번에 읽어올 수 있게 됩니다.</p><h4 id="러시아-인형-캐싱"><a class="anchorlink" href="#%EB%9F%AC%EC%8B%9C%EC%95%84-%EC%9D%B8%ED%98%95-%EC%BA%90%EC%8B%B1">1.4 러시아 인형 캐싱</a></h4><p>조각 캐시의 내부에서 다시 캐싱하고 싶을 때가 있습니다. 이러한 방식으로 캐싱을 중첩하는 방법을
+마트료시카 인형의 이미지로부터 '러시아 인형 캐싱'이라고 부릅니다.</p><p>러시아 인형 캐싱을 사용하면, 내부의 조각에서 한 제품만 갱신된 경우에 내부의 다른 조각 캐시를 재활용하고,
+외부의 캐시만을 재생성할 수 있습니다.</p><p>앞에서 설명했듯, 캐싱된 파일은 그 파일이 직접 의존하고 있는 레코드의 <code>updated_at</code>의 값이 변경되면
+만료됩니다만 그 조각 내부에 중첩된 캐시는 만료되지 않습니다.</p><p>다음의 예시를 보시죠.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;% cache product do %&gt;
+  &lt;%= render product.games %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p>이 뷰를 랜더링하기 위해, 다음의 뷰를 랜더링합니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;% cache game do %&gt;
+  &lt;%= render game %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p>game의 속성이 변경되면, <code>updated_at</code>이 현재 시각으로 변경되어 캐시가 만료됩니다.
+하지만 product 객체의 <code>updated_at</code>은 변경되지 않으므로 product의 캐시도 만료되지 않아 오래된
+데이터를 반환합니다. 이를 피하고 싶은 경우에는 다음과 같이 <code>touch</code> 메소드로 모델을 연결하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Product &lt; ApplicationRecord
+  has_many :games
+end
+
+class Game &lt; ApplicationRecord
+  belongs_to :product, touch: true
+end 
+
+</pre>
+</div>
+<p><code>touch</code>를 <code>true</code>로 지정하면 game 레코드의 <code>updated_at</code>을 변경하는 동작이 실행되면,
+관계로 연결된 product의 <code>updated_at</code>도 함께 갱신되어 캐시가 만료됩니다.</p><h4 id="의존성-관리"><a class="anchorlink" href="#%EC%9D%98%EC%A1%B4%EC%84%B1-%EA%B4%80%EB%A6%AC">1.5 의존성 관리</a></h4><p>캐시를 올바르게 만료하려면 캐시의 의존성을 적절하게 정의할 필요가 있습니다.
+대부분의 경우, 레일스에서는 의존성이 잘 관리되므로 특별하게 해야 할 일은 없습니다. 그러나, 커스텀 헬퍼에서
+캐시를 다룰 때는 명시적으로 의존성을 정의해야 합니다.</p><h5 id="암묵적인-의존성"><a class="anchorlink" href="#%EC%95%94%EB%AC%B5%EC%A0%81%EC%9D%B8-%EC%9D%98%EC%A1%B4%EC%84%B1">1.5.1 암묵적인 의존성</a></h5><p>대부분의 경우, 템플릿의 의존성은 템플릿 자신이 호출하는 <code>render</code>에 의해서
+발생합니다. 다음 예제에서는 디코딩하는 방법을 다루는 <code>ActionView::Digestor</code>를
+사용하는 <code>render</code> 호출 예제입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+render partial: "comments/comment", collection: commentable.comments
+render "comments/comments"
+render "comments/comments"
+render("comments/comments")
+
+render "header" =&gt; render("comments/header")
+
+render(@topic)         =&gt; render("topics/topic")
+render(topics)         =&gt; render("topics/topic")
+render(message.topics) =&gt; render("topics/topic")
+
+</pre>
+</div>
+<p>한편 일부는 호출할 때에 캐시가 적절하게 동작하도록 변경해야 합니다.
+예를 들어, 커스텀 컬렉션을 넘기는 경우에는,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+render @project.documents.where(published: true)
+
+</pre>
+</div>
+<p>이 코드를 다음과 같이 변경합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+render partial: "documents/document", collection: @project.documents.where(published: true)
+
+</pre>
+</div>
+<h5 id="명시적인-의존성"><a class="anchorlink" href="#%EB%AA%85%EC%8B%9C%EC%A0%81%EC%9D%B8-%EC%9D%98%EC%A1%B4%EC%84%B1">1.5.2 명시적인 의존성</a></h5><p>템플릿에서 생각지 못한 의존성이 발생하는 경우가 있습니다. 보통 이런 경우는 핼퍼에서 랜더링할 때 발생합니다.
+다음은 예시입니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= render_sortable_todolists @project.todolists %&gt;
+
+</pre>
+</div>
+<p>이러한 호출은 다음과 같은 특별한 주석으로 명시적으로 의존성을 표시해야 합니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%# Template Dependency: todolists/todolist %&gt;
+&lt;%= render_sortable_todolists @project.todolists %&gt;
+
+</pre>
+</div>
+<p>단일 테이블 상속과 같은 특별한 상황에서는 이런 명시적인 의존성을 여러 개 포함할 수 있습니다.
+이럴 때 각각의 템플릿을 명시하는 대신, 폴더 내의 모든 템플릿을 와일드 카드로 지정할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%# Template Dependency: events/* %&gt;
+&lt;%= render_categorizable_events @person.events %&gt;
+
+</pre>
+</div>
+<p>컬렉션의 캐시에서 부분(파셜) 템플릿의 맨 위에서 깨끗한 캐시를 사용하지 않는 경우,
+다음의 특별한 주석 형식을 템플릿에 추가하여 컬렉션 캐시를 사용하도록 만들 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%# Template Collection: notification %&gt;
+&lt;% my_helper_that_calls_cache(some_arg, notification) do %&gt;
+  &lt;%= notification.name %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<h5 id="외부-의존성"><a class="anchorlink" href="#%EC%99%B8%EB%B6%80-%EC%9D%98%EC%A1%B4%EC%84%B1">1.5.3 외부 의존성</a></h5><p>예를 들어, 캐싱된 블록 내에서 헬퍼 메소드가 있다고 가정합시다. 이 헬퍼를 변경한 뒤에 캐시가 사용되지 않도록,
+템플릿 파일의 md5가 어떤 방식으로든 변경되게 만들 필요가 있습니다. 권장하는 방법중 하나는, 다음과 같이
+주석을 통해 명시적으로 변경하는 것입니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%# Helper Dependency Updated: Jul 28, 2015 at 7pm %&gt;
+&lt;%= some_helper_method(person) %&gt;
+
+</pre>
+</div>
+<h4 id="저레벨-캐시"><a class="anchorlink" href="#%EC%A0%80%EB%A0%88%EB%B2%A8-%EC%BA%90%EC%8B%9C">1.6 저레벨 캐시</a></h4><p>뷰의 조각을 캐싱하는 것이 아니라 특정 값이나 쿼리의 결과만을 캐싱하고 싶은
+경우가 있습니다. 레일스의 캐싱 기법으로는 <strong>어떤</strong> 정보라도 캐시에 저장할 수
+있습니다.</p><p>저레벨 캐시의 가장 효과적인 구현 방법은 <code>Rails.cache.fetch</code> 메소드를 사용하는
+것입니다. 이 메소드는 캐시 저장/읽기 모두에 대응합니다. 인수가 하나일 경우
+키를 사용해 캐시로부터 값을 반환합니다. 블록을 인수로 넘기면 블록의 실행 결과가
+주어진 키에 대해서 캐싱되며, 이를 반환합니다.</p><p>다음 예시를 보죠. 애플리케이션에 <code>Product</code> 모델이 있고, 여러 웹사이트의 제품
+가격을 검색하는 인스턴스 메소드가 구현되어 있다고 합시다. 저레벨 캐시를
+사용하는 경우 이 메소드로부터 완벽한 데이터를 반환할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Product &lt; ApplicationRecord
+  def competing_price
+    Rails.cache.fetch("#{cache_key}/competing_price", expires_in: 12.hours) do
+      Competitor::API.find_price(id)
+    end
+  end
+end
+
+</pre>
+</div>
+<div class="note"><p>이 예제에서는 <code>cache_key</code> 메소드를 사용하고 있으므로 캐시의 키는 <code>products/233-20140225082222765838000/competing_price</code>와 같은 모습이 됩니다. <code>cache_key</code>에서 생성된 문자열은 모델의 <code>id</code>와 <code>updated_at</code> 속성을 사용합니다. 이 생성 규칙은 일반적으로 사용되고 있으며, product가 갱신될 때마다 캐시를 만료시킬 수 있습니다. 일반적으로 인스턴스 레벨의 정보에 저레벨 캐시를 사용하는 경우, 캐시 키를 생성해야 합니다.</p></div><h4 id="sql-캐싱"><a class="anchorlink" href="#sql-%EC%BA%90%EC%8B%B1">1.7 SQL 캐싱</a></h4><p>레일스의 쿼리 캐싱은 각 쿼리에 따라 반환되는 결과를 캐싱하는 기능입니다. 요청에서 이전과 동일한 쿼리가
+생성되면, 데이터베이스에 쿼리를 전송하는 대신, 캐싱된 결과를 사용합니다.</p><p>다음은 예시입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ProductsController &lt; ApplicationController
+
+  def index
+    # 검색 쿼리를 실행
+    @products = Product.all
+
+    ... 
+
+    # 같은 쿼리를 재실행
+    @products = Product.all
+  end 
+
+end
+
+</pre>
+</div>
+<p>데이터베이스에 대해서 같은 쿼리를 2번 실행하는 경우, 실제로는 데이터베이스에 접근하지 않습니다. 첫 번째 쿼리에서 결과를 메모리상의 쿼리 캐시에 저장하고, 두 번째 쿼리에서는 메모리에서 결과를 가져옵니다.</p><p>단, 쿼리 캐싱은 액션을 시작할 때에 생성되며 액션이 종료되는 시점에 파기됩니다.
+따라서 캐시는 액션을 실행하는 동안에만 유지됩니다. 캐시를 장기간 유지하고 싶은 경우에는 저레벨 캐시를 사용하세요.</p><h3 id="캐시-저장소"><a class="anchorlink" href="#%EC%BA%90%EC%8B%9C-%EC%A0%80%EC%9E%A5%EC%86%8C">2 캐시 저장소</a></h3><p>레일스에서는 캐시 데이터를 저장하기 위한 장소를 몇 가지 준비하고 있습니다.
+SQL 캐싱이나 페이지 캐싱은 여기에 포함되지 않습니다.</p><h4 id="설정"><a class="anchorlink" href="#%EC%84%A4%EC%A0%95">2.1 설정</a></h4><p>애플리케이션의 기본 캐시 저장소는 <code>config.cache_store</code> 옵션으로 지정할 수 있습니다.
+캐시 저장소의 생성자에는 다른 인수도 넘길 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.cache_store = :memory_store, { size: 64.megabytes }
+
+</pre>
+</div>
+<div class="note"><p>또는 블록 외부에서 <code>ActionController::Base.cache_store</code>를 호출할 수도 있습니다.</p></div><p>캐시에 접근하려면 <code>Rails.cache</code>를 사용합니다.</p><h4 id="activesupport-cache-store"><a class="anchorlink" href="#activesupport-cache-store">2.2 ActiveSupport::Cache::Store</a></h4><p>이 클래스는 레일스의 캐시에 접근하기 위한 토대를 제공합니다. 추상 클래스이므로 직접 사용할 수는 없습니다.
+클래스를 사용하려면 저장소 엔진에 연결된 구체 클래스를 사용해야 합니다. 레일스에는 다음 구현이 포함되어 있습니다.</p><p>주요 메소드로는 <code>read</code>, <code>write</code>, <code>delete</code>, <code>exist?</code>, <code>fetch</code>가 있습니다.
+<code>fetch</code> 메소드는 블록을 하나 받으며, 캐시의 값이나 블록의 평가값을 반환합니다.
+기존의 값이 캐시에 없는 경우에는 결과를 캐시에 저장합니다.</p><p>몇몇 옵션에 대해서는 캐시의 모든 구현에서 공통으로 사용할 수 있습니다.
+이러한 옵션은 생성자에 넘기거나, 엔트리에 접근하는 다양한 메소드에 넘길 수 있습니다.</p>
+<ul>
+<li><p><code>:namespace</code> - 캐시 저장소에 이름 공간을 만듭니다. 다른 애플리케이션과 같은 저장소를 사용하는 경우에 유용합니다.</p></li>
+<li><p><code>:compress</code> - 캐시 내에서 압축을 활성화합니다. 저속 네트워크에서 거대한 캐시 엔트리를 전송하는 경우에 도움이 됩니다.</p></li>
+<li><p><code>:compress_threshold</code> - <code>:compress</code> 옵션과 함께 사용합니다. 캐시의 사이즈가 지정된 크기보다 작은 경우 압축하지 않습니다. 기본값은 16KB입니다.</p></li>
+<li><p><code>:expires_in</code> - 설정된 초를 지나면 캐시를 자동으로 삭제합니다.</p></li>
+<li><p><code>:race_condition_ttl</code> - <code>:expires_in</code> 옵션과 함께 사용합니다. 멀티 프로세스에 의해 같은 엔트리가 동시에 재생성되는 경합 상태(dog pile 효과라고도 불립니다)를 방지하기 위함입니다. 이 옵션에서는 새로운 값의 재생성이 완료되지 않은 상태에서 만료된 엔트리를 재사용해도 괜찮은 시간을 초로 지정합니다. <code>:expires_in</code> 옵션을 사용하는 경우에는 이 옵션도 값을 설정하는 것을 권장합니다.</p></li>
+</ul>
+<h5 id="커스텀-캐시-저장소"><a class="anchorlink" href="#%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%BA%90%EC%8B%9C-%EC%A0%80%EC%9E%A5%EC%86%8C">2.2.1 커스텀 캐시 저장소</a></h5><p>캐시 저장소를 만들려면 <code>ActiveSupport::Cache::Store</code>를 확장하여 필요한 메소드를 구현합니다.
+이를 통해서 레일스 애플리케이션에서 다양한 캐싱 기능을 원하는 방식으로 사용할 수 있습니다.</p><p>직접 만든 캐시 저장소를 사용하려면, 클래스의 새로운 인스턴스를 새 캐시 저장소로 지정합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.cache_store = MyCacheStore.new
+
+</pre>
+</div>
+<h4 id="activesupport-cache-memorystore"><a class="anchorlink" href="#activesupport-cache-memorystore">2.3 ActiveSupport::Cache::MemoryStore</a></h4><p>이 캐시 저장소는 같은 루비 프로세스 내의 메모리에 저장됩니다. 캐시 저장소의 크기를 제한하려면
+initializer에 <code>:size</code> 옵션을 지정합니다(기본값은 32MB). 캐시가 이 크기를 초과하면 정리가
+시작되며, 가장 오래된 엔트리부터 순서대로 삭제됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.cache_store = :memory_store, { size: 64.megabytes }
+
+</pre>
+</div>
+<p>레일스 서버 프로세스를 복수 실행한다면(mongrel_cluster나 Phusion Passenger를
+사용하는 경우), 캐시 데이터는 프로세스 간에 공유되지 않습니다. 이 캐시 저장소는
+대규모로 배포되는 애플리케이션에는 적당하지 않습니다. 단, 작은 규모의 트래픽이
+적은 사이트에서 서버 프로세스를 몇 개 정도만 사용한다면 문제 없이 동작합니다.
+물론 개발 환경이나 테스트 환경에서도 동작합니다.</p><h4 id="activesupport-cache-filestore"><a class="anchorlink" href="#activesupport-cache-filestore">2.4 ActiveSupport::Cache::FileStore</a></h4><p>이 캐시 저장소는 엔트리를 파일 시스템에 저장합니다. 파일 저장 장소의 경로는 캐시를 초기화할 때에 지정해야 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.cache_store = :file_store, "/path/to/cache/directory"
+
+</pre>
+</div>
+<p>여기에서는 복수의 서버 프로세스 간에 캐시를 공유할 수 있습니다. 트래픽이 중간 규모인 사이트를 1, 2개
+정도를 서비스하는 경우에 유용합니다. 서로 다른 호스트에서 실행하는 서버 프로세스 간에 파일 시스템을
+사용하는 캐시를 공유하는 것은 가능합니다만 권장하지 않습니다.</p><p>디스크 용량이 가득 찰 정도로 캐시가 증가하는 경우에는 오래된 캐시부터 정기적으로 삭제하는 것을 권장합니다.</p><p>더불어 기본으로 포함되는 캐시 저장소 구현입니다.</p><h4 id="activesupport-cache-memcachestore"><a class="anchorlink" href="#activesupport-cache-memcachestore">2.5 ActiveSupport::Cache::MemCacheStore</a></h4><p>이 캐시 저장소에서는 Danga의 <code>memcached</code> 서버에 애플리케이션 캐시를 일괄적으로 저장합니다.
+레일스에서는 프레임워크에 포함된 <code>dalli</code> 잼을 사용합니다. 현시점에서 가장 폭넓게 사용되고 있는
+캐시 저장소입니다. 이는 공유 가능한 단일 고성능 캐시 클러스터를 안정적으로 제공합니다.</p><p>캐시를 초기화할 때에 클러스터 내부의 모든 memcached 서버 주소를 지정해야합니다.
+지정하지 않는 경우, memcached는 로컬의 기본 포트에서 동작하고 있을 거라고 가정합니다만,
+이는 대규모 사이트에는 적당하지 않습니다.</p><p>이 캐시의 <code>write</code> 메소드나 <code>fetch</code> 메소드에서는 memcached 고유의 기능을 이용하는 두 가지 옵션을
+지정할 수 있습니다. 직렬화를 사용하지 않고 직접 서버에 전송하는 <code>:raw</code>를 사용할 수 있습니다. 값은
+문자열이나 숫자만을 사용할 수 있습니다. 이 형식일 경우, memcached에서 제공하는 <code>increment</code>나
+<code>decrement</code>와 같은 조작을 사용할 수 있습니다. memcached에서 기존의 캐시를 덮어쓰는 것을 허용하지
+않으려면 <code>:unless_exist</code>를 사용하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.cache_store = :mem_cache_store, "cache-1.example.com", "cache-2.example.com"
+
+</pre>
+</div>
+<h4 id="activesupport-cache-nullstore"><a class="anchorlink" href="#activesupport-cache-nullstore">2.6 ActiveSupport::Cache::NullStore</a></h4><p>이 캐시 저장소 구현은 개발 환경이나 테스트 환경에서만 사용되며, 실제로는 캐시를 전혀 저장하지 않습니다.
+이는 예를 들어 <code>Rails.cache</code>에 직접 접근하는 코드의 효과가 캐시 때문에 확인하기 어려운 경우에
+편리합니다. 이 캐시 저장소를 사용하면 <code>fetch</code>나 <code>read</code>가 항상 캐시를 찾지 못하게 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.cache_store = :null_store
+
+</pre>
+</div>
+<h3 id="캐시의-키"><a class="anchorlink" href="#%EC%BA%90%EC%8B%9C%EC%9D%98-%ED%82%A4">3 캐시의 키</a></h3><p>캐시의 키는 <code>cache_key</code>나 <code>to_param</code> 중 하나에 대응하는 객체입니다. 커스텀 키를 생성하고 싶다면
+<code>cache_key</code> 메소드를 구현해주세요. 액티브 레코드에서는 클래스 이름과 레코드 ID를 사용하여 키를 생성합니다.</p><p>캐시의 키로서 값의 해시나, 값의 배열을 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 정상적인 캐시 키
+Rails.cache.read(site: "mysite", owners: [owner_1, owner_2])
+
+</pre>
+</div>
+<p><code>Rails.cache</code>의 키는 저장소 엔진에서 실제로 사용되는 키와 다릅니다. 실제 키는 이름 공간에 의해서
+수식되거나, 백엔드의 기술적인 제약에 맞추어 변경될 가능성이 있습니다. 다시 말해, <code>Rails.cache</code>에
+값을 저장하고 <code>dalli</code> 잼으로 값을 꺼낼 수는 없습니다. 그 대신에 memcached의 크기 제한이나,
+구문 규칙 위반에 대해서는 걱정할 필요가 없습니다.</p><h3 id="조건부-get-지원"><a class="anchorlink" href="#%EC%A1%B0%EA%B1%B4%EB%B6%80-get-%EC%A7%80%EC%9B%90">4 조건부 GET 지원</a></h3><p>조건부 GET은 HTTP 사양에 규정된 기능입니다. GET 요청에 돌려주어야 할 응답이 이전 요청으로부터 전혀
+변경되지 않은 경우에는 웹 서버에서 브라우저에게 브라우저 내부의 캐시를 사용해도 좋다고 알려줍니다.</p><p>이 기능에서는 <code>HTTP_IF_NONE_MATCH</code> 헤더와 <code>HTTP_IF_MODIFIED_SINCE</code> 헤더를 사용하여,
+유일한 콘텐츠 ID나 마지막으로 변경된 시간 정보를 주고받습니다. 콘텐츠 ID(etag)나 마지막으로 변경된
+시간이 서버가 관리하는 버전과 일치하는 경우, 서버로부터 '변경 없음'이라는 정보를 포함하는
+빈 응답을 돌려줍니다.</p><p>마지막으로 변경된 시간이나 if-none-match 헤더의 유무를 확인하고, 완전한 응답을 돌려줄 필요가 있는지
+없는지를 결정하는 것은 서버 측(다시 말해, 개발자)의 책임입니다. 레일스에서는 다음과 같이 조건부 GET을
+간단하게 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ProductsController &lt; ApplicationController
+
+  def show
+    @product = Product.find(params[:id])
+
+    # 어떤 타임스탬프나 etag에 의해서 요청이 오래되었다는 것을 알게 된 경우
+    # (i.e. 재처리가 필요한 경우) 이 블록을 실행
+    if stale?(last_modified: @product.updated_at.utc, etag: @product.cache_key)
+      respond_to do |wants|
+        # ...일반적인 응답 처리
+      end
+    end
+
+    # 요청이 새로운(저번 요청과 동일) 경우 처리를 할 필요가 없음.
+    # 기본 랜더링은 이전 번의 `stale?` 호출 결과에 기반해 처리가 필요한지 아닌지를 판단하여
+    # :not_modified를 전송.
+  end
+end
+
+</pre>
+</div>
+<p>옵션 해시 대신에 모델을 넘길 수도 있습니다. 레일스는 <code>last_modified</code>와 <code>etag</code>를 설정하기 위해,
+<code>updated_at</code>와 <code>cache_key</code> 메소드를 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ProductsController &lt; ApplicationController
+  def show
+    @product = Product.find(params[:id])
+
+    if stale?(@product)
+      respond_to do |wants|
+        # ...일반적인 응답 처리
+      end
+    end
+  end
+end
+
+</pre>
+</div>
+<p>특수한 응답 처리를 하지 않고 기본의 랜더링 방식을 사용하는 경우(i.e. <code>respond_to</code>를 사용하지 않거나,
+직접 <code>render</code>를 호출하지 않을 때), <code>fresh_when</code> 헬퍼로 간단하게 처리할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ProductsController &lt; ApplicationController
+
+  # 요청에 변경이 없다면 자동으로 :not_modified를 반환
+  # 만료된 경우에는 기본 템플릿(product.*)을 반환.
+
+  def show
+    @product = Product.find(params[:id])
+    fresh_when last_modified: @product.published_at.utc, etag: @product
+  end
+end
+
+</pre>
+</div>
+<h4 id="강한-etag와-약한-etag"><a class="anchorlink" href="#%EA%B0%95%ED%95%9C-etag%EC%99%80-%EC%95%BD%ED%95%9C-etag">4.1 강한 ETag와 약한 ETag</a></h4><p>레일스에서는 기본으로 약한 ETag를 사용합니다. 약한 ETag에서는 응답의 본문이
+미묘하게 다른 경우에도 같은 ETag를 부여하므로, 사실상 같은 응답인 것처럼
+다룹니다. 응답 본문의 극히 일부가 변경된 경우, 페이지의 재생성을 피하고 싶은
+경우에 편리합니다.</p><p>약한 Etag에는 <code>W/</code>가 앞에 추가되며, 이를 통해 강한 ETag와 구별할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+  W/"618bbc92e2d35ea1945008b42799b0e7" → 약한 ETag
+  "618bbc92e2d35ea1945008b42799b0e7" → 강한 ETag
+
+</pre>
+</div>
+<p>강한 ETag는 약한 ETag와는 다르게 바이트 레벨에서 응답이 완전히 일치할 것을
+요구합니다. 큰 영상이나 PDF 파일 내부에서 Range 요청을 하는 경우에 편리합니다.
+Akamai 등 일부 CDN에서는 강한 ETag만을 지원하고 있습니다. 강한 ETag가 필요한
+경우에는 다음과 같이 설정해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+  class ProductsController &lt; ApplicationController
+    def show
+      @product = Product.find(params[:id])
+      fresh_when last_modified: @product.published_at.utc, strong_etag: @product
+    end
+  end
+
+</pre>
+</div>
+<p>다음과 같이 응답에 강한 ETag를 직접 설정할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+  response.strong_etag = response.body # =&gt; "618bbc92e2d35ea1945008b42799b0e7"
+
+</pre>
+</div>
+<h3 id="참고자료"><a class="anchorlink" href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">5 참고자료</a></h3>
+<ul>
+<li><a href="https://signalvnoise.com/posts/3113-how-key-based-cache-expiration-works">DHH: 키 기반 캐시의 만료는 어떻게 동작하는가?</a></li>
+<li><a href="http://railscasts.com/episodes/387-cache-digests">Ryan Bates Railscast: 캐시 다이제스트</a></li>
+</ul>
+
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:19 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

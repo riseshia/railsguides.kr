@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Rails에서 JavaScript 사용하기 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Rails에서 JavaScript 사용하기</h2><p>이 가이드에서는 Rails에 내장되어 있는 Ajax/JavaScript 기능 등에 대해서 설명합니다. 이들을 활용하여 멋진 Ajax 애플리케이션을 간단하게 만들 수 있습니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>Ajax 기초</li>
+<li>겸손한 JavaScript</li>
+<li>Rails의 내장 헬퍼 사용하기</li>
+<li>서버측에서 Ajax를 다루기</li>
+<li>Turbolinks</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#ajax-%EC%86%8C%EA%B0%9C">Ajax 소개</a></li>
+<li><a href="#%EA%B2%B8%EC%86%90%ED%95%9C-unobtrusive-javascript">겸손한(Unobtrusive) JavaScript</a></li>
+<li>
+<a href="#%EB%82%B4%EC%9E%A5-%ED%97%AC%ED%8D%BC">내장 헬퍼</a>
+
+<ul>
+<li><a href="#form-for">form_for</a></li>
+<li><a href="#form-tag">form_tag</a></li>
+<li><a href="#link-to">link_to</a></li>
+<li><a href="#button-to">button_to</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-%EA%B3%A0%EB%A0%A4%ED%95%B4%EC%95%BC%ED%95%A0-%EC%A0%90">서버에서 고려해야할 점</a>
+
+<ul>
+<li><a href="#%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%98%88%EC%8B%9C">간단한 예시</a></li>
+</ul>
+</li>
+<li>
+<a href="#turbolinks">Turbolinks</a>
+
+<ul>
+<li><a href="#turbolinks%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC">Turbolinks의 동작 원리</a></li>
+<li><a href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B3%80%EA%B2%BD-%EC%9D%B4%EB%B2%A4%ED%8A%B8">페이지 변경 이벤트</a></li>
+</ul>
+</li>
+<li><a href="#%EA%B7%B8-%EC%99%B8%EC%9D%98-%EB%A6%AC%EC%86%8C%EC%8A%A4">그 외의 리소스</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="ajax-소개"><a class="anchorlink" href="#ajax-%EC%86%8C%EA%B0%9C">1 Ajax 소개</a></h3><p>Ajax를 이해하려면 웹브라우저의 기본적인 동작을 이해할 필요가 있습니다.</p><p>브라우저의 주소창에 <code>http://localhost:3000</code>라고 입력하고 'Go'를 누르면 브라우저(다시 말해, 클라이언트)는 서버에게 요청을 하나 전송합니다. 브라우저는 서버로부터 받은 응답을 해석하고, 이어서 필요한 모든 애셋(JavaScript 파일, 스타일시트, 이미지)등을 받아옵니다. 다음으로 브라우저는 페이지를 그립니다. 브라우저에 표시된 링크를 클릭하면 같은 과정이 반복됩니다. 브라우저는 페이지와 애셋을 순서대로 가져오고 그것들을 모두 모아서 결과를 출력합니다. 이것이 흔히 말하는 '요청-응답' 사이클입니다.</p><p>JavaScript도 위에서 설명한 것과 마찬가지로 요청을 전송하고, 응답을 해석할 수 있습니다. JavaScript는 페이지상의 정보를 갱신할 수도 있습니다. JavaScript 개발자는 브라우저와 JavaScript라는 2개의 기술을 하나로 합쳐, 현재 보이는 페이지의 일부만을 갱신할 수도 있습니다. 필요한 웹페이지를 서버로부터 모두 가져올 필요가 없습니다. 이 강력한 기법이 바로 Ajax라고 불리는 것입니다.</p><p>Rails에는 JavaScript를 쓰기 편하게 만든 CoffeeScript가 기본으로 포함되어 있습니다. 이후, 이 가이드에서는 모든 예제를 CoffeeScript로 기술합니다. 물론 이 모든 예제들은 그냥 JavaScript에서도 적용할 수 있습니다.</p><p>예를 들어, jQuery 라이브러리를 사용해서 Aajx 요청을 전송하는 CoffeeScript 코드를 보이겠습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$.ajax(url: "/test").done (html) -&gt;
+  $("#results").append html
+
+</pre>
+</div>
+<p>이 코드는 "/test"에서 데이터를 취득하여, 결과를 웹페이지 위의 <code>results</code>라는 id를 가지는 <code>div</code> 태그에 집어넣습니다.</p><p>Rails에는 이러한 기법을 웹페이지를 생성시에 사용하기 위한 추가 기능이 여럿 내장되어 있습니다. 따라서, 이러한 코드를 모두 직접 작성할 필요는 없습니다. 이후, 이러한 기법으로 Rails 웹사이트를 생성하는 방법에 대해서 설명합니다. 이러한 기법은 모두 간단한 기본 테크닉 위에서 성립합니다.</p><h3 id="겸손한-unobtrusive-javascript"><a class="anchorlink" href="#%EA%B2%B8%EC%86%90%ED%95%9C-unobtrusive-javascript">2 겸손한(Unobtrusive) JavaScript</a></h3><p>Rails에서는 JavaScript를 DOM에 추가할 때의 기법을 '겸손한(unobtrusive) JavaScript'라고 부르고 있습니다. 이것은 일반적으로 프론트엔드 개발자 커뮤니티에서는 가장 좋은 방법이라고 여겨지고 있습니다만, 여기에서는 조금 다른 관점에서 설명합니다.</p><p>가장 간단한 JavaScript를 예로 들어서 생각해봅시다. 아래와 같은 작성법은 '인라인 JavaScript'라고 불립니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="#" onclick="this.style.backgroundColor='#990000'"&gt;Paint it red&lt;/a&gt;
+
+</pre>
+</div>
+<p>이 링크를 클릭하면 배경이 붉게 변합니다. 하지만 벌써부터 여기에서 문제가 발생합니다. 클릭했을 때에 JavaScript에서 추가 작업을 하고 싶을 때에는 어떻게 해야할까요?</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="#" onclick="this.style.backgroundColor='#009900';this.style.color='#FFFFFF';"&gt;Paint it green&lt;/a&gt;
+
+</pre>
+</div>
+<p>많이 복잡해졌습니다. 그러면 여기에서 함수를 사용해서 click 핸들러를 바깥으로 꺼내고, CoffeeScript로 변환해봅시다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+paintIt = (element, backgroundColor, textColor) -&gt;
+  element.style.backgroundColor = backgroundColor
+  if textColor?
+    element.style.color = textColor
+
+</pre>
+</div>
+<p>페이지의 내용은 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="#" onclick="paintIt(this, '#990000')"&gt;Paint it red&lt;/a&gt;
+
+</pre>
+</div>
+<p>이를 통해서 코드가 많이 개선되었습니다. 하지만 같은 효과를 여러 링크에 대해서 사용하려면 어떻게 될까요?</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="#" onclick="paintIt(this, '#990000')"&gt;Paint it red&lt;/a&gt;
+&lt;a href="#" onclick="paintIt(this, '#009900', '#FFFFFF')"&gt;Paint it green&lt;/a&gt;
+&lt;a href="#" onclick="paintIt(this, '#000099', '#FFFFFF')"&gt;Paint it blue&lt;/a&gt;
+
+</pre>
+</div>
+<p>이래서는 DRY하다고 말할 수 없습니다. 이번에는 이벤트를 사용해서 개선해보죠. 처음에 <code>data-*</code> 속성을 링크에 추가합니다. 그리고 이 속성을 가지는 모든 링크에서 발생하는 클릭 이벤트에 핸들러를 할당합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+paintIt = (element, backgroundColor, textColor) -&gt;
+  element.style.backgroundColor = backgroundColor
+  if textColor?
+    element.style.color = textColor
+
+$ -&gt;
+  $("a[data-background-color]").click (e) -&gt;
+    e.preventDefault()
+
+    backgroundColor = $(this).data("background-color")
+    textColor = $(this).data("text-color")
+    paintIt(this, backgroundColor, textColor)
+
+</pre>
+</div>
+<div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="#" data-background-color="#990000"&gt;Paint it red&lt;/a&gt;
+&lt;a href="#" data-background-color="#009900" data-text-color="#FFFFFF"&gt;Paint it green&lt;/a&gt;
+&lt;a href="#" data-background-color="#000099" data-text-color="#FFFFFF"&gt;Paint it blue&lt;/a&gt;
+
+</pre>
+</div>
+<p>우리들은 이러한 방법을 '겸손한 JavaScript'라고 부릅니다. 이 명칭은 HTML 코드에 JavaScript 코드를 섞이도록 하지 않겠다는 의도에서 유래합니다. JavaScript를 올바르게 분리할 수 있었으므로, 앞으로의 변경이 유리해집니다. 이후에는 이 <code>data-*</code> 속성을 링크 태그에 추가하기만 하면 이 동작을 간단하게 추가할 수 있습니다. Rails에서는 이러한 최소화와 연결을 사용해서 많은 JavaScript를 실행할 수 있습니다. JavaScript 코드는 Rails의 어떤 웹페이지에서든 단일하게 사용됩니다. 다시 말해서 페이지가 처음 브라우저에 로드되었을 때에 다운로드되며, 이후에는 브라우저에 캐싱됩니다. 이를 통해 많은 이점을 얻을 수 있습니다.</p><p>Rails 팀은 이 가이드에서 소개한 방법으로 CoffeeScript와 JavaScript를 사용하기를 강하게 추천합니다. 많은 JavaScript 라이브러리도 앞으로는 이러한 방식으로 사용될 것입니다.</p><h3 id="내장-헬퍼"><a class="anchorlink" href="#%EB%82%B4%EC%9E%A5-%ED%97%AC%ED%8D%BC">3 내장 헬퍼</a></h3><p>HTML 생성을 쉽게 하기 위해서 Ruby로 작성된 다양한 뷰 헬퍼 메소드가 정의되어 있습니다. 이러한 HTML 요소에 Ajax 코드를 조금만 추가하고 싶은 경우에도 Rails는 이를 도와줍니다.</p><p>Rails의 JavaScript는 '겸손한 JavaScript' 원칙에 따라서 JavaScript에 의한 요소와 Ruby에 의한 요소로 구성되어 있습니다.</p><p>애셋 파이프라인을 비활성화하지 않는다면 JavaScript에 의한 부분은 <a href="https://github.com/rails/jquery-ujs/blob/master/src/rails.js">rails.js</a>로 제공되며, Ruby에 의한 요소는 어떤 정규 뷰 헬퍼를 통해서 DOM에 적절한 태그를 추가합니다.</p><h4 id="form-for"><a class="anchorlink" href="#form-for">3.1 form_for</a></h4><p><a href="http://api.rubyonrails.org/v5.0.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_for"><code>form_for</code></a>는 폼 생성을 돕는 헬퍼입니다. <code>form_for</code>는 JavaScript를 사용하기 위한 <code>:remote</code> 옵션을 인수로 넘길 수 있습니다. 이 동작은 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= form_for(@article, remote: true) do |f| %&gt;
+  ...
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p>이 코드는 아래와 같은 HTML 코드를 생성합니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;form accept-charset="UTF-8" action="/articles" class="new_article" data-remote="true" id="new_article" method="post"&gt;
+  ...
+&lt;/form&gt;
+
+</pre>
+</div>
+<p>form 태그에 <code>data-remote="true"</code>라는 속성이 추가되었다는 점에 주목해주세요. 이를 통해, 폼의 전송이 브라우저에 의한 일반적인 전송이 아닌, Ajax를 통해 전송되게 됩니다.</p><p>기입된 <code>&lt;form&gt;</code>을 가져오는 것만으로는 부족합니다. 전송이 성공했을 경우에 무언가 눈에 보이는 효과를 주고 싶습니다. 이를 위해서는 <code>ajax:success</code> 이벤트를 사용합니다. 전송에 실패한 경우에는 <code>ajax:error</code>를 사용합니다. 실제 예제를 봅시다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$(document).ready -&gt;
+  $("#new_article").on("ajax:success", (e, data, status, xhr) -&gt;
+    $("#new_article").append xhr.responseText
+  ).on "ajax:error", (e, xhr, status, error) -&gt;
+    $("#new_article").append "&lt;p&gt;ERROR&lt;/p&gt;"
+
+</pre>
+</div>
+<p>명백하게 이전에 작성한 방법보다 보기 좋습니다. 하지만 이것은 맛보기에 불과합니다. 더 자세한 설명은 <a href="https://github.com/rails/jquery-ujs/wiki/ajax">jquery-ujs wiki</a>에 설명되어 있는 이벤트를 참조해주세요.</p><h4 id="form-tag"><a class="anchorlink" href="#form-tag">3.2 form_tag</a></h4><p><a href="http://api.rubyonrails.org/v5.0.2/classes/ActionView/Helpers/FormTagHelper.html#method-i-form_tag"><code>form_tag</code></a>는 <code>form_for</code>와 무척 비슷합니다. 이 메소드에도 <code>:remote</code> 옵션이 있으며, 아래와 같이 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= form_tag('/articles', remote: true) do %&gt;
+  ...
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p>이 코드로부터 다음의 HTML이 생성됩니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;form accept-charset="UTF-8" action="/articles" data-remote="true" method="post"&gt;
+  ...
+&lt;/form&gt;
+
+</pre>
+</div>
+<p>그 이외의 부분은 <code>form_for</code>와 동일합니다. 자세한 설명은 문서를 참조해주세요.</p><h4 id="link-to"><a class="anchorlink" href="#link-to">3.3 link_to</a></h4><p><a href="http://api.rubyonrails.org/v5.0.2/classes/ActionView/Helpers/UrlHelper.html#method-i-link_to"><code>link_to</code></a>는 링크 생성을 도와주는 헬퍼입니다. 이 메소드에는 <code>:remote</code> 옵션이 있으며 다음과 같이 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= link_to "an article", @article, remote: true %&gt;
+
+</pre>
+</div>
+<p>이 코드는 다음을 생성합니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="/articles/1" data-remote="true"&gt;an article&lt;/a&gt;
+
+</pre>
+</div>
+<p><code>form_for</code>의 경우와 마찬가지로 같은 Ajax 이벤트를 연결할 수 있습니다. 다음에서 예제를 보입니다. 한번의 클릭으로 기사를 삭제할 수 있는 목록이 있습니다. 이 HTML 코드는 다음으로 생성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= link_to "Delete article", @article, remote: true, method: :delete %&gt;
+
+</pre>
+</div>
+<p>여기에 추가로 CoffeeScript를 작성합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ -&gt;
+  $("a[data-remote]").on "ajax:success", (e, data, status, xhr) -&gt;
+    alert "The article was deleted."
+
+</pre>
+</div>
+<h4 id="button-to"><a class="anchorlink" href="#button-to">3.4 button_to</a></h4><p><a href="http://api.rubyonrails.org/v5.0.2/classes/ActionView/Helpers/UrlHelper.html#method-i-button_to"><code>button_to</code></a>는 버튼을 생성하기 위한 헬퍼입니다. 이 메소드에는 <code>:remote</code> 옵션이 있으며 다음과 같이 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= button_to "An article", @article, remote: true %&gt;
+
+</pre>
+</div>
+<p>이 코드로 다음의 HTML 코드가 생성됩니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;form action="/articles/1" class="button_to" data-remote="true" method="post"&gt;
+  &lt;div&gt;&lt;input type="submit" value="An article"&gt;&lt;/div&gt;
+&lt;/form&gt;
+
+</pre>
+</div>
+<p>작성된 것은 일반적인 <code>&lt;form&gt;</code>이므로 <code>form_for</code>에 관한 정보를 모두 <code>button_to</code>에도 사용할 수 있습니다.</p><h3 id="서버에서-고려해야할-점"><a class="anchorlink" href="#%EC%84%9C%EB%B2%84%EC%97%90%EC%84%9C-%EA%B3%A0%EB%A0%A4%ED%95%B4%EC%95%BC%ED%95%A0-%EC%A0%90">4 서버에서 고려해야할 점</a></h3><p>Ajax는 클라이언트 쪽뿐만 아니라, 어느 정도 서버 쪽에서도 작업이 필요합니다. Ajax 요청에 대해서 응답을 반환할 때의 형식은 HTML보다도 JSON을 사용하는 것이 선호됩니다. 그러면 필요한 부분에 대해서 설명하겠습니다.</p><h4 id="간단한-예시"><a class="anchorlink" href="#%EA%B0%84%EB%8B%A8%ED%95%9C-%EC%98%88%EC%8B%9C">4.1 간단한 예시</a></h4><p>출력하고 싶은 사용자 목록이 있고, 그 페이지에 새 사용자를 생성하는 폼을 두고 싶다고 합시다. 이 컨트롤러의 index 액션은 다음과 같을 것입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class UsersController &lt; ApplicationController
+  def index
+    @users = User.all
+    @user = User.new
+  end
+  # ...
+
+</pre>
+</div>
+<p>index 뷰(<code>app/views/users/index.html.erb</code>)는 다음과 같이 작성합니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;b&gt;Users&lt;/b&gt;
+
+&lt;ul id="users"&gt;
+&lt;%= render @users %&gt;
+&lt;/ul&gt;
+
+&lt;br&gt;
+
+&lt;%= form_for(@user, remote: true) do |f| %&gt;
+  &lt;%= f.label :name %&gt;&lt;br&gt;
+  &lt;%= f.text_field :name %&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;
+
+</pre>
+</div>
+<p><code>app/views/users/_user.html.erb</code> 파셜의 내용은 이렇습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;li&gt;&lt;%= user.name %&gt;&lt;/li&gt;
+
+</pre>
+</div>
+<p>index페이지의 상단에서는 사용자의 목록을 표시합니다. 아래에는 사용자를 생성하기 위한 폼이 표시됩니다.</p><p>하단의 폼은 <code>UsersController</code>의 <code>create</code> 액션을 호출합니다. 폼의 remote 옵션이 켜져있으므로 요청은 Ajax 요청으로서 <code>UsersController</code>에 넘겨지고, JavaScript를 찾습니다. 컨트롤러에서 요청에 응답하는 <code>create</code> 액션은 다음과 같이 될것입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# app/controllers/users_controller.rb
+  # ......
+  def create
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.js   {}
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+</pre>
+</div>
+<p>format.js이 <code>respond_to</code> 블록 안에 있다는 점을 주의해주세요. 이를 통해서 컨트롤러가 Ajax 요청에 대해 응답을 돌려줄 수 있게 됩니다. 이어서 대응하는 <code>app/views/users/create.js.erb</code> 뷰 파일을 작성합니다. 실제로 JavaScript 코드는 이 뷰에서 생성되어, 클라이언트로 넘어가 실행됩니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+$("&lt;%= escape_javascript(render @user) %&gt;").appendTo("#users");
+
+</pre>
+</div>
+<h3 id="turbolinks"><a class="anchorlink" href="#turbolinks">5 Turbolinks</a></h3><p>Rails에는 <a href="https://github.com/turbolinks/turbolinks">Turbolinks 라이브러리</a>이 포함되어 있습니다. 이는 Ajax를 사용하여 대부분의 애플리케이션에서의 페이지 렌더링 속도를 향상시킵니다.</p><h4 id="turbolinks의-동작-원리"><a class="anchorlink" href="#turbolinks%EC%9D%98-%EB%8F%99%EC%9E%91-%EC%9B%90%EB%A6%AC">5.1 Turbolinks의 동작 원리</a></h4><p>Turbolinks는 페이지에 존재하는 모든 <code>&lt;a&gt;</code>에 클릭 핸들러를 하나씩 추가합니다. 브라우저에서 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API">PushState</a>가 지원되는 경우 Turbolinks는 그 페이지를 위한 Ajax 요청을 생성하고, 서버로부터 응답을 분석하여 그 페이지의 <code>&lt;body&gt;</code> 전체를 응답의 <code>&lt;body&gt;</code>로 교체합니다. 이어서, Turbolinks는 PushState를 사용하여 올바른 URL로 변경하여 새로고침 시맨틱을 유지하며 깨끗한 URL을 유지합니다.</p><p>Turbolinks를 활성화하려면 Turbolinks를 Gemfile에 추가하고, JavaScript의 매니페스트(<code>app/assets/javascripts/application.js</code>)에 <code>//= require turbolinks</code>를 추가합니다.</p><p>Turbolinks를 특정 링크에서만 끄고 싶은 경우에는 태그에 <code>data-turbolinks="false"</code>를 추가합니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;a href="..." data-turbolinks="false"&gt;No turbolinks here&lt;/a&gt;.
+
+</pre>
+</div>
+<h4 id="페이지-변경-이벤트"><a class="anchorlink" href="#%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%B3%80%EA%B2%BD-%EC%9D%B4%EB%B2%A4%ED%8A%B8">5.2 페이지 변경 이벤트</a></h4><p>CoffeeScript 코드로 개발하는 도중, 페이지 로딩과 관련된 처리를 추가하고 싶을 때가 있습니다. jQuery를 사용하고 있다면, 아래와 같은 코드를 작성할 수도 있을 겁니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$(document).ready -&gt;
+  alert "page has loaded!"
+
+</pre>
+</div>
+<p>하지만 일반적인 페이지 로딩 프로세스는 Turbolinks에 의해서 덮어써지기 때문에 페이지 로딩에 의존하는 이벤트가 발생하지 않습니다. 이러한 코드가 있는 경우에는 다음과 같이 변경해야합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$(document).on "turbolinks:load", -&gt;
+  alert "page has loaded!"
+
+</pre>
+</div>
+<p>그 외에도 연결 가능한 이벤트 등에 대해서는 <a href="https://github.com/turbolinks/turbolinks/blob/master/README.md">Turbolinks README</a>를 참조해주세요.</p><h3 id="그-외의-리소스"><a class="anchorlink" href="#%EA%B7%B8-%EC%99%B8%EC%9D%98-%EB%A6%AC%EC%86%8C%EC%8A%A4">6 그 외의 리소스</a></h3><p>공부에 도움이 될법한 링크를 몇가지 소개합니다.</p>
+<ul>
+<li><a href="https://github.com/rails/jquery-ujs/wiki">jquery-ujs wiki</a></li>
+<li><a href="https://github.com/rails/jquery-ujs/wiki/External-articles">jquery-ujs에 대한 글 목록</a></li>
+<li><a href="http://www.alfajango.com/blog/rails-3-remote-links-and-forms/">Rails 3 Remote Links와 Forms에 대해서: 결정판 가이드</a></li>
+<li><a href="http://railscasts.com/episodes/205-unobtrusive-javascript">Railscasts: 겸손한 JavaScript</a></li>
+<li>
+<a href="http://railscasts.com/episodes/390-turbolinks?language=ko&amp;view=asciicast">Railscasts: Turbolinks</a> (한국어)</li>
+</ul>
+<div class="info"><p>이 가이드는 <a href="http://railsguides.jp">Rails Guilde 일본어판</a>으로부터 번역되었습니다.</p></div>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:39 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

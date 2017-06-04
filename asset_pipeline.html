@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Asset Pipeline — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Asset Pipeline</h2><p>이 가이드에서는 애셋 파이프라인(asset pipeline)에 대해서 설명합니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>애셋 파이프라인의 개요와 기능</li>
+<li>애셋 파이프라인의 올바른 구성 방법</li>
+<li>애셋 파이프라인의 장점</li>
+<li>애셋 파이프라인에 전처리기를 추가하는 방법</li>
+<li>애셋을 gem으로 만드는 방법</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li>
+<a href="#%EC%95%A0%EC%85%8B-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C">애셋 파이프라인에 대해서</a>
+
+<ul>
+<li><a href="#%EC%A3%BC%EC%9A%94%ED%95%9C-%EA%B8%B0%EB%8A%A5">주요한 기능</a></li>
+<li><a href="#%ED%95%91%EA%B1%B0%ED%94%84%EB%A6%B0%ED%8A%B8%EC%99%80-%EC%A3%BC%EC%9D%98%EC%A0%90">핑거프린트와 주의점</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%95%A0%EC%85%8B-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95">애셋 파이프라인을 사용하는 방법</a>
+
+<ul>
+<li><a href="#%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%A0%84%EC%9A%A9-%EC%95%A0%EC%85%8B">컨트롤러 전용 애셋</a></li>
+<li><a href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0"><code>애셋을 구성하기</code></a></li>
+<li><a href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EC%97%B0%EA%B2%B0%ED%95%98%EB%8A%94-%EC%BD%94%EB%93%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0">애셋을 연결하는 코드를 작성하기</a></li>
+<li><a href="#%EB%A7%A4%EB%8B%88%ED%8E%98%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%94%94%EB%A0%89%ED%8B%B0%EB%B8%8C">매니페스트와 디렉티브</a></li>
+<li><a href="#%EC%A0%84%EC%B2%98%EB%A6%AC">전처리</a></li>
+</ul>
+</li>
+<li>
+<a href="#development-%ED%99%98%EA%B2%BD%EC%9D%98-%EA%B2%BD%EC%9A%B0">development 환경의 경우</a>
+
+<ul>
+<li><a href="#%EB%9F%B0%ED%83%80%EC%9E%84-%EC%97%90%EB%9F%AC%EB%A5%BC-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0">런타임 에러를 체크하기</a></li>
+<li><a href="#%EB%8B%A4%EC%9D%B4%EC%A0%9C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94%ED%95%98%EA%B8%B0">다이제스트를 비활성화하기</a></li>
+<li><a href="#%EB%94%94%EB%B2%84%EA%B7%B8%EB%A5%BC-%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94%ED%95%98%EA%B8%B0">디버그를 비활성화하기</a></li>
+</ul>
+</li>
+<li>
+<a href="#production-%ED%99%98%EA%B2%BD%EC%9D%98-%EA%B2%BD%EC%9A%B0">production 환경의 경우</a>
+
+<ul>
+<li><a href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EC%A0%84%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0">애셋을 전처리하기</a></li>
+<li><a href="#%EB%A1%9C%EC%BB%AC%EC%97%90%EC%84%9C-%EB%AF%B8%EB%A6%AC-%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EA%B8%B0">로컬에서 미리 컴파일하기</a></li>
+<li><a href="#%EB%8F%99%EC%A0%81%EC%9D%B8-%EC%BB%B4%ED%8C%8C%EC%9D%BC">동적인 컴파일</a></li>
+<li><a href="#cdn">CDN</a></li>
+</ul>
+</li>
+<li>
+<a href="#%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9D%84-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A6%88%ED%95%98%EA%B8%B0">파이프라인을 커스터마이즈하기</a>
+
+<ul>
+<li><a href="#css%EB%A5%BC-%EC%95%95%EC%B6%95%ED%95%98%EA%B8%B0">CSS를 압축하기</a></li>
+<li><a href="#javascript%EB%A5%BC-%EC%95%95%EC%B6%95%ED%95%98%EA%B8%B0">JavaScript를 압축하기</a></li>
+<li><a href="#gzip%EC%9C%BC%EB%A1%9C-%EC%95%95%EC%B6%95%ED%95%9C-%EC%95%A0%EC%85%8B-%EC%A0%9C%EA%B3%B5%ED%95%98%EA%B8%B0">GZip으로 압축한 애셋 제공하기</a></li>
+<li><a href="#%EB%8B%A4%EB%A5%B8-%EC%95%95%EC%B6%95-%EB%B0%A9%EB%B2%95%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">다른 압축 방법을 사용하기</a></li>
+<li><a href="#%EC%95%A0%EC%85%8B%EC%9D%98-%EA%B2%BD%EB%A1%9C%EB%A5%BC-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0"><em>애셋</em>의 경로를 변경하기</a></li>
+<li><a href="#x-sendfile-%ED%97%A4%EB%8D%94">X-Sendfile 헤더</a></li>
+</ul>
+</li>
+<li><a href="#%EC%95%A0%EC%85%8B%EC%9D%98-%EC%BA%90%EC%8B%9C-%EC%A0%80%EC%9E%A5%EC%86%8C">애셋의 캐시 저장소</a></li>
+<li><a href="#gem%EC%97%90-%EC%95%A0%EC%85%8B%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">Gem에 애셋을 추가하기</a></li>
+<li><a href="#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%82%98-gem%EC%9D%84-%EC%A0%84%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0">라이브러리나 Gem을 전처리기로 만들기</a></li>
+<li><a href="#%EC%98%A4%EB%9E%98%EB%90%9C-%EB%B2%84%EC%A0%84%EC%9D%98-rails%EB%A5%BC-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C%ED%95%98%EA%B8%B0">오래된 버전의 Rails를 업그레이드하기</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="애셋-파이프라인에-대해서"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C">1 애셋 파이프라인에 대해서</a></h3><p>애셋 파이프라인이란 JavaScript나 CSS 애셋을 최소화(minify: 공백이나 개행 등을
+제거) 또는 압축하여 연결하는 프레임워크입니다. 애셋 파이프라인에서는
+CoffeeScript나 SASS, ERB 등의 다른 언어로 기술된 애셋을 생성하는 기능을 추가할
+수도 있습니다.
+거기에 다른 젬들로부터 애셋을 자동으로 애플리케이션에 결합해주기도 합니다.
+예를 들어, jquery-rails는 jquery.js의 사본을 가지고 있으며 Rails에서 AJAX
+기능을 사용할 수 있게 해줍니다.</p><p>애셋 파이프라인은 <a href="https://github.com/rails/sprockets-rails">sprockets-rails</a>
+잼으로 구현되어 있으며, 새 앱을 만들때 기본으로 포함됩니다. 이를 비활성화하고
+싶은 경우에는 아래와 같이 <code>--skip-sprockets</code> 를 넘겨주세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+rails new appname --skip-sprockets
+
+</pre>
+</div>
+<p>Rails에서는 <code>sass-rails</code>, <code>coffee-rails</code>, <code>uglifier</code> gem이 자동적으로 Gemfile에
+추가됩니다. Sprokets는 애셋을 압축할 때 이 gem들을 사용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
+
+</pre>
+</div>
+<p><code>--skip-sprockets</code> 옵션을 사용하면 Rails는 이러한 젬들을 Gemfile에 추가하지
+않습니다. 그러므로 애셋 파이프라인을 나중에 활성화하고 싶은 경우에는 이 젬들을
+Gemfile에 다시 추가해주어야 합니다. 마찬가지로 애플리케이션을 새로 생성할 경우
+<code>--skip-sprockets</code> 옵션을 사용하면 <code>config/application.rb</code> 파일의 내용물이 약간
+변경됩니다. 구체적으로는 sproket railtie에서 필요로하는 내용들이
+주석처리됩니다. 애셋 파이프라인을 수동으로 활성화하는 경우에는 이러한
+주석처리 된 코드들을 찾아서 주석처리를 해제해주어야 합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# require "sprockets/railtie"
+
+</pre>
+</div>
+<p>애셋 압축 방식을 지정하려면 <code>production.rb</code>에 존재하는 해당하는 설정을
+찾습니다. <code>config.assets.css_compressor</code>로는 CSS 압축 방식,
+<code>config.assets.js_compressor</code>로는 JavaScript의 압축 방식을 각각 지정할 수
+있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.css_compressor = :yui
+config.assets.js_compressor = :uglifier
+
+</pre>
+</div>
+<div class="note"><p><code>sass-rails</code> gem이 Gemfile에 포함되어 있다면 자동적으로 CSS 압축에
+사용됩니다. 이러한 경우 <code>config.assets.css_compressor</code> 옵션은 지정되지
+않습니다.</p></div><h4 id="주요한-기능"><a class="anchorlink" href="#%EC%A3%BC%EC%9A%94%ED%95%9C-%EA%B8%B0%EB%8A%A5">1.1 주요한 기능</a></h4><p>애셋 파이프라인의 첫번째 기능은 애셋을 연결하는 것입니다. 이를 통해 브라우저가
+웹페이지를 랜더링하기 위해서 서버에 보내야하는 HTTP 요청의 숫자를 줄일 수
+있습니다. 웹 브라우저가 동시에 처리할 수 있는 요청 수에는 제한이 있으므로,
+동시 요청수를 줄일 수 있다면 그만큼 페이지를 로딩하는 속도가 빨라집니다.</p><p>Sprockets은 모든 JavaScript 파일을 하나의 마스터 <code>.js</code> 파일로 연결하고, 모든
+CSS 파일을 하나의 마스터 <code>.css</code> 파일로 연결합니다. 이 가이드에서 나중에
+설명하겠지만, 애셋 파일을 그룹으로 묶는 방법은 자유롭게 변경할 수 있습니다.
+production 환경에서는 애셋 파일명에 MD5 핑거프린트를 삽입하여 애셋 파일이
+웹 브라우저에서 캐싱되도록 합니다. 핑거프린트의 변경은 애셋 파일의 내용물이
+변경되었을 때에 자동적으로 이루어집니다.</p><p>애셋 파이프라인의 또 다른 기능은 애셋의 최소화(압축)입니다. CSS파일의 최소화는
+공백과 주석을 제거하는 것으로 이루어집니다. JavaScript의 압축 프로세스는 이보다
+더 복잡합니다. 이 때 사용할 방법은 내장된 옵션으로부터 선택하거나 다른 것을
+지정할 수 있습니다.</p><p>애셋 파이프라인의 3번째 기능은 보다 고도의 언어를 사용한 코딩을 지원하는
+것입니다. 이러한 언어로 작성된 코드는 전처리되어 시렞의 애셋이 됩니다.
+기본으로 지원되는 언어는 CSS로 변환되는 SASS, JavaScript로 변환되는
+CoffeeScript, CSS/JavaScript로 변환되는 ERB입니다.</p><h4 id="핑거프린트와-주의점"><a class="anchorlink" href="#%ED%95%91%EA%B1%B0%ED%94%84%EB%A6%B0%ED%8A%B8%EC%99%80-%EC%A3%BC%EC%9D%98%EC%A0%90">1.2 핑거프린트와 주의점</a></h4><p>애셋 파일명으로 사용되는 핑거프린트는 애셋 파일의 내용에 따라 변경됩니다. 애셋 파일의 내용이 조금이라도 변경되면, 애셋 파일의 이름도 반드시 그에 따라 변경됩니다(역주: MD5의 성질에 따라 다른 파일로부터 가끔 같은 핑거프린트가 생성될 가능성의 극히 적습니다). 변경되지 않은 파일이나 변경될 일이 거의 없는 파일이 있는 경우, 핑거프린트도 변경되지 않으므로 파일의 내용이 완전히 동일하다는 것을 쉽게 확인할 수 있습니다. 이것은 서버나 배포하는 서버가 다른 경우에도 마찬가지입니다.</p><p>애셋 파일 이름은 내용 변경에 따라서 반드시 변화하므로 CDN, ISP, 네트워크 기기, 웹브라우저 등 모든 곳에서 유효한 캐시를 HTTP 헤더에 지정할 수도 있습니다. 파일의 내용이 변경되면 핑거프린트도 변경됩니다. 이에 따라서 원격 클리아언트(역주: 기존의 캐시를 사용하지 않고)는 새 컨텐츠를 서버에 요청할 수 있습니다. 이 방법을 일반적으로 <em>캐시 파기(cache busting)</em>라고 부릅니다.</p><p>Sprockets가 핑거프린트를 사용하는 경우에는 파일의 내용을 해싱한뒤 파일명(보통 어미)에 추가합니다. 예를 들자면 <code>global.css</code>라는 CSS 파일 이름은 다음과 같이 생성됩니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+global-908e25f4bf641868d8683022a5b62f54.css
+
+</pre>
+</div>
+<p>이것은 Rails의 애셋 파이프라인의 전략으로서 채용되어 있습니다.</p><p>이전 Rails에서는 내장된 헬퍼에 링크된 모든 애셋에 날짜 기반의 쿼리 문자열을 추가하는 전략을 사용했었습니다. 당시의 소스로 생성된 코드는 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+/stylesheets/global.css?1309495796
+
+</pre>
+</div>
+<p>이 쿼리 문자열 기반의 전략에는 많은 문제가 있습니다.</p>
+<ol>
+<li>
+<p><strong>쿼리 파라미터만 다른 컨텐츠는 안정적으로 캐싱이 되지 않는다</strong></p>
+<p><a href="http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">Steve Souders의 글</a>에 의하면 '캐싱될 가능성이 있는 리소스를 쿼리 문자열을 사용해서 접근하지 말 것'이라고 권장하고 있습니다. Steve는 5%에서 20%의 요청이 캐시를 사용하지 않는다는 사실을 발견했습니다. 또한 쿼리 문자열은 캐시를 무효화하는 몇몇 CDN에서도 동작하지 않습니다.</p>
+</li>
+<li>
+<p><strong>멀티 서버 환경에서 파일명이 다를 경우가 있다</strong></p>
+<p>Rails 2.x의 기본 쿼리 문자열은 파일의 갱신 날짜에 기반하고 있었습니다. 이 애셋을 서버 클러스터에 배포하게되면, 서버간에 파일의 타임스탬프가 동일할 것이라는 보장이 없으므로, 요청을 받는 서버가 바뀔 때마다 쿼리문자열이 다를 수 있습니다.</p>
+</li>
+<li>
+<p><strong>캐시 무효화가 과도하게 발생한다</strong></p>
+<p>코드 릴리즈 시에 새 애셋이 배포되면 애셋에 변경이 있었는지 없었는지에 관계 없이, <em>모든</em> 파일의 mtime(마지막으로 갱신된 시각)이 변경됩니다. 이 때문에 웹 브라우저를 포함한 모든 원격 클라이언트에서는 강제적으로 애셋을 다시 요청하게 됩니다.</p>
+</li>
+</ol>
+<p>핑거프린트가 도입되어 위에서 설명한 쿼리 문자열로 인한 문제가 해결되었으며, 애셋의 내용이 같다면 파일명도 언제나 동일하게 되었습니다.</p><p>핑거프린트는 production 환경에서는 기본적으로 활성화되어 있으며, 그 이외의 환경에서는 꺼져 있습니다. 설정 파일에서 <code>config.assets.digest</code> 옵션을 사용해서 핑거프린트를 활성화/비활성화할 수 있습니다.</p><p>자세한 설명은 아래의 링크를 참조해주세요.</p>
+<ul>
+<li><a href="http://code.google.com/speed/page-speed/docs/caching.html">캐시의 최적화</a></li>
+<li><a href="http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/">파일명의 변경에 쿼리 문자열을 사용해서는 안되는 이유</a></li>
+</ul>
+<h3 id="애셋-파이프라인을-사용하는-방법"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95">2 애셋 파이프라인을 사용하는 방법</a></h3><p>이전의 Rails에서는 모든 애셋은 <code>public</code> 폴더 밑의 <code>images</code>, <code>javascripts</code>, <code>stylesheets</code> 등의 하위 폴더에 저장했었습니다. 애셋 파이프라인의 도입 이후에는 <code>app/assets</code> 폴더가 애셋을 저장하는 위치로 권장되고 있습니다. 이 디렉토리에 저장되어 있는 파일들은 Sprockets 미들웨어에 의해서 제공됩니다.</p><p>여전히 애셋은 <code>public</code> 폴더에서 제공할 수도 있습니다. <code>config.serve_static_assets</code>이 true로 설정되어 있다면 <code>public</code> 폴더에 위치한 모든 애셋은 애플리케이션 또는 웹 서버에 의해서 정적인 파일로서 취급됩니다. 전처리가 필요한 파일은 <code>app/assets</code> 폴더에 저장해야할 필요가 있습니다.</p><p>Rails는 production 환경에서는 기본적으로 <code>public/assets</code> 파일을 미리 컴파일합니다. 이 컴파일된 파일이 웹 서버에 의해서 정적인 애셋으로서 취급됩니다. <code>app/assets</code>에 위치한 파일들이 있는 그대로 production 환경에서 사용되는 일은 결코 없습니다.</p><h4 id="컨트롤러-전용-애셋"><a class="anchorlink" href="#%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%EC%A0%84%EC%9A%A9-%EC%95%A0%EC%85%8B">2.1 컨트롤러 전용 애셋</a></h4><p>Rails에서 scaffold나 컨트롤러를 생성하면 JavaScript 파일(<code>coffee-rails</code> gem이 <code>Gemfile</code>에 포함되어 있는 경우에는 CoffeeScript)과 CSS(<code>sass-rails</code> gem이 <code>Gemfile</code>에 포함되어 있는 경우에는 SCSS)도 컨트롤러 전용으로 생성됩니다. scaffold를 생성하는 경우에는 scaffolds.css(<code>sass-rails</code> gem이 <code>Gemfile</code>에 포함되어 있는 경우에는 scaffolds.css.scss)도 생성됩니다.</p><p>예를 들어 <code>ProjectsController</code>를 생성하면 <code>app/assets/javascripts/projects.js.coffee</code>파일과 <code>app/assets/stylesheets/projects.css.scss</code> 파일이 새롭게 생성됩니다. <code>require_tree</code> 디렉티브를 사용하면 이 파일을 바로 애플리케이션에서 사용할 수 있습니다. require_tree의 자세한 설명은 <a href="#%EB%A7%A4%EB%8B%88%ED%8E%98%EC%8A%A4%ED%8A%B8-%ED%8C%8C%EC%9D%BC%EA%B3%BC-%EB%94%94%EB%A0%89%ED%8B%B0%EB%B8%8C">매니페스트 파일과 디렉티브</a>를 참고해주세요.</p><p>관련된 컨트롤러에서 아래의 코드를 추가하여 컨트롤러 고유의 스타일 시트나 JavaScript 파일을 그 컨트롤러에서만 사용할 수 있습니다.</p><p><code>&lt;%= javascript_include_tag params[:controller] %&gt;</code> 또는 <code>&lt;%= stylesheet_link_tag params[:controller] %&gt;</code></p><p>이 코드를 사용할 때에는 <code>require_tree</code> 디렉티브를 사용하지 않았는지 확인해주세요. <code>require_tree</code>를 함께 사용하게되면 애셋을 2번 이상 포함하게 됩니다.</p><div class="warning"><p>애셋을 미리 컴파일하는 경우, 페이지가 로드될 때마다 컨트롤러의 애셋이 미리 컴파일되도록 해두어야 합니다. 기본으로는 <code>.coffee</code> 파일과 <code>.scss</code> 파일은 자동으로 컴파일되지 않습니다. 이 동작에 대해서는 <a href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EB%AF%B8%EB%A6%AC-%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EA%B8%B0">애셋을 미리 컴파일하기</a>를 참조해주세요.</p></div><div class="note"><p>CoffeeScript를 사용하려면 ExecJS가 런타임으로 지원되어야 합니다. Mac OS X 또는 Windows를 사용하는 경우에는 OS에 JavaScript 런타임을 설치해주세요. 지원되는 모든 JavaScript 런타임에 대한 설명은 <a href="https://github.com/sstephenson/execjs#readme">ExecJS</a>에서 확인 할 수 있습니다.</p></div><p><code>config/application.rb</code> 설정에 아래를 추가하여 컨트롤러 전용의 애셋 파일을 생성하지 않을 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.generators do |g|
+  g.assets false
+end 
+
+</pre>
+</div>
+<h4 id="애셋을-구성하기"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0">2.2 <code>애셋을 구성하기</code></a></h4><p>파이프라인의 애셋은 애플리케이션의 <code>app/assets</code>, <code>lib/assets</code>, <code>vendor/assets</code> 중 어딘가에 저장할 수 있습니다.</p>
+<ul>
+<li><p><code>app/assets</code>에는 커스텀 이미지, JavaScript, 스타일시트 등, 애플리케이션 자신이 관리하는 애셋을 저장합니다.</p></li>
+<li><p><code>lib/assets</code>에는 1개의 애플리케이션의 범주에 포함되지 않는 라이브러리의 코드나, 복수의 애플리케이션에서 공유되는 라이브러리 코드를 저장합니다.</p></li>
+<li><p><code>vendor/assets</code>는 JavaScript 플러그인이나 CSS 프레임워크 등, 외부의 단체 등이 관리하는 애셋을 저장합니다.</p></li>
+</ul>
+<div class="warning"><p>Rails 3으로부터 업그레이드를 하는 경우에는 <code>lib/assets</code>과 <code>vendor/assets</code>에 저장되어 있는 애셋이 Rails에서는 애플리케이션의 매니페스트에 의해서 포함되어 사용가능하다는 점, 단 미리 컴파일될 파일 목록에는 포함되지 않게 되었다는 점을 주의해주세요. 더 자세한 안내는 <a href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EB%AF%B8%EB%A6%AC-%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EA%B8%B0">애셋을 미리 컴파일하기</a>를 참조해주세요.</p></div><h5 id="경로-탐색"><a class="anchorlink" href="#%EA%B2%BD%EB%A1%9C-%ED%83%90%EC%83%89">2.2.1 경로 탐색</a></h5><p>파일이 매니페스트나 헬퍼에서 참조되고 있는 경우, Sprockets는 애셋이 저장되어 있는 3개의 폴더로부터 파일을 찾습니다.</p><p>3개의 폴더란 <code>app/assets</code>에 있는 <code>images</code>, <code>javascripts</code>, <code>stylesheets</code> 폴더입니다. 단 이 하위 폴더들이 특별한 것이 아니라, 실제로는 <code>assets/*</code>에 맞는 모든 경로가 검색 대상이 됩니다.</p><p>아래는 파일의 목록입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+app/assets/javascripts/home.js
+lib/assets/javascripts/moovinator.js
+vendor/assets/javascripts/slider.js
+vendor/assets/somepackage/phonebox.js
+
+</pre>
+</div>
+<p>이 파일은 매니페스트에서 다음과 같이 참조가능합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+//= require home
+//= require moovinator
+//= require slider
+//= require phonebox
+
+</pre>
+</div>
+<p>하위 폴더에 있는 애셋에도 접근할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+app/assets/javascripts/sub/something.js
+
+</pre>
+</div>
+<p>이 파일은 다음과 같이 참조할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+//= require sub/something
+
+</pre>
+</div>
+<p>검색 경로를 확인하려면, Rails 콘솔에서 <code>Rails.application.config.assets.paths</code>를 확인하세요.</p><p>파이프라인에 <code>assets/*</code>에 더하여 다른 경로를 검색하고 싶은 경우에는 <code>config/application.rb</code>에서 경로를 추가할 수 있습니다. 아래는 예시입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.paths &lt;&lt; Rails.root.join("lib", "videoplayer", "flash")
+
+</pre>
+</div>
+<p>경로의 탐색은 탐색 경로 목록의 순서대로 이루어집니다. 기본으로는 <code>app/assets</code>의 탐색이 우선되므로 대응하는 경로가 <code>lib</code>나 <code>vendor</code>에 있는 경우에는 무시됩니다.</p><p>여기서 주의해야 할 것은, 참조하고 싶은 파일이 매니페스트의 바깥에 존재하는 경우, 그 것들을 미리 컴파일할 목록에 추가해야한다는 점, 그리고 이들은 production에서는 사용할 수 없다는 점입니다.</p><h5 id="index-파일을-사용하기"><a class="anchorlink" href="#index-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">2.2.2 index 파일을 사용하기</a></h5><p>Sprockets에서는 <code>index</code>라는 이름의 파일(그리고 관련된 확장자)를 특수한 목적으로 사용하고 있습니다.</p><p>예를 들자면 많은 모듈이 있는 jQuery 라이브러리를 사용하고 있고, 그것이 <code>lib/assets/javascripts/library_name</code>에 저장되어 있다고 가정합시다. 이 <code>lib/assets/javascripts/library_name/index.js</code> 파일은 그 라이브러리 내의 모든 파일에서 이용할 수 있는 매니페스트로서 기능을 합니다. 이 파일에는 필요한 파일을 모두 순서대로 적거나, 또는 단순히 <code>require_tree</code>로 작성할 수 있습니다.</p><p>일반적으로 이 라이브러리는 애플리케이션 매니페스트에는 다음과 같이 작성하여 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+//= require library_name
+
+</pre>
+</div>
+<p>이렇게 작성하여 다른 곳에서 사용하기 전에 코드를 그룹으로 묶을 수 있어, 작성이 보다 간결하고 변경이 용이하게 됩니다.</p><h4 id="애셋을-연결하는-코드를-작성하기"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EC%97%B0%EA%B2%B0%ED%95%98%EB%8A%94-%EC%BD%94%EB%93%9C%EB%A5%BC-%EC%9E%91%EC%84%B1%ED%95%98%EA%B8%B0">2.3 애셋을 연결하는 코드를 작성하기</a></h4><p>Sprockets은 애셋을 사용하기 위한 메소드를 추가해주지 않습니다. 익숙한 <code>javascript_include_tag</code>와 <code>stylesheet_link_tag</code>를 계속 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= stylesheet_link_tag "application", media: "all" %&gt;
+&lt;%= javascript_include_tag "application" %&gt;
+
+</pre>
+</div>
+<p>Rails부터 포함되는 turbolinks gem를 사용하고 있는 경우, 'data-turbolinks-track' 옵션을 사용할 수 있습니다. 이것은 애셋이 갱신되어 페이지에 로딩되었는지 아닌지 turbolinks가 확인합니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" =&gt; "reload" %&gt;
+&lt;%= javascript_include_tag "application", "data-turbolinks-track" =&gt; "reload" %&gt;
+
+</pre>
+</div>
+<p>일반적인 뷰에서는 아래와 같은 방법으로 <code>public/assets/images</code> 폴더의 이미지에 접근할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= image_tag "rails.png" %&gt;
+
+</pre>
+</div>
+<p>파이프라인을 사용하고, 현재 환경에서 무효가 아닌 경우, 이 파일은 Sprockets이 처리하게 됩니다. 파일이 <code>public/assets/rails.png</code>에 위치하는 경우, 웹 서버에 의해서 처리됩니다.</p><p><code>public/assets/rails-af27b6a414e6da00003503148be9b409.png</code> 등, 파일 이름에 MD5 해시를 포함하는 파일 이름에 대한 요청도 동일하게 다루어집니다. 해시의 생성 방법에 대해서는 이 가이드의 <a href="#production-%ED%99%98%EA%B2%BD%EC%9D%98-%EA%B2%BD%EC%9A%B0">production 환경의 경우</a>에서 설명합니다.</p><p>Sprockets는 <code>config.assets.paths</code>에서 지정한 경로도 탐색합니다. 이 경로에는 일반적인 애플리케이션 경로와 Rails 엔진에 의해서 추가된 모든 경로가 포함됩니다.</p><p>필요하다면 이미지 파일을 하위 폴더에서 정리해둘 수도 있습니다. 이 이미지에 접근하려면 폴더명을 포함하여 아래와 같이 태그로 지정하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= image_tag "icons/rails.png" %&gt;
+
+</pre>
+</div>
+<div class="warning"><p>애셋을 미리 컴파일 하는 경우(<a href="#production-%ED%99%98%EA%B2%BD%EC%9D%98-%EA%B2%BD%EC%9A%B0">production 환경의 경우</a> 참조), 존재하지 않는 애셋에 대한 링크를 포함한 페이지를 호출하면, 예외가 발생합니다. 빈 문자열로 된 링크도 마찬가지로 예외가 발생합니다. 사용자로부터 제공된 데이터를 사용해서 <code>image_tag</code> 등의 헬퍼를 사용하는 경우에는 주의해주세요.</p></div><h5 id="css와-erb"><a class="anchorlink" href="#css%EC%99%80-erb">2.3.1 CSS와 ERB</a></h5><p>애셋 파이프라인은 자동적으로 ERB를 평가합니다. 예를 들자면 css 애셋 파일에 <code>erb</code>라는 확장자를 추가하면 (<code>application.css.erb</code> 등), CSS 규칙 내에서 <code>asset_path</code> 등의 헬퍼를 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+.class { background-image: url(&lt;%= asset_path 'image.png' %&gt;) }
+
+</pre>
+</div>
+<p>이것은 지정된 애셋에 대한 경로를 출력합니다. 이 예제에서는 애셋을 읽어와서 경로의 어딘가에 이미지 파일(<code>app/assets/images/image.png</code> 등)이 지정된다고 해석할 수 있습니다. 이 이미지가 이미 핑거프린트가 추가되어 있고 <code>public/assets</code>에 저장되어 있다면 이 경로에 대한 참조는 유효합니다.</p><p><a href="https://en.wikipedia.org/wiki/Data_URI_scheme">데이터 URI 스킴</a> (CSS 파일에 데이터를 직접 포함하는 방법)을 사용하고 싶은 경우에는 <code>asset_data_uri</code>를 사용하세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+#logo { background: url(&lt;%= asset_data_uri 'logo.png' %&gt;) }
+
+</pre>
+</div>
+<p>이 코드는 CSS 소스에 올바른 형식으로 변경된 data URI를 삽입합니다.</p><p>이 경우 <code>-%&gt;</code>로 태그를 닫을 수 없으므로 주의해주세요.</p><h5 id="css와-sass"><a class="anchorlink" href="#css%EC%99%80-sass">2.3.2 CSS와 Sass</a></h5><p>애셋 파이프라인을 사용하는 경우, 최종적으로 애셋에 대한 경로를 변환할 필요가 있습니다. 이를 위해서
+<code>sass-rails</code> gem은 이름이 <code>-url</code>이나 <code>-path</code>로 끝나는 (Sass에서는 하이픈입니다만, Ruby에서는 언더스코어를 사용합니다) 각종 헬퍼를 제공합니다. 헬퍼가 서포트하는 애셋 클래스는 이미지, 폰트, 비디오, 음성, JavaScript, 스타일시트 입니다.</p>
+<ul>
+<li>
+<code>image-url("rails.png")</code>는 <code>url(/assets/rails.png)</code>로 변환됩니다.</li>
+<li>
+<code>image-path("rails.png")</code>는 <code>"/assets/rails.png"</code>로 변환됩니다.</li>
+</ul>
+<p>아래와 같은 좀 더 일반적인 기법을 사용할 수도 있습니다.</p>
+<ul>
+<li>
+<code>asset-url("rails.png")</code>는 <code>url(/assets/rails.png)</code>로 변환됩니다.</li>
+<li>
+<code>asset-path("rails.png")</code>는 <code>"/assets/rails.png"</code>로 변환됩니다.</li>
+</ul>
+<h5 id="javascript-coffeescript와-erb"><a class="anchorlink" href="#javascript-coffeescript%EC%99%80-erb">2.3.3 JavaScript/CoffeeScript와 ERB</a></h5><p>JavaScript 애셋에 <code>erb</code> 확장자를 추가하면 (<code>application.js.erb</code> 등), 아래와 같이 JavaScript 코드 상에서 <code>asset_path</code> 헬퍼를 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$('#logo').attr({ src: "&lt;%= asset_path('logo.png') %&gt;" });
+
+</pre>
+</div>
+<p>이는 지정된 애셋에 대한 경로를 출력합니다.</p><p>CoffeeScript 파일에서도 <code>application.js.coffee.erb</code>와 같이 <code>erb</code> 확장자를 추가하여 마찬가지로 <code>asset_path</code> 헬퍼를 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$('#logo').attr src: "&lt;%= asset_path('logo.png') %&gt;"
+
+</pre>
+</div>
+<h4 id="매니페스트와-디렉티브"><a class="anchorlink" href="#%EB%A7%A4%EB%8B%88%ED%8E%98%EC%8A%A4%ED%8A%B8%EC%99%80-%EB%94%94%EB%A0%89%ED%8B%B0%EB%B8%8C">2.4 매니페스트와 디렉티브</a></h4><p>Sprockets에서는 어떤 애셋을 가져와서 지원할지를 지정할 때에 매니페스트 파일을 사용합니다. 매니페스트 파일에는 <em>디렉티브(directive)</em>가 포함되어 있습니다. 디렉티브를 사용하여 필요한 파일을 지정하고, 거기에 기반하여 최종적인 단일 CSS나 JavaScript 파일이 생성됩니다. Sprockets는 디렉티브로 지정된 파일을 읽어와, 필요에 따라서 처리를 하고 연결하여 단일 파일을 생성하여 압축해줍니다(<code>Rails.application.config.assets.compress</code>가 true인 경우). 파일을 연결하여 하나로 만드는 것으로 브라우저로부터 서버에 대한 요청 횟수를 줄일 수 있으며, 압축을 통해서 파일 사이즈도 줄여서 페이지를 읽어오는데 걸리는 시간을 대폭 단축시킵니다.</p><p>새로 생성한 Rails 애플리케이션에서는 기본으로 <code>app/assets/javascripts/application.js</code> 파일에 다음과 같은 내용이 포함되어 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+// ...
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+
+</pre>
+</div>
+<p>JavaScript의 Sprockets 디렉티브는 <code>//=</code>로 시작됩니다. 이 예제에서는 <code>require</code>와 <code>require_tree</code>라는 디렉티브가 사용되고 있습니다. <code>require</code>는 필요한 파일을 Sprockets에 지정할 때에 사용합니다. 여기에서는 <code>jquery.js</code>와 <code>jquery_ujs.js</code>를 필요한 파일로 지정하고 있습니다. 이러한 파일은 Sprockets의 검색 경로의 어딘가로부터 불러오게 됩니다. 이 디렉티브에서는 확장자를 명시적으로 지정할 필요가 없습니다. 디렉티브가 <code>.js</code> 파일에 선언되었다면 Sprockets에 의해서 자동적으로 <code>.js</code> 파일이 필요한 파일로 지정됩니다.</p><p><code>require_tree</code> 디렉티브는 지정된 폴더 밑에 있는 <em>모든</em> JavaScript 파일을 재귀적으로 출력에 포함합니다. 이 경로는 매니페스트 파일로부터의 상대 경로를 지정해야합니다. <code>require_directory</code> 디렉티브를 사용하면 지정된 폴더에 저장되어 있는 모든 JavaScript 파일을 포함합니다. 이 경우, 하위 폴더를 재귀적으로 탐색하지 않습니다.</p><p>디렉티브는 적혀있는 순서대로 실행됩니다만, <code>require_tree</code>로 포함된 파일들을 불러오는 순서를 지정할 수는 없습니다. 따라서, 코드를 불러오는 순서에 의존하지 않도록 작성할 필요가 있습니다. 만약 어떤 이유가 있어서 특정 JavaScript 파일을 다른 JavaScript 파일보다 먼저 불러오고 싶은 경우에는 그 파일의 require 디렉티브를 매니페스트의 첫번째에 위치시킵니다. <code>require</code>, 그리고 비슷한 디렉티브는 출력시에 같은 파일을 2회 이상 포함하지 않도록 한다는 점을 기억해두세요.</p><p>Rails는 아래의 내용을 포함하는 <code>app/assets/stylesheets/application.css</code> 파일을 생성합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+/* ...
+*= require_self
+*= require_tree .
+*/
+
+</pre>
+</div>
+<p>Rails는 <code>app/assets/javascripts/application.js</code>와 <code>app/assets/stylesheets/application.css</code> 파일을 둘 다 생성합니다. 이것은 Rails 애플리케이션을 새로 생성할 때의 <code>--skip-sprockets</code>와는 관계 없이 실행됩니다. 이에 따라 필요에 따라 손쉽게 애셋 파이프라인을 추가할 수도 있습니다.</p><p>JavaScript에서 사용할 수 있는 디렉티브는 스타일시트에서도 사용할 수 있습니다(그러나 JavaScript와 다르게 스타일시트는 명시적으로 포함된다는 점이 다릅니다). CSS 매니페스트에서의 <code>require_tree</code> 디렉티브의 동작은 JavaScript의 경우와 마찬가지로 지정된 폴더에 있는 모든 스타일시트를 require합니다.</p><p>이 예제에서는 <code>require_self</code>가 사용되고 있습니다. 이 디렉티브는 <code>require_self</code> 호출이 있었던 곳에 css 파일이 있다면 불러옵니다.</p><div class="note"><p>Sass 파일을 여러개 사용하고 사용하고 있는 경우라면 Sprockets 디렉티브 대신에 <a href="http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#import">Sass <code>@import</code> 규칙</a>을 사용할 필요가 있습니다. 이러한 경우에 Sprockets 디렉티브를 사용하게 되면, Sass 파일이 자기 자신을 스코프에 넣게 되므로, 그 내부에서 정의되어 있는 변수나 믹스인을 다른 Sass에서 사용할 수 없게 됩니다.</p></div><p><code>@import "*"</code>나 <code>@import "**/*"</code>처럼 와일드카드 매칭으로 트리 전체를 지정할 수도 있습니다. 이거승ㄴ <code>require_tree</code>와 동등한 동작을 합니다. 자세한 설명과 주의점에 대해서는 <a href="https://github.com/rails/sass-rails#features">sass-rails 문서</a>를 참조해주세요.</p><p>매니페스트 파일은 필요에 따라서 몇개든 사용할 수 있습니다. 예를 들어 애플리케이션의 admin 섹션에서 사용하는 JS파일과 CSS파일을 <code>admin.css</code>와 <code>admin.js</code> 매니페스트로 각각 따로 작성할 수도 있습니다.</p><p>읽어오는 순서는 위에서 말한 방식이 적용됩니다. 특히, 개별로 지정한 파일들은 그 순서대로 컴파일 됩니다. 예를 들어, 다음과 같이 3개의 CSS파일을 결합할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+/* ...
+*= require reset
+*= require layout
+*= require chrome
+*/
+
+</pre>
+</div>
+<h4 id="전처리"><a class="anchorlink" href="#%EC%A0%84%EC%B2%98%EB%A6%AC">2.5 전처리</a></h4><p>적용되는 전처리의 종류는 애셋 파일의 확장자에 의해서 결정됩니다. 컨트롤러나 scaffold를 기본 gem으로 생성한 경우 Javascript 파일이나 CSS파일이 위치한 곳에 CoffeeScript 파일과 SCSS 파일이 각각 생성됩니다. 위에서 보인 예제에서는 컨트롤러의 이름이 "projects"이고, <code>app/assets/javascripts/projects.js.coffee</code> 파일과 <code>app/assets/stylesheets/projects.css.scss</code> 파일이 생성됩니다.</p><p>development 환경의 경우 또는 애셋 파이프라인이 유효하지 않은 경우에는 이 애셋에 대한 요청은 <code>coffee-script</code> gem과 <code>sass</code> gem이 제공하는 처리기에 의해서 처리되며, 각각 JavaScript와 CSS로 변환되어 브라우저로 전송됩니다. 애셋 파이프라인이 활성화 되어 있는 경우에는 이러한 애셋 파일들은 전처리의 대상이 되며, 처리된 파일이 <code>public/assets</code> 폴더에 위치하여 Rails 애플리케이션이나 웹서버에 의해서 처리됩니다.</p><p>애셋 파일 이름에 다른 확장자를 추가하여 전처리시에 레이어를 추가하여 요청할 수 있습니다. 애셋 파일 이름의 확장자는 '오른쪽에서 왼쪽'의 순서로 처리됩니다. 따라서 애셋 파일명의 확장자는 이에 따라, 처리를 해야하는 순서대로 구성되어야 합니다. 예를 들어, <code>app/assets/stylesheets/projects.css.scss.erb</code>라는 스타일시트에서는 처음에 ERB로 처리되며, 이어서 SCSS, 마지막으로 CSS로 처리됩니다. 마찬가지로 <code>app/assets/javascripts/projects.js.coffee.erb</code>라는 JavaScript 파일의 경우에는 ERB → CoffeeScript → JavaScript의 순서대로 처리가 진행됩니다.</p><p>이 전처리 순서는 무척 중요하므로, 잘 기억해두세요. 예를 들어, <code>app/assets/javascripts/projects.js.erb.coffee</code>라는 파일을 호출하면 처음에 CoffeeScript 인터프리터에 의해서 처리됩니다. 하지만 처리된 코드는 다음의 ERB가 처리할 수 없는 경우가 있으므로 문제가 발생할 수 있습니다.</p><h3 id="development-환경의-경우"><a class="anchorlink" href="#development-%ED%99%98%EA%B2%BD%EC%9D%98-%EA%B2%BD%EC%9A%B0">3 development 환경의 경우</a></h3><p>development 환경의 경우, 애셋은 각각의 파일로서 매니페스트 파일에 기재되어 있는 순서대로 불러와집니다.</p><p><code>app/assets/javascripts/application.js</code>라는 매니페스트의 내용이 아래와 같다고 가정합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+//= require core
+//= require projects
+//= require tickets
+
+</pre>
+</div>
+<p>이에 의해서 다음의 HTML이 생성됩니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;script src="/assets/core.js?body=1"&gt;&lt;/script&gt;
+&lt;script src="/assets/projects.js?body=1"&gt;&lt;/script&gt;
+&lt;script src="/assets/tickets.js?body=1"&gt;&lt;/script&gt;
+
+</pre>
+</div>
+<p><code>body</code> 파라미터는 Sprockets에서 사용됩니다.</p><h4 id="런타임-에러를-체크하기"><a class="anchorlink" href="#%EB%9F%B0%ED%83%80%EC%9E%84-%EC%97%90%EB%9F%AC%EB%A5%BC-%EC%B2%B4%ED%81%AC%ED%95%98%EA%B8%B0">3.1 런타임 에러를 체크하기</a></h4><p>애셋 파이프라인은 development 환경에서 런타임 시의 에러를 항시 확인합니다. 이 동작을 비활성화 하려면 아래의 설정을 사용하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.raise_runtime_errors = false
+
+</pre>
+</div>
+<p>이 옵션이 true라면 애플리케이션의 애셋이 <code>config.assets.precompile</code>에 기술되어 있는 순서대로 모두 불러오는지를 확인합니다. <code>config.assets.digest</code>도 true인 경우, 애셋에 대한 요청에서는 다이제스트를 반드시 포함해야합니다.</p><h4 id="다이제스트를-비활성화하기"><a class="anchorlink" href="#%EB%8B%A4%EC%9D%B4%EC%A0%9C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94%ED%95%98%EA%B8%B0">3.2 다이제스트를 비활성화하기</a></h4><p><code>config/environments/development.rb</code>를 다음과 같이 고쳐서 다이제스트를 비활성화할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.digest = false
+
+</pre>
+</div>
+<p>이 옵션이 true라면 다이제스트가 생성되어 애셋 URL에 포함됩니다.</p><h4 id="디버그를-비활성화하기"><a class="anchorlink" href="#%EB%94%94%EB%B2%84%EA%B7%B8%EB%A5%BC-%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94%ED%95%98%EA%B8%B0">3.3 디버그를 비활성화하기</a></h4><p>디버그 모드를 비활성화 하려면 <code>config/environments/development.rb</code>에 다음을 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.debug = false
+
+</pre>
+</div>
+<p>디버그 모드를 끄면, Sprockets는 모든 파일을 결합하여, 필요한 전처리를 수행합니다. 그리고 위의 매니페스트 파일에 의해서 다음과 같은 결과가 생성됩니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;script src="/assets/application.js"&gt;&lt;/script&gt; 
+
+</pre>
+</div>
+<p>애셋은 서버 기동 후에 첫번째 리퀘스트를 받은 시점에서 컴파일과 캐시가
+실행됩니다. Sprockets는 <code>must-revalidate</code>라는 Cache-Control HTTP 헤더를
+설정하여 이후의 요청에 대한 오버헤드를 줄입니다. 이 경우 브라우저는
+304(Not Modified) 응답을 받게 됩니다.</p><p>요청과 요청 사이에 매니페스트에 지정되어 있는 파일 중 하나에서 변경이 있었을
+경우, Rails 서버는 새로 컴파일 된 파일을 응답으로 돌려줍니다.</p><p>Rails의 헬퍼 메소드를 사용하여 디버그 모드를 켤 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= stylesheet_link_tag "application", debug: true %&gt;
+&lt;%= javascript_include_tag "application", debug: true %&gt;
+
+</pre>
+</div>
+<p>디버그 모드가 이미 켜져있는 경우, <code>:debug</code> 옵션은 의미가 없습니다.</p><p>development 환경에서 건전성을 확인하기 위한 일환으로 압축을 활성화하거나,
+디버그의 필요성에 따라 그때그때 켜고 끌 수 있습니다.</p><h3 id="production-환경의-경우"><a class="anchorlink" href="#production-%ED%99%98%EA%B2%BD%EC%9D%98-%EA%B2%BD%EC%9A%B0">4 production 환경의 경우</a></h3><p>Sprockets은 production 환경에서는 위에서 말한 핑거프린트에 의한 스킴을
+사용합니다. 기본으로 Rails의 애셋은 전처리된 정적인 애셋으로 웹서버에서
+제공됩니다.</p><p>MD5는 컴파일된 파일의 내용을 기반으로 전처리중에 생성되며, 파일명에 추가되어
+저장됩니다. 매니페스트의 이름은 Rails 헬퍼가 핑거프린트를 추가하여 사용합니다.</p><p>다음은 예시입니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= javascript_include_tag "application" %&gt;
+&lt;%= stylesheet_link_tag "application" %&gt;
+
+</pre>
+</div>
+<p>이 코드에 의해서 다음과 같은 결과가 생성됩니다.</p><div class="code_container">
+<pre class="brush: xml; gutter: false; toolbar: false">
+&lt;script src="/assets/application-908e25f4bf641868d8683022a5b62f54.js"&gt;&lt;/script&gt;
+&lt;link href="/assets/application-4dd5b109ee3439da54f5bdfd78a80473.css" media="screen" rel="stylesheet" /&gt;
+
+</pre>
+</div>
+<div class="note"><p>애셋 파이프라인의 <code>:cache</code> 옵션과 <code>:concat</code>옵션은 폐기되었습니다.
+이러한 옵션은 <code>javascript_include_tag</code>와 <code>stylesheet_link_tag</code>에서
+삭제해주세요.</p></div><p>핑거프린트의 동작에 대해서는 <code>config.assets.digest</code> 초기화 옵션에서 제어할 수
+있습니다. 기본값은 <code>true</code>입니다.</p><div class="note"><p><code>config.assets.digest</code> 옵션은 가급적 변경하지 말아주세요. 파일명에
+다이제스트가 포함되지 않으면 먼 미레에 헤더가 설정되었을 때에 클라이언트가
+파일의 내용이 변경된 것을 검출하지 못하게 될 수 있습니다.</p></div><h4 id="애셋을-전처리하기"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EC%A0%84%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0">4.1 애셋을 전처리하기</a></h4><p>Rails에는 파이프라인에 애셋 매니페스트 파일을 수동으로 컴파일하기 위한
+태스크가 포함되어 있습니다.</p><p>컴파일 된 애셋은 <code>config.assets.prefix</code>에서 지정한 위치에 저장됩니다. 이
+위치의 기본값은 <code>/assets</code> 폴더 입니다.</p><p>배포시에 이 태스크를 서버 상에서 실행하면, 컴파일된 애셋이 서버 상에 직접
+생성됩니다. 로컬 환경에서 컴파일 하는 방법에 대해서는 다음 절을 참고해주세요.</p><p>다음이 그 태스크입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ RAILS_ENV=production bin/rails assets:precompile
+
+</pre>
+</div>
+<p>Capistrano (v2.15.1 이후)에는 배포중에 이 태스크를 사용하는 레시피가 포함되어
+있습니다. <code>Capfile</code>에 다음을 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+load 'deploy/assets'
+
+</pre>
+</div>
+<p>이를 통해 <code>config.assets.prefix</code>로 지정된 폴더가 <code>shared/assets</code>에 링크됩니다.
+이미 이 공유 폴더를 사용하고 있다면 별도의 배포용 태스크를 작성해야합니다.</p><p>이 폴더는 복수의 배포에 걸쳐 공유된다는 점이 중요합니다. 이는 서버 이외의 다른
+장소에서 캐시되어있는 패이지가 오래된 컴파일된 애셋을 참조하고 있는 경우에도,
+캐시된 페이지의 수명이 되어 삭제될 때까지는 그 오래된 페이지의 참조가
+유효하도록 만들기 때문입니다.</p><p>파일을 컴파일 할 때에 기본 매쳐에 의해서 <code>app/assets</code> 폴더에 있는
+<code>application.js</code>, <code>application.css</code>, 그리고 모든 비JS/CSS 파일(이를 통해 모든
+이미지 파일도 자동적으로 포함됩니다)가 포함됩니다. <code>app/assets</code> 폴더에 있는
+젬도 포함됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+[ Proc.new { |filename, path| path =~ /app\/assets/ &amp;&amp; !%w(.js .css).include?(File.extname(filename)) },
+/application.(css|js)$/ ]
+
+</pre>
+</div>
+<div class="note"><p>이 매쳐(그리고 뒤에서 설명할 precompile 배열의 다른 멤버)가 적용되는
+것은 컴파일 전이나 컴파일 중의 파일명이 아닌, 컴파일 후의 최종적인
+파일명이라는 점을 주의해주세요. 이것은 컴파일 되어서 JavaScript나 CSS로
+변환되는 중간 과정인 파일은(순수한 JavaScript/CSS와 마찬가지로) 매쳐의
+대상에서 모두 제외된다는 의미입니다. 예를 들자면 <code>.coffee</code>와 <code>.scss</code> 파일은
+컴파일 후에는 각각 JavaScript와 CSS로 변환되므로, 이들은 자동적으로 포함되지
+않습니다.</p></div><p>다른 매니페스트나, 그 외의 스타일시트/JavaScript 파일을 포함하고 싶은 경우에는
+<code>config/initializers/assets.rb</code>의 <code>precompile</code>라는 배열을 사용하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Rails.application.config.assets.precompile += ['admin.js', 'admin.css', 'swfObject.js'
+
+</pre>
+</div>
+<div class="note"><p>precompile 배열에 Sass나 CoffeeScript 파일등을 추가할 경우에도 반드시 <code>.js</code>, <code>.css</code>로 끝나는 파일명(다시 말해 컴파일이 끝난 시점의 파일명)으로 지정해주세요.</p></div><p>이 태스크는 <code>manifest-md5hash.json</code> 파일을 생성합니다. 이것은 모든 애셋과 그 핑거프린트 목록입니다. Rails 헬퍼는 이 정보를 사용해서 매핑 요청이 Sprockets에 돌아가는 것을 회피합니다. 일반적인 매니페스트 파일의 내용은 아래와 같습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{"files":{"application-723d1be6cc741a3aabb1cec24276d681.js":{"logical_path":"application.js","mtime":"2013-07-26T22:55:03-07:00","size":302506,
+"digest":"723d1be6cc741a3aabb1cec24276d681"},"application-12b3c7dd74d2e9df37e7cbb1efa76a6d.css":{"logical_path":"application.css","mtime":"2013-07-26T22:54:54-07:00","size":1560,
+"digest":"12b3c7dd74d2e9df37e7cbb1efa76a6d"},"application-1c5752789588ac18d7e1a50b1f0fd4c2.css":{"logical_path":"application.css","mtime":"2013-07-26T22:56:17-07:00","size":1591,
+"digest":"1c5752789588ac18d7e1a50b1f0fd4c2"},"favicon-a9c641bf2b81f0476e876f7c5e375969.ico":{"logical_path":"favicon.ico","mtime":"2013-07-26T23:00:10-07:00","size":1406,
+"digest":"a9c641bf2b81f0476e876f7c5e375969"},"my_image-231a680f23887d9dd70710ea5efd3c62.png":{"logical_path":"my_image.png","mtime":"2013-07-26T23:00:27-07:00","size":6646,
+"digest":"231a680f23887d9dd70710ea5efd3c62"}},"assets":{"application.js":
+"application-723d1be6cc741a3aabb1cec24276d681.js","application.css":
+"application-1c5752789588ac18d7e1a50b1f0fd4c2.css",
+"favicon.ico":"favicona9c641bf2b81f0476e876f7c5e375969.ico","my_image.png":
+"my_image-231a680f23887d9dd70710ea5efd3c62.png"}}
+
+</pre>
+</div>
+<p>매니페스트 위치의 기본값은 <code>config.assets.prefix</code>로 지정된 장소의 최상위
+폴더(기본값은 '/assets')입니다.</p><div class="note"><p>production 환경에서 발견되지 않는 컴파일 후의 파일이 있다면, 찾을 수 없는
+파일명을 에러 메시지에 포함하고 있는 <code>Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError</code>가 발생합니다.</p></div><h5 id="먼-미래에-유효기간이-끝나는-헤더"><a class="anchorlink" href="#%EB%A8%BC-%EB%AF%B8%EB%9E%98%EC%97%90-%EC%9C%A0%ED%9A%A8%EA%B8%B0%EA%B0%84%EC%9D%B4-%EB%81%9D%EB%82%98%EB%8A%94-%ED%97%A4%EB%8D%94">4.1.1 먼 미래에 유효기간이 끝나는 헤더</a></h5><p>미리 컴파일한 애셋은 파일 시스템에 저장되어 웹서버로부터 직접 클라이언트에 제공됩니다. 이런 애셋들은 먼 미래에 유효기간이 끝나는 헤더(far-future headers)를 가지고 있지 않습니다. 따라서, 핑거프린트의 장점을 얻기 위해서는 서버의 설정을 변경하여 이러한 헤더를 포함시켜야 합니다.</p><p>Apache의 경우: </p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+# Expires* 디렉티브를 사용하는 경우는 Apache의
+# `mod_expires` 모듈을 사용팔 필요가 있음
+&lt;Location /assets/&gt;
+  # Last-Modified 필드가 존재하는 경우에는 Etag의 사용을 막음
+  Header unset ETag
+  FileETag None
+  # RFC에 따르면 캐시는 최대 1년까지
+  ExpiresActive On
+  ExpiresDefault "access plus 1 year"
+&lt;/Location&gt;
+
+</pre>
+</div>
+<p>NGINX의 경우:</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+location ~ ^/assets/ {
+  expires 1y;
+  add_header Cache-Control public;
+
+  add_header ETag "";
+}
+
+</pre>
+</div>
+<h4 id="로컬에서-미리-컴파일하기"><a class="anchorlink" href="#%EB%A1%9C%EC%BB%AC%EC%97%90%EC%84%9C-%EB%AF%B8%EB%A6%AC-%EC%BB%B4%ED%8C%8C%EC%9D%BC%ED%95%98%EA%B8%B0">4.2 로컬에서 미리 컴파일하기</a></h4><p>애셋을 로컬에서 미리 컴파일하는 이유는 몇가지를 생각해볼 수 있습니다. 예를
+들자면 다음과 같은 이유입니다.</p>
+<ul>
+<li>production 환경의 파일 시스템에 쓰기 권한이 없음</li>
+<li>배포를 여러곳에 해야해서 같은 작업을 반복하고 싶지 않음</li>
+<li>애셋을 변경하지 않는 배포를 빈번하게 함</li>
+</ul>
+<p>로컬에서 컴파일하여 컴파일 후의 애셋 파일을 Git 등에 의해 소스 관리 대상으로
+포함하고, 다른 파일과 함께 배포되도록 만들 수 있습니다.</p><p>단, 주의할 부분이 있습니다.</p>
+<ul>
+<li>Capistrano의 배포 태스크에서 애셋의 컴파일을 수행하지 않을 것</li>
+<li>development 환경에서 압축기능이나 최소화 기능을 모두 쓸 수 있도록 해둘 것</li>
+<li>아래의 애플리케이션 설정을 변경해둘 것</li>
+</ul>
+<p><code>config/environments/development.rb</code>에서 다음을 변경하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.prefix = "/dev-assets"
+
+</pre>
+</div>
+<p><code>prefix</code>를 변경하면 Sprockets은 development 환경에서 다른 URL을 사용해서 애셋을
+제공하며, 모든 요청이 Sprockets에 넘겨지게 됩니다. production환경의 접두어는
+<code>/assets</code>를 그대로 사용합니다. 이 변경이 이루어지지 않으면 애플리케이션은
+development 환경에서도 production 환경과 동일한 애셋을 제공합니다. 이 경우,
+애셋을 다시 컴파일하지 않으면 작업 중의 변경사항이 반영되지 않습니다.</p><p>실제로는, 이를 통해 로컬에서 컴파일을 할 수 있게 되므로, 필요에 따라 그
+파일들을 소스 관리 시스템에 커밋할 수 있게 됩니다. development 환경은 기대한
+대로 동작을 하게 됩니다.</p><h4 id="동적인-컴파일"><a class="anchorlink" href="#%EB%8F%99%EC%A0%81%EC%9D%B8-%EC%BB%B4%ED%8C%8C%EC%9D%BC">4.3 동적인 컴파일</a></h4><p>상황에 따라서는 동적으로 컴파일(live compilation)을 사용하고 싶은 경우도 있을
+겁니다. 이 상황에서는 파이프라인의 애셋에 대한 요청이 직접 Sprockets을 통해
+처리됩니다.</p><p>이 옵션을 활성화하려면 아래와 같이 설정합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.compile = true
+
+</pre>
+</div>
+<p>최초의 요청을 받으면 애셋은 위의 development 환경의 부분에서 설명했듯 컴파일과
+캐싱 작업이 이루어 집니다. 헬퍼에서 사용되는 매니페스트 이름은 MD5 해시가
+포함됩니다.</p><p>또한 Sprockets는 <code>Cache-Control</code> HTTP 헤더를 <code>max-age=31536000</code>로 변경합니다.
+이 헤더는 서버와 클라이언트의 사이에 존재하는 모든 캐시(프록시 등)에 대해서
+서버가 제공하는 컨텐츠는 1년간 캐시해도 좋다고 알립니다. 이에 의해서 그 서버의
+애셋에 대한 요청 수를 줄일 수 있으며, 애셋을 브라우저에서 직접 캐시하거나,
+그 중간에서 캐시로 대체할 수 있는 기회가 주어집니다.</p><p>이 기능은 메모리를 추가로 사용하며, 성능에 영향을 줄 수 있므로 권장하지
+않습니다.</p><p>실제 애플리케이션의 배포시스템에 JavaScript 런타임이 없는 경우에는 다음을
+Gemfile에 추가하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+group :production do
+  gem 'therubyracer'
+end
+
+</pre>
+</div>
+<h4 id="cdn"><a class="anchorlink" href="#cdn">4.4 CDN</a></h4><p>CDN(<a href="http://ko.wikipedia.org/wiki/%EC%BD%98%ED%85%90%EC%B8%A0_%EC%A0%84%EC%86%A1_%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC">컨텐츠 전송 네트워크</a>)는 전세계를
+대상으로 애셋을 캐싱하는 것을 주목적으로 설계됩니다. 이를 통해 브라우저에서
+애셋을 요청하게 되면, 네트워크 상에서 가장 가까운 캐시의 사본이 사용됩니다.
+production 환경의 Rails 서버로부터 (중간 캐시를 사용하지 않고) 직접 애셋을
+제공하고 있다면, 애플리케이션과 브라우저의 사이에서 CDN을 사용하는 것이
+가장 좋습니다.</p><p>CDN의 일반적인 사용법은 production 서버를 "origin" 서버로 설정하는 것입니다.
+다시 말해, 브라우저가 CDN 상의 애셋을 요청하여, 캐시가 발견되지 않았을 경우
+즉시 원 서버로부터 애셋 파일을 가져와서 캐싱하는 식입니다. 예를 들자면,
+Rails 애플리케이션을 <code>example.com</code>이라는 도메인으로 운영하고 있고,
+<code>mycdnsubdomain.fictional-cdn.com</code>라는 CDN이 설정되어 있다고 가정합시다.
+<code>mycdnsubdomain.fictional-cdn.com/assets/smile.png</code>이 요청되면, CDN은 일단
+기존 서버의 <code>example.com/assets/smile.png</code>에 접근하여 이 요청을 캐싱합니다.
+CDN에 같은 요청이 다시 발생하면 캐시된 사본을 사용하게 됩니다. CDN이 애셋을
+직접 제공하는 경우, 브라우저로부터 요청이 직접 Rails 서버에 넘어가는 경우는
+없습니다. CDN이 제공하는 애셋은 네트워크 상에서 브라우저와 가까운 위치에
+존재하므로 요청이 빠르게 처리됩니다. 또한, 서버는 애셋 전송에 사용할 시간을
+절약할 수 있으므로 애플리케이션의 코드를 좀 더 빠르게 제공할 수 있게 됩니다.</p><h5 id="cdn에서-정적인-애셋을-제공하기"><a class="anchorlink" href="#cdn%EC%97%90%EC%84%9C-%EC%A0%95%EC%A0%81%EC%9D%B8-%EC%95%A0%EC%85%8B%EC%9D%84-%EC%A0%9C%EA%B3%B5%ED%95%98%EA%B8%B0">4.4.1 CDN에서 정적인 애셋을 제공하기</a></h5><p>CDN을 설정하려면, Rails 애플리케이션이 인터넷 상에서 production 환경으로
+동작하고 있어야하며, <code>example.com</code>처럼 누구라도 접근할 수 있는 URL이 존재해야
+합니다. 이어서 클라우드 호스팅 제공자가 제공하는 CDN 서비스와 계약할 필요도
+있습니다. 이 경우, CDN의 "origin" 설정을 Rails 애플리케이션의 웹사이트
+<code>example.com</code>로 설정해야압니다. "origin" 서버의 설정 방법에 대해서는 각
+제공자에게 문의해주세요.</p><p>서비스에서 사용하는 CDN으로부터 애플리케이션에서 사용하기 위한 커스텀 서브
+도메인(ex: <code>mycdnsubdomain.fictional-cdn.com</code>)도 얻어야 합니다. 여기까지로
+CDN 서버의 설정이 완료되므로 이번에는 브라우저에 대해서 Rails 서버에 직접
+접근하는 것이 아닌 CDN으로부터 애셋을 가져오도록 알려줄 필요가 있습니다.
+이를 위해서는 본래 사용하던 상대경로 대신에 CDN을 애셋의 호스트 서버로
+사용하도록 Rails를 변경합니다. Rails의 애셋 호스트를 설정하려면
+<code>config/environments/production.rb</code>의 <code>config.action_controller.asset_host</code>를 다음과 같이
+설정하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.action_controller.asset_host = 'mycdnsubdomain.fictional-cdn.com'
+
+</pre>
+</div>
+<div class="note"><p>여기에 적는 것은 "호스트명"(서브 도메인과 루트 도메인을 합친
+것)뿐입니다. <code>http://</code>나 <code>https://</code> 같은 프로토콜 스킴을 적을 필요는 없습니다.
+애셋에 대한 링크에서 사용되는 프로토콜 스킴은 웹페이지에 대한 요청이 발생했을
+때, 그 페이지에 대한 기본 접근 방법에 따라서 적절하게 생성됩니다.</p></div><p>이 값은 <a href="http://ko.wikipedia.org/wiki/%ED%99%98%EA%B2%BD_%EB%B3%80%EC%88%98">환경변수</a>로 설정할 수도 있습니다. 이를 사용하면 스테이징 서버를 실행하는 작업이 편해집니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+config.action_controller.asset_host = ENV['CDN_HOST']
+
+</pre>
+</div>
+<div class="note"><p>이 설정을 유효하게 만들려면 서버의 <code>CDN_HOST</code> 환경 변수에 값(이 경우라면,
+<code>mycdnsubdomain.fictional-cdn.com</code>)을 설정해두어야 합니다.</p></div><p>서버와 CDN의 설정을 완료한 후, 다음의 애셋을 가지고 있는 웹 페이지에
+접근했다고 가정합니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= asset_path('smile.png') %&gt;
+
+</pre>
+</div>
+<p>이 예제에서는 <code>/assets/smile.png</code>와 같은 경로는 반환되지 않습니다(읽기 쉽게 만들기 위해서 다이제스트 문자열을 생략했습니다). 실제로 생성되는 CDN에 대한 전체 경로는 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+http://mycdnsubdomain.fictional-cdn.com/assets/smile.png
+
+</pre>
+</div>
+<p><code>smile.png</code>의 사본이 CDN에 있다면, CDN이 대신 이 파일을 브라우저에 전송합니다. 원래 서버는 요청이 있었는지조차 확인할 수 없습니다. 파일의 사본이 CDN에 없는 경우, CDN은 "origin"(이 경우, <code>example.com/assets/smile.png</code>)을 찾아서 나중을 위해 저장해둡니다.</p><p>몇몇 애셋만을 CDN을 통해서 다루고 싶을 때, 애셋 헬퍼의 <code>:host</code> 옵션을 사용해서 <code>config.action_controller.asset_host</code>의 값을 덮어쓸 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; html-script: true; gutter: false; toolbar: false">
+&lt;%= asset_path 'image.png', host: 'mycdnsubdomain.fictional-cdn.com' %&gt;
+
+</pre>
+</div>
+<h5 id="cdn의-캐싱-동작을-커스커마이즈하기"><a class="anchorlink" href="#cdn%EC%9D%98-%EC%BA%90%EC%8B%B1-%EB%8F%99%EC%9E%91%EC%9D%84-%EC%BB%A4%EC%8A%A4%EC%BB%A4%EB%A7%88%EC%9D%B4%EC%A6%88%ED%95%98%EA%B8%B0">4.4.2 CDN의 캐싱 동작을 커스커마이즈하기</a></h5><p>CDN은 컨텐츠를 캐싱함으로서 동작합니다. CDN에 저장되어 있는 컨텐츠가 오래되거나, 문제가 있다면 장점보다 단점이 커지게 됩니다. 여기에서는 다수의 CDN들의 일반적인 캐싱 동작에 대해서 설명합니다. 제공자에 따라서는 이 설명대로 동작하지 않는 경우도 있으므로 주의해주세요.</p><h6 id="cdn-요청-캐싱"><a class="anchorlink" href="#cdn-%EC%9A%94%EC%B2%AD-%EC%BA%90%EC%8B%B1">4.4.2.1 CDN 요청 캐싱</a></h6><p>지금까지 CDN이 애셋을 캐싱할 때에 유용하다고 설명해왔습니다만, 실제로 캐싱되는 것은 애셋 뿐만이 아니라, 요청 전체입니다. 요청에는 애셋 자체 이외에도 여러 개의 헤더가 포함되어 있습니다. 헤더 중에서도 가장 중요한 것은 <code>Cache-Control</code>입니다. 이것은 CDN(그리고 웹브라우저)에서 어떻게 캐시를 다룰지에 대하여 알려주는 것입니다. 예를 들자면, 누군가가 실제로는 존재하지 않는 애셋 <code>/assets/i-dont-exist.png</code>에 요청을 하고, Rails가 404 에러를 반환했다고 합니다. 이 때에 <code>Cache-Control</code> 헤더가 유효하게 설정되어 있다면, CDN은 이 404 에러 페이지를 캐싱하게 됩니다.</p><h6 id="cdn-헤더를-디버깅하기"><a class="anchorlink" href="#cdn-%ED%97%A4%EB%8D%94%EB%A5%BC-%EB%94%94%EB%B2%84%EA%B9%85%ED%95%98%EA%B8%B0">4.4.2.2 CDN 헤더를 디버깅하기</a></h6><p>이 헤더가 올바르게 캐싱되어 있는지를 확인하는 방법중 하나로 <a href="http://explainshell.com/explain?cmd=curl+-I+http%3A%2F%2Fwww.example.com">curl</a>을 사용할 수 있습니다. curl을 사용해서 서버와 CDN에 각각의 요청을 전송하고, 헤더가 같은지 아닌지 다음을 통해 확인할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ curl -I http://www.example/assets/application-d0e099e021c95eb0de3615fd1d8c4d83.css
+HTTP/1.1 200 OK
+Server: Cowboy
+Date: Sun, 24 Aug 2014 20:27:50 GMT
+Connection: keep-alive
+Last-Modified: Thu, 08 May 2014 01:24:14 GMT
+Content-Type: text/css
+Cache-Control: public, max-age=2592000
+Content-Length: 126560
+Via: 1.1 vegur
+
+</pre>
+</div>
+<p>이번에는 CDN의 사본입니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ curl -I http://mycdnsubdomain.fictional-cdn.com/application-d0e099e021c95eb0de3615fd1d8c4d83.css
+HTTP/1.1 200 OK Server: Cowboy
+Last-Modified: Thu, 08 May 2014 01:24:14 GMT Content-Type: text/css
+Cache-Control:
+public, max-age=2592000
+Via: 1.1 vegur
+Content-Length: 126560
+Accept-Ranges:
+bytes
+Date: Sun, 24 Aug 2014 20:28:45 GMT
+Via: 1.1 varnish
+Age: 885814
+Connection: keep-alive
+X-Served-By: cache-dfw1828-DFW
+X-Cache: HIT
+X-Cache-Hits:
+68
+X-Timer: S1408912125.211638212,VS0,VE0
+
+</pre>
+</div>
+<p>CDN이 제공하는 <code>X-Cache</code> 등의 기능이나, CDN이 추가한 헤더등의 추가 정보에 대해서는 CDN의 문서를 확인해주세요.</p><h6 id="cdn과-cache-control-헤더"><a class="anchorlink" href="#cdn%EA%B3%BC-cache-control-%ED%97%A4%EB%8D%94">4.4.2.3 CDN과 Cache-Control 헤더</a></h6><p><a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">Cache-Control 헤더</a>는 요청이 캐싱되는 방법을 정의하는 W3C의 사양입니다. CDN을 사용하지 않는 경우, 브라우저는 이 헤더 정보를 사용해서 컨텐츠를 캐싱합니다. 이 헤더 덕분에 애셋에 변경사항이 없는 경우에 브라우저가 CSS나 JavaScript를 요청할 때마다 다시 다운로드하지 않아도 되므로 무척 유용합니다. 애셋의 Cache-Control 헤더는 일반적으로 "public"으로 해두며, Rails 서버는 CDN이나 브라우저에 대해서 이 헤더를 통해서 그 사실을 알립니다. 애셋이 "public"이라는 것은 그 요청을 어떤 캐시든 저장해두라는 의미입니다. 마찬가지로 <code>max-age</code>도 이 헤더를 통해서 CDN이나 브라우저에 전송됩니다. 이 기간을 지나면 캐시를 폐기하게 됩니다. <code>max-age</code>의 값은 초단위로 지정할 수 있으며, 최댓값은 <code>31536000</code>이며, 이것은 1년에 해당합니다. Rails에서는 다음의 설정으로 이 기간을 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+config.static_cache_control = "public, max-age=31536000"
+
+</pre>
+</div>
+<p>production 환경의 애셋은 이 설정에 의해서 애플리케이션으로부터 제공되며, 캐시는 1년간 저장됩니다. 많은 CDN은 요청 캐시도 저장하고 있으므로 이 <code>Cache-Control</code> 헤더는 애셋을 요청하는 모든 브라우저(미래에 등장할 브라우저를 포함하여)에 넘겨집니다. 브라우저는 이 헤더를 받으면, 이후에 같은 요청을 보낼 경우에 대비하여 캐시를 저장해둬도 된다는 것을 알 수 있습니다.</p><h6 id="cdn에서의-url-기반-캐시-폐기에-대해서"><a class="anchorlink" href="#cdn%EC%97%90%EC%84%9C%EC%9D%98-url-%EA%B8%B0%EB%B0%98-%EC%BA%90%EC%8B%9C-%ED%8F%90%EA%B8%B0%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C">4.4.2.4 CDN에서의 URL 기반 캐시 폐기에 대해서</a></h6><p>많은 CDN에서는 애셋의 캐싱을 완전히 URL에 기반해서 수행하고 있습니다. 예를 들자면, 아래의 애셋에 대한 요청이 있다고 합시다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+http://mycdnsubdomain.fictional-cdn.com/assets/smile-123.png
+
+</pre>
+</div>
+<p>이 요청의 캐시는, 아래의 애셋에 대한 요청의 캐시와 완전히 다른 것으로 취급됩니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+http://mycdnsubdomain.fictional-cdn.com/assets/smile.png
+
+</pre>
+</div>
+<p><code>Cache-Control</code>의 <code>max-age</code>를 먼 미래로 설정했지만, 애셋에 변경이 발생한 경우에는 이러한 캐시를 폐기해주세요. 예를 들자면, 어떤 아이콘의 색을 노란색에서 파란색으로 변경했다면, 홈페이지에 방문한 사람에게는 변경 후의 파란색으로 보이길 바랄 것입니다. Rails는 CDN을 함께 사용하는 경우, Rails의 애셋 파이프라인 <code>config.assets.digest</code>이 기본적으로 true로 설정되어 있으므로, 애셋의 내용이 조금이라도 바뀐다면 파일명도 바뀝니다. 이 때에 캐시 내역을 수동으로 삭제할 필요가 없다는 점에 주목해주세요. 애셋 이름은 내용에 따라서 변경되므로, 사용자는 언제나 최신 애셋을 사용할 수 있게 됩니다.</p><h3 id="파이프라인을-커스터마이즈하기"><a class="anchorlink" href="#%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9D%84-%EC%BB%A4%EC%8A%A4%ED%84%B0%EB%A7%88%EC%9D%B4%EC%A6%88%ED%95%98%EA%B8%B0">5 파이프라인을 커스터마이즈하기</a></h3><h4 id="css를-압축하기"><a class="anchorlink" href="#css%EB%A5%BC-%EC%95%95%EC%B6%95%ED%95%98%EA%B8%B0">5.1 CSS를 압축하기</a></h4><p>YUI는 CSS 압축방법 중 하나입니다. <a href="http://yui.github.io/yuicompressor/css.html">YUI CSS compressor</a>는 최소화 기능을 제공하고 있습니다(역주: 여기에서는 압축(compress)은 최소화(minify)나 난독화(uglify)와 동일한 의미로 사용되고 있으며, 압축 후의 파일은 zip과 같은 바이너리가 되지 않습니다).</p><p>YUI 압축은 아래의 설정으로 활성화할 수 있습니다. 단, <code>yui-compressor</code> gem이 필요합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.css_compressor = :yui
+
+</pre>
+</div>
+<p>sass-rails gem을 사용하고 있는 경우에는 YUI 대신 사용할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.css_compressor = :sass
+
+</pre>
+</div>
+<h4 id="javascript를-압축하기"><a class="anchorlink" href="#javascript%EB%A5%BC-%EC%95%95%EC%B6%95%ED%95%98%EA%B8%B0">5.2 JavaScript를 압축하기</a></h4><p>JavaScript를 압축할 때에는 <code>:closure</code>, <code>:uglifier</code>, <code>:yui</code> 중에 하나를 옵션으로 지정할 수 있습니다. 각각 <code>closure-compiler</code> gem, <code>uglifier</code> gem, <code>yui-compressor</code> gem이 필요합니다.</p><p>Rails의 Gemfile에는 기본으로 <a href="https://github.com/lautis/uglifier">uglifier</a>가 포함되어 있습니다. 이 gem은 NodeJS로 작성된 <a href="https://github.com/mishoo/UglifyJS">UglifyJS</a>를 Ruby로 감싼 것입니다. uglifier에 의한 압축은 다음과 같이 이루어집니다. 공개문자와 주석을 제거하고, 지역 변수명을 짧게 줄인 뒤, 가능하다면 <code>if</code>와 <code>else</code>를 삼항연산자로 변환하는 등의 최적화를 합니다.</p><p>아래의 설정으로 JavaScript 압축시에 <code>uglifier</code>가 사용됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.js_compressor = :uglifier
+
+</pre>
+</div>
+<div class="note"><p><code>uglifier</code>를 사용하려면 <a href="https://github.com/sstephenson/execjs#readme">ExecJS</a>가 지원하는 JavaScript 런타임이 필요합니다. Mac OS X나 Windows를 사용하고 있는 경우에는 OS에 JavaScript 런타임을 설치해주세요.</p></div><h4 id="gzip으로-압축한-애셋-제공하기"><a class="anchorlink" href="#gzip%EC%9C%BC%EB%A1%9C-%EC%95%95%EC%B6%95%ED%95%9C-%EC%95%A0%EC%85%8B-%EC%A0%9C%EA%B3%B5%ED%95%98%EA%B8%B0">5.3 GZip으로 압축한 애셋 제공하기</a></h4><p>기본으로 gzip으로 압축된 애셋이 압축되지 않은 애셋과 함께 생성됩니다. 압축된
+애셋을 사용하면 전송량을 줄일 수 있습니다. 이는 <code>gzip</code> 플래그를 통해 변경할
+수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.gzip = false # 압축된 애셋 생성하지 않기
+
+</pre>
+</div>
+<h4 id="다른-압축-방법을-사용하기"><a class="anchorlink" href="#%EB%8B%A4%EB%A5%B8-%EC%95%95%EC%B6%95-%EB%B0%A9%EB%B2%95%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">5.4 다른 압축 방법을 사용하기</a></h4><p>CSS나 JavaScript의 압축 설정에는 다른 객체를 설정할 수도 있습니다. 설정에 넘길
+객체에는 <code>compress</code> 메소드가 구현되어 있어야 합니다. 이 메소드는 문자열을
+인수로 받아서 압축 결과를 문자열의 형태로 반환하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Transformer
+  def compress(string)
+    do_something_returning_a_string(string)
+  end
+end
+
+</pre>
+</div>
+<p>이 코드를 유효하게 만들려면 <code>application.rb</code>의 설정 옵션에 새로운 객체를 넘기면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.css_compressor = Transformer.new
+
+</pre>
+</div>
+<h4 id="애셋의-경로를-변경하기"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B%EC%9D%98-%EA%B2%BD%EB%A1%9C%EB%A5%BC-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0">5.5 <em>애셋</em>의 경로를 변경하기</a></h4><p>Sprockets가 사용하는 애셋의 경로는 기본값으로 <code>/assets</code>입니다.</p><p>이 경로는 다음을 통해서 변경할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.prefix = "/some_other_path"
+
+</pre>
+</div>
+<p>이 옵션은 애셋 파이프라인을 사용하지 않는 기존의 프로젝트가 있고, 그 프로젝트의 기존의 경로를 그대로 유지하거나, 새로운 리소스용의 경로를 지정할 경우 등에 유용합니다.</p><h4 id="x-sendfile-헤더"><a class="anchorlink" href="#x-sendfile-%ED%97%A4%EB%8D%94">5.6 X-Sendfile 헤더</a></h4><p>X-Sendfile 헤더는 웹서버에 대한 디렉티브이며 애플리케이션으로부터 응답을 브라우저에 전송하지 않고 파기한 뒤, 대신에 다른 파일을 디스크로부터 읽어와서 브라우저에게 돌려줍니다. 이 옵션은 기본적으로 꺼져있습니다. 서버가 이 헤더를 지원하는 경우에만 사용할 수 있습니다. 이 경우 그 파일의 전송 작업은 웹 서버에게 일임되며, 이에 의해서 속도 향상을 기대할 수 있습니다. 이 기능의 사용법에 대해서는 <a href="http://api.rubyonrails.org/v5.0.2/classes/ActionController/DataStreaming.html#method-i-send_file">send_file</a>을 참조해주세요.</p><p>Apache와 NGINX에서는 이 옵션이 지원되며, 다음과 같이 <code>config/environments/production.rb</code>에서 유효하게 설정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config.action_dispatch.x_sendfile_header = "X-Sendfile" # Apache용
+# config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # NGINX용
+
+</pre>
+</div>
+<div class="warning"><p>기존의 Rails 애플리케이션을 업그레이드할 때에 이 기능을 사용할지 검토하고 있는 경우라면, 이 옵션을 어디에서 활성화할지 잘 확인해주세요. 이 옵션을 사용해도 좋은 곳은 <code>production.rb</code>과 production 환경처럼 동작하는 다른 환경 파일 뿐입니다. <code>application.rb</code>에서 사용해서는 안됩니다.</p></div><div class="info"><p>자세한 설명은 production 환경용의 웹서버 문서를 참고해주세요.
+- <a href="https://tn123.org/mod_xsendfile/">Apache</a>
+- <a href="http://wiki.nginx.org/XSendfile">NGINX</a></p></div><h3 id="애셋의-캐시-저장소"><a class="anchorlink" href="#%EC%95%A0%EC%85%8B%EC%9D%98-%EC%BA%90%EC%8B%9C-%EC%A0%80%EC%9E%A5%EC%86%8C">6 애셋의 캐시 저장소</a></h3><p>기본으로 Sprockets 캐시는 development 환경과 production 환경에서
+<code>tmp/cache/assets</code>를 사용합니다. 이 경로는 다음과 같이 변경할 수 있습니다.</p><p>config.assets.configure do |env|
+  env.cache = ActiveSupport::Cache.lookup_store(:memory_store,
+                                                { size: 32.megabytes })
+end</p><p>애셋 캐시 스토어를 비활성화 하려면 다음의 코드를 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.assets.configure do |env|
+  env.cache = ActiveSupport::Cache.lookup_store(:null_store)
+end
+
+</pre>
+</div>
+<h3 id="gem에-애셋을-추가하기"><a class="anchorlink" href="#gem%EC%97%90-%EC%95%A0%EC%85%8B%EC%9D%84-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">7 Gem에 애셋을 추가하기</a></h3><p>애셋은 외부 소스로부터 gem의 형태로 가져올 수도 있습니다.</p><p>좋은 예시로 <code>jquery-rails</code> gem이 있습니다. 이것은 JavaScript 라이브러리를 gem으로서 Rails에 제공합니다. 이 gem을 사용하면, Rails는 이 gem용의 폴더를 애셋이 저장되어 있을 것이라고 이해하며, 이 gem의 폴더가 <code>app/assets</code>, <code>lib/assets</code>, <code>vendor/assets</code> 폴더와 함께 Sprockets의 검색 경로에 추가됩니다.</p><h3 id="라이브러리나-gem을-전처리기로-만들기"><a class="anchorlink" href="#%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%82%98-gem%EC%9D%84-%EC%A0%84%EC%B2%98%EB%A6%AC%EA%B8%B0%EB%A1%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0">8 라이브러리나 Gem을 전처리기로 만들기</a></h3><p>Sprockets는 다른 템플릿 엔진에 대한 일반적인 인터페이스로서 <a href="https://github.com/rtomayko/tilt">Tilt</a>를 사용하고 있으므로, gem에서 Tilt의 템플릿 프로토콜을 구현하기만 하면 됩니다. 보통 Tilt를 <code>Tilt::Template</code>처럼 상속하여 <code>prepare</code> 메소드와 <code>evaluate</code> 메소드를 구현합니다. <code>prepare</code> 메소드는 템플릿을 초기화하며, <code>evaluate</code> 메소드는 처리가 끝난 소스를 반환합니다. 처리전의 코드는 <code>data</code>에 저장됩니다. 더 자세한 설명은 <a href="https://github.com/rtomayko/tilt/blob/master/lib/tilt/template.rb"><code>Tilt::Template</code></a>의 소스를 참고해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+module BangBang
+  class Template &lt; ::Tilt::Template
+    def prepare
+      # 여기에서 모든 초기화 처리를 수행한다
+    end
+
+    # 원래 템플릿에 ""!를 추가한다
+    def evaluate(scope, locals, &amp;block)
+      "#{data}!"
+    end
+  end
+end
+
+</pre>
+</div>
+<p>이것으로 <code>Template</code> 클래스가 생성되었으므로, 이어서 템플릿 파일의 확장자와 연결하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Sprockets.register_engine '.bang', BangBang::Template
+
+</pre>
+</div>
+<h3 id="오래된-버전의-rails를-업그레이드하기"><a class="anchorlink" href="#%EC%98%A4%EB%9E%98%EB%90%9C-%EB%B2%84%EC%A0%84%EC%9D%98-rails%EB%A5%BC-%EC%97%85%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%93%9C%ED%95%98%EA%B8%B0">9 오래된 버전의 Rails를 업그레이드하기</a></h3><p>Rails 3.0나 Rails 2.x로부터 업그레이드를 하는 경우에는 몇몇 작업을 처리할 필요가 있습니다. 우선 <code>public/</code> 폴더에 있던 파일들을 다른 위치로 옮깁니다. 파일의 종류에 따른 올바른 위치는 <a href="#%EC%95%A0%EC%85%8B%EC%9D%84-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0">애셋을 구성하기</a>를 참조해주세요.</p><p>이어서 JavaScript 파일의 중복을 제거합니다. jQuery는 Rails 3.1이후로 기본 JavaScript 라이브러리가 되었으므로 <code>jquery.js</code>를 <code>app/assets</code>에 두지 않더라도 자동적으로 불러와집니다.</p><p>세번째로는, 많은 환경설정 파일에 올바른 기본 옵션값을 추가합니다.</p><p><code>application.rb</code>의 경우.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 애셋의 버전을 지정합니다. 애셋을 모두 갱신하고 싶은 경우에는 이 값을 변경하세요.
+config.assets.version = '1.0'
+
+# config.assets.prefix = "/assets"는 애셋을 어디에 위치시킬지에 대한 경로를 변경할 때에 사용합니다.
+
+</pre>
+</div>
+<p><code>development.rb</code>의 경우.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 애셋을 읽어온 행을 전개합니다.
+config.assets.debug = true
+
+</pre>
+</div>
+<p><code>production.rb</code>의 경우.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# 사용하고 싶은 전처리기를 선택하세요
+config.assets.js_compressor = :uglifier
+# config.assets.css_compressor = :yui
+
+# 컴파일된 애셋이 발견되지 않는 경우에 애셋 파이프라인으로 돌아가지 않기
+config.assets.compile = false
+
+# 애셋 URL의 다이제스트를 생성하기. 이 옵션은 제거 예정입니다.
+config.assets.digest = true
+
+# 추가 애셋을 미리 컴파일하기 (application.js, application.css, 그리고 모든
+# 비JS/CSS 파일이 추가되어 있음)
+# config.assets.precompile += %w( search.js )
+
+</pre>
+</div>
+<p>Rails는 Sprockets의 기본 설정값을 test 환경을 위한 <code>test.rb</code>에서 설정하지
+않도록 변경되었습니다. 따라서 <code>test.rb</code>에서 Sprockets의 설정을 추가할 필요가
+있습니다. test환경에서의 이전 기본값은 <code>config.assets.compile = true</code>,
+<code>config.assets.compress = false</code>, <code>config.assets.debug = false</code>,
+<code>config.assets.digest = false</code>입니다.</p><p>다음을 <code>Gemfile</code>에 추가해야합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+gem 'sass-rails',   "~&gt; 3.2.3"
+gem 'coffee-rails', "~&gt; 3.2.1"
+gem 'uglifier'
+
+</pre>
+</div>
+
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:12 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

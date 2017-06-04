@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Ruby on Rails 가이드
+</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>루비온레일스 가이드 (v5.0.2)</h2>
+
+<p>
+  <p>
+    이것은 레일스 5.0 버전에 대한 새 가이드로 <a href="https://github.com/rorlakr/rails-guides/tree/guides-ko">v5.0.2</a>을 지원합니다.
+    이 가이드는 레일스를 이용하여 바로 웹을 개발할 수 있도록 고안되었으며
+    프레임워크내 코드들이 서로 잘 동작하는 방법을 이해하도록 도와 줍니다.
+  </p>
+
+
+
+      <div id="subCol">
+  <dl>
+    <dt></dt>
+    <dd class="work-in-progress">이 아이콘으로 표시된 가이드내용은 현재 작업 중에
+      있는 것이며 가이드 인덱스 메뉴에는 보이지 않습니다. 유용한 내용들이지만
+      완전하지 못하거나 에러를 포함할 수도 있습니다. 내용을 읽고 의견이나 잘못된
+      내용에 대해 알려주시면 감사하겠습니다.</dd>
+  </dl>
+</div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        
+
+
+  <h3>시작하기 전에</h3>
+  <dl>
+      <dt><a href="getting_started.html">레일스 시작하기</a></dt><dd>
+        <p>레일스의 설치 방법과 첫 레일스 애플리케이션을 만들어보고 필요한 것들을 설명합니다.</p>
+</dd>  </dl>
+  <h3>Model</h3>
+  <dl>
+      <dt><a href="active_record_basics.html">Active Record 기초</a></dt><dd>
+        <p>Active Record의 기초가 되는 모델, 데이터베이스에 저장하기, Active Record 패턴과 라이브러리에 대해서 설명합니다.</p>
+</dd>      <dt><a href="active_record_migrations.html">Active Record Migrations</a></dt><dd>
+        <p>Active Record 의 마이그레이션 (migration)을 사용하여, 어떻게 데이터베이스를 구조화된 방식으로 변경하는지 설명합니다.</p>
+</dd>      <dt><a href="active_record_validations.html">Active Record Validations</a></dt><dd>
+        <p>Active Record의 Validation(유효성 검사)에 대해서 설명합니다.</p>
+</dd>      <dt><a href="active_record_callbacks.html">Active Record Callbacks</a></dt><dd>
+        <p>Active Record의 콜백에 대해서 설명합니다.</p>
+</dd>      <dt><a href="association_basics.html">Active Record Associations</a></dt><dd>
+        <p>Active Record가 제공하는 모든 관계 설정에 대해 설명합니다.</p>
+</dd>      <dt><a href="active_record_querying.html">Active Record Query Interface</a></dt><dd>
+        <p>Active Record가 제공하는 모든 데이터베이스 쿼리 인터페이스에 대해서 설명합니다.</p>
+</dd>      <dt><a href="active_model_basics.html">Active Model Basics</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>Active Record를 사용하지 않고 모델 클래스를 다루는 방법에 대해서 설명합니다.</p>
+</dd>  </dl>
+  <h3>View</h3>
+  <dl>
+      <dt><a href="action_view_overview.html">Action View 개요</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>Action View의 개념을 소개하고, 몇몇 공통적으로 사용하는 뷰 헬퍼에 대해서 설명합니다.</p>
+</dd>      <dt><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dt><dd>
+        <p>Action Controller과 Action View가 제공하는 기본적인 레이아웃 기능에 대해서 설명합니다. 랜더링과 리다이렉트, content_for 블럭과 파셜(부분 템플릿)의 사용 방법에 대해서도 설명합니다.</p>
+</dd>      <dt><a href="form_helpers.html">Action View Form Helper</a></dt><dd>
+        <p>내장되어있는 폼 헬퍼에 대해서 설명합니다.</p>
+</dd>  </dl>
+  <h3>Controller</h3>
+  <dl>
+      <dt><a href="action_controller_overview.html">Action Controller 개요</a></dt><dd>
+        <p>컨트롤러의 동작과 애플리케이션에 들어온 요청을 처리할때 컨트롤러가 어떤 역할을 하는지 설명합니다. 세션, 필터, cookie, 데이터 스트리밍, 요청에 따라 발생하는 예외 처리 등에 대해서 다룹니다.</p>
+</dd>      <dt><a href="routing.html">레일스 라우팅</a></dt><dd>
+        <p>레일스의 라우팅 기능에 대해서 설명합니다. 레일스 애플리케이션에서 이루어지는 라우팅에 대해서 이해하고 싶다면 이 부분을 읽어주세요.</p>
+</dd>  </dl>
+  <h3>심화 주제</h3>
+  <dl>
+      <dt><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dt><dd>
+        <p>Active Support에 정의되어 있는 Ruby 코어 확장 기능에 대한 문서입니다.</p>
+</dd>      <dt><a href="i18n.html">레일스 국제화(i18n) API</a></dt><dd>
+        <p>레일스 애플리케이션에서 국제화를 지원하는 방법에 대해서 설명합니다. 이를 이용하면 애플리케이션을 서로 다른 언어로 번역할 수 있으며, 단수형/복수형에 대한 규칙을 변경하거나, 각 나라에 맞는 날짜 형식을 설정할 수 있습니다.</p>
+</dd>      <dt><a href="action_mailer_basics.html">Action Mailer Basics</a></dt><dd>
+        <p>Action Mailer를 사용해서 메일을 송수신하는 방법에 대해 설명합니다.</p>
+</dd>      <dt><a href="active_job_basics.html">Active Job Basics</a></dt><dd>
+        <p>백그라운드에서 동작하는 잡(Job)을 만들고, 큐에 전송하고 실행하는데에 있어 필요한 모든 것을 설명합니다.</p>
+</dd>      <dt><a href="testing.html">레일스 애플리케이션 테스트하기</a></dt><dd>
+        <p>레일스에서 유닛 테스트와 기능 테스트를 하는 방법에 대해서 전체적인 설명을 합니다. &#39;테스트란 무엇인가&#39;부터 테스트 API 까지 모든 토픽을 다룹니다.</p>
+</dd>      <dt><a href="security.html">레일스 보안 가이드</a></dt><dd>
+        <p>Web 애플리케이션 전반에 걸친 보안 문제와, 레일스에서 각 문제를 해결하는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dt><dd>
+        <p>레일스 애플리케이션을 디버깅하는 방법에 대해서 설명합니다. 다양한 디버깅 방법이나, 작성한 코드가 뒤에서는 어떤 식으로 동작하는지에 대해서도 설명합니다.</p>
+</dd>      <dt><a href="configuring.html">레일스 애플리케이션 설정하기</a></dt><dd>
+        <p>레일스 애플리케이션의 기본적인 설정 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="command_line.html">레일스 커맨드 라인</a></dt><dd>
+        <p>레일스가 제공하는 각종 커맨드라인 도구에 대해서 설명합니다.</p>
+</dd>      <dt><a href="asset_pipeline.html">애셋 파이프라인</a></dt><dd>
+        <p>애셋 파이프라인에 대해서 설명합니다.</p>
+</dd>      <dt><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dt><dd>
+        <p>레일스 내장 Ajax/JavaScript에 대해서 설명합니다.</p>
+</dd>      <dt><a href="initialization.html">레일스의 초기화 프로세스</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>레일스 내부의 초기화 프로세스에 대해서 설명합니다.</p>
+</dd>      <dt><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dt><dd>
+        <p>상수 자동 읽기와 다시 읽기가 어떻게 이루어지는지 설명합니다.</p>
+</dd>      <dt><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dt><dd>
+        <p>캐시를 사용하여 레일스 애플리케이션을 빠르게 만드는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="active_support_instrumentation.html">Active Support Instrumentation</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>액티브서포트를 통해 레일스나 다른 루비 코드에서 이벤트를 계측하는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="profiling.html">레일스 애플리케이션 프로파일링</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>성능을 향상시키기 위해 레일스 애플리케이션을 분석하는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dt><dd>
+        <p>레일스를 통해 효율적으로 JSON API 애플리케이션을 만드는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="action_cable_overview.html">Action Cable 살펴보기</a></dt><dd>
+        <p>실시간 기능을 구현하기 위해 액션케이블이 어떻게 동작하는지, 웹소켓을 어떻게 사용하는지에 대해서 설명합니다.</p>
+</dd>  </dl>
+  <h3>레일스 확장하기</h3>
+  <dl>
+      <dt><a href="plugins.html">레일스 플러그인 입문</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>플러그인을 만들어서 레일스의 기능을 확장하는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="rails_on_rack.html">Rails와 Rack</a></dt><dd>
+        <p>Rails와 Rack이 어떤식으로 통합되어 있는지, 그리고 다른 Rack 컴포넌트와의 인터페이스에 대해서 설명합니다.</p>
+</dd>      <dt><a href="generators.html">레일스 제너레이터와 템플릿</a></dt><dd>
+        <p>새로운 제너레이터를 추가하거나 레일스의 내장 제너레이터에 새로운 요소(예를 들어, scaffold 제너레이터에 새로운 테스트 스텁 등)를 추가하는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="engines.html">레일스 엔진 입문</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>마운트 가능한 엔진 개발 방법에 대해서 설명합니다.</p>
+</dd>  </dl>
+  <h3>Ruby on Rails 에 기여하기</h3>
+  <dl>
+      <dt><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dt><dd>
+        <p>Rails는 &#39;어떤 다른 사람의 프레임워크&#39;가 아닙니다. 현재도 계속되고 있는 Rails 프레임워크 개발에 기여하는 다양한 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="api_documentation_guidelines.html">API 문서 작성 가이드라인</a></dt><dd class="work-in-progress">Work in progress</dd><dd>
+        <p>Ruby on Rails API 문서의 가이드라인에 대해 설명합니다.</p>
+</dd>      <dt><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dt><dd>
+        <p>Ruby on Rails 가이드 작성 방법에 대한 가이드라인입니다.</p>
+</dd>  </dl>
+  <h3>Maintenance Policy</h3>
+  <dl>
+      <dt><a href="maintenance_policy.html">Maintenance Policy</a></dt><dd>
+        <p>현재 지원되고 있는 Ruby on Rails 버전과 차기 버전 릴리스 일정에 대해서 설명합니다.</p>
+</dd>  </dl>
+  <h3>릴리스 노트</h3>
+  <dl>
+      <dt><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dt><dd>
+        <p>애플리케이션의 Ruby on Rails를 최신 버전으로 업그레이드 하는 방법에 대해서 설명합니다.</p>
+</dd>      <dt><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dt><dd>
+        <p>Rails 5.0의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dt><dd>
+        <p>Rails 4.2의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dt><dd>
+        <p>Rails 4.1의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dt><dd>
+        <p>Rails 4.0의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dt><dd>
+        <p>Rails 3.2의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dt><dd>
+        <p>Rails 3.1의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dt><dd>
+        <p>Rails 3.0의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dt><dd>
+        <p>Rails 2.3의 릴리스 노트입니다.</p>
+</dd>      <dt><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dt><dd>
+        <p>Rails 2.2의 릴리스 노트입니다.</p>
+</dd>  </dl>
+
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:24 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

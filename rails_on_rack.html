@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Rails와 Rack — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Rails와 Rack</h2><p>이 가이드에서는 Rails와 Rack의 관계, Rails와 다른 Rack 컴포넌트간의 관계에 대해서 설명합니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>Rack의 미들웨어를 Rails에서 사용하는 방법</li>
+<li>Action Pack에서의 미들웨어 스택에 대해서</li>
+<li>직접 미들웨어 스택을 정의하는 방법</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#rack-%EC%9E%85%EB%AC%B8">Rack 입문</a></li>
+<li>
+<a href="#rails%EC%99%80-rack">Rails와 Rack</a>
+
+<ul>
+<li><a href="#rack-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%9C%BC%EB%A1%9C%EC%84%9C%EC%9D%98-rails-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98">Rack 애플리케이션으로서의 Rails 애플리케이션</a></li>
+<li><a href="#rails-server"><code>rails server</code></a></li>
+<li><a href="#rackup"><code>rackup</code></a></li>
+<li><a href="#%EA%B0%9C%EB%B0%9C%EA%B3%BC-%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9">개발과 자동 로딩</a></li>
+</ul>
+</li>
+<li>
+<a href="#action-dispatcher%EC%9D%98-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D">Action Dispatcher의 미들웨어 스택</a>
+
+<ul>
+<li><a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%84-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0">미들웨어 스택을 확인하기</a></li>
+<li><a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%84-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">미들웨어 스택을 설정하기</a></li>
+<li><a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%98-%EB%82%B4%EC%9A%A9">미들웨어 스택의 내용</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">참고자료</a>
+
+<ul>
+<li><a href="#rack%EC%97%90-%EB%8C%80%ED%95%B4-%EC%9E%90%EC%84%B8%ED%9E%88-%EB%B0%B0%EC%9A%B0%EA%B8%B0">Rack에 대해 자세히 배우기</a></li>
+<li><a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0">미들웨어를 이해하기</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <div class="warning"><p>이 가이드는 Rack의 미들웨어, url맵, <code>Rack::Builder</code>같은 Rack의 프로토콜이나 개념에 관한 지식이 어느정도 있을 것이라고 가정하고 설명합니다.</p></div><h3 id="rack-입문"><a class="anchorlink" href="#rack-%EC%9E%85%EB%AC%B8">1 Rack 입문</a></h3><p>Rack은 Ruby의 웹 애플리케이션에 대해서 최소한으로 모듈화 되어 있으며, 응용을 할 수 있는 인터페이스를 제공하고 있습니다. Rack은 HTTP 요청과 응답을 가능한 간단한 방법으로 감싸서 웹서버, 웹 프레임워크, 그 에 상당하는 위치의 소프트웨어(미들웨어라고 불립니다)의 API를 하나의 메소드 호출 형태로 만들어줍니다.</p>
+<ul>
+<li><a href="http://rack.github.io/">Rack API 문서</a></li>
+</ul>
+<p>Rack에 대한 설명은 이 가이드의 범주를 넘습니다. Rack에 관한 기본적인 지식이 부족한 경우, 아래의 <a href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">리소스</a>를 확인해주세요.</p><h3 id="rails와-rack"><a class="anchorlink" href="#rails%EC%99%80-rack">2 Rails와 Rack</a></h3><h4 id="rack-애플리케이션으로서의-rails-애플리케이션"><a class="anchorlink" href="#rack-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%9C%BC%EB%A1%9C%EC%84%9C%EC%9D%98-rails-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98">2.1 Rack 애플리케이션으로서의 Rails 애플리케이션</a></h4><p><code>Rails.application</code>은 Rails 애플리케이션을 Rack 애플리케이션으로 구현한 것입니다. Rack에 준거한 웹서버로, Rails 애플리케이션을 제공하기 위해서는 <code>Rails.application</code>객체를 사용해야합니다.</p><h4 id="rails-server"><a class="anchorlink" href="#rails-server">2.2 <code>rails server</code></a></h4><p><code>rails server</code> 명령은 <code>Rack::Server</code>의 객체를 생성하고, 웹 서버를 실행합니다.</p><p><code>rails server</code> 명령은 다음과 같이 <code>Rack::Server</code>의 객체를 생성합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+Rails::Server.new.tap do |server|
+  require APP_PATH
+  Dir.chdir(Rails.application.root)
+  server.start
+end
+
+</pre>
+</div>
+<p><code>Rails::Server</code> 클래스는 <code>Rack::Server</code> 클래스를 상속하고 있으며, 다음과 같이 <code>Rack::Server#start</code>를 호출합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Server &lt; ::Rack::Server
+  def start
+    ...
+    super
+  end
+end
+
+</pre>
+</div>
+<h4 id="rackup"><a class="anchorlink" href="#rackup">2.3 <code>rackup</code></a></h4><p>Rails의 <code>rails server</code> 명령 대신에 <code>rackup</code> 명령을 사용할 때에는 아래의 내용을 <code>config.ru</code>를 작성해서 Rails 애플리케이션의 최상위 폴더에 저장합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# Rails.root/config.ru
+require ::File.expand_path('../config/environment', __FILE__)
+run Rails.application
+
+</pre>
+</div>
+<p>서버를 실행합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rackup config.ru
+
+</pre>
+</div>
+<p><code>rackup</code>의 옵션에 대해서 자세히 알고 싶을 때에는 다음을 입력하세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rackup --help
+
+</pre>
+</div>
+<h4 id="개발과-자동-로딩"><a class="anchorlink" href="#%EA%B0%9C%EB%B0%9C%EA%B3%BC-%EC%9E%90%EB%8F%99-%EB%A1%9C%EB%94%A9">2.4 개발과 자동 로딩</a></h4><p>미들웨어는 한번 불러오고나면 변경되더라도 다시 불러와지지 않습니다. 변경사항을 반영하고 싶은 경우에는 애플리케이션을 재기동해야 합니다.</p><h3 id="action-dispatcher의-미들웨어-스택"><a class="anchorlink" href="#action-dispatcher%EC%9D%98-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D">3 Action Dispatcher의 미들웨어 스택</a></h3><p>Action Dispatcher에 포함되어 있는 많은 컴포넌트들은 Rack 미들웨어로서 구현되어 있습니다. Rails 내외의 다양한 미들웨어들을 결합하여, 완전한 Rails의 Rack 애플리케이션을 만들기 위해 <code>Rails::Application</code>는 <code>ActionDispatch::MiddlewareStack</code>을 사용하고 있습니다.</p><div class="note"><p><code>ActionDispatch::MiddlewareStack</code>는 <code>Rack::Builder</code>의 Rails 버전입니다만, Rails 애플리케이션의 요구를 충족하기 위해서 좀 더 유연성을 가지고 있으며, 더 많은 기능을 가지고 있습니다.</p></div><h4 id="미들웨어-스택을-확인하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%84-%ED%99%95%EC%9D%B8%ED%95%98%EA%B8%B0">3.1 미들웨어 스택을 확인하기</a></h4><p>Rails에는 미들웨어 스택을 확인하기 위한 Rake 태스크가 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails middleware
+
+</pre>
+</div>
+<p>막 생성한 Rails 애플리케이션에서는 다음과 같이 출력될 겁니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+use Rack::Sendfile
+use ActionDispatch::Static
+use ActionDispatch::Executor
+use #&lt;ActiveSupport::Cache::Strategy::LocalCache::Middleware:0x000000029a0838&gt;
+use Rack::Runtime
+use Rack::MethodOverride
+use ActionDispatch::RequestId
+use Rails::Rack::Logger
+use ActionDispatch::ShowExceptions
+use ActionDispatch::DebugExceptions
+use ActionDispatch::RemoteIp
+use ActionDispatch::Reloader
+use ActionDispatch::Callbacks
+use ActiveRecord::Migration::CheckPending
+use ActiveRecord::ConnectionAdapters::ConnectionManagement
+use ActiveRecord::QueryCache
+use ActionDispatch::Cookies
+use ActionDispatch::Session::CookieStore
+use ActionDispatch::Flash
+use Rack::Head
+use Rack::ConditionalGet
+use Rack::ETag
+run Rails.application.routes
+
+</pre>
+</div>
+<p>기본의 미들웨어(와 그 중에 일부)에 대해서는 <a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%98-%EB%82%B4%EC%9A%A9">Internal Middlewares</a>을 참고해주세요.</p><h4 id="미들웨어-스택을-설정하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%84-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0">3.2 미들웨어 스택을 설정하기</a></h4><p>미들웨어 스택에 미들웨어를 추가하거나, 삭제 및 변경하려면 <code>application.rb</code> 또는 환경마다 존재하는 <code>environments/&lt;environment&gt;.rb</code> 파일에서 <code>config.middleware</code>를 사용하면 됩니다.</p><h5 id="미들웨어를-추가하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">3.2.1 미들웨어를 추가하기</a></h5><p>다음 메소드를 사용하여 미들웨어 스택에 새로운 미들웨어를 추가할 수 있습니다.</p>
+<ul>
+<li><p><code>config.middleware.use(new_middleware, args)</code> - 미들웨어 스택의 가장 아래에 새로운 미들웨어를 추가합니다.</p></li>
+<li><p><code>config.middleware.insert_before(existing_middleware, new_middleware, args)</code> - (첫번째 인수로)지정된 미들웨어의 앞에 새로운 미들웨어를 추가합니다.</p></li>
+<li><p><code>config.middleware.insert_after(existing_middleware, new_middleware, args)</code> - (첫번째 인수로)지정된 미들웨어의 뒤에 새로운 미들웨어를 추가합니다.</p></li>
+</ul>
+<div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+
+# Rack::BounceFavicon를 가장 마지막에 추가한다
+config.middleware.use Rack::BounceFavicon
+
+# ActiveRecord::QueryCache의 뒤에 Lifo::Cache를 추가한다
+# 그리고 Lifo::Cache에 { page_cache: false }를 넘긴다
+config.middleware.insert_after ActiveRecord::QueryCache, Lifo::Cache, page_cache: false
+
+</pre>
+</div>
+<h5 id="미들웨어를-교체하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EA%B5%90%EC%B2%B4%ED%95%98%EA%B8%B0">3.2.2 미들웨어를 교체하기</a></h5><p><code>config.middleware.swap</code>를 사용하여 미들웨어 스택에 있는 미들웨어를 다른 것으로 교체할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+
+# Lifo::ShowExceptions를 ActionDispatch::ShowExceptions로 교체한다.
+config.middleware.swap ActionDispatch::ShowExceptions, Lifo::ShowExceptions
+
+</pre>
+</div>
+<h5 id="미들웨어를-삭제하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EC%82%AD%EC%A0%9C%ED%95%98%EA%B8%B0">3.2.3 미들웨어를 삭제하기</a></h5><p>애플리케이션의 설정에 다음의 코드를 추가해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+config.middleware.delete Rack::Runtime
+
+</pre>
+</div>
+<p>미들웨어 스택을 확인하면 <code>Rack::Runtime</code>가 없어졌다는 것을 확인할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails middleware
+(in /Users/lifo/Rails/blog)
+use ActionDispatch::Static
+use #&lt;ActiveSupport::Cache::Strategy::LocalCache::Middleware:0x00000001c304c8&gt;
+use Rack::Runtime
+...
+run Rails.application.routes
+
+</pre>
+</div>
+<p>세션 관련 미들웨어를 삭제하고 싶은 경우에는 다음과 같이 작성하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+config.middleware.delete "ActionDispatch::Cookies"
+config.middleware.delete "ActionDispatch::Session::CookieStore"
+config.middleware.delete "ActionDispatch::Flash"
+
+</pre>
+</div>
+<p>브라우저 관련 미들웨어를 삭제하고 싶은 경우에는 다음과 같이 작성하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# config/application.rb
+config.middleware.delete "Rack::MethodOverride"
+
+</pre>
+</div>
+<h4 id="미들웨어-스택의-내용"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%98-%EB%82%B4%EC%9A%A9">3.3 미들웨어 스택의 내용</a></h4><p>Action Controller의 기능의 대부분은 미들웨어로서 구현되어 있습니다. 아래에서 각각의 역할을 설명합니다.</p><p><strong><code>Rack::Sendfile</code></strong></p>
+<ul>
+<li>X-Sendfile header를 설정합니다. <code>config.action_dispatch.x_sendfile_header</code> 옵션을 통하여 설정을 변경할 수 있습니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Static</code></strong></p>
+<ul>
+<li>정적인 파일을 제공할 때 사용합니다. <code>config.serve_static_assets</code>를 <code>false</code>로 변경하면 비활성화됩니다.</li>
+</ul>
+<p><strong><code>Rack::Lock</code></strong></p>
+<ul>
+<li>
+<code>env["rack.multithread"]</code>를 <code>false</code>로 설정하여 애플리케이션을 Mutex로 감쌉니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Executor</code></strong></p>
+<ul>
+<li>개발 중에 스레드 안전한 코드 리로딩을 위해서 사용됩니다.</li>
+</ul>
+<p><strong><code>ActiveSupport::Cache::Strategy::LocalCache::Middleware</code></strong></p>
+<ul>
+<li>메모리를 사용한 캐싱을 위해서 사용합니다. 이 캐시는 스레드 안전(thread-safe)하지 않습니다.</li>
+</ul>
+<p><strong><code>Rack::Runtime</code></strong></p>
+<ul>
+<li>X-Runtime 헤더를 생성합니다. 이 헤더에는 요청을 처리하는 데에 걸린 시간을 초단위로 표시합니다.</li>
+</ul>
+<p><strong><code>Rack::MethodOverride</code></strong></p>
+<ul>
+<li>
+<code>params[:_method]</code>가 존재할 때에 (HTTP의) 메소드를 덮어씁니다. HTTP의 PUT 메소드, DELETE 메소드를 구현하기 위한 미들웨어입니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::RequestId</code></strong></p>
+<ul>
+<li>유일한 id를 생성하여 <code>X-Request-Id</code>에 저장합니다. <code>ActionDispatch::Request#uuid</code> 메소드도 동일한 id를 사용합니다.</li>
+</ul>
+<p><strong><code>Rails::Rack::Logger</code></strong></p>
+<ul>
+<li>요청을 처리하기 시작했다는 정보를 로그에 알립니다. 요청을 전부 처리하고 나면 모든 로그를 출력합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::ShowExceptions</code></strong></p>
+<ul>
+<li>애플리케이션이 던지는 예외를 잡고, 예외 처리용의 애플리케이션을 실행합니다. 예외 처리용의 애플리케이션은 사용자가 예외를 보기 쉽도록 가공합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::DebugExceptions</code></strong></p>
+<ul>
+<li>예외를 로그에 남기고, 로컬에서의 요청인 경우 디버그용 페이지를 출력합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::RemoteIp</code></strong></p>
+<ul>
+<li>IP 스푸핑 공격 여부를 확인합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Reloader</code></strong></p>
+<ul>
+<li>development 환경에서 코드를 다시 불러오기 위해서 prepare 콜백과 cleanup 콜백을 제공합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Callbacks</code></strong></p>
+<ul>
+<li>요청을 처리하기 전, 후에 실행 가능한 콜백을 제공합니다.</li>
+</ul>
+<p><strong><code>ActiveRecord::Migration::CheckPending</code></strong></p>
+<ul>
+<li>적용되지 않은 마이그레이션이 있는지 확인합니다. 미실행된 것이 있으면 <code>ActiveRecord::PendingMigrationError</code>를 발생시킵니다.</li>
+</ul>
+<p><strong><code>ActiveRecord::ConnectionAdapters::ConnectionManagement</code></strong></p>
+<ul>
+<li>요청 환경의 <code>rack.test</code>가 <code>true</code>가 아니라면 각 요청이 끝나고 살아있는 연결을 전부 정리합니다.</li>
+</ul>
+<p><strong><code>ActiveRecord::QueryCache</code></strong></p>
+<ul>
+<li>Active Record 쿼리 캐싱을 활성화합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Cookies</code></strong></p>
+<ul>
+<li>쿠키 기능을 제공합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Session::CookieStore</code></strong></p>
+<ul>
+<li>세션을 쿠키에 저장합니다.</li>
+</ul>
+<p><strong><code>ActionDispatch::Flash</code></strong></p>
+<ul>
+<li>flash 기능을 제공합니다(flash란 연속된 요청간에 값을 공유하는 기능입니다). 이것은 <code>config.action_controller.session_store</code>에 값이 설정되어 있을 경우에만 유효합니다.</li>
+</ul>
+<p><strong><code>Rack::Head</code></strong></p>
+<ul>
+<li>HEAD 요청을 <code>GET</code>으로 변환하여 처리합니다.</li>
+</ul>
+<p><strong><code>Rack::ConditionalGet</code></strong></p>
+<ul>
+<li>"조건부 <code>GET</code>" (Conditional <code>GET</code>) 기능을 제공합니다. "조건부 <code>GET</code>"이 활성화되어 있으면, 요청된 페이지에 변경이 없는 경우에 한해서 빈 body를 돌려주게 됩니다.</li>
+</ul>
+<p><strong><code>Rack::ETag</code></strong></p>
+<ul>
+<li>body가 문자열만으로 구성된 응답에 대해서, ETag 헤더를 추가합니다. ETag는 캐시의 유효성을 검증할 때에 사용됩니다.</li>
+</ul>
+<div class="info"><p>이러한 미들웨어는 모두 Rack의 미들웨어 스택에서도 사용할 수 있습니다.</p></div><h3 id="참고자료"><a class="anchorlink" href="#%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C">4 참고자료</a></h3><h4 id="rack에-대해-자세히-배우기"><a class="anchorlink" href="#rack%EC%97%90-%EB%8C%80%ED%95%B4-%EC%9E%90%EC%84%B8%ED%9E%88-%EB%B0%B0%EC%9A%B0%EA%B8%B0">4.1 Rack에 대해 자세히 배우기</a></h4>
+<ul>
+<li><a href="http://rack.github.io">Rack 공식 사이트</a></li>
+<li><a href="http://chneukirchen.org/blog/archive/2007/02/introducing-rack.html">Rack 입문</a></li>
+</ul>
+<h4 id="미들웨어를-이해하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0">4.2 미들웨어를 이해하기</a></h4>
+<ul>
+<li><a href="http://railscasts.com/episodes/151-rack-middleware">Railscast on Rack Middlewares</a></li>
+</ul>
+
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:25 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

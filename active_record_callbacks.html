@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Active Record Callbacks — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Active Record Callbacks</h2><p>여기에서는 Active Record 객체의 생애 주기에 훅을 거는 방법에 대해서 설명합니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>Active Record 객체의 생애 주기</li>
+<li>객체의 생에주기에서 이벤트에 대한 콜백 메소드를 작성하는 방법</li>
+<li>콜백에서 공통된 동작을 캡슐화하는 특수한 클래스를 작성하는 방법</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%95%A0-%EC%A3%BC%EA%B8%B0">객체의 생애 주기</a></li>
+<li>
+<a href="#%EC%BD%9C%EB%B0%B1%EC%9D%98-%EA%B0%9C%EC%9A%94">콜백의 개요</a>
+
+<ul>
+<li><a href="#%EC%BD%9C%EB%B0%B1%EC%9D%98-%EB%93%B1%EB%A1%9D">콜백의 등록</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%82%AC%EC%9A%A9%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%BD%9C%EB%B0%B1">사용가능한 콜백</a>
+
+<ul>
+<li><a href="#%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1">객체 생성</a></li>
+<li><a href="#%EA%B0%9D%EC%B2%B4-%EB%B3%80%EA%B2%BD">객체 변경</a></li>
+<li><a href="#%EA%B0%9D%EC%B2%B4-%ED%8C%8C%EA%B8%B0">객체 파기</a></li>
+<li><a href="#after-initialize%EC%99%80-after-find"><code>after_initialize</code>와 <code>after_find</code></a></li>
+<li><a href="#after-touch"><code>after_touch</code></a></li>
+</ul>
+</li>
+<li><a href="#%EC%BD%9C%EB%B0%B1%EC%9D%98-%EC%8B%A4%ED%96%89">콜백의 실행</a></li>
+<li><a href="#%EC%BD%9C%EB%B0%B1%EC%9D%84-%EB%AC%B4%EC%8B%9C%ED%95%98%EA%B8%B0">콜백을 무시하기</a></li>
+<li><a href="#%EC%BD%9C%EB%B0%B1-%EB%93%B1%EB%A1%9D-%EC%B7%A8%EC%86%8C">콜백 등록 취소</a></li>
+<li><a href="#%EA%B4%80%EA%B3%84-%EC%BD%9C%EB%B0%B1">관계 콜백</a></li>
+<li>
+<a href="#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BD%9C%EB%B0%B1">조건부 콜백</a>
+
+<ul>
+<li><a href="#if%EC%99%80-unless-%EC%97%90%EC%84%9C-%EC%8B%AC%EB%B3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0"><code>:if</code>와 <code>:unless</code> 에서 심볼 사용하기</a></li>
+<li><a href="#if%EC%99%80-unless-%EC%97%90%EC%84%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0"><code>:if</code>와 <code>:unless</code> 에서 문자열 사용하기</a></li>
+<li><a href="#if%EC%99%80-unless%EC%97%90%EC%84%9C-proc%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0"><code>:if</code>와 <code>:unless</code>에서 <code>Proc</code>를 사용하기</a></li>
+<li><a href="#%EC%BD%9C%EB%B0%B1%EC%97%90%EC%84%9C-%EC%A1%B0%EA%B1%B4%EC%9D%84-%EC%97%AC%EB%9F%AC%EA%B0%9C-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0">콜백에서 조건을 여러개 지정하기</a></li>
+</ul>
+</li>
+<li><a href="#%EC%BD%9C%EB%B0%B1-%ED%81%B4%EB%9E%98%EC%8A%A4">콜백 클래스</a></li>
+<li><a href="#%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%BD%9C%EB%B0%B1">트랜잭션 콜백</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="객체의-생애-주기"><a class="anchorlink" href="#%EA%B0%9D%EC%B2%B4%EC%9D%98-%EC%83%9D%EC%95%A0-%EC%A3%BC%EA%B8%B0">1 객체의 생애 주기</a></h3><p>Rails 애플리케이션을 조작하다 보면, 객체를 생성하거나 변경하거나, 제거하게 됩니다. Active Record는 이 <em>객체 생애 주기</em>에 훅을 걸 수 있는 방법을 제공하며, 이것을 사용해서 애플리케이션이나 데이터를 제어할 수 있습니다.</p><p>콜백은 객체의 상태가 바뀌기 '직전' 또는 '직후'에 호출됩니다.</p><h3 id="콜백의-개요"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1%EC%9D%98-%EA%B0%9C%EC%9A%94">2 콜백의 개요</a></h3><p>콜백이란 객체의 생애 주기에서 존재하는 어떤 시점에 호출되는 메소드를 말합니다. 콜백을 이용하는 것으로 Active Record 객체가 생성, 저장, 변경, 삭제, 검증, 데이터베이스에서 읽어오기, 등의 이벤트가 발생할 때에 실행되는 코드를 작성할 수 있습니다.</p><h4 id="콜백의-등록"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1%EC%9D%98-%EB%93%B1%EB%A1%9D">2.1 콜백의 등록</a></h4><p>콜백을 사용하려면, 우선 등록을 해야할 필요가 있습니다. 콜백을 구현하는 것은 일반적인 메소드를 구현하는 것과 크게 다르지 않으며, 등록할 때에는 매크로 스타일의 클래스 메소드를 사용하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  validates :login, :email, presence: true
+
+  before_validation :ensure_login_has_a_value
+
+  protected
+    def ensure_login_has_a_value
+      if login.nil?
+        self.login = email unless email.blank?
+      end
+    end
+end
+
+</pre>
+</div>
+<p>이 매크로 스타일의 클래스 메소드는 블록을 받을 수 있습니다. 아래와 같이 콜백으로 사용하고 싶은 코드가 무척 짧아서 한 줄로 줄일 수 있는 경우, 이런 스타일로 작성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  validates :login, :email, presence: true
+
+  before_create do
+    self.name = login.capitalize if name.blank?
+  end
+end
+
+</pre>
+</div>
+<p>콜백은 특정 생애 주기의 이벤트에 대해서만 호출되게끔 등록할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  before_validation :normalize_name, on: :create
+
+  # :on에 배열을 넘겨줄 수 있습니다
+  after_validation :set_location, on: [ :create, :update ]
+
+  protected
+    def normalize_name
+      self.name = self.name.downcase.titleize
+    end
+
+    def set_location
+      self.location = LocationService.query(self)
+    end
+end
+
+</pre>
+</div>
+<p>콜백의 선언은 protected 또는 private 키워드 뒤에 하는 것이 바람직합니다. 콜백 메소드를 public로 두게 되면 이 메소드는 모델의 바깥에서 호출 가능해지므로, 객체의 캡슐화 원칙에 위반되기 때문입니다.</p><h3 id="사용가능한-콜백"><a class="anchorlink" href="#%EC%82%AC%EC%9A%A9%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%BD%9C%EB%B0%B1">3 사용가능한 콜백</a></h3><p>Active Record에서 사용 가능한 콜백 목록은 아래와 같습니다. 이 콜백들은 실제로 사용 중에 호출되는 순서대로 나열되어 있습니다.</p><h4 id="객체-생성"><a class="anchorlink" href="#%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1">3.1 객체 생성</a></h4>
+<ul>
+<li><code>before_validation</code></li>
+<li><code>after_validation</code></li>
+<li><code>before_save</code></li>
+<li><code>around_save</code></li>
+<li><code>before_create</code></li>
+<li><code>around_create</code></li>
+<li><code>after_create</code></li>
+<li><code>after_save</code></li>
+</ul>
+<h4 id="객체-변경"><a class="anchorlink" href="#%EA%B0%9D%EC%B2%B4-%EB%B3%80%EA%B2%BD">3.2 객체 변경</a></h4>
+<ul>
+<li><code>before_validation</code></li>
+<li><code>after_validation</code></li>
+<li><code>before_save</code></li>
+<li><code>around_save</code></li>
+<li><code>before_update</code></li>
+<li><code>around_update</code></li>
+<li><code>after_update</code></li>
+<li><code>after_save</code></li>
+</ul>
+<h4 id="객체-파기"><a class="anchorlink" href="#%EA%B0%9D%EC%B2%B4-%ED%8C%8C%EA%B8%B0">3.3 객체 파기</a></h4>
+<ul>
+<li><code>before_destroy</code></li>
+<li><code>around_destroy</code></li>
+<li><code>after_destroy</code></li>
+</ul>
+<div class="warning"><p><code>after_save</code>는 생성 시와 변경 시에 호출됩니다만, 매크로 등록 순서에 관계 없이 <code>after_create</code>와 <code>after_update</code> 보다 <em>뒤</em>에 호출됩니다.</p></div><h4 id="after-initialize와-after-find"><a class="anchorlink" href="#after-initialize%EC%99%80-after-find">3.4 <code>after_initialize</code>와 <code>after_find</code></a></h4><p><code>after_initialize</code> 콜백은 Active Record 객체가 초기화될 때 마다 호출됩니다. 초기화는 직접 <code>new</code>를 실행해 다른 데이터베이스에서 레코드를 읽어올 때에도 실행됩니다. 이것은 Active Record의 <code>initialize</code> 메소드를 직접 오버라이드하고 싶지 않을때 사용할 수 있습니다.</p><p><code>after_find</code> 콜백은 Active Record가 데이터베이스에서 레코드를 읽어들일 때마다 호출됩니다. <code>after_find</code>와 <code>after_initialize</code>가 모두 등록되어 있을 경우에는 <code>after_find</code>가 먼저 실행됩니다.</p><p><code>after_initialize</code>와 <code>after_find</code> 콜백에 대칭되는 <code>before_*</code> 메소드가 존재하지 않습니다만, 다른 Active Rrecord 콜백과 마찬가지로 등록할 수 있습니다. </p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  after_initialize do |user|
+    puts "객체가 초기화되었습니다."
+  end
+
+  after_find do |user|
+    puts "객체를 찾았습니다."
+  end
+end
+
+&gt;&gt; User.new
+객체가 초기화되었습니다.
+=&gt; #&lt;User id: nil&gt;
+
+&gt;&gt; User.first
+객체를 찾았습니다.
+객체가 초기화되었습니다.
+=&gt; #&lt;User id: 1&gt;
+
+</pre>
+</div>
+<h4 id="after-touch"><a class="anchorlink" href="#after-touch">3.5 <code>after_touch</code></a></h4><p><code>after_touch</code> 콜백은 Active Record 객체가 터치될 때마다 호출됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  after_touch do |user|
+    puts "객체를 터치했습니다."
+  end
+end
+
+&gt;&gt; u = User.create(name: 'Kuldeep')
+=&gt; #&lt;User id: 1, name: "Kuldeep", created_at: "2013-11-25 12:17:49", updated_at: "2013-11-25 12:17:49"&gt;
+
+&gt;&gt; u.touch
+객체를 터치했습니다.
+=&gt; true
+
+</pre>
+</div>
+<p>이 콜백은 <code>belongs_to</code>과 함께 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Employee &lt; ActiveRecord::Base
+  belongs_to :company, touch: true
+  after_touch do
+    puts 'Employee를 터치했습니다.'
+  end
+end
+
+class Company &lt; ActiveRecord::Base
+  has_many :employees
+  after_touch :log_when_employees_or_company_touched
+
+  private
+  def log_when_employees_or_company_touched
+    puts 'Employee/Company를 터치했습니다.'
+  end
+end
+
+&gt;&gt; @employee = Employee.last
+=&gt; #&lt;Employee id: 1, company_id: 1, created_at: "2013-11-25 17:04:22", updated_at: "2013-11-25 17:05:05"&gt;
+
+# @employee.company.touch를 호출합니다.
+&gt;&gt; @employee.touch
+Employee/Company를 터치했습니다.
+Employee를 터치했습니다.
+=&gt; true
+
+</pre>
+</div>
+<h3 id="콜백의-실행"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1%EC%9D%98-%EC%8B%A4%ED%96%89">4 콜백의 실행</a></h3><p>아래의 메소드들은 콜백을 호출합니다.</p>
+<ul>
+<li><code>create</code></li>
+<li><code>create!</code></li>
+<li><code>destroy</code></li>
+<li><code>destroy!</code></li>
+<li><code>destroy_all</code></li>
+<li><code>save</code></li>
+<li><code>save!</code></li>
+<li><code>save(validate: false)</code></li>
+<li><code>toggle!</code></li>
+<li><code>update_attribute</code></li>
+<li><code>update</code></li>
+<li><code>update!</code></li>
+<li><code>valid?</code></li>
+</ul>
+<p>그리고 <code>after_find</code> 콜백은 아래의 finder 메소드를 실행하면 호출됩니다.</p>
+<ul>
+<li><code>all</code></li>
+<li><code>first</code></li>
+<li><code>find</code></li>
+<li><code>find_by</code></li>
+<li><code>find_by_*</code></li>
+<li><code>find_by_*!</code></li>
+<li><code>find_by_sql</code></li>
+<li><code>last</code></li>
+</ul>
+<p><code>after_initialize</code> 콜백은 그 클래스의 새로운 객체가 초기화될 때 마다 호출됩니다.</p><div class="note"><p><code>find_by_*</code>메소드와 <code>find_by_*!</code> 메소드는 속성마다 자동적으로 생성되는 finder 메소드 입니다. 자세한 설명은 <a href="active_record_querying.html#Dynamic_finders">Dynamic finders</a>를 참조해주세요.</p></div><h3 id="콜백을-무시하기"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1%EC%9D%84-%EB%AC%B4%EC%8B%9C%ED%95%98%EA%B8%B0">5 콜백을 무시하기</a></h3><p>유효성 검사를 할 때와 마찬가지로, 아래에 있는 메소드를 사용하면 콜백을 호출하지 않을 수 있습니다.</p>
+<ul>
+<li><code>decrement</code></li>
+<li><code>decrement_counter</code></li>
+<li><code>delete</code></li>
+<li><code>delete_all</code></li>
+<li><code>increment</code></li>
+<li><code>increment_counter</code></li>
+<li><code>toggle</code></li>
+<li><code>touch</code></li>
+<li><code>update_column</code></li>
+<li><code>update_columns</code></li>
+<li><code>update_all</code></li>
+<li><code>update_counters</code></li>
+</ul>
+<p>중요한 비지니스 로직이나 애플리케이션 로직은 콜백을 사용하기 때문에 이
+메소드들을 사용하는 경우에는 주의해주세요. 실수로 콜백을 우회하게 되면,
+데이터 부정합이 발생할 가능성이 있습니다.</p><h3 id="콜백-등록-취소"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1-%EB%93%B1%EB%A1%9D-%EC%B7%A8%EC%86%8C">6 콜백 등록 취소</a></h3><p>모델에 새로운 콜백을 등록하면 실행 큐에 삽입됩니다. 이 큐에는 모델에 대한 모든
+검증, 등록된 콜백, 실행 대기중인 데이터베이스 조작 등이 들어갑니다.</p><p>콜백 체인은 하나의 트랜잭션에 포함됩니다. <em>before</em> 콜백 중 하나가 <code>false</code>를
+반환하거나 예외를 발생시키는 경우, 전체가 정지하고 롤백됩니다. 이 경우,
+<em>after</em> 콜백은 예외를 발생시키는 경우에만 중지됩니다.</p><div class="warning"><p>콜백의 체인 뒤에 발생하는 <code>ActiveRecord::Rollback</code>이나
+<code>ActiveRecord::RecordInvalid</code>를 제외한 모든 예외는 Rails에 의해서 다시
+발생됩니다. <code>ActiveRecord::Rollback</code>나 <code>ActiveRecord::RecordInvalid</code> 이외의
+예외가 발생하면 <code>save</code>나 <code>update_attributes</code>같은 메소드처럼 예외의 발생을
+고려하지 않은 코드(보통 <code>true</code>나 <code>false</code>가 반환됩니다)의 동작을 망가뜨리게
+됩니다.</p></div><h3 id="관계-콜백"><a class="anchorlink" href="#%EA%B4%80%EA%B3%84-%EC%BD%9C%EB%B0%B1">7 관계 콜백</a></h3><p>콜백은 모델의 관계를 통해서도 동작할 수 있습니다. 또한 관계를 사용해서 콜백을
+정의하는 것도 가능합니다. 한명의 사용자가 여러개의 글을 가지고 있는 경우로 예를
+들어보겠습니다. 어떤 사용자가 작성한 글은 그 사용자가 삭제되면 함께 삭제될
+필요가 있습니다. <code>User</code> 모델에 <code>depenent</code>를 추가하고 <code>Post</code> 모델에
+<code>after_destroy</code> 콜백을 추가하면 다음과 같이 동작합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class User &lt; ActiveRecord::Base
+  has_many :posts, dependent: :destroy
+end
+
+class Post &lt; ActiveRecord::Base
+  after_destroy :log_destroy_action
+
+  def log_destroy_action
+    puts 'Post destroyed'
+  end
+end
+
+&gt;&gt; user = User.first
+=&gt; #&lt;User id: 1&gt;
+&gt;&gt; user.posts.create!
+=&gt; #&lt;Post id: 1, user_id: 1&gt;
+&gt;&gt; user.destroy
+Post destroyed
+=&gt; #&lt;User id: 1&gt;
+
+</pre>
+</div>
+<h3 id="조건부-콜백"><a class="anchorlink" href="#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EC%BD%9C%EB%B0%B1">8 조건부 콜백</a></h3><p>검증과 마찬가지로 주어진 조건을 만족하는 경우에만 실행되는 콜백 메소드를
+작성할 수 있습니다. 이렇게 하기 위해서는 콜백에 <code>:if</code> 또는 <code>:unless</code> 옵션을
+사용하면 됩니다. 이 옵션은 심볼, 문자열, <code>Proc</code> 또는 <code>Array</code>를 인수로 받습니다.
+특정한 상황에서만 콜백이 실행될 필요가 있는 경우에는 <code>:if</code> 옵션을 사용합니다.
+특성 상황에서 콜백이 실행되어서는 안되는 경우에 <code>:unless</code> 옵션을 사용합니다.</p><h4 id="if와-unless-에서-심볼-사용하기"><a class="anchorlink" href="#if%EC%99%80-unless-%EC%97%90%EC%84%9C-%EC%8B%AC%EB%B3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">8.1 <code>:if</code>와 <code>:unless</code> 에서 심볼 사용하기</a></h4><p><code>:if</code>와 <code>:unless</code> 옵션에 콜백 호출 직전에 호출되는 메소드(true, false 중 하나를
+반환해야합니다)의 이름을 나타내는 심볼을 사용할 수 있습니다. <code>:if</code>의 경우
+메소드가 false를 반환하면 콜백이 실행되지 않습니다. <code>:unless</code>를 사용하는 경우
+메소드가 true를 반환하는 경우에 콜백이 실행되지 않습니다. 이것은 콜백에서 가장
+많이 사용되는 방법입니다. 이렇게 여러개의 메소드를 등록하는 것으로 콜백을
+호출하는 시점을 점검할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Order &lt; ActiveRecord::Base
+  before_save :normalize_card_number, if: :paid_with_card?
+end
+
+</pre>
+</div>
+<h4 id="if와-unless-에서-문자열-사용하기"><a class="anchorlink" href="#if%EC%99%80-unless-%EC%97%90%EC%84%9C-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">8.2 <code>:if</code>와 <code>:unless</code> 에서 문자열 사용하기</a></h4><p>문자열을 사용할 수도 있습니다. 이 문자열은 나중에 <code>evel</code>로 평가되기 때문에
+실행 가능한 올바른 Ruby 코드를 포함해야 합니다. 문자열이 포함된 조건이 충분히
+짧은 경우에만 사용해주세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Order &lt; ActiveRecord::Base
+  before_save :normalize_card_number, if: "paid_with_card?"
+end
+
+</pre>
+</div>
+<h4 id="if와-unless에서-proc를-사용하기"><a class="anchorlink" href="#if%EC%99%80-unless%EC%97%90%EC%84%9C-proc%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">8.3 <code>:if</code>와 <code>:unless</code>에서 <code>Proc</code>를 사용하기</a></h4><p>마지막으로 <code>:if</code>와 <code>:unless</code>에서 <code>Proc</code> 객체를 사용할 수도 있습니다. 이 옵션은
+한줄 정도로 작성 가능한 함수를 검증에 사용하는 경우에 쓸만합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Order &lt; ActiveRecord::Base
+  before_save :normalize_card_number,
+    if: Proc.new { |order| order.paid_with_card? }
+end
+
+</pre>
+</div>
+<h4 id="콜백에서-조건을-여러개-지정하기"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1%EC%97%90%EC%84%9C-%EC%A1%B0%EA%B1%B4%EC%9D%84-%EC%97%AC%EB%9F%AC%EA%B0%9C-%EC%A7%80%EC%A0%95%ED%95%98%EA%B8%B0">8.4 콜백에서 조건을 여러개 지정하기</a></h4><p>1개의 조건부 콜백 선언시에 <code>:if</code>와 <code>:unless</code>를 동시에 사용할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class Comment &lt; ActiveRecord::Base
+  after_create :send_email_to_author, if: :author_wants_emails?,
+    unless: Proc.new { |comment| comment.post.ignore_comments? }
+end
+
+</pre>
+</div>
+<h3 id="콜백-클래스"><a class="anchorlink" href="#%EC%BD%9C%EB%B0%B1-%ED%81%B4%EB%9E%98%EC%8A%A4">9 콜백 클래스</a></h3><p>잘 작성된 콜백 메소드를 다른 모델에서도 사용하고 싶을 때가 있습니다. Active Record는 콜백 메소드를 캡슐화 해서 클래스로 만들수 있으므로, 간단하게 재사용할 수 있습니다.</p><p>아래의 예시에서는 <code>PictureFile</code> 모델용으로 <code>after_destroy</code> 콜백을 가지는 클래스를 작성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PictureFileCallbacks
+  def after_destroy(picture_file)
+    if File.exist?(picture_file.filepath)
+      File.delete(picture_file.filepath)
+    end
+  end
+end
+
+</pre>
+</div>
+<p>위와 같이 클래스 내에 선언하는 것으로 콜백 메소드는 모델 객체를 파라미터로 받을 수 있게 됩니다. 이걸로 이 콜백 클래스는 바로 사용할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PictureFile &lt; ActiveRecord::Base
+  after_destroy PictureFileCallbacks.new
+end
+
+</pre>
+</div>
+<p>콜백을 인스턴스 메소드로 선언했기 때문에 <code>PictureFileCallbacks</code> 객체를 인스턴스로 생성할 필요가 있다는 점에 주의해주세요. 이것은 인스턴스화된 객채의 상태를 콜백 메소드로 이용하고 싶은 경우에 편리합니다. 단, 콜백을 클래스 메소드로 선언하는 편이 알기 쉬운 경우도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PictureFileCallbacks
+  def self.after_destroy(picture_file)
+    if File.exist?(picture_file.filepath)
+      File.delete(picture_file.filepath)
+    end
+  end
+end
+
+</pre>
+</div>
+<p>콜백 메소드를 이렇게 선언한 경우에는 <code>PictureFileCallbacks</code> 객체의 인스턴스를 넘겨줄 필요가 없습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PictureFile &lt; ActiveRecord::Base
+  after_destroy PictureFileCallbacks
+end
+
+</pre>
+</div>
+<p>콜백 클래스에는 여러개의 콜백을 선언할 수 있습니다.</p><h3 id="트랜잭션-콜백"><a class="anchorlink" href="#%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%BD%9C%EB%B0%B1">10 트랜잭션 콜백</a></h3><p>데이터베이스의 트랜잭션이 종료되고나서 실행되는 콜백이 2개 있습니다. <code>after_commit</code>과 <code>after_rollback</code>입니다. 이 콜백들은 <code>after_save</code> 콜백과 무척 비슷합니다만, 데이터베이스의 변경이 적용, 또는 롤백이 완료되는 시점까지 실행되지 않는다는 점이 다릅니다. 이 메소드들은 Active Record 모델로부터 데이터베이스 트랜잭션에 포함되지 않는 외부의 시스템에 무언가 영향을 주고 싶을 경우에 유용합니다.</p><p>예를 들어 직전의 예제에서 사용했던 <code>PictureFile</code> 모델과 대응하는 레코드가 삭제된 뒤에 파일을 하나 지울 필요가 있다고 합시다. <code>after_destroy</code> 콜백 직후에 무언가의 예외가 발생해서 트랜잭션이 롤백되면, 파일이 삭제되어 모델의 일관성이 유지되지 않을 가능성이 있습니다. 이하의 코드에 있는 <code>picture_file_2</code>가 유효하지 않아서 <code>save!</code> 메소드가 에러를 발생시켰다고 가정해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+PictureFile.transaction do
+  picture_file_1.destroy
+  picture_file_2.save!
+end
+
+</pre>
+</div>
+<p><code>after_commit</code> 콜백을 사용하는 것으로 이러한 경우에 대응할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class PictureFile &lt; ActiveRecord::Base
+  after_commit :delete_picture_file_from_disk, on: [:destroy]
+
+  def delete_picture_file_from_disk
+    if File.exist?(filepath)
+      File.delete(filepath)
+    end
+  end
+end
+
+</pre>
+</div>
+<div class="note"><p>여기서 <code>:on</code> 옵션은 콜백이 호출되는 조건을 지정합니다. <code>:on</code> 옵션을
+지정하지 않으면 모든 액션에서 콜백이 호출되게 됩니다.</p></div><div class="warning"><p><code>after_commit</code> 콜백과 <code>after_rollback</code> 콜백은 1개의 트랜잭션에서
+발생한 어떤 모델의 생성, 갱신, 삭제 뒤에 호출이 보장됩니다. 이 콜백들 중
+어떤 것이 예외를 발생시키더라도, 나머지 콜백에 영향을 미치지 않습니다.
+따라서 만약 직접 만든 콜백이 예외를 발생시킬 가능성이 있는 경우에는 자신의
+콜백 내에서 rescue를 해서 적절한 예외 처리를 해야할 필요가 있습니다.</p></div>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:03 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

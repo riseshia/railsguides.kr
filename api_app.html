@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>API 전용 레일스 애플리케이션 만들기 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>API 전용 레일스 애플리케이션 만들기</h2><p>이 가이드의 내용:</p>
+<ul>
+<li>레일스가 API 전용 애플리케이션을 위해 제공하는 기능</li>
+<li>브라우저 관련 기능을 제외하고 레일스를 실행하기</li>
+<li>미들웨어 선택하기</li>
+<li>컨트롤러에서 사용할 모듈 선택하기</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <ol class="chapters">
+<li><a href="#api-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%97%90-%EB%8C%80%ED%95%B4">API 애플리케이션에 대해</a></li>
+<li><a href="#json-api%EC%97%90-%EB%A0%88%EC%9D%BC%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0">JSON API에 레일스를 사용하는 이유</a></li>
+<li>
+<a href="#%EA%B8%B0%EB%B3%B8-%EC%84%A4%EC%A0%95">기본 설정</a>
+
+<ul>
+<li><a href="#%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%9D%84-%EC%83%88%EB%A1%9C-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0">애플리케이션을 새로 생성하기</a></li>
+<li><a href="#%EA%B8%B0%EC%A1%B4%EC%9D%98-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%9D%84-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0">기존의 애플리케이션을 변경하기</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%84%A0%ED%83%9D%ED%95%98%EA%B8%B0">미들웨어 선택하기</a>
+
+<ul>
+<li><a href="#%EC%BA%90%EC%8B%9C-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">캐시 미들웨어를 사용하기</a></li>
+<li><a href="#rack-sendfile-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">Rack::Sendfile 사용하기</a></li>
+<li><a href="#actiondispatch-request-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">ActionDispatch::Request 사용하기</a></li>
+<li><a href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4">그 이외의 미들웨어</a></li>
+<li><a href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0">미들웨어 제거하기</a></li>
+</ul>
+</li>
+<li>
+<a href="#%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%AA%A8%EB%93%88-%EC%84%A0%ED%83%9D%ED%95%98%EA%B8%B0">컨트롤러에서 사용할 모듈 선택하기</a>
+
+<ul>
+<li><a href="#%EA%B7%B8-%EC%99%B8%EC%9D%98-%EB%AA%A8%EB%93%88-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">그 외의 모듈 추가하기</a></li>
+</ul>
+</li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h3 id="api-애플리케이션에-대해"><a class="anchorlink" href="#api-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%97%90-%EB%8C%80%ED%95%B4">1 API 애플리케이션에 대해</a></h3><p>지금까지 레일스로 API를 사용한다고 하면 프로그램이 사용할 수 있는 API를
+웹 애플리케이션에 추가하는 방식을 의미했습니다.
+예를 들어 GitHub이 제공하는 <a href="http://developer.github.com">API</a>를 직접 만든
+클라이언트에서 사용할 수 있습니다.</p><p>클라이언트 프레임워크의 등장에 따라, 다른 웹 애플리케이션과 네이티브
+애플리케이션에서 레일스로 만든 백엔드 서버를 사용하는 경우가 늘었습니다.</p><p>Twitter는 자사 웹 애플리케이션에서 <a href="https://dev.twitter.com">공개 API</a>를
+사용하고 있습니다.
+이 웹 애플리케이션은 JSON 리소스만을 사용하는 정적인 사이트입니다.</p><p>많은 개발자가 레일스를 폼이나 링크를 통하는 서버 간의 통신을 위해 HTML을
+생성하는 대신, 웹 애플리케이션을 단순한 API 클라이언트로 정의하고, JSON API를
+사용하는 HTML과 자바스크립트를 제공하는 방식으로 다루게 되었습니다.</p><p>여기에서는 클라이언트 프레임워크의 설명을 포함해, JSON 리소스를
+API 클라이언트에 제공하는 레일스 애플리케이션을 구축하는 방법에 관해서
+설명합니다.</p><h3 id="json-api에-레일스를-사용하는-이유"><a class="anchorlink" href="#json-api%EC%97%90-%EB%A0%88%EC%9D%BC%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0">2 JSON API에 레일스를 사용하는 이유</a></h3><p>레일스로 JSON API를 만드는 것에 대해서 많은 개발자가 가장 먼저 떠올리는
+질문은 이렇습니다.
+"레일스로 JSON을 제공하는건 너무 거창하지 않나요? 그냥 Sinatra로 만들면
+어떤가요?"</p><p>단순한 API 서버라면 아마도 그럴 겁니다. 하지만 HTML의 비중이 매우 큰
+애플리케이션이라도, 로직 대부분은 뷰의 바깥에 존재합니다.</p><p>많은 개발자가 레일스를 채용하는 이유는 세세한 설정을 고민하지 않고,
+빠르게 애플리케이션을 제공할 수 있기 때문입니다.</p><p>API 애플리케이션 개발에 도움이 되는 레일스의 기능을 몇 가지 소개합니다.</p><p>미들웨어에서 제공하는 기능 목록</p>
+<ul>
+<li>리로딩: 레일스 애플리케이션은 '투명한 리로딩'을 지원합니다. 예를 들어 애플리케이션이 커져 요청마다 서버를 재기동하는 방법을 사용할 수 없더라도 투명한 리로딩이 가능합니다.</li>
+<li>개발 모드: 레일스 애플리케이션의 개발 모드에는 기본값이 이미 설정되어 있으므로 실제 환경의 성능에 대한 걱정 없이 즐겁게 작업을 진행할 수 있습니다.</li>
+<li>테스트 모드: 개발 모드와 같습니다.</li>
+<li>로그 출력: 레일스 애플리케이션은 요청마다 로그를 출력합니다. 또한 현재 모드에 따라서 로그의 레벨이 조정됩니다. 개발 모드의 로그에는 요청 환경, 데이터베이스 질의, 간단한 성능 정보 등이 출력됩니다.</li>
+<li>보안: <a href="https://en.wikipedia.org/wiki/IP_address_spoofing">IP 스푸핑 공격</a>을 검출, 방어합니다. 또한 <a href="http://en.wikipedia.org/wiki/Timing_attack">타이밍 공격</a>에 대응할 수 있는 암호화 서명을 다룹니다.</li>
+<li>매개변수 분석: URL 인코딩이나 문자열 대신 JSON으로 매개변수를 지정할 수 있습니다. JSON은 레일스에서 해석되어 <code>params</code>를 통해 접근할 수 있습니다. 물론 중첩된 URL 인코딩 매개변수도 다룰 수 있습니다.</li>
+<li>조건부 GET: 레일스에서는 <code>ETag</code>나 <code>Last-Modified</code>를 사용한 조건부 GET을 사용합니다. 이는 요청 헤더를 처리하고, 올바른 응답 헤더와 상태 코드를 돌려줍니다. 컨트롤러에 <a href="http://api.rubyonrails.org/v5.0.2/classes/ActionController/ConditionalGet.html#method-i-stale-3F"><code>stale?</code></a>을 추가하면 HTTP의 구체적인 동작은 레일스가 처리합니다.</li>
+<li>HEAD 요청: 레일스에서는 <code>HEAD</code> 요청을 투명하게 <code>GET</code> 요청으로 변환하고, 헤더만을 반환합니다. 이를 통해서 모든 레일스 API에서 <code>HEAD</code> 요청을 사용할 수 있습니다.</li>
+</ul>
+<p>Rack 미들웨어의 이런 기능들을 직접 구현할 수도 있습니다만, 레일스의 기본 미들웨어를 "JSON 생성용"으로
+쓰더라도 많은 이점을 얻을 수 있습니다.</p><p>액션 팩에서 제공하는 기능</p>
+<ul>
+<li>리소스 기반 라우팅: RESTful JSON API를 개발한다면 레일스의 라우터도 사용하고 싶을 것입니다. HTTP로부터 컨트롤러로 명확하게 연결할 수 있으므로 HTTP에 대해서 API를 어떻게 구성할지 고민할 필요가 없습니다.</li>
+<li>URL 생성: 라우팅은 URL을 생성할 때에도 편리합니다. 잘 구성된 HTTP 기반의 API에는 URL도 포함됩니다(<a href="http://developer.github.com/v3/gists/">GitHub Gist API</a>가 좋은 예시입니다).</li>
+<li>헤더 응답이나 리다이렉션 응답: <code>head :no_content</code>나 <code>redirect_to user_url(current_user)</code> 등을 사용할 수 있습니다. 헤더 응답을 직접 생성하지 않아도 됩니다.</li>
+<li>캐시: 레일스는 페이지 캐싱, 액션 캐싱, 조각 캐싱을 사용할 수 있습니다. 특히 조각 캐싱은 중첩된 JSON 객체를 만들 때 유용합니다.</li>
+<li>기본 인증, 다이제스트 인증, 토큰 인증: 3종류의 HTTP 인증을 간단하게 도입할 수 있습니다.</li>
+<li>계측(Instrumentation): 레일스의 계측 API는 등록한 다양한 이벤트 핸들러를 실행합니다. 액션 처리, 파일이나 데이터 전송, 리다이렉트, 데이터베이스 질의 등을 다룹니다. 각 이벤트의 페이로드에 다양한 정보가 포함되어 있습니다. 예를 들어 이벤트를 처리하는 액션의 경우, 페이로드에는 컨트롤러, 액션, 매개변수, 요청 형식, 요청 경로등이 포함됩니다.</li>
+<li>제너레이터: 명령 하나로 리소스를 간단하게 생성하고, API에 맞는 모델, 컨트롤러, 테스트 스텁, 라우팅을 바로 사용할 수 있습니다. 마이그레이션 등의 작업도 명령으로 실행할 수 있습니다.</li>
+<li>플러그인: 수많은 서드파티 라이브러리를 사용할 수 있습니다. 라이브러리 설정이나 웹 프레임워크 등의 연동도 간단하므로, 비용을 줄일 수 있습니다. 플러그인을 통해 기존 제너레이터를 덮어쓰거나 Rake 태스크를 추가, 또는 레일스의 동작을 변경할 수도 있습니다(로거나 캐시 백엔드 등).</li>
+</ul>
+<p>물론 레일스의 실행 프로세스에서는 등록된 컴포넌트를 모두 읽어서 연동합니다. 예를 들어 실행할 때에 <code>config/database.yml</code> 파일을 통하여 액티브 레코드를 설정합니다.</p><p><strong>한줄 요약</strong>: 레일스에서 뷰와 관련된 동작을 제외하면 어떤 기능을 사용할 수 있을까요? 기능 대부분을 사용할 수 있습니다.</p><h3 id="기본-설정"><a class="anchorlink" href="#%EA%B8%B0%EB%B3%B8-%EC%84%A4%EC%A0%95">3 기본 설정</a></h3><p>레일스 애플리케이션을 API 서버로 구축하고 싶다면, 기능을 제한한 레일스 하위 셋을 사용하여 필요한 기능을
+추가하는 것이 좋을 겁니다.</p><h4 id="애플리케이션을-새로-생성하기"><a class="anchorlink" href="#%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%9D%84-%EC%83%88%EB%A1%9C-%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0">3.1 애플리케이션을 새로 생성하기</a></h4><p>API 레일스 애플리케이션을 생성하려면 다음의 명령을 사용합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rails new my_api --api
+
+</pre>
+</div>
+<p>이 명령은 다음 3개의 동작을 실행합니다.</p>
+<ul>
+<li>사용하는 미들웨어를 기존보다 적게끔 설정합니다. 특히 브라우저용 애플리케이션에서 유용한 미들웨어(쿠키 등의 지원)를 완전히 사용할 수 없게 됩니다.</li>
+<li>
+<code>ApplicationController</code>을 <code>ActionController::Base</code>가 아닌 <code>ActionController::API</code>에서 상속받습니다. 미들웨어와 마찬가지로 액션 컨트롤러 모듈에서 브라우저용 애플리케이션에서만 사용되는 부분을 모두 제외합니다.</li>
+<li>제너레이터가 뷰, 헬퍼, 어셋을 생성하지 않도록 합니다.</li>
+</ul>
+<h4 id="기존의-애플리케이션을-변경하기"><a class="anchorlink" href="#%EA%B8%B0%EC%A1%B4%EC%9D%98-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%EC%9D%84-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B8%B0">3.2 기존의 애플리케이션을 변경하기</a></h4><p>기존의 애플리케이션을 API 전용으로 만들려면 다음 순서를 따라주세요.</p><p><code>config/application.rb</code>의 <code>Application</code> 클래스에 다음을 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.api_only = true
+
+</pre>
+</div>
+<p><code>config/environments/development.rb</code>에서
+<code>config.debug_exception_response_format</code>을 통해 개발 모드에서 에러가 발생할
+경우에 응답에서 사용할 형식을 지정하세요.</p><p><code>:default</code>는 HTML 페이지로 디버깅 정보를 제공합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.debug_exception_response_format = :default
+
+</pre>
+</div>
+<p><code>:api</code>는 응답 형식을 유지한 채로 디버깅 정보를 제공합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.debug_exception_response_format = :api
+
+</pre>
+</div>
+<p><code>config.api_only</code>를 true로 설정하면 <code>config.debug_exception_response_format</code>의
+기본값이 <code>:api</code>로 설정됩니다.</p><p>마지막으로 <code>app/controllers/application_controller.rb</code>를,</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ApplicationController &lt; ActionController::Base
+end 
+
+</pre>
+</div>
+<p>다음과 같이 변경합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+class ApplicationController &lt; ActionController::API
+end 
+
+</pre>
+</div>
+<h3 id="미들웨어-선택하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%84%A0%ED%83%9D%ED%95%98%EA%B8%B0">4 미들웨어 선택하기</a></h3><p>API 애플리케이션에서는 기본으로 다음의 미들웨어를 사용합니다.</p>
+<ul>
+<li><code>Rack::Sendfile</code></li>
+<li><code>ActionDispatch::Static</code></li>
+<li><code>ActionDispatch::Executor</code></li>
+<li><code>ActiveSupport::Cache::Strategy::LocalCache::Middleware</code></li>
+<li><code>Rack::Runtime</code></li>
+<li><code>ActionDispatch::RequestId</code></li>
+<li><code>Rails::Rack::Logger</code></li>
+<li><code>ActionDispatch::ShowExceptions</code></li>
+<li><code>ActionDispatch::DebugExceptions</code></li>
+<li><code>ActionDispatch::RemoteIp</code></li>
+<li><code>ActionDispatch::Reloader</code></li>
+<li><code>ActionDispatch::Callbacks</code></li>
+<li><code>Rack::Head</code></li>
+<li><code>Rack::ConditionalGet</code></li>
+<li><code>Rack::ETag</code></li>
+</ul>
+<p>자세한 설명은 Rack 가이드의 <a href="rails_on_rack.html#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%8A%A4%ED%83%9D%EC%9D%98-%EB%82%B4%EC%9A%A9">내부 미들웨어</a>에서 확인하세요.</p><p>미들웨어는 액티브 레코드 등의 플러그인에 의해서 추가되는 경우도 있습니다.
+일반적으로 구축할 애플리케이션의 종류와 미들웨어는 관련이 없습니다만,
+API 전용 레일스 애플리케이션에서는 의미가 있습니다.</p><p>애플리케이션의 모든 미들웨어를 확인하려면 다음 명령을 실행하세요.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rails middleware
+
+</pre>
+</div>
+<h4 id="캐시-미들웨어를-사용하기"><a class="anchorlink" href="#%EC%BA%90%EC%8B%9C-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">4.1 캐시 미들웨어를 사용하기</a></h4><p>레일스는 애플리케이션의 설정에 따라 캐시 저장소(기본값은 memcache)를 제공하는
+미들웨어를 추가합니다. 다시 말해, 레일스에 포함된 HTTP 캐시는 이 캐시 저장소에
+의존합니다.</p><p>예를 들자면, 다음과 같이 <code>stale?</code> 메소드를 호출한다고 가정합시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def show
+  @post = Post.find(params[:id])
+
+  if stale?(last_modified: @post.updated_at)
+    render json: @post
+  end
+end
+
+</pre>
+</div>
+<p><code>stale?</code> 호출은 <code>@post.updated_at</code>과 요청에 있는 <code>If-Modified-Since</code> 헤더를
+비교합니다. 헤더가 마지막 변경 시점보다 새로운 경우 "304 Not Modified"를
+반환하거나 <code>Last-Modified</code> 헤더를 포함하여 응답을 랜더링합니다.</p><p>일반적으로 이 동작은 클라이언트마다 이루어집니다만, 캐시 미들웨어가 있다면
+클라이언트 간에 이 캐시를 공유할 수도 있습니다. 클라이언트 캐시 공유는
+<code>stale?</code> 호출 시점에 지정할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def show
+  @post = Post.find(params[:id])
+
+  if stale?(last_modified: @post.updated_at, public: true)
+    render json: @post
+  end 
+end
+
+</pre>
+</div>
+<p>캐시 미들웨어는 URL에 대응하는 <code>Last-Modified</code> 값을 레일스 캐시에 저장하고
+이후 같은 URL 요청을 수신할 경우 <code>If-Modified-Since</code> 헤더를 추가합니다.</p><p>이는 HTTP를 사용하는 페이지 캐싱이라고 생각할 수도 있을 겁니다.</p><h4 id="rack-sendfile-사용하기"><a class="anchorlink" href="#rack-sendfile-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">4.2 Rack::Sendfile 사용하기</a></h4><p>레일스 컨트롤러에서 <code>send_file</code> 메소드가 실행되면 <code>X-Sendfile</code> 헤더가
+추가됩니다.
+<code>Rack::Sendfile</code>은 실제 파일 전송을 책임집니다.</p><p>빠른 파일 전송(accelerated file sending)을 지원하는 프론트엔드 서버는
+<code>Rack::Sendfile</code> 대신에 실제 파일을 전송합니다.</p><p>프론트엔드 서버에서 파일 전송에 사용하는 헤더의 이름은 해당하는 환경 설정
+파일의 <code>config.action_dispatch.x_sendfile_header</code>에서 지정할 수 있습니다.</p><p><a href="http://rubydoc.info/github/rack/rack/master/Rack/Sendfile">Rack::Sendfile 문서</a>에서
+인기있는 프론트엔드와 함께 <code>Rack::Sendfile</code>을 사용하는 방법을 확인하세요.</p><p>빠른 파일 전송을 사용하려면 헤더에 다음과 같은 값을 설정하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# Apache, lighttpd
+config.action_dispatch.x_sendfile_header = "X-Sendfile"
+
+# Nginx
+config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"
+
+</pre>
+</div>
+<p>이 옵션을 사용하려면 <code>Rack::Sendfile</code> 문서를 따라서 서버를 설정해주세요.</p><h4 id="actiondispatch-request-사용하기"><a class="anchorlink" href="#actiondispatch-request-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0">4.3 ActionDispatch::Request 사용하기</a></h4><p><code>ActionDispatch::Request#params</code>는 클라이언트로부터 매개변수를 JSON 형식으로 받아 컨트롤러의
+<code>params</code>로 접근할 수 있게 해줍니다.</p><p>이 기능을 사용하려면 JSON으로 인코딩된 매개변수를 클라이언트에서 보내고, 이 때 <code>Content-Type</code>가
+<code>application/json</code>이어야 합니다.</p><p>jQuery 예제는 다음과 같습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+jQuery.ajax({
+  type: 'POST',
+  url: '/people',
+  dataType: 'json',
+  contentType: 'application/json',
+  data: JSON.stringify({ person: { firstName: "Yehuda", lastName: "Katz" } }),
+  success: function(json) { }
+});
+
+</pre>
+</div>
+<p><code>ActionDispatch::Request</code>에서는 이 <code>Content-Type</code>으로 다음 인자를 받습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+{ :person =&gt; { :firstName =&gt; "Yehuda", :lastName =&gt; "Katz" } }
+
+</pre>
+</div>
+<h4 id="그-이외의-미들웨어"><a class="anchorlink" href="#%EA%B7%B8-%EC%9D%B4%EC%99%B8%EC%9D%98-%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4">4.4 그 이외의 미들웨어</a></h4><p>레일스에서는 이외에도 API 애플리케이션을 위한 여러 미들웨어를 사용할 수 있습니다. 특히 브라우저가
+API 클라이언트가 되는 경우에 다음의 미들웨어들이 유용합니다.</p>
+<ul>
+<li><code>Rack::MethodOverride</code></li>
+<li><code>ActionDispatch::Cookies</code></li>
+<li><code>ActionDispatch::Flash</code></li>
+<li>세션 관리용
+
+<ul>
+<li><code>ActionDispatch::Session::CacheStore</code></li>
+<li><code>ActionDispatch::Session::CookieStore</code></li>
+<li><code>ActionDispatch::Session::MemCacheStore</code></li>
+</ul>
+</li>
+</ul>
+<p>이 미들웨어들은 다음과 같이 추가할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.middleware.use Rack::MethodOverride
+
+</pre>
+</div>
+<h4 id="미들웨어-제거하기"><a class="anchorlink" href="#%EB%AF%B8%EB%93%A4%EC%9B%A8%EC%96%B4-%EC%A0%9C%EA%B1%B0%ED%95%98%EA%B8%B0">4.5 미들웨어 제거하기</a></h4><p>API 전용 미들웨어에 포함하고 싶지 않은 미들웨어는 다음과 같이 삭제할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+config.middleware.delete ::Rack::Sendfile
+
+</pre>
+</div>
+<p>이 미들웨어를 삭제하면 액션 컨트롤러의 일부 기능을 사용할 수 없게 되므로 조심하세요.</p><h3 id="컨트롤러에서-사용할-모듈-선택하기"><a class="anchorlink" href="#%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%AA%A8%EB%93%88-%EC%84%A0%ED%83%9D%ED%95%98%EA%B8%B0">5 컨트롤러에서 사용할 모듈 선택하기</a></h3><p>API 애플리케이션(<code>ActionController::API</code>를 사용)에는 다음과 같은 컨트롤러 모듈이 포함됩니다.</p>
+<ul>
+<li>
+<code>ActionController::UrlFor</code>: <code>url_for</code> 등의 헬퍼 제공</li>
+<li>
+<code>ActionController::Redirecting</code>: <code>redirect_to</code> 제공</li>
+<li>
+<code>AbstractController::Rendering</code>와 <code>ActionController::ApiRendering</code>: 기본적인
+랜더링을 제공</li>
+<li>
+<code>ActionController::Renderers::All</code>: <code>render :json</code> 등을 제공</li>
+<li>
+<code>ActionController::ConditionalGet</code>: <code>stale?</code>을 제공</li>
+<li>
+<code>ActionController::BasicImplicitRender</code>: 명시적인 응답이 없으면 빈 응답을 반환</li>
+<li>
+<code>ActionController::StrongParameters</code>: 매개변수를 위한 화이트리스트를
+제공(액티브 모델의 대량 할당과 함께 동작)</li>
+<li>
+<code>ActionController::ForceSSL</code>: <code>force_ssl</code>을 제공</li>
+<li>
+<code>ActionController::DataStreaming</code>: <code>send_file</code>이나 <code>send_data</code>를 제공</li>
+<li>
+<code>AbstractController::Callbacks</code>: <code>before_action</code> 등의 헬퍼를 제공</li>
+<li>
+<code>ActionController::Rescue</code>: <code>rescue_from</code>을 제공</li>
+<li>
+<code>ActionController::Instrumentation</code>: 액션 컨트롤러에서 정의하는 계측 훅을
+제공(<a href="active_support_instrumentation.html#action-controller">계측 가이드</a>를 참조)</li>
+<li>
+<code>ActionController::ParamsWrapper</code>: 매개변수 해시를 감싸서 중첩된 해시로 만듦. 이를 통해서 POST 요청을 전송하는 경우에도 최상위 요소를 지정하지 않도록 해줌</li>
+</ul>
+<p>다른 플러그인을 통해 모듈이 추가되는 경우도 있습니다.
+<code>ActionController::API</code>의 모든 모듈 목록은 다음 명령으로 확인할 수 있습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails c
+&gt;&gt; ActionController::API.ancestors - ActionController::Metal.ancestors
+
+</pre>
+</div>
+<h4 id="그-외의-모듈-추가하기"><a class="anchorlink" href="#%EA%B7%B8-%EC%99%B8%EC%9D%98-%EB%AA%A8%EB%93%88-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0">5.1 그 외의 모듈 추가하기</a></h4><p>액션 컨트롤러의 어떤 모듈도 자신이 의존하는 모듈을 파악하고 있으므로 자유롭게
+컨트롤러에 모듈을 추가할 수 있습니다.</p><p>자주 사용되는 것은 다음과 같습니다.</p>
+<ul>
+<li>
+<code>AbstractController::Translation</code>: 지역화용 <code>l</code>과 번역용 <code>t</code> 메소드를 제공</li>
+<li>
+<code>ActionController::HttpAuthentication::Basic</code>(그리고 <code>Digest</code>, <code>Token</code>): HTTP의 기본 인증, 다이제스트 인증, 토큰 인증을 제공</li>
+<li>
+<code>ActionView::Layouts</code>: 레이아웃을 제공</li>
+<li>
+<code>ActionController::MimeResponds</code>: <code>respond_to</code>을 제공</li>
+<li>
+<code>ActionController::Cookies</code>: 서명과 암호화를 포함한 <code>cookies</code>를 제공. 쿠키 미들웨어가 필요.</li>
+</ul>
+<p>모듈은 <code>ApplicationController</code>에 추가하는 것이 가장 좋습니다만, 각각의
+컨트롤러에 추가해도 괜찮습니다.</p>
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:12 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>

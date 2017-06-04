@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<title>Rails의 애플리케이션 템플릿 — Ruby on Rails Guides</title>
+<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shCore.css" />
+<link rel="stylesheet" type="text/css" href="stylesheets/syntaxhighlighter/shThemeRailsGuides.css" />
+
+<link rel="stylesheet" type="text/css" href="stylesheets/fixes.css" />
+
+<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body class="guide">
+  <div id="topNav">
+    <div class="wrapper">
+      <strong class="more-info-label">More at <a href="http://rubyonrails.org/">rubyonrails.org:</a> </strong>
+      <span class="red-button more-info-button">
+        More Ruby on Rails
+      </span>
+      <ul class="more-info-links s-hidden">
+        <li class="more-info"><a href="http://weblog.rubyonrails.org/">블로그</a></li>
+        <li class="more-info"><a href="http://guides.rubyonrails.org/">가이드(영문)</a></li>
+        <li class="more-info"><a href="http://api.rubyonrails.org/">API</a></li>
+        <li class="more-info"><a href="http://stackoverflow.com/questions/tagged/ruby-on-rails">도움을 요청하기</a></li>
+        <li class="more-info"><a href="https://github.com/rails/rails">기여하기</a></li>
+        <li class="more-info"><a href="https://github.com/riseshia/railsguides.kr">번역 가이드 저장소</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="header">
+    <div class="wrapper clearfix">
+      <h1><a href="index.html" title="Return to home page">Guides.rubyonrails.org</a></h1>
+      <ul class="nav">
+        <li><a class="nav-item" href="index.html">홈</a></li>
+        <li class="guides-index guides-index-large">
+          <a href="index.html" id="guidesMenu" class="guides-index-item nav-item">가이드 인덱스</a>
+          <div id="guides" class="clearfix" style="display: none;">
+            <hr />
+              <dl class="L">
+                <dt>시작하기 전에</dt>
+                <dd><a href="getting_started.html">레일스 시작하기</a></dd>
+                <dt>Model</dt>
+                <dd><a href="active_record_basics.html">Active Record 기초</a></dd>
+                <dd><a href="active_record_migrations.html">Active Record Migrations</a></dd>
+                <dd><a href="active_record_validations.html">Active Record Validations</a></dd>
+                <dd><a href="active_record_callbacks.html">Active Record Callbacks</a></dd>
+                <dd><a href="association_basics.html">Active Record Associations</a></dd>
+                <dd><a href="active_record_querying.html">Active Record Query Interface</a></dd>
+                <dt>View</dt>
+                <dd><a href="layouts_and_rendering.html">레이아웃과 랜더링</a></dd>
+                <dd><a href="form_helpers.html">Action View Form Helper</a></dd>
+                <dt>Controller</dt>
+                <dd><a href="action_controller_overview.html">Action Controller 개요</a></dd>
+                <dd><a href="routing.html">레일스 라우팅</a></dd>
+              </dl>
+              <dl class="R">
+                <dt>심화 주제</dt>
+                <dd><a href="active_support_core_extensions.html">Active Support 코어 확장 기능</a></dd>
+                <dd><a href="i18n.html">레일스 국제화(i18n) API</a></dd>
+                <dd><a href="action_mailer_basics.html">Action Mailer Basics</a></dd>
+                <dd><a href="active_job_basics.html">Active Job Basics</a></dd>
+                <dd><a href="testing.html">레일스 애플리케이션 테스트하기</a></dd>
+                <dd><a href="security.html">레일스 보안 가이드</a></dd>
+                <dd><a href="debugging_rails_applications.html">레일스 애플리케이션 디버깅</a></dd>
+                <dd><a href="configuring.html">레일스 애플리케이션 설정하기</a></dd>
+                <dd><a href="command_line.html">레일스 커맨드 라인</a></dd>
+                <dd><a href="asset_pipeline.html">애셋 파이프라인</a></dd>
+                <dd><a href="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</a></dd>
+                <dd><a href="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</a></dd>
+                <dd><a href="caching_with_rails.html">레일스에서 캐싱하기</a></dd>
+                <dd><a href="api_app.html">레일스로 API 전용 애플리케이션 만들기</a></dd>
+                <dd><a href="action_cable_overview.html">Action Cable 살펴보기</a></dd>
+                <dt>레일스 확장하기</dt>
+                <dd><a href="rails_on_rack.html">Rails와 Rack</a></dd>
+                <dd><a href="generators.html">레일스 제너레이터와 템플릿</a></dd>
+                <dt>Ruby on Rails 에 기여하기</dt>
+                <dd><a href="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</a></dd>
+                <dd><a href="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</a></dd>
+                <dt>Maintenance Policy</dt>
+                <dd><a href="maintenance_policy.html">Maintenance Policy</a></dd>
+                <dt>릴리스 노트</dt>
+                <dd><a href="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</a></dd>
+                <dd><a href="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</a></dd>
+                <dd><a href="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</a></dd>
+                <dd><a href="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</a></dd>
+                <dd><a href="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</a></dd>
+                <dd><a href="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</a></dd>
+                <dd><a href="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</a></dd>
+                <dd><a href="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</a></dd>
+                <dd><a href="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</a></dd>
+                <dd><a href="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</a></dd>
+              </dl>
+          </div>
+        </li>
+        <li><a class="nav-item" href="contributing_to_ruby_on_rails.html">기여하기</a></li>
+        <li><a class="nav-item" href="credits.html">크레딧</a></li>
+        <li class="guides-index guides-index-small">
+          <select class="guides-index-item nav-item">
+            <option value="index.html">가이드 인덱스</option>
+              <optgroup label="시작하기 전에">
+                  <option value="getting_started.html">레일스 시작하기</option>
+              </optgroup>
+              <optgroup label="Model">
+                  <option value="active_record_basics.html">Active Record 기초</option>
+                  <option value="active_record_migrations.html">Active Record Migrations</option>
+                  <option value="active_record_validations.html">Active Record Validations</option>
+                  <option value="active_record_callbacks.html">Active Record Callbacks</option>
+                  <option value="association_basics.html">Active Record Associations</option>
+                  <option value="active_record_querying.html">Active Record Query Interface</option>
+              </optgroup>
+              <optgroup label="View">
+                  <option value="layouts_and_rendering.html">레이아웃과 랜더링</option>
+                  <option value="form_helpers.html">Action View Form Helper</option>
+              </optgroup>
+              <optgroup label="Controller">
+                  <option value="action_controller_overview.html">Action Controller 개요</option>
+                  <option value="routing.html">레일스 라우팅</option>
+              </optgroup>
+              <optgroup label="심화 주제">
+                  <option value="active_support_core_extensions.html">Active Support 코어 확장 기능</option>
+                  <option value="i18n.html">레일스 국제화(i18n) API</option>
+                  <option value="action_mailer_basics.html">Action Mailer Basics</option>
+                  <option value="active_job_basics.html">Active Job Basics</option>
+                  <option value="testing.html">레일스 애플리케이션 테스트하기</option>
+                  <option value="security.html">레일스 보안 가이드</option>
+                  <option value="debugging_rails_applications.html">레일스 애플리케이션 디버깅</option>
+                  <option value="configuring.html">레일스 애플리케이션 설정하기</option>
+                  <option value="command_line.html">레일스 커맨드 라인</option>
+                  <option value="asset_pipeline.html">애셋 파이프라인</option>
+                  <option value="working_with_javascript_in_rails.html">레일스에서 JavaScript 사용하기</option>
+                  <option value="autoloading_and_reloading_constants.html">상수 자동 읽기와 다시 읽기</option>
+                  <option value="caching_with_rails.html">레일스에서 캐싱하기</option>
+                  <option value="api_app.html">레일스로 API 전용 애플리케이션 만들기</option>
+                  <option value="action_cable_overview.html">Action Cable 살펴보기</option>
+              </optgroup>
+              <optgroup label="레일스 확장하기">
+                  <option value="rails_on_rack.html">Rails와 Rack</option>
+                  <option value="generators.html">레일스 제너레이터와 템플릿</option>
+              </optgroup>
+              <optgroup label="Ruby on Rails 에 기여하기">
+                  <option value="contributing_to_ruby_on_rails.html">Ruby on Rails에 기여하는 방법</option>
+                  <option value="ruby_on_rails_guides_guidelines.html">레일스 가이드의 가이드라인</option>
+              </optgroup>
+              <optgroup label="Maintenance Policy">
+                  <option value="maintenance_policy.html">Maintenance Policy</option>
+              </optgroup>
+              <optgroup label="릴리스 노트">
+                  <option value="upgrading_ruby_on_rails.html">레일스 업그레이드 가이드</option>
+                  <option value="5_0_release_notes.html">Ruby on Rails 5.0 릴리스 노트</option>
+                  <option value="4_2_release_notes.html">Ruby on Rails 4.2 릴리스 노트</option>
+                  <option value="4_1_release_notes.html">Ruby on Rails 4.1 릴리스 노트</option>
+                  <option value="4_0_release_notes.html">Ruby on Rails 4.0 릴리스 노트</option>
+                  <option value="3_2_release_notes.html">Ruby on Rails 3.2 Release Notes [미번역]</option>
+                  <option value="3_1_release_notes.html">Ruby on Rails 3.1 Release Notes [미번역]</option>
+                  <option value="3_0_release_notes.html">Ruby on Rails 3.0 Release Notes [미번역]</option>
+                  <option value="2_3_release_notes.html">Ruby on Rails 2.3 Release Notes [미번역]</option>
+                  <option value="2_2_release_notes.html">Ruby on Rails 2.2 Release Notes [미번역]</option>
+              </optgroup>
+          </select>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="hide" />
+
+  <div id="feature">
+    <div class="wrapper">
+      <h2>Rails의 애플리케이션 템플릿</h2><p>Rails의 애플리케이션 템플리승ㄴ 단순한 Ruby 파일이며, 신규 또는 기존의 Rails 프로젝트에 gem이나 initailizer를 추가하기 위한 DSL을 포함하고 있습니다.</p><p>이 가이드의 내용:</p>
+<ul>
+<li>템플릿을 사용하여 Rails 애플리케이션을 생성/변경하는 방법</li>
+<li>Rails 템플릿 API를 사용하여 재이용 가능한 애플리케이션 템플릿을 개발하는 방법</li>
+</ul>
+
+
+                <div id="subCol">
+            <h3 class="chapter"><img src="images/chapters_icon.gif" alt="" />Chapters</h3>
+            <div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+* [사용법](#사용법)
+
+</pre>
+</div>
+
+<ol class="chapters">
+<li>
+<a href="#%ED%85%9C%ED%94%8C%EB%A6%BF-api">템플릿 API</a>
+
+<ul>
+<li><a href="#gem-args">gem(*args)</a></li>
+<li><a href="#gem-group-names-block">gem_group(*names, &amp;block)</a></li>
+<li><a href="#add-source-source-options">add_source(source, options = {})</a></li>
+<li><a href="#environment-application-data-nil-options-block">environment/application(data=nil, options={}, &amp;block)</a></li>
+<li><a href="#vendor-lib-file-initializer-filename-data-nil-block">vendor/lib/file/initializer(filename, data = nil, &amp;block)</a></li>
+<li><a href="#rakefile-filename-data-nil-block">rakefile(filename, data = nil, &amp;block)</a></li>
+<li><a href="#generate-what-args">generate(what, *args)</a></li>
+<li><a href="#run-command">run(command)</a></li>
+<li><a href="#rails-command-command-options">rails_command(command, options = {})</a></li>
+<li><a href="#route-routing-code">route(routing_code)</a></li>
+<li><a href="#inside-dir">inside(dir)</a></li>
+<li><a href="#ask-question">ask(question)</a></li>
+<li><a href="#yes-questionmark-question-%EB%98%90%EB%8A%94-no-questionmark-question">yes?(question) 또는 no?(question)</a></li>
+<li><a href="#git-command">git(:command)</a></li>
+<li><a href="#after-bundle-block">after_bundle(&amp;block)</a></li>
+</ul>
+</li>
+<li><a href="#%EA%B3%A0%EA%B8%89-%EC%82%AC%EC%9A%A9%EB%B2%95">고급 사용법</a></li>
+</ol>
+
+          </div>
+
+    </div>
+  </div>
+
+  <div id="container">
+    <div class="wrapper">
+      <div id="mainCol">
+        <h4 id="사용법"><a class="anchorlink" href="#%EC%82%AC%EC%9A%A9%EB%B2%95">1 사용법</a></h4>
+<hr>
+<p>애플리케이션 템플릿을 사용하기 위해서는 -m 옵션을 사용해서 템플릿의 장소를 지정해야 합니다. 전체 경로, 또는 URL, 어느 쪽이든 가능합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ rails new blog -m ~/template.rb
+$ rails new blog -m http://example.com/template.rb
+
+</pre>
+</div>
+<p><code>app:template</code>를 사용해서, 기존의 Rails 애플리케이션에도 이 템플릿을 적용할 수 있습니다. 템플릿의 위치는 LOCATION 환경 변수를 사용해서 넘길 필요가 있습니다. 여기에서도 파일은 로컬 경로 또는 URL, 어느쪽이든 사용해도 좋습니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+$ bin/rails app:template LOCATION=~/template.rb
+$ bin/rails app:template LOCATION=http://example.com/template.rb
+
+</pre>
+</div>
+<h3 id="템플릿-api"><a class="anchorlink" href="#%ED%85%9C%ED%94%8C%EB%A6%BF-api">2 템플릿 API</a></h3><p>Rails의 템플릿 API는 알기 쉽게 설계되어 있습니다. 다음은 대표적인 Rails 애플리케이션 템플릿입니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+# template.rb
+generate(:scaffold, "person name:string")
+route "root to: 'people#index'"
+rake("db:migrate")
+
+after_bundle do
+  git :init
+  git add: "."
+  git commit: %Q{ -m 'Initial commit' }
+end
+
+</pre>
+</div>
+<p>다음 절에서, API에서 제공하는 주요 메소드를 간단하게 설명합니다.</p><h4 id="gem-args"><a class="anchorlink" href="#gem-args">2.1 gem(*args)</a></h4><p>생성된 <code>Gemfile</code> 파일에 지정된 <code>gem</code>을 추가합니다.</p><p>예를 들어 Rails 애플리케이션이 <code>bj</code>와 <code>nokogiri</code> gem에 의존한다고 합시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+gem "bj"
+gem "nokogiri"
+
+</pre>
+</div>
+<p>Gemfile에 gem을 지정한 것만으로는 설치되지 않는 다는 점을 주의해주세요. 지정한 gem을 인스톨하기 위해서는 <code>bundle install</code>을 실행해야합니다.</p><div class="code_container">
+<pre class="brush: plain; gutter: false; toolbar: false">
+bundle install
+
+</pre>
+</div>
+<h4 id="gem-group-names-block"><a class="anchorlink" href="#gem-group-names-block">2.2 gem_group(*names, &amp;block)</a></h4><p>gem을 요구할 그룹을 지정합니다.</p><p>예를 들어 <code>rspec-rails</code> gem을 <code>development</code> 그룹과 <code>test</code> 그룹에서만 쓰이길 바란다면 다음과 같이 작성하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+gem_group :development, :test do
+  gem "rspec-rails"
+end
+
+</pre>
+</div>
+<h4 id="add-source-source-options"><a class="anchorlink" href="#add-source-source-options">2.3 add_source(source, options = {})</a></h4><p>생성된 <code>Gemfile</code>에 지정된 소스를 추가합니다.</p><p>예를 들어 <code>"http://code.whytheluckystiff.net"</code>에 있는 gem을 소스로 사용하고 싶은 경우에는 다음과 같이 작성하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+add_source "http://code.whytheluckystiff.net"
+
+</pre>
+</div>
+<p>블록을 넘기면 블록에 들어있는 젬 목록이 해당 소스 그룹에 포함됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+add_source "http://gems.github.com/" do
+  gem "rspec-rails"
+end
+
+</pre>
+</div>
+<h4 id="environment-application-data-nil-options-block"><a class="anchorlink" href="#environment-application-data-nil-options-block">2.4 environment/application(data=nil, options={}, &amp;block)</a></h4><p><code>config/application.rb</code> 파일의 <code>Application</code> 클래스에 지정된 라인을 추가합니다.</p><p><code>options[:env]</code>이 넘겨진 경우에는 <code>config/environments</code> 폴더에 있는 그 환경의 파일에 추가합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+environment 'config.action_mailer.default_url_options = {host: "http://yourwebsite.example.com"}', env: 'production'
+
+</pre>
+</div>
+<p><code>data</code> 인수 대신에 블럭을 넘길 수 있습니다.</p><h4 id="vendor-lib-file-initializer-filename-data-nil-block"><a class="anchorlink" href="#vendor-lib-file-initializer-filename-data-nil-block">2.5 vendor/lib/file/initializer(filename, data = nil, &amp;block)</a></h4><p>생성된 Rails 애플리케이션의 <code>config/initializers</code> 폴더에 initializer를 추가합니다.</p><p>예를 들어 <code>Object#not_nil?</code>와 <code>Object#not_blank?</code>라는 메소드를 사용하고 싶은 경우에는 다음과 같이 작성하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+initializer 'bloatlol.rb', &lt;&lt;-CODE
+  class Object
+    def not_nil?
+      !nil?
+    end
+
+    def not_blank?
+      !blank?
+    end
+  end
+CODE
+
+</pre>
+</div>
+<p>마찬가지로 <code>lib()</code>는 <code>lib/</code> 폴더에 <code>vendor()</code>는 <code>vendor/</code> 폴더에 각각 파일을 하나 생성합니다.</p><p><code>file()</code> 메소드를 사용하면 <code>Rails.root</code>로부터 상대 경로를 사용해서 폴더나 파일을 자유롭게 생성합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+file 'app/components/foo.rb', &lt;&lt;-CODE
+  class Foo
+  end
+CODE
+
+</pre>
+</div>
+<p>이 코드는 <code>app/components</code> 폴더를 생성하고, 그 안에 <code>foo.rb</code> 파일을 생성합니다.</p><h4 id="rakefile-filename-data-nil-block"><a class="anchorlink" href="#rakefile-filename-data-nil-block">2.6 rakefile(filename, data = nil, &amp;block)</a></h4><p>지정된 태스크를 포함하는 rake 파일을 <code>lib/tasks</code>에 생성합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+rakefile("bootstrap.rake") do
+  &lt;&lt;-TASK
+    namespace :boot do
+      task :strap do
+        puts "i like boots!"
+      end
+    end
+  TASK
+end
+
+</pre>
+</div>
+<p>이 코드는 <code>lib/tasks/bootstrap.rake</code> 파일을 생성하고, 그 안에 <code>boot:strap</code> rake 태스크를 추가합니다.</p><h4 id="generate-what-args"><a class="anchorlink" href="#generate-what-args">2.7 generate(what, *args)</a></h4><p>인수를 넘겨서 Rails 제너레이터를 실행합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+generate(:scaffold, "person", "name:string", "address:text", "age:number")
+
+</pre>
+</div>
+<h4 id="run-command"><a class="anchorlink" href="#run-command">2.8 run(command)</a></h4><p>임의의 명령을 실행합니다. 흔히 말하는 백포트와 동등합니다. 예를 들어, <code>README.rdoc</code> 파일을 삭제하는 경우에는 다음과 같이 실행하세요.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+run "rm README.rdoc"
+
+</pre>
+</div>
+<h4 id="rails-command-command-options"><a class="anchorlink" href="#rails-command-command-options">2.9 rails_command(command, options = {})</a></h4><p>Rails 애플리케이션에 있는 태스크를 실행합니다. 예를 들어, 데이터베이스의 마이그레이션을 실행하려면 다음과 같이 작성하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+rails_command "db:migrate"
+
+</pre>
+</div>
+<p>Rails의 환경을 지정하여 태스크를 실행할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+rails_command "db:migrate", env: 'production'
+
+</pre>
+</div>
+<p>슈퍼 유저 권한으로 태스크를 실행할 수도 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+rails_command "log:clear", sudo: true
+
+</pre>
+</div>
+<h4 id="route-routing-code"><a class="anchorlink" href="#route-routing-code">2.10 route(routing_code)</a></h4><p>라우팅을 <code>config/routes.rb</code> 파일에 하나 추가합니다. 위에서는 scaffold로 person을 생성하고, 이어서 <code>README.rdoc</code>을 삭제했습니다. 이번에는 <code>PeopleController#index</code>를 애플리케이션의 기본 페이지로 지정해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+route "root to: 'person#index'"
+
+</pre>
+</div>
+<h4 id="inside-dir"><a class="anchorlink" href="#inside-dir">2.11 inside(dir)</a></h4><p>폴더를 지정하여 명령을 실행합니다. 예를 들어, edge rails의 사본이 있고, 애플리케이션으로부터 거기에 심볼릭 링크를 하나 생성해봅시다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+inside('vendor') do
+  run "ln -s ~/commit-rails/rails rails"
+end
+
+</pre>
+</div>
+<h4 id="ask-question"><a class="anchorlink" href="#ask-question">2.12 ask(question)</a></h4><p><code>ask()</code>는 사용자로부터 입력을 받아서 템플릿에서 이용해야하는 경우에 쓸 수 있습니다. 예를 들어 추가된 새로운 라이브러리에 붙일 이름을 사용자 입력으로 받으려면 다음과 같이 작성하면 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+lib_name = ask("라이브러리에 붙일 이름을 입력해주세요:")
+lib_name &lt;&lt; ".rb" unless lib_name.index(".rb")
+
+lib lib_name, &lt;&lt;-CODE
+  class Shiny
+  end
+CODE
+
+</pre>
+</div>
+<h4 id="yes-questionmark-question-또는-no-questionmark-question"><a class="anchorlink" href="#yes-questionmark-question-%EB%98%90%EB%8A%94-no-questionmark-question">2.13 yes?(question) 또는 no?(question)</a></h4><p>템플릿에서 사용자 입력을 바탕으로 처리를 변경하고 싶을 때에 사용합니다. 예를 들어, 지정된 경우에만 Rails를 freeze하고 싶은 경우에는 다음과 같이 작성할 수 있습니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+rake("app:freeze:gems") if yes?("Freeze rails gems?")
+# no?(question)는 yes?의 반대 동작
+
+</pre>
+</div>
+<h4 id="git-command"><a class="anchorlink" href="#git-command">2.14 git(:command)</a></h4><p>Rails 템플릿에서 임의의 git 명령을 실행합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+git :init
+git add: "."
+git commit: "-a -m 'Initial commit'"
+
+</pre>
+</div>
+<h4 id="after-bundle-block"><a class="anchorlink" href="#after-bundle-block">2.15 after_bundle(&amp;block)</a></h4><p>gem의 번들과 binstub 생성완료 후에 실행하고 싶은 콜백을 등록합니다. 생성한 파일을 버전 관리하는 부분까지 자동화 할 때 유용합니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+after_bundle do
+  git :init
+  git add: "."
+  git commit: "-a -m 'Initial commit'"
+end
+
+</pre>
+</div>
+<p>이러한 콜백은 <code>--skip-bundle</code>이나 <code>--skip-spring</code>을 지정한 경우에도 실행됩니다.</p><h3 id="고급-사용법"><a class="anchorlink" href="#%EA%B3%A0%EA%B8%89-%EC%82%AC%EC%9A%A9%EB%B2%95">3 고급 사용법</a></h3><p>애플리케이션 템플릿은 <code>Rails::Generators::AppGenerator</code> 인스턴스의 컨텍스트에서 평가됩니다. 여기서 사용되는 <code>apply</code> 액션은 <a href="https://github.com/erikhuda/thor/blob/master/lib/thor/actions.rb#L207">Thor</a>가 제공합니다. 이를 통해서 이 인스턴스를 필요에 따라서 확장하거나, 변경할 수 있습니다.</p><p>예를 들어, <code>source_paths</code> 메소드를 재정의해서 템플릿의 위치를 지정할 수 있습니다. 이를 통해, <code>copy_file</code> 등의 메소드로 템플릿의 위치로부터 상대 경로를 지정할 수 있게 됩니다.</p><div class="code_container">
+<pre class="brush: ruby; gutter: false; toolbar: false">
+def source_paths
+  [File.expand_path(File.dirname(__FILE__))]
+end
+
+</pre>
+</div>
+
+
+        <h3>피드백</h3>
+        <p>
+          이 가이드의 질을 향상시키기 위한 도움을 기다리고 있습니다.
+        </p>
+        <p>
+          수정이 필요한 오타나 에러를 발견하면 기여해주세요. 이를 위해서 <a href="http://edgeguides.rubyonrails.org/contributing_to_ruby_on_rails.html#contributing-to-the-rails-documentation">기여 가이드</a>를 읽어주세요.
+        </p>
+        <p>
+          미완성된 내용이나 업데이트되지 않은 내용이 있을 수 있습니다. 누락된 문서를 추가해 주시기 바랍니다. <a href="http://edgeguides.rubyonrails.org">최신 가이드</a>나 마스터 브랜치를 참고하여 이미 고쳐지지 않았는지 확인하세요. 문서작성시 참고해야할 스타일과 규칙은 <a href="ruby_on_rails_guides_guidelines.html">Ruby on Rails Guides Guidelines</a>를 확인하시기 바랍니다.
+        </p>
+        <p>
+          어떤 이유에서든지, 수정이 필요한 부분을 직접 변경할 수 없는 경우에는 <a href="https://github.com/rails/rails/issues">open an issue</a>로 접속하여 문제점을 제출해 주시기 바랍니다.
+        </p>
+        <p>
+          마지막으로, 루비온레일스 문서화에 관련된 논의가 필요한 사항은 <a href="http://groups.google.com/group/rubyonrails-docs">rubyonrails-docs mailing list</a>에서 해 주시기 바랍니다.
+        </p>
+        <h3>문서생성일</h3>
+        <p>최종 생성일 : 2017-06-04 12:02:25 +0000 </p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="hide" />
+  <div id="footer">
+    <div class="wrapper">
+      <p>레일스 가이드는 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko">Creative Commons Attribution-ShareAlike 4.0 International</a> 로 배포되고 있습니다.</p>
+<p>"Rails", "Ruby on Rails", 그리고 레일스 로고는 David Heinemeier Hansson의 등록상표이며, 저작권 보호를 받고 있습니다.</p>
+
+
+    </div>
+  </div>
+
+  <script type="text/javascript" src="javascripts/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/responsive-tables.js"></script>
+  <script type="text/javascript" src="javascripts/guides.js"></script>
+  <script type="text/javascript" src="javascripts/syntaxhighlighter.js"></script>
+  <script type="text/javascript">
+    syntaxhighlighterConfig = {
+      autoLinks: false,
+    };
+    $(guidesIndex.bind);
+  </script>
+</body>
+</html>
